@@ -5,6 +5,7 @@ class AppColors {
   static const kBoxDecorationColor = Color(0xFF1A1F24);
   static const kLabelStyleColor = Color(0xFF95A1AC);
 
+  static const blackColor = Color(0xFF000000);
   static const primaryColor = Color(0xFF4B39EF);
   static const secondaryColor = Color(0xFFEE8B60);
   static const tertiaryColor = Color(0xFFFFFFFF);

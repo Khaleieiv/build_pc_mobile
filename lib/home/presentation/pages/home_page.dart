@@ -47,7 +47,7 @@ class _HomePageState extends State<HomePage> {
                   CustomDarkModeButton(),
                   SizedBox(
                     width: 5,
-                  )
+                  ),
                 ],
                 excludeHeaderSemantics: true,
                 automaticallyImplyLeading: false,
@@ -60,8 +60,8 @@ class _HomePageState extends State<HomePage> {
         bottomNavigationBar: DecoratedBox(
           decoration: BoxDecoration(
             color: themeChange.darkTheme
-                ? const Color(0xff000000)
-                : const Color(0xffffffff),
+                ? AppColors.blackColor
+                : AppColors.tertiaryColor,
             boxShadow: [
               BoxShadow(
                 blurRadius: 1,
@@ -81,8 +81,8 @@ class _HomePageState extends State<HomePage> {
                 padding:
                     const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
                 duration: const Duration(milliseconds: 400),
-                tabBackgroundColor: const Color(0xFFF1F4F8),
-                color: Colors.grey,
+                tabBackgroundColor: AppLightColors.primaryBackgroundLightColor,
+                color: AppColors.grayIconColor,
                 tabs: [
                   GButton(
                     onPressed: () {

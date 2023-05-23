@@ -8,7 +8,7 @@ import 'package:ez_localization/ez_localization.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MaterialApp(home: Main()));
+  runApp(const Main());
 }
 
 class Main extends StatelessWidget {
@@ -17,27 +17,27 @@ class Main extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InjectionContainer(
-      child:  EzLocalizationBuilder(
-        delegate: const EzLocalizationDelegate(
-          supportedLocales: [
-            Locale('en'),
-            Locale('ua'),
-          ],
+      child: EzLocalizationBuilder(
+          delegate: const EzLocalizationDelegate(
+            supportedLocales: [
+              Locale('en'),
+              Locale('ua'),
+            ],
+          ),
+          builder: (context, localizationDelegate) => MaterialApp(
+            initialRoute: RouteNames.loginPage,
+            routes: {
+              RouteNames.loginPage: (_) => const LoginPage(),
+              RouteNames.registerPage: (_) => const RegistrationPage(),
+              RouteNames.homePage: (_) => const HomePage(),
+              RouteNames.profilePage: (_) => const ProfilePage(),
+            },
+            localizationsDelegates: localizationDelegate.localizationDelegates,
+            supportedLocales: localizationDelegate.supportedLocales,
+            localeResolutionCallback:
+                localizationDelegate.localeResolutionCallback,
+          ),
         ),
-        builder: (context, localizationDelegate) => MaterialApp(
-          initialRoute: RouteNames.loginPage,
-          routes: {
-            RouteNames.loginPage: (_) => const LoginPage(),
-            RouteNames.registerPage: (_) => const RegistrationPage(),
-            RouteNames.homePage: (_) => const HomePage(),
-            RouteNames.profilePage: (_) => const ProfilePage(),
-          },
-          localizationsDelegates: localizationDelegate.localizationDelegates,
-          supportedLocales: localizationDelegate.supportedLocales,
-          localeResolutionCallback:
-          localizationDelegate.localeResolutionCallback,
-        ),
-      ),
     );
   }
 }
