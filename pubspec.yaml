@@ -48,6 +48,8 @@ dependencies:
   flutter_secure_storage: ^8.0.0
   http: ^0.13.6
   flutter_animate: ^4.1.1+1
+  google_nav_bar: ^5.0.6
+  dark_light_button: ^0.0.2
 
 
 dev_dependencies:

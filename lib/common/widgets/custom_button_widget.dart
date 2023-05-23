@@ -1,4 +1,4 @@
-import 'package:build_pc_mobile/common/constants/constants.dart';
+import 'package:build_pc_mobile/common/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class CustomButtonWidget extends StatelessWidget {
@@ -42,7 +42,7 @@ class CustomButtonWidget extends StatelessWidget {
         width: double.infinity,
         height: heightContainer,
         decoration: BoxDecoration(
-          color: kBoxDecorationColor,
+          color: AppDarkColors.primaryBackgroundDarkColor,
           borderRadius: BorderRadius.circular(borderRadius),
         ),
         child: ElevatedButton(

@@ -1,4 +1,4 @@
-import 'package:build_pc_mobile/common/constants/constants.dart';
+import 'package:build_pc_mobile/common/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class CustomTextFormField extends StatefulWidget {
@@ -45,19 +45,19 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
         width: double.infinity,
         height: height,
         decoration: BoxDecoration(
-          color: kBoxDecorationColor,
+          color: AppDarkColors.primaryBackgroundDarkColor,
           borderRadius: BorderRadius.circular(borderRadius),
         ),
         child: Padding(
           padding: const EdgeInsetsDirectional.fromSTEB(12, 0, 20, 0),
           child: TextFormField(
             style: const TextStyle(
-              color: kPrimaryLightColor,
+              color: AppColors.tertiaryColor,
             ),
             obscureText: !_passwordVisible,
             keyboardType: widget.keyboardType,
             textInputAction: TextInputAction.next,
-            cursorColor: kPrimaryLightColor,
+            cursorColor: AppColors.tertiaryColor,
             validator: customValidator,
             decoration: InputDecoration(
               suffixIcon: widget.checkSuffixIcon
@@ -66,7 +66,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
                         _passwordVisible
                             ? Icons.visibility
                             : Icons.visibility_off,
-                        color: kPrimaryLightColor,
+                        color: AppColors.tertiaryColor,
                       ),
                       onPressed: () {
                         setState(() {
@@ -77,10 +77,10 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
                   : null,
               labelText: widget.labelText,
               labelStyle: const TextStyle(
-                color: kLabelStyleColor,
+                color: AppColors.secondaryTextColor,
               ),
               hintText: widget.hintText,
-              hintStyle: const TextStyle(color: kPrimaryLightColor),
+              hintStyle: const TextStyle(color: AppColors.tertiaryColor),
               enabledBorder: const OutlineInputBorder(
                 borderSide: BorderSide(
                   color: Color(0x00000000),
@@ -103,7 +103,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
               ),
               errorBorder: const OutlineInputBorder(
                 borderSide: BorderSide(
-                  color: kBorderSideColor,
+                  color: AppColors.errorColor,
                   width: 1,
                 ),
                 borderRadius: BorderRadius.only(
@@ -113,7 +113,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
               ),
               focusedErrorBorder: const OutlineInputBorder(
                 borderSide: BorderSide(
-                  color: kBorderSideColor,
+                  color: AppColors.errorColor,
                   width: 1,
                 ),
                 borderRadius: BorderRadius.only(

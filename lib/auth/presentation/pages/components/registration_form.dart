@@ -1,6 +1,7 @@
 import 'package:build_pc_mobile/auth/presentation/widgets/already_have_an_account_check.dart';
 import 'package:build_pc_mobile/auth/presentation/widgets/custom_text_form_field.dart';
-import 'package:build_pc_mobile/common/constants/constants.dart';
+import 'package:build_pc_mobile/common/constants/app_colors.dart';
+import 'package:build_pc_mobile/common/constants/app_sizes.dart';
 import 'package:build_pc_mobile/common/presentation/navigation/route_names.dart';
 import 'package:build_pc_mobile/common/widgets/custom_button_widget.dart';
 import 'package:flutter/material.dart';
@@ -37,7 +38,7 @@ class RegistrationForm extends StatelessWidget {
             keyboardType: TextInputType.emailAddress,
             checkSuffixIcon: false,
           ),
-          const SizedBox(height: defaultPadding / 2),
+          const SizedBox(height: AppSizes.defaultPadding / 2),
           const CustomButtonWidget(
             fromSTEBStart: 0,
             fromSTEBTop: 0,
@@ -47,11 +48,11 @@ class RegistrationForm extends StatelessWidget {
             borderRadius: 25,
             routeName: RouteNames.registerPage,
             nameButton: 'Sign Up',
-            colorButton: kPrimaryColor,
+            colorButton: AppColors.primaryColor,
             fontSizeButton: 22.0,
-            colorTextButton: kPrimaryLightColor,
+            colorTextButton: AppColors.tertiaryColor,
           ),
-          const SizedBox(height: defaultPadding),
+          const SizedBox(height: AppSizes.defaultPadding),
           AlreadyHaveAnAccountCheck(
             login: false,
             press: () {

@@ -1,4 +1,4 @@
-import 'package:build_pc_mobile/common/constants/constants.dart';
+import 'package:build_pc_mobile/common/constants/app_sizes.dart';
 import 'package:flutter/material.dart';
 
 class Responsive extends StatelessWidget {
@@ -12,17 +12,18 @@ class Responsive extends StatelessWidget {
   }) : super(key: key);
 
   static bool isMobile(BuildContext context) =>
-      MediaQuery.of(context).size.width < sizeWidthForMobile;
+      MediaQuery.of(context).size.width < AppSizes.sizeWidthForMobile;
 
   static bool isTablet(BuildContext context) =>
-      MediaQuery.of(context).size.width >= sizeWidthForMobile &&
-      MediaQuery.of(context).size.width <= sizeWidthForTablet;
+      MediaQuery.of(context).size.width >= AppSizes.sizeWidthForMobile &&
+      MediaQuery.of(context).size.width <= AppSizes.sizeWidthForTablet;
 
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
 
-    return size.width >= sizeWidthForMobile && size.width <= sizeWidthForTablet
+    return size.width >= AppSizes.sizeWidthForMobile &&
+            size.width <= AppSizes.sizeWidthForTablet
         ? tablet
         : mobile;
   }

@@ -1,5 +1,5 @@
 import 'package:build_pc_mobile/auth/presentation/pages/components/login_form.dart';
-import 'package:build_pc_mobile/common/constants/constants.dart';
+import 'package:build_pc_mobile/common/constants/app_sizes.dart';
 import 'package:build_pc_mobile/common/widgets/background.dart';
 import 'package:build_pc_mobile/common/widgets/custom_logo_widget.dart';
 import 'package:build_pc_mobile/responsive.dart';
@@ -49,7 +49,7 @@ class MobileLoginScreen extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         const CustomLogoWidget(),
-        const SizedBox(height: defaultPadding * 5),
+        const SizedBox(height: AppSizes.defaultPadding * 5),
         Row(
           children: const [
             Spacer(),

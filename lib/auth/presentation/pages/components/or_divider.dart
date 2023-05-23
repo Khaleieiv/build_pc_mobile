@@ -1,4 +1,4 @@
-import 'package:build_pc_mobile/common/constants/constants.dart';
+import 'package:build_pc_mobile/common/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class OrDivider extends StatelessWidget {
@@ -21,7 +21,7 @@ class OrDivider extends StatelessWidget {
             child: Text(
               "OR",
               style: TextStyle(
-                color: kPrimaryLightColor,
+                color: AppColors.tertiaryColor,
                 fontSize: 16,
                 fontWeight: FontWeight.w600,
               ),

@@ -1,5 +1,5 @@
 import 'package:build_pc_mobile/auth/presentation/pages/components/registration_form.dart';
-import 'package:build_pc_mobile/common/constants/constants.dart';
+import 'package:build_pc_mobile/common/constants/app_sizes.dart';
 import 'package:build_pc_mobile/common/widgets/background.dart';
 import 'package:build_pc_mobile/common/widgets/custom_logo_widget.dart';
 import 'package:build_pc_mobile/responsive.dart';
@@ -27,7 +27,7 @@ class RegistrationPage extends StatelessWidget {
                       width: 450,
                       child: RegistrationPage(),
                     ),
-                    SizedBox(height: defaultPadding / 2),
+                    SizedBox(height: AppSizes.defaultPadding / 2),
                   ],
                 ),
               )
@@ -50,7 +50,7 @@ class MobileSignupScreen extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         const CustomLogoWidget(),
-        const SizedBox(height: defaultPadding * 4),
+        const SizedBox(height: AppSizes.defaultPadding * 4),
         Row(
           children: const [
             Spacer(),

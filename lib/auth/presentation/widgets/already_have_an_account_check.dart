@@ -1,4 +1,4 @@
-import 'package:build_pc_mobile/common/constants/constants.dart';
+import 'package:build_pc_mobile/common/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class AlreadyHaveAnAccountCheck extends StatelessWidget {
@@ -19,7 +19,7 @@ class AlreadyHaveAnAccountCheck extends StatelessWidget {
         Text(
           login ? "Don’t have an Account ? " : "Already have an Account ? ",
           style: const TextStyle(
-            color: kPrimaryLightColor,
+            color: AppColors.tertiaryColor,
             fontSize: 14,
           ),
         ),
@@ -28,7 +28,7 @@ class AlreadyHaveAnAccountCheck extends StatelessWidget {
           child: Text(
             login ? "Sign Up" : "Sign In",
             style: const TextStyle(
-              color: kPrimaryLightColor,
+              color: AppColors.tertiaryColor,
               fontSize: 16,
               fontWeight: FontWeight.bold,
             ),

@@ -1,7 +1,8 @@
 import 'package:build_pc_mobile/auth/presentation/pages/components/or_divider.dart';
 import 'package:build_pc_mobile/auth/presentation/widgets/already_have_an_account_check.dart';
 import 'package:build_pc_mobile/auth/presentation/widgets/custom_text_form_field.dart';
-import 'package:build_pc_mobile/common/constants/constants.dart';
+import 'package:build_pc_mobile/common/constants/app_colors.dart';
+import 'package:build_pc_mobile/common/constants/app_sizes.dart';
 import 'package:build_pc_mobile/common/presentation/navigation/route_names.dart';
 import 'package:build_pc_mobile/common/widgets/custom_button_widget.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +22,7 @@ class _LoginFormState extends State<LoginForm> {
     return Form(
       child: Column(
         children: [
-          const SizedBox(height: defaultPadding),
+          const SizedBox(height: AppSizes.defaultPadding),
           const CustomTextFormField(
             labelText: 'Email',
             hintText: 'Email',
@@ -34,7 +35,7 @@ class _LoginFormState extends State<LoginForm> {
             keyboardType: TextInputType.visiblePassword,
             checkSuffixIcon: true,
           ),
-          const SizedBox(height: defaultPadding),
+          const SizedBox(height: AppSizes.defaultPadding),
           const CustomButtonWidget(
             fromSTEBStart: 0,
             fromSTEBTop: 0,
@@ -44,11 +45,11 @@ class _LoginFormState extends State<LoginForm> {
             borderRadius: 25,
             routeName: RouteNames.registerPage,
             nameButton: 'Log In',
-            colorButton: kPrimaryColor,
+            colorButton: AppColors.primaryColor,
             fontSizeButton: 22.0,
-            colorTextButton: kPrimaryLightColor,
+            colorTextButton: AppColors.tertiaryColor,
           ),
-          const SizedBox(height: defaultPadding),
+          const SizedBox(height: AppSizes.defaultPadding),
           AlreadyHaveAnAccountCheck(
             press: () {
               Navigator.pushNamed(context, RouteNames.registerPage);
@@ -62,11 +63,11 @@ class _LoginFormState extends State<LoginForm> {
             fromSTEBBottom: 20,
             heightContainer: 60,
             borderRadius: 25,
-            routeName: RouteNames.registerPage,
+            routeName: RouteNames.homePage,
             nameButton: 'Continue as Guest',
-            colorButton: kBoxDecorationColor,
+            colorButton: AppDarkColors.primaryBackgroundDarkColor,
             fontSizeButton: 22.0,
-            colorTextButton: kPrimaryLightColor,
+            colorTextButton: AppColors.tertiaryColor,
           ),
         ],
       ),
