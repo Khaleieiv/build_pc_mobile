@@ -69,11 +69,11 @@ class CustomDarkModeButton extends StatelessWidget {
           onTap: () async {
             themeChange.darkTheme = !themeChange.darkTheme;
             SchedulerBinding.instance.addPostFrameCallback(
-                  (_) async => themeChange.darkTheme
+              (_) async => themeChange.darkTheme
                   ? animationsMap['containerOnActionTriggerAnimation1']!
                   : animationsMap['containerOnActionTriggerAnimation2']!
-                  .controller
-                  ?.forward(from: 0.0),
+                      .controller
+                      ?.forward(from: 0.0),
             );
           },
           child: Container(

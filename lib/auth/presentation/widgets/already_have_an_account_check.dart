@@ -1,4 +1,5 @@
 import 'package:build_pc_mobile/common/constants/app_colors.dart';
+import 'package:ez_localization/ez_localization.dart';
 import 'package:flutter/material.dart';
 
 class AlreadyHaveAnAccountCheck extends StatelessWidget {
@@ -17,7 +18,9 @@ class AlreadyHaveAnAccountCheck extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         Text(
-          login ? "Don’t have an Account ? " : "Already have an Account ? ",
+          login
+              ? context.getString('auth.login_page.account')
+              : context.getString('auth.registration_page.account'),
           style: const TextStyle(
             color: AppColors.tertiaryColor,
             fontSize: 14,
@@ -26,7 +29,9 @@ class AlreadyHaveAnAccountCheck extends StatelessWidget {
         GestureDetector(
           onTap: press as void Function()?,
           child: Text(
-            login ? "Sign Up" : "Sign In",
+            login
+                ? context.getString('auth.login_page.sign_up')
+                : context.getString('auth.registration_page.sign_in'),
             style: const TextStyle(
               color: AppColors.tertiaryColor,
               fontSize: 16,

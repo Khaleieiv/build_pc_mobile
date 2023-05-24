@@ -1,0 +1,49 @@
+{
+  "auth": {
+    "login_page": {
+      "email": "Пошта",
+      "password": "Пароль",
+      "or": "або",
+      "log_in": "Увійти",
+      "sign_up": "Зареєструватися",
+      "guest": "Продовжити як гість",
+      "account": "Не маєте облікового запису? "
+    },
+    "registration_page": {
+      "name": "Ім'я",
+      "login": "Логін",
+      "email": "Пошта",
+      "password": "Пароль",
+      "sign_in": "Вхід",
+      "account": "Вже маєте обліковий запис? "
+    }
+  },
+  "profile": {
+    "user_status": {
+      "user_name": "Гостьовий користувач",
+      "status": "Гість",
+      "email": "З обліковим записом не пов'язано електронної пошти"
+    },
+    "switch_dark_mode": {
+      "dark_mode": "Увімкнути темний режим",
+      "light_mode": "Увімкнути світлий режим"
+    },
+    "account": {
+      "account_settings": "Налаштування облікового запису",
+      "edit_profile": "Редагувати профіль",
+      "change_password": "Змінити пароль"
+    }
+  },
+  "home": {
+    "localization": {
+      "first_language": "Англійська",
+      "second_language": "Українська"
+    },
+    "bottom_navigation_bar": {
+      "home": "Головна",
+      "likes": "Вподобайки",
+      "search": "Пошук",
+      "profile": "Профіль"
+    }
+  }
+}

@@ -50,6 +50,7 @@ class CustomButtonWidget extends StatelessWidget {
             Navigator.pushNamed(context, routeName);
           },
           style: ElevatedButton.styleFrom(
+            padding: EdgeInsets.zero,
             backgroundColor: colorButton,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(borderRadius),

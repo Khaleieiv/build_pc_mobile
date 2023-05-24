@@ -1,0 +1,49 @@
+{
+  "auth": {
+    "login_page": {
+      "email": "Email",
+      "password": "Password",
+      "or": "OR",
+      "log_in": "Log In",
+      "sign_up": "Sign Up",
+      "guest": "Continue as Guest",
+      "account": "Don’t have an Account ? "
+    },
+    "registration_page": {
+      "name": "Name",
+      "login": "Login",
+      "email": "Email",
+      "password": "Password",
+      "sign_in": "Sign In",
+      "account": "Already have an Account ? "
+    }
+  },
+  "profile": {
+    "user_status": {
+      "user_name": "Guest User",
+      "status": "Guest",
+      "email": "'No Email Associated with Account"
+    },
+    "switch_dark_mode": {
+      "dark_mode": "Switch to Dark Mode",
+      "light_mode": "Switch to Light Mode"
+    },
+    "account": {
+      "account_settings": "Account Settings",
+      "edit_profile": "Edit Profile",
+      "change_password": "Change Password"
+    }
+  },
+  "home": {
+     "localization": {
+       "first_language" : "English",
+       "second_language" : "Ukrainian"
+     },
+    "bottom_navigation_bar": {
+      "home": "Home",
+      "likes": "Likes",
+      "search": "Search",
+      "profile": "Profile"
+    }
+  }
+}

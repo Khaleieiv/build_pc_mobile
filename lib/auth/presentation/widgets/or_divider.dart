@@ -1,4 +1,5 @@
 import 'package:build_pc_mobile/common/constants/app_colors.dart';
+import 'package:ez_localization/ez_localization.dart';
 import 'package:flutter/material.dart';
 
 class OrDivider extends StatelessWidget {
@@ -14,20 +15,20 @@ class OrDivider extends StatelessWidget {
       margin: EdgeInsets.symmetric(vertical: size.height * sizeHeight),
       width: size.width * sizeWidth,
       child: Row(
-        children: const <Widget>[
-          BuildDivider(),
+        children: <Widget>[
+          const BuildDivider(),
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10),
+            padding: const EdgeInsets.symmetric(horizontal: 10),
             child: Text(
-              "OR",
-              style: TextStyle(
+              context.getString('auth.login_page.or'),
+              style: const TextStyle(
                 color: AppColors.tertiaryColor,
                 fontSize: 16,
                 fontWeight: FontWeight.w600,
               ),
             ),
           ),
-          BuildDivider(),
+          const BuildDivider(),
         ],
       ),
     );

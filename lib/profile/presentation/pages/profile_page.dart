@@ -6,6 +6,7 @@ import 'package:build_pc_mobile/home/presentation/widgets/custom_dark_mode_butto
 import 'package:build_pc_mobile/profile/presentation/widgets/custom_features_profile.dart';
 import 'package:build_pc_mobile/profile/presentation/widgets/custom_icon_button_route_page.dart';
 import 'package:build_pc_mobile/profile/presentation/widgets/custom_label_profile.dart';
+import 'package:ez_localization/ez_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -16,6 +17,8 @@ class ProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final themeChange = Provider.of<DarkLightThemeProvider>(context);
     const heightContainer = 400.0;
+    const fontSizeContainer = 14.0;
+    const fromSTEBTopContainer = 4.0;
     const fontSizeText = 24.0;
     const fontSize = 16.0;
     const sizeContainer = 80.0;
@@ -67,14 +70,13 @@ class ProfilePage extends StatelessWidget {
                                     ),
                                   ),
                                   CustomLabelProfile(
-                                    labelText:
-                                    'Guest User',
+                                    labelText: context.getString(
+                                      'profile.user_status.user_name',
+                                    ),
                                     fontFamily: fontFamily,
                                     textColor: themeChange.darkTheme
-                                        ? AppLightColors
-                                        .primaryTextLightColor
-                                        : AppDarkColors
-                                        .primaryTextDarkColor,
+                                        ? AppLightColors.primaryTextLightColor
+                                        : AppDarkColors.primaryTextDarkColor,
                                     fontWeight: FontWeight.w600,
                                     fontSize: fontSizeText,
                                     fromSTEBStart: 0,
@@ -82,27 +84,29 @@ class ProfilePage extends StatelessWidget {
                                     fromSTEBEnd: 0,
                                     fromSTEBBottom: 0,
                                   ),
-                                  const CustomLabelProfile(
-                                    labelText:
-                                    'Guest',
+                                  CustomLabelProfile(
+                                    labelText: context.getString(
+                                      'profile.user_status.status',
+                                    ),
                                     fontFamily: fontFamily,
                                     textColor: AppColors.secondaryTextColor,
                                     fontWeight: FontWeight.normal,
-                                    fontSize: 14.0,
+                                    fontSize: fontSizeContainer,
                                     fromSTEBStart: 0,
-                                    fromSTEBTop: 4,
+                                    fromSTEBTop: fromSTEBTopContainer,
                                     fromSTEBEnd: 0,
                                     fromSTEBBottom: 0,
                                   ),
-                                  const CustomLabelProfile(
-                                    labelText:
-                                        'No Email Associated with Account',
+                                  CustomLabelProfile(
+                                    labelText: context.getString(
+                                      'profile.user_status.email',
+                                    ),
                                     fontFamily: fontFamily,
                                     textColor: AppColors.secondaryColor,
                                     fontWeight: FontWeight.normal,
-                                    fontSize: 14.0,
+                                    fontSize: fontSizeContainer,
                                     fromSTEBStart: 0,
-                                    fromSTEBTop: 4,
+                                    fromSTEBTop: fromSTEBTopContainer,
                                     fromSTEBEnd: 0,
                                     fromSTEBBottom: 0,
                                   ),
@@ -123,8 +127,12 @@ class ProfilePage extends StatelessWidget {
                   AppLightColors.secondaryBackgroundLightColor,
               backgroundColorForDarkMode: AppColors.blackColor,
               textFeatureProfile: themeChange.darkTheme
-                  ? 'Switch to Dark Mode'
-                  : 'Switch to Light Mode',
+                  ? context.getString(
+                      'profile.switch_dark_mode.dark_mode',
+                    )
+                  : context.getString(
+                      'profile.switch_dark_mode.light_mode',
+                    ),
               fontFamily: fontFamily,
               fontWeight: FontWeight.normal,
               fontSize: fontSize,
@@ -132,7 +140,9 @@ class ProfilePage extends StatelessWidget {
             ),
             CustomFeaturesProfile(
               isDarkMode: themeChange.darkTheme,
-              textFeatureProfile: 'Account Settings',
+              textFeatureProfile: context.getString(
+                'profile.account.account_settings',
+              ),
               fontFamily: fontFamily,
               fontSize: fontSize,
               fontWeight: FontWeight.bold,
@@ -142,7 +152,9 @@ class ProfilePage extends StatelessWidget {
               backgroundColorForLightMode:
                   AppLightColors.secondaryBackgroundLightColor,
               backgroundColorForDarkMode: AppColors.blackColor,
-              textFeatureProfile: 'Edit Profile',
+              textFeatureProfile: context.getString(
+                'profile.account.edit_profile',
+              ),
               fontFamily: fontFamily,
               fontWeight: FontWeight.normal,
               fontSize: fontSize,
@@ -161,7 +173,9 @@ class ProfilePage extends StatelessWidget {
               backgroundColorForLightMode:
                   AppLightColors.secondaryBackgroundLightColor,
               backgroundColorForDarkMode: AppColors.blackColor,
-              textFeatureProfile: 'Change Password',
+              textFeatureProfile: context.getString(
+                'profile.account.change_password',
+              ),
               fontFamily: fontFamily,
               fontWeight: FontWeight.normal,
               fontSize: fontSize,

@@ -4,6 +4,7 @@ import 'package:build_pc_mobile/common/constants/app_colors.dart';
 import 'package:build_pc_mobile/common/constants/app_sizes.dart';
 import 'package:build_pc_mobile/common/presentation/navigation/route_names.dart';
 import 'package:build_pc_mobile/common/widgets/custom_button_widget.dart';
+import 'package:ez_localization/ez_localization.dart';
 import 'package:flutter/material.dart';
 
 class RegistrationForm extends StatelessWidget {
@@ -11,45 +12,50 @@ class RegistrationForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    const fromSTEBBottom = 20.0;
+    const heightContainer = 60.0;
+    const borderRadius = 25.0;
+    const fontSizeButton = 22.0;
+
     return Form(
       child: Column(
         children: [
-          const CustomTextFormField(
-            labelText: 'Name',
-            hintText: 'Name',
+          CustomTextFormField(
+            labelText: context.getString('auth.registration_page.name'),
+            hintText: context.getString('auth.registration_page.name'),
             keyboardType: TextInputType.name,
             checkSuffixIcon: false,
           ),
-          const CustomTextFormField(
-            labelText: 'Login',
-            hintText: 'Login',
+          CustomTextFormField(
+            labelText: context.getString('auth.registration_page.login'),
+            hintText: context.getString('auth.registration_page.login'),
             keyboardType: TextInputType.name,
             checkSuffixIcon: false,
           ),
-          const CustomTextFormField(
-            labelText: 'Password',
-            hintText: 'Password',
+           CustomTextFormField(
+            labelText: context.getString('auth.registration_page.password'),
+            hintText: context.getString('auth.registration_page.password'),
             keyboardType: TextInputType.visiblePassword,
             checkSuffixIcon: true,
           ),
-          const CustomTextFormField(
-            labelText: 'Email',
-            hintText: 'Email',
+           CustomTextFormField(
+            labelText: context.getString('auth.registration_page.email'),
+            hintText: context.getString('auth.registration_page.email'),
             keyboardType: TextInputType.emailAddress,
             checkSuffixIcon: false,
           ),
           const SizedBox(height: AppSizes.defaultPadding / 2),
-          const CustomButtonWidget(
+           CustomButtonWidget(
             fromSTEBStart: 0,
             fromSTEBTop: 0,
             fromSTEBEnd: 0,
-            fromSTEBBottom: 20,
-            heightContainer: 60,
-            borderRadius: 25,
+            fromSTEBBottom: fromSTEBBottom,
+            heightContainer: heightContainer,
+            borderRadius: borderRadius,
             routeName: RouteNames.registerPage,
-            nameButton: 'Sign Up',
+            nameButton: context.getString('auth.registration_page.sign_in'),
             colorButton: AppColors.primaryColor,
-            fontSizeButton: 22.0,
+            fontSizeButton: fontSizeButton,
             colorTextButton: AppColors.tertiaryColor,
           ),
           const SizedBox(height: AppSizes.defaultPadding),
