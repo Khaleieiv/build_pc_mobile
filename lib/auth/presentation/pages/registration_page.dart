@@ -11,28 +11,22 @@ class RegistrationPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Background(
-      child: SingleChildScrollView(
-        child: Responsive(
-          mobile: const MobileSignupScreen(),
-          tablet: Row(
-            children: [
-              const Expanded(
-                child: CustomLogoWidget(),
+      child: Responsive(
+        mobile: const MobileSignupScreen(),
+        tablet: Row(
+          children: [
+            Expanded(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: const [
+                  CustomLogoWidget(),
+                ],
               ),
-              Expanded(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
-                    SizedBox(
-                      width: 450,
-                      child: RegistrationPage(),
-                    ),
-                    SizedBox(height: AppSizes.defaultPadding / 2),
-                  ],
-                ),
-              )
-            ],
-          ),
+            ),
+            const Expanded(
+              child: SingleChildScrollView(child: RegistrationForm()),
+            )
+          ],
         ),
       ),
     );

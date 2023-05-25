@@ -20,6 +20,7 @@ class RegistrationForm extends StatelessWidget {
     return Form(
       child: Column(
         children: [
+          const SizedBox(height: AppSizes.defaultPadding),
           CustomTextFormField(
             labelText: context.getString('auth.registration_page.name'),
             hintText: context.getString('auth.registration_page.name'),
@@ -65,6 +66,7 @@ class RegistrationForm extends StatelessWidget {
               Navigator.pushNamed(context, RouteNames.loginPage);
             },
           ),
+          const SizedBox(height: AppSizes.defaultPadding),
         ],
       ),
     );

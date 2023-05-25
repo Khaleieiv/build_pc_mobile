@@ -1,5 +1,7 @@
-import 'package:build_pc_mobile/auth/presentation/pages/login_page.dart';
 import 'package:build_pc_mobile/common/constants/app_colors.dart';
+import 'package:build_pc_mobile/common/constants/app_sizes.dart';
+import 'package:build_pc_mobile/common/presentation/navigation/route_names.dart';
+import 'package:build_pc_mobile/common/widgets/custom_button_widget.dart';
 import 'package:build_pc_mobile/common/widgets/custom_logo_widget.dart';
 import 'package:build_pc_mobile/home/presentation/state/dark_light_theme_provider.dart';
 import 'package:build_pc_mobile/home/presentation/widgets/custom_dark_mode_button.dart';
@@ -24,6 +26,13 @@ class ProfilePage extends StatelessWidget {
     const sizeContainer = 80.0;
     const fontFamily = 'Lexend Deca';
     const fromSTEBTop = 8.0;
+
+    const fromSTEBStartButtonLogOut = 140.0;
+    const fromSTEBEndButtonLogOut = 140.0;
+    const fromSTEBBottomButtonLogOut = 20.0;
+    const heightButtonLogOut = 50.0;
+    const borderRadiusButtonLogOut = 25.0;
+    const fontSizeButtonButtonLogOut = 16.0;
 
     return Scaffold(
       backgroundColor: themeChange.darkTheme
@@ -138,14 +147,17 @@ class ProfilePage extends StatelessWidget {
               fontSize: fontSize,
               widget: const CustomDarkModeButton(),
             ),
-            CustomFeaturesProfile(
-              isDarkMode: themeChange.darkTheme,
-              textFeatureProfile: context.getString(
-                'profile.account.account_settings',
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: CustomFeaturesProfile(
+                isDarkMode: themeChange.darkTheme,
+                textFeatureProfile: context.getString(
+                  'profile.account.account_settings',
+                ),
+                fontFamily: fontFamily,
+                fontSize: fontSize,
+                fontWeight: FontWeight.bold,
               ),
-              fontFamily: fontFamily,
-              fontSize: fontSize,
-              fontWeight: FontWeight.bold,
             ),
             CustomFeaturesProfile(
               isDarkMode: themeChange.darkTheme,
@@ -159,9 +171,9 @@ class ProfilePage extends StatelessWidget {
               fontWeight: FontWeight.normal,
               fontSize: fontSize,
               widget: const CustomIconButtonRoutePage(
-                widget: LoginPage(),
                 icon: Icons.arrow_forward_ios_outlined,
                 sizeIcon: 20,
+                routePage: RouteNames.editProfilePage,
               ),
             ),
             const Divider(
@@ -180,10 +192,24 @@ class ProfilePage extends StatelessWidget {
               fontWeight: FontWeight.normal,
               fontSize: fontSize,
               widget: const CustomIconButtonRoutePage(
-                widget: LoginPage(),
                 icon: Icons.arrow_forward_ios_outlined,
                 sizeIcon: 20,
+                routePage: RouteNames.loginPage,
               ),
+            ),
+            const SizedBox(height: AppSizes.defaultPadding * 1.5),
+            CustomButtonWidget(
+              fromSTEBStart: fromSTEBStartButtonLogOut,
+              fromSTEBTop: 0,
+              fromSTEBEnd: fromSTEBEndButtonLogOut,
+              fromSTEBBottom: fromSTEBBottomButtonLogOut,
+              heightContainer: heightButtonLogOut,
+              borderRadius: borderRadiusButtonLogOut,
+              routeName: RouteNames.loginPage,
+              nameButton: context.getString('profile.account.log_out'),
+              colorButton: AppLightColors.primaryBackgroundLightColor,
+              fontSizeButton: fontSizeButtonButtonLogOut,
+              colorTextButton: AppColors.primaryColor,
             ),
           ],
         ),

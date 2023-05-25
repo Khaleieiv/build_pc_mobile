@@ -31,7 +31,16 @@
     "account": {
       "account_settings": "Account Settings",
       "edit_profile": "Edit Profile",
-      "change_password": "Change Password"
+      "change_password": "Change Password",
+      "log_out": "Log Out"
+    },
+    "edit_profile": {
+      "edit_profile": "Edit Profile",
+      "name": "Name",
+      "login": "Login",
+      "email": "Email",
+      "password": "Password",
+      "save_changes": "Save Changes"
     }
   },
   "home": {
@@ -40,9 +49,9 @@
        "second_language" : "Ukrainian"
      },
     "bottom_navigation_bar": {
-      "home": "Home",
+      "component_comparison": "Comparison",
+      "pc_build": "Pc Build",
       "likes": "Likes",
-      "search": "Search",
       "profile": "Profile"
     }
   }

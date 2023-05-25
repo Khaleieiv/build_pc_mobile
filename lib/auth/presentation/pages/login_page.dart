@@ -11,27 +11,22 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Background(
-      child: SingleChildScrollView(
-        child: Responsive(
-          mobile: const MobileLoginScreen(),
-          tablet: Row(
-            children: [
-              const Expanded(
-                child: CustomLogoWidget(),
+      child: Responsive(
+        mobile: const MobileLoginScreen(),
+        tablet: Row(
+          children: [
+             Expanded(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: const [
+                  CustomLogoWidget(),
+                ],
               ),
-              Expanded(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
-                    SizedBox(
-                      width: 450,
-                      child: LoginForm(),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
+            ),
+            const Expanded(
+              child: SingleChildScrollView(child: LoginForm()),
+            ),
+          ],
         ),
       ),
     );

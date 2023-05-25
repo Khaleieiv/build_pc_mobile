@@ -31,7 +31,16 @@
     "account": {
       "account_settings": "Налаштування облікового запису",
       "edit_profile": "Редагувати профіль",
-      "change_password": "Змінити пароль"
+      "change_password": "Змінити пароль",
+      "log_out": "Вийти"
+    },
+    "edit_profile": {
+      "edit_profile": "Редагування профіля",
+      "name": "Ім'я",
+      "login": "Логін",
+      "email": "Пошта",
+      "password": "Пароль",
+      "save_changes": "Зберегти зміни"
     }
   },
   "home": {
@@ -40,9 +49,9 @@
       "second_language": "Українська"
     },
     "bottom_navigation_bar": {
-      "home": "Головна",
+      "component_comparison": "Порівняння",
+      "pc_build": "Збірка",
       "likes": "Вподобайки",
-      "search": "Пошук",
       "profile": "Профіль"
     }
   }
