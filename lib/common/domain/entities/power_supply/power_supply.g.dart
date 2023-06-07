@@ -9,14 +9,16 @@ part of 'power_supply.dart';
 _$_PowerSupply _$$_PowerSupplyFromJson(Map<String, dynamic> json) =>
     _$_PowerSupply(
       id: json['id'] as int,
-      powerSupplyProducer: PowerSupplyProducer.fromJson(
+      powerSupplyProducer: Producers.fromJson(
           json['powerSupplyProducer'] as Map<String, dynamic>),
       name: json['name'] as String,
       power: json['power'] as int,
       formFactor:
           FormFactor.fromJson(json['formFactor'] as Map<String, dynamic>),
-      performanceLevel: PerformanceLevel.fromJson(
-          json['performanceLevel'] as Map<String, dynamic>),
+      performanceLevel: json['performanceLevel'] == null
+          ? null
+          : PerformanceLevel.fromJson(
+              json['performanceLevel'] as Map<String, dynamic>),
       pfcModule: json['pfcModule'] as bool,
       modularConnection: json['modularConnection'] as bool,
       powerSupplyProtectionFunctions:

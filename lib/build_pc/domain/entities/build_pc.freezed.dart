@@ -20,20 +20,23 @@ BuildPc _$BuildPcFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$BuildPc {
-  int get id => throw _privateConstructorUsedError;
-  String get nameOfBuild => throw _privateConstructorUsedError;
-  int get userId => throw _privateConstructorUsedError;
-  Motherboard get motherboard => throw _privateConstructorUsedError;
-  CPU get cpu => throw _privateConstructorUsedError;
-  GPU get gpu => throw _privateConstructorUsedError;
-  List<Ram> get ram => throw _privateConstructorUsedError;
-  PowerSupply get powerSupply => throw _privateConstructorUsedError;
-  List<Hdd> get hdd => throw _privateConstructorUsedError;
-  List<Ssd> get ssd => throw _privateConstructorUsedError;
-  PcCase get pcCase => throw _privateConstructorUsedError;
-  Cooler get cooler => throw _privateConstructorUsedError;
+  int? get id => throw _privateConstructorUsedError;
+  String? get nameOfBuild => throw _privateConstructorUsedError;
+  User? get user => throw _privateConstructorUsedError;
+  Motherboard? get motherboard => throw _privateConstructorUsedError;
+  @JsonKey(name: 'processor')
+  CPU? get cpu => throw _privateConstructorUsedError;
+  @JsonKey(name: 'graphicCard')
+  GPU? get gpu => throw _privateConstructorUsedError;
+  List<Ram>? get ram => throw _privateConstructorUsedError;
+  PowerSupply? get powerSupply => throw _privateConstructorUsedError;
+  List<Hdd>? get hdd => throw _privateConstructorUsedError;
+  List<Ssd>? get ssd => throw _privateConstructorUsedError;
+  PcCase? get pcCase => throw _privateConstructorUsedError;
+  Cooler? get cooler => throw _privateConstructorUsedError;
   int get countOfLikes => throw _privateConstructorUsedError;
-  Rating get ratingId => throw _privateConstructorUsedError;
+  Rating? get ratingId => throw _privateConstructorUsedError;
+  int get totalPrice => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -46,28 +49,30 @@ abstract class $BuildPcCopyWith<$Res> {
       _$BuildPcCopyWithImpl<$Res, BuildPc>;
   @useResult
   $Res call(
-      {int id,
-      String nameOfBuild,
-      int userId,
-      Motherboard motherboard,
-      CPU cpu,
-      GPU gpu,
-      List<Ram> ram,
-      PowerSupply powerSupply,
-      List<Hdd> hdd,
-      List<Ssd> ssd,
-      PcCase pcCase,
-      Cooler cooler,
+      {int? id,
+      String? nameOfBuild,
+      User? user,
+      Motherboard? motherboard,
+      @JsonKey(name: 'processor') CPU? cpu,
+      @JsonKey(name: 'graphicCard') GPU? gpu,
+      List<Ram>? ram,
+      PowerSupply? powerSupply,
+      List<Hdd>? hdd,
+      List<Ssd>? ssd,
+      PcCase? pcCase,
+      Cooler? cooler,
       int countOfLikes,
-      Rating ratingId});
+      Rating? ratingId,
+      int totalPrice});
 
-  $MotherboardCopyWith<$Res> get motherboard;
-  $CPUCopyWith<$Res> get cpu;
-  $GPUCopyWith<$Res> get gpu;
-  $PowerSupplyCopyWith<$Res> get powerSupply;
-  $PcCaseCopyWith<$Res> get pcCase;
-  $CoolerCopyWith<$Res> get cooler;
-  $RatingCopyWith<$Res> get ratingId;
+  $UserCopyWith<$Res>? get user;
+  $MotherboardCopyWith<$Res>? get motherboard;
+  $CPUCopyWith<$Res>? get cpu;
+  $GPUCopyWith<$Res>? get gpu;
+  $PowerSupplyCopyWith<$Res>? get powerSupply;
+  $PcCaseCopyWith<$Res>? get pcCase;
+  $CoolerCopyWith<$Res>? get cooler;
+  $RatingCopyWith<$Res>? get ratingId;
 }
 
 /// @nodoc
@@ -83,133 +88,178 @@ class _$BuildPcCopyWithImpl<$Res, $Val extends BuildPc>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? nameOfBuild = null,
-    Object? userId = null,
-    Object? motherboard = null,
-    Object? cpu = null,
-    Object? gpu = null,
-    Object? ram = null,
-    Object? powerSupply = null,
-    Object? hdd = null,
-    Object? ssd = null,
-    Object? pcCase = null,
-    Object? cooler = null,
+    Object? id = freezed,
+    Object? nameOfBuild = freezed,
+    Object? user = freezed,
+    Object? motherboard = freezed,
+    Object? cpu = freezed,
+    Object? gpu = freezed,
+    Object? ram = freezed,
+    Object? powerSupply = freezed,
+    Object? hdd = freezed,
+    Object? ssd = freezed,
+    Object? pcCase = freezed,
+    Object? cooler = freezed,
     Object? countOfLikes = null,
-    Object? ratingId = null,
+    Object? ratingId = freezed,
+    Object? totalPrice = null,
   }) {
     return _then(_value.copyWith(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      nameOfBuild: null == nameOfBuild
+              as int?,
+      nameOfBuild: freezed == nameOfBuild
           ? _value.nameOfBuild
           : nameOfBuild // ignore: cast_nullable_to_non_nullable
-              as String,
-      userId: null == userId
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
-              as int,
-      motherboard: null == motherboard
+              as String?,
+      user: freezed == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as User?,
+      motherboard: freezed == motherboard
           ? _value.motherboard
           : motherboard // ignore: cast_nullable_to_non_nullable
-              as Motherboard,
-      cpu: null == cpu
+              as Motherboard?,
+      cpu: freezed == cpu
           ? _value.cpu
           : cpu // ignore: cast_nullable_to_non_nullable
-              as CPU,
-      gpu: null == gpu
+              as CPU?,
+      gpu: freezed == gpu
           ? _value.gpu
           : gpu // ignore: cast_nullable_to_non_nullable
-              as GPU,
-      ram: null == ram
+              as GPU?,
+      ram: freezed == ram
           ? _value.ram
           : ram // ignore: cast_nullable_to_non_nullable
-              as List<Ram>,
-      powerSupply: null == powerSupply
+              as List<Ram>?,
+      powerSupply: freezed == powerSupply
           ? _value.powerSupply
           : powerSupply // ignore: cast_nullable_to_non_nullable
-              as PowerSupply,
-      hdd: null == hdd
+              as PowerSupply?,
+      hdd: freezed == hdd
           ? _value.hdd
           : hdd // ignore: cast_nullable_to_non_nullable
-              as List<Hdd>,
-      ssd: null == ssd
+              as List<Hdd>?,
+      ssd: freezed == ssd
           ? _value.ssd
           : ssd // ignore: cast_nullable_to_non_nullable
-              as List<Ssd>,
-      pcCase: null == pcCase
+              as List<Ssd>?,
+      pcCase: freezed == pcCase
           ? _value.pcCase
           : pcCase // ignore: cast_nullable_to_non_nullable
-              as PcCase,
-      cooler: null == cooler
+              as PcCase?,
+      cooler: freezed == cooler
           ? _value.cooler
           : cooler // ignore: cast_nullable_to_non_nullable
-              as Cooler,
+              as Cooler?,
       countOfLikes: null == countOfLikes
           ? _value.countOfLikes
           : countOfLikes // ignore: cast_nullable_to_non_nullable
               as int,
-      ratingId: null == ratingId
+      ratingId: freezed == ratingId
           ? _value.ratingId
           : ratingId // ignore: cast_nullable_to_non_nullable
-              as Rating,
+              as Rating?,
+      totalPrice: null == totalPrice
+          ? _value.totalPrice
+          : totalPrice // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $MotherboardCopyWith<$Res> get motherboard {
-    return $MotherboardCopyWith<$Res>(_value.motherboard, (value) {
+  $UserCopyWith<$Res>? get user {
+    if (_value.user == null) {
+      return null;
+    }
+
+    return $UserCopyWith<$Res>(_value.user!, (value) {
+      return _then(_value.copyWith(user: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $MotherboardCopyWith<$Res>? get motherboard {
+    if (_value.motherboard == null) {
+      return null;
+    }
+
+    return $MotherboardCopyWith<$Res>(_value.motherboard!, (value) {
       return _then(_value.copyWith(motherboard: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $CPUCopyWith<$Res> get cpu {
-    return $CPUCopyWith<$Res>(_value.cpu, (value) {
+  $CPUCopyWith<$Res>? get cpu {
+    if (_value.cpu == null) {
+      return null;
+    }
+
+    return $CPUCopyWith<$Res>(_value.cpu!, (value) {
       return _then(_value.copyWith(cpu: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $GPUCopyWith<$Res> get gpu {
-    return $GPUCopyWith<$Res>(_value.gpu, (value) {
+  $GPUCopyWith<$Res>? get gpu {
+    if (_value.gpu == null) {
+      return null;
+    }
+
+    return $GPUCopyWith<$Res>(_value.gpu!, (value) {
       return _then(_value.copyWith(gpu: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $PowerSupplyCopyWith<$Res> get powerSupply {
-    return $PowerSupplyCopyWith<$Res>(_value.powerSupply, (value) {
+  $PowerSupplyCopyWith<$Res>? get powerSupply {
+    if (_value.powerSupply == null) {
+      return null;
+    }
+
+    return $PowerSupplyCopyWith<$Res>(_value.powerSupply!, (value) {
       return _then(_value.copyWith(powerSupply: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $PcCaseCopyWith<$Res> get pcCase {
-    return $PcCaseCopyWith<$Res>(_value.pcCase, (value) {
+  $PcCaseCopyWith<$Res>? get pcCase {
+    if (_value.pcCase == null) {
+      return null;
+    }
+
+    return $PcCaseCopyWith<$Res>(_value.pcCase!, (value) {
       return _then(_value.copyWith(pcCase: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $CoolerCopyWith<$Res> get cooler {
-    return $CoolerCopyWith<$Res>(_value.cooler, (value) {
+  $CoolerCopyWith<$Res>? get cooler {
+    if (_value.cooler == null) {
+      return null;
+    }
+
+    return $CoolerCopyWith<$Res>(_value.cooler!, (value) {
       return _then(_value.copyWith(cooler: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $RatingCopyWith<$Res> get ratingId {
-    return $RatingCopyWith<$Res>(_value.ratingId, (value) {
+  $RatingCopyWith<$Res>? get ratingId {
+    if (_value.ratingId == null) {
+      return null;
+    }
+
+    return $RatingCopyWith<$Res>(_value.ratingId!, (value) {
       return _then(_value.copyWith(ratingId: value) as $Val);
     });
   }
@@ -223,35 +273,38 @@ abstract class _$$_BuildPcCopyWith<$Res> implements $BuildPcCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {int id,
-      String nameOfBuild,
-      int userId,
-      Motherboard motherboard,
-      CPU cpu,
-      GPU gpu,
-      List<Ram> ram,
-      PowerSupply powerSupply,
-      List<Hdd> hdd,
-      List<Ssd> ssd,
-      PcCase pcCase,
-      Cooler cooler,
+      {int? id,
+      String? nameOfBuild,
+      User? user,
+      Motherboard? motherboard,
+      @JsonKey(name: 'processor') CPU? cpu,
+      @JsonKey(name: 'graphicCard') GPU? gpu,
+      List<Ram>? ram,
+      PowerSupply? powerSupply,
+      List<Hdd>? hdd,
+      List<Ssd>? ssd,
+      PcCase? pcCase,
+      Cooler? cooler,
       int countOfLikes,
-      Rating ratingId});
+      Rating? ratingId,
+      int totalPrice});
 
   @override
-  $MotherboardCopyWith<$Res> get motherboard;
+  $UserCopyWith<$Res>? get user;
   @override
-  $CPUCopyWith<$Res> get cpu;
+  $MotherboardCopyWith<$Res>? get motherboard;
   @override
-  $GPUCopyWith<$Res> get gpu;
+  $CPUCopyWith<$Res>? get cpu;
   @override
-  $PowerSupplyCopyWith<$Res> get powerSupply;
+  $GPUCopyWith<$Res>? get gpu;
   @override
-  $PcCaseCopyWith<$Res> get pcCase;
+  $PowerSupplyCopyWith<$Res>? get powerSupply;
   @override
-  $CoolerCopyWith<$Res> get cooler;
+  $PcCaseCopyWith<$Res>? get pcCase;
   @override
-  $RatingCopyWith<$Res> get ratingId;
+  $CoolerCopyWith<$Res>? get cooler;
+  @override
+  $RatingCopyWith<$Res>? get ratingId;
 }
 
 /// @nodoc
@@ -264,78 +317,83 @@ class __$$_BuildPcCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? nameOfBuild = null,
-    Object? userId = null,
-    Object? motherboard = null,
-    Object? cpu = null,
-    Object? gpu = null,
-    Object? ram = null,
-    Object? powerSupply = null,
-    Object? hdd = null,
-    Object? ssd = null,
-    Object? pcCase = null,
-    Object? cooler = null,
+    Object? id = freezed,
+    Object? nameOfBuild = freezed,
+    Object? user = freezed,
+    Object? motherboard = freezed,
+    Object? cpu = freezed,
+    Object? gpu = freezed,
+    Object? ram = freezed,
+    Object? powerSupply = freezed,
+    Object? hdd = freezed,
+    Object? ssd = freezed,
+    Object? pcCase = freezed,
+    Object? cooler = freezed,
     Object? countOfLikes = null,
-    Object? ratingId = null,
+    Object? ratingId = freezed,
+    Object? totalPrice = null,
   }) {
     return _then(_$_BuildPc(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      nameOfBuild: null == nameOfBuild
+              as int?,
+      nameOfBuild: freezed == nameOfBuild
           ? _value.nameOfBuild
           : nameOfBuild // ignore: cast_nullable_to_non_nullable
-              as String,
-      userId: null == userId
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
-              as int,
-      motherboard: null == motherboard
+              as String?,
+      user: freezed == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as User?,
+      motherboard: freezed == motherboard
           ? _value.motherboard
           : motherboard // ignore: cast_nullable_to_non_nullable
-              as Motherboard,
-      cpu: null == cpu
+              as Motherboard?,
+      cpu: freezed == cpu
           ? _value.cpu
           : cpu // ignore: cast_nullable_to_non_nullable
-              as CPU,
-      gpu: null == gpu
+              as CPU?,
+      gpu: freezed == gpu
           ? _value.gpu
           : gpu // ignore: cast_nullable_to_non_nullable
-              as GPU,
-      ram: null == ram
+              as GPU?,
+      ram: freezed == ram
           ? _value._ram
           : ram // ignore: cast_nullable_to_non_nullable
-              as List<Ram>,
-      powerSupply: null == powerSupply
+              as List<Ram>?,
+      powerSupply: freezed == powerSupply
           ? _value.powerSupply
           : powerSupply // ignore: cast_nullable_to_non_nullable
-              as PowerSupply,
-      hdd: null == hdd
+              as PowerSupply?,
+      hdd: freezed == hdd
           ? _value._hdd
           : hdd // ignore: cast_nullable_to_non_nullable
-              as List<Hdd>,
-      ssd: null == ssd
+              as List<Hdd>?,
+      ssd: freezed == ssd
           ? _value._ssd
           : ssd // ignore: cast_nullable_to_non_nullable
-              as List<Ssd>,
-      pcCase: null == pcCase
+              as List<Ssd>?,
+      pcCase: freezed == pcCase
           ? _value.pcCase
           : pcCase // ignore: cast_nullable_to_non_nullable
-              as PcCase,
-      cooler: null == cooler
+              as PcCase?,
+      cooler: freezed == cooler
           ? _value.cooler
           : cooler // ignore: cast_nullable_to_non_nullable
-              as Cooler,
+              as Cooler?,
       countOfLikes: null == countOfLikes
           ? _value.countOfLikes
           : countOfLikes // ignore: cast_nullable_to_non_nullable
               as int,
-      ratingId: null == ratingId
+      ratingId: freezed == ratingId
           ? _value.ratingId
           : ratingId // ignore: cast_nullable_to_non_nullable
-              as Rating,
+              as Rating?,
+      totalPrice: null == totalPrice
+          ? _value.totalPrice
+          : totalPrice // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -346,18 +404,19 @@ class _$_BuildPc implements _BuildPc {
   const _$_BuildPc(
       {required this.id,
       required this.nameOfBuild,
-      required this.userId,
+      required this.user,
       required this.motherboard,
-      required this.cpu,
-      required this.gpu,
-      required final List<Ram> ram,
+      @JsonKey(name: 'processor') required this.cpu,
+      @JsonKey(name: 'graphicCard') required this.gpu,
+      required final List<Ram>? ram,
       required this.powerSupply,
-      required final List<Hdd> hdd,
-      required final List<Ssd> ssd,
+      required final List<Hdd>? hdd,
+      required final List<Ssd>? ssd,
       required this.pcCase,
       required this.cooler,
       required this.countOfLikes,
-      required this.ratingId})
+      required this.ratingId,
+      required this.totalPrice})
       : _ram = ram,
         _hdd = hdd,
         _ssd = ssd;
@@ -366,52 +425,62 @@ class _$_BuildPc implements _BuildPc {
       _$$_BuildPcFromJson(json);
 
   @override
-  final int id;
+  final int? id;
   @override
-  final String nameOfBuild;
+  final String? nameOfBuild;
   @override
-  final int userId;
+  final User? user;
   @override
-  final Motherboard motherboard;
+  final Motherboard? motherboard;
   @override
-  final CPU cpu;
+  @JsonKey(name: 'processor')
+  final CPU? cpu;
   @override
-  final GPU gpu;
-  final List<Ram> _ram;
+  @JsonKey(name: 'graphicCard')
+  final GPU? gpu;
+  final List<Ram>? _ram;
   @override
-  List<Ram> get ram {
+  List<Ram>? get ram {
+    final value = _ram;
+    if (value == null) return null;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_ram);
+    return EqualUnmodifiableListView(value);
   }
 
   @override
-  final PowerSupply powerSupply;
-  final List<Hdd> _hdd;
+  final PowerSupply? powerSupply;
+  final List<Hdd>? _hdd;
   @override
-  List<Hdd> get hdd {
+  List<Hdd>? get hdd {
+    final value = _hdd;
+    if (value == null) return null;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_hdd);
+    return EqualUnmodifiableListView(value);
   }
 
-  final List<Ssd> _ssd;
+  final List<Ssd>? _ssd;
   @override
-  List<Ssd> get ssd {
+  List<Ssd>? get ssd {
+    final value = _ssd;
+    if (value == null) return null;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_ssd);
+    return EqualUnmodifiableListView(value);
   }
 
   @override
-  final PcCase pcCase;
+  final PcCase? pcCase;
   @override
-  final Cooler cooler;
+  final Cooler? cooler;
   @override
   final int countOfLikes;
   @override
-  final Rating ratingId;
+  final Rating? ratingId;
+  @override
+  final int totalPrice;
 
   @override
   String toString() {
-    return 'BuildPc(id: $id, nameOfBuild: $nameOfBuild, userId: $userId, motherboard: $motherboard, cpu: $cpu, gpu: $gpu, ram: $ram, powerSupply: $powerSupply, hdd: $hdd, ssd: $ssd, pcCase: $pcCase, cooler: $cooler, countOfLikes: $countOfLikes, ratingId: $ratingId)';
+    return 'BuildPc(id: $id, nameOfBuild: $nameOfBuild, user: $user, motherboard: $motherboard, cpu: $cpu, gpu: $gpu, ram: $ram, powerSupply: $powerSupply, hdd: $hdd, ssd: $ssd, pcCase: $pcCase, cooler: $cooler, countOfLikes: $countOfLikes, ratingId: $ratingId, totalPrice: $totalPrice)';
   }
 
   @override
@@ -422,7 +491,7 @@ class _$_BuildPc implements _BuildPc {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.nameOfBuild, nameOfBuild) ||
                 other.nameOfBuild == nameOfBuild) &&
-            (identical(other.userId, userId) || other.userId == userId) &&
+            (identical(other.user, user) || other.user == user) &&
             (identical(other.motherboard, motherboard) ||
                 other.motherboard == motherboard) &&
             (identical(other.cpu, cpu) || other.cpu == cpu) &&
@@ -437,7 +506,9 @@ class _$_BuildPc implements _BuildPc {
             (identical(other.countOfLikes, countOfLikes) ||
                 other.countOfLikes == countOfLikes) &&
             (identical(other.ratingId, ratingId) ||
-                other.ratingId == ratingId));
+                other.ratingId == ratingId) &&
+            (identical(other.totalPrice, totalPrice) ||
+                other.totalPrice == totalPrice));
   }
 
   @JsonKey(ignore: true)
@@ -446,7 +517,7 @@ class _$_BuildPc implements _BuildPc {
       runtimeType,
       id,
       nameOfBuild,
-      userId,
+      user,
       motherboard,
       cpu,
       gpu,
@@ -457,7 +528,8 @@ class _$_BuildPc implements _BuildPc {
       pcCase,
       cooler,
       countOfLikes,
-      ratingId);
+      ratingId,
+      totalPrice);
 
   @JsonKey(ignore: true)
   @override
@@ -475,51 +547,56 @@ class _$_BuildPc implements _BuildPc {
 
 abstract class _BuildPc implements BuildPc {
   const factory _BuildPc(
-      {required final int id,
-      required final String nameOfBuild,
-      required final int userId,
-      required final Motherboard motherboard,
-      required final CPU cpu,
-      required final GPU gpu,
-      required final List<Ram> ram,
-      required final PowerSupply powerSupply,
-      required final List<Hdd> hdd,
-      required final List<Ssd> ssd,
-      required final PcCase pcCase,
-      required final Cooler cooler,
+      {required final int? id,
+      required final String? nameOfBuild,
+      required final User? user,
+      required final Motherboard? motherboard,
+      @JsonKey(name: 'processor') required final CPU? cpu,
+      @JsonKey(name: 'graphicCard') required final GPU? gpu,
+      required final List<Ram>? ram,
+      required final PowerSupply? powerSupply,
+      required final List<Hdd>? hdd,
+      required final List<Ssd>? ssd,
+      required final PcCase? pcCase,
+      required final Cooler? cooler,
       required final int countOfLikes,
-      required final Rating ratingId}) = _$_BuildPc;
+      required final Rating? ratingId,
+      required final int totalPrice}) = _$_BuildPc;
 
   factory _BuildPc.fromJson(Map<String, dynamic> json) = _$_BuildPc.fromJson;
 
   @override
-  int get id;
+  int? get id;
   @override
-  String get nameOfBuild;
+  String? get nameOfBuild;
   @override
-  int get userId;
+  User? get user;
   @override
-  Motherboard get motherboard;
+  Motherboard? get motherboard;
   @override
-  CPU get cpu;
+  @JsonKey(name: 'processor')
+  CPU? get cpu;
   @override
-  GPU get gpu;
+  @JsonKey(name: 'graphicCard')
+  GPU? get gpu;
   @override
-  List<Ram> get ram;
+  List<Ram>? get ram;
   @override
-  PowerSupply get powerSupply;
+  PowerSupply? get powerSupply;
   @override
-  List<Hdd> get hdd;
+  List<Hdd>? get hdd;
   @override
-  List<Ssd> get ssd;
+  List<Ssd>? get ssd;
   @override
-  PcCase get pcCase;
+  PcCase? get pcCase;
   @override
-  Cooler get cooler;
+  Cooler? get cooler;
   @override
   int get countOfLikes;
   @override
-  Rating get ratingId;
+  Rating? get ratingId;
+  @override
+  int get totalPrice;
   @override
   @JsonKey(ignore: true)
   _$$_BuildPcCopyWith<_$_BuildPc> get copyWith =>

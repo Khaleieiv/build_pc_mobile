@@ -1,3 +1,4 @@
+import 'package:build_pc_mobile/auth/domain/entities/user/user.dart';
 import 'package:build_pc_mobile/build_pc/domain/entities/rating/rating.dart';
 import 'package:build_pc_mobile/common/domain/entities/cooler/cooler.dart';
 import 'package:build_pc_mobile/common/domain/entities/cpu/cpu.dart';
@@ -17,20 +18,23 @@ part 'build_pc.g.dart';
 @freezed
 class BuildPc with _$BuildPc {
   const factory BuildPc({
-    required int id,
-    required String nameOfBuild,
-    required int userId,
-    required Motherboard motherboard,
-    required CPU cpu,
-    required GPU gpu,
-    required List<Ram> ram,
-    required PowerSupply powerSupply,
-    required List<Hdd> hdd,
-    required List<Ssd> ssd,
-    required PcCase pcCase,
-    required Cooler cooler,
+    required int? id,
+    required String? nameOfBuild,
+    required User? user,
+    required Motherboard? motherboard,
+    @JsonKey(name: 'processor')
+    required CPU? cpu,
+    @JsonKey(name: 'graphicCard')
+    required GPU? gpu,
+    required List<Ram>? ram,
+    required PowerSupply? powerSupply,
+    required List<Hdd>? hdd,
+    required List<Ssd>? ssd,
+    required PcCase? pcCase,
+    required Cooler? cooler,
     required int countOfLikes,
-    required Rating ratingId,
+    required Rating? ratingId,
+    required int totalPrice,
   }) = _BuildPc;
 
   factory BuildPc.fromJson(Map<String, dynamic> json) =>

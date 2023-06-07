@@ -22,7 +22,7 @@ PcCase _$PcCaseFromJson(Map<String, dynamic> json) {
 mixin _$PcCase {
   int get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
-  CaseProducer get caseProducer => throw _privateConstructorUsedError;
+  Producers get caseProducer => throw _privateConstructorUsedError;
   CaseSize get caseSize => throw _privateConstructorUsedError;
   List<FormFactor> get formFactor => throw _privateConstructorUsedError;
   CasePowerSupplyLocation get casePowerSupplyLocation =>
@@ -34,10 +34,9 @@ mixin _$PcCase {
   List<CaseDesignFeatures> get designFeatures =>
       throw _privateConstructorUsedError;
   int get maxLengthOfGraphicCard => throw _privateConstructorUsedError;
-  int get powerSupplyFormFactor => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   int get recommendedPrice => throw _privateConstructorUsedError;
-  PerformanceLevel get performanceLevel => throw _privateConstructorUsedError;
+  PerformanceLevel? get performanceLevel => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -52,7 +51,7 @@ abstract class $PcCaseCopyWith<$Res> {
   $Res call(
       {int id,
       String name,
-      CaseProducer caseProducer,
+      Producers caseProducer,
       CaseSize caseSize,
       List<FormFactor> formFactor,
       CasePowerSupplyLocation casePowerSupplyLocation,
@@ -62,15 +61,14 @@ abstract class $PcCaseCopyWith<$Res> {
       int usb_2_0,
       List<CaseDesignFeatures> designFeatures,
       int maxLengthOfGraphicCard,
-      int powerSupplyFormFactor,
       String description,
       int recommendedPrice,
-      PerformanceLevel performanceLevel});
+      PerformanceLevel? performanceLevel});
 
-  $CaseProducerCopyWith<$Res> get caseProducer;
+  $ProducersCopyWith<$Res> get caseProducer;
   $CaseSizeCopyWith<$Res> get caseSize;
   $CasePowerSupplyLocationCopyWith<$Res> get casePowerSupplyLocation;
-  $PerformanceLevelCopyWith<$Res> get performanceLevel;
+  $PerformanceLevelCopyWith<$Res>? get performanceLevel;
 }
 
 /// @nodoc
@@ -98,10 +96,9 @@ class _$PcCaseCopyWithImpl<$Res, $Val extends PcCase>
     Object? usb_2_0 = null,
     Object? designFeatures = null,
     Object? maxLengthOfGraphicCard = null,
-    Object? powerSupplyFormFactor = null,
     Object? description = null,
     Object? recommendedPrice = null,
-    Object? performanceLevel = null,
+    Object? performanceLevel = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -115,7 +112,7 @@ class _$PcCaseCopyWithImpl<$Res, $Val extends PcCase>
       caseProducer: null == caseProducer
           ? _value.caseProducer
           : caseProducer // ignore: cast_nullable_to_non_nullable
-              as CaseProducer,
+              as Producers,
       caseSize: null == caseSize
           ? _value.caseSize
           : caseSize // ignore: cast_nullable_to_non_nullable
@@ -152,10 +149,6 @@ class _$PcCaseCopyWithImpl<$Res, $Val extends PcCase>
           ? _value.maxLengthOfGraphicCard
           : maxLengthOfGraphicCard // ignore: cast_nullable_to_non_nullable
               as int,
-      powerSupplyFormFactor: null == powerSupplyFormFactor
-          ? _value.powerSupplyFormFactor
-          : powerSupplyFormFactor // ignore: cast_nullable_to_non_nullable
-              as int,
       description: null == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
@@ -164,17 +157,17 @@ class _$PcCaseCopyWithImpl<$Res, $Val extends PcCase>
           ? _value.recommendedPrice
           : recommendedPrice // ignore: cast_nullable_to_non_nullable
               as int,
-      performanceLevel: null == performanceLevel
+      performanceLevel: freezed == performanceLevel
           ? _value.performanceLevel
           : performanceLevel // ignore: cast_nullable_to_non_nullable
-              as PerformanceLevel,
+              as PerformanceLevel?,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $CaseProducerCopyWith<$Res> get caseProducer {
-    return $CaseProducerCopyWith<$Res>(_value.caseProducer, (value) {
+  $ProducersCopyWith<$Res> get caseProducer {
+    return $ProducersCopyWith<$Res>(_value.caseProducer, (value) {
       return _then(_value.copyWith(caseProducer: value) as $Val);
     });
   }
@@ -198,8 +191,12 @@ class _$PcCaseCopyWithImpl<$Res, $Val extends PcCase>
 
   @override
   @pragma('vm:prefer-inline')
-  $PerformanceLevelCopyWith<$Res> get performanceLevel {
-    return $PerformanceLevelCopyWith<$Res>(_value.performanceLevel, (value) {
+  $PerformanceLevelCopyWith<$Res>? get performanceLevel {
+    if (_value.performanceLevel == null) {
+      return null;
+    }
+
+    return $PerformanceLevelCopyWith<$Res>(_value.performanceLevel!, (value) {
       return _then(_value.copyWith(performanceLevel: value) as $Val);
     });
   }
@@ -214,7 +211,7 @@ abstract class _$$_PcCaseCopyWith<$Res> implements $PcCaseCopyWith<$Res> {
   $Res call(
       {int id,
       String name,
-      CaseProducer caseProducer,
+      Producers caseProducer,
       CaseSize caseSize,
       List<FormFactor> formFactor,
       CasePowerSupplyLocation casePowerSupplyLocation,
@@ -224,19 +221,18 @@ abstract class _$$_PcCaseCopyWith<$Res> implements $PcCaseCopyWith<$Res> {
       int usb_2_0,
       List<CaseDesignFeatures> designFeatures,
       int maxLengthOfGraphicCard,
-      int powerSupplyFormFactor,
       String description,
       int recommendedPrice,
-      PerformanceLevel performanceLevel});
+      PerformanceLevel? performanceLevel});
 
   @override
-  $CaseProducerCopyWith<$Res> get caseProducer;
+  $ProducersCopyWith<$Res> get caseProducer;
   @override
   $CaseSizeCopyWith<$Res> get caseSize;
   @override
   $CasePowerSupplyLocationCopyWith<$Res> get casePowerSupplyLocation;
   @override
-  $PerformanceLevelCopyWith<$Res> get performanceLevel;
+  $PerformanceLevelCopyWith<$Res>? get performanceLevel;
 }
 
 /// @nodoc
@@ -261,10 +257,9 @@ class __$$_PcCaseCopyWithImpl<$Res>
     Object? usb_2_0 = null,
     Object? designFeatures = null,
     Object? maxLengthOfGraphicCard = null,
-    Object? powerSupplyFormFactor = null,
     Object? description = null,
     Object? recommendedPrice = null,
-    Object? performanceLevel = null,
+    Object? performanceLevel = freezed,
   }) {
     return _then(_$_PcCase(
       id: null == id
@@ -278,7 +273,7 @@ class __$$_PcCaseCopyWithImpl<$Res>
       caseProducer: null == caseProducer
           ? _value.caseProducer
           : caseProducer // ignore: cast_nullable_to_non_nullable
-              as CaseProducer,
+              as Producers,
       caseSize: null == caseSize
           ? _value.caseSize
           : caseSize // ignore: cast_nullable_to_non_nullable
@@ -315,10 +310,6 @@ class __$$_PcCaseCopyWithImpl<$Res>
           ? _value.maxLengthOfGraphicCard
           : maxLengthOfGraphicCard // ignore: cast_nullable_to_non_nullable
               as int,
-      powerSupplyFormFactor: null == powerSupplyFormFactor
-          ? _value.powerSupplyFormFactor
-          : powerSupplyFormFactor // ignore: cast_nullable_to_non_nullable
-              as int,
       description: null == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
@@ -327,17 +318,17 @@ class __$$_PcCaseCopyWithImpl<$Res>
           ? _value.recommendedPrice
           : recommendedPrice // ignore: cast_nullable_to_non_nullable
               as int,
-      performanceLevel: null == performanceLevel
+      performanceLevel: freezed == performanceLevel
           ? _value.performanceLevel
           : performanceLevel // ignore: cast_nullable_to_non_nullable
-              as PerformanceLevel,
+              as PerformanceLevel?,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$_PcCase implements _PcCase {
+class _$_PcCase extends _PcCase {
   const _$_PcCase(
       {required this.id,
       required this.name,
@@ -351,12 +342,12 @@ class _$_PcCase implements _PcCase {
       required this.usb_2_0,
       required final List<CaseDesignFeatures> designFeatures,
       required this.maxLengthOfGraphicCard,
-      required this.powerSupplyFormFactor,
       required this.description,
       required this.recommendedPrice,
       required this.performanceLevel})
       : _formFactor = formFactor,
-        _designFeatures = designFeatures;
+        _designFeatures = designFeatures,
+        super._();
 
   factory _$_PcCase.fromJson(Map<String, dynamic> json) =>
       _$$_PcCaseFromJson(json);
@@ -366,7 +357,7 @@ class _$_PcCase implements _PcCase {
   @override
   final String name;
   @override
-  final CaseProducer caseProducer;
+  final Producers caseProducer;
   @override
   final CaseSize caseSize;
   final List<FormFactor> _formFactor;
@@ -396,17 +387,15 @@ class _$_PcCase implements _PcCase {
   @override
   final int maxLengthOfGraphicCard;
   @override
-  final int powerSupplyFormFactor;
-  @override
   final String description;
   @override
   final int recommendedPrice;
   @override
-  final PerformanceLevel performanceLevel;
+  final PerformanceLevel? performanceLevel;
 
   @override
   String toString() {
-    return 'PcCase(id: $id, name: $name, caseProducer: $caseProducer, caseSize: $caseSize, formFactor: $formFactor, casePowerSupplyLocation: $casePowerSupplyLocation, fansIncluded: $fansIncluded, usb_3_2: $usb_3_2, usb_3_0: $usb_3_0, usb_2_0: $usb_2_0, designFeatures: $designFeatures, maxLengthOfGraphicCard: $maxLengthOfGraphicCard, powerSupplyFormFactor: $powerSupplyFormFactor, description: $description, recommendedPrice: $recommendedPrice, performanceLevel: $performanceLevel)';
+    return 'PcCase(id: $id, name: $name, caseProducer: $caseProducer, caseSize: $caseSize, formFactor: $formFactor, casePowerSupplyLocation: $casePowerSupplyLocation, fansIncluded: $fansIncluded, usb_3_2: $usb_3_2, usb_3_0: $usb_3_0, usb_2_0: $usb_2_0, designFeatures: $designFeatures, maxLengthOfGraphicCard: $maxLengthOfGraphicCard, description: $description, recommendedPrice: $recommendedPrice, performanceLevel: $performanceLevel)';
   }
 
   @override
@@ -434,8 +423,6 @@ class _$_PcCase implements _PcCase {
                 .equals(other._designFeatures, _designFeatures) &&
             (identical(other.maxLengthOfGraphicCard, maxLengthOfGraphicCard) ||
                 other.maxLengthOfGraphicCard == maxLengthOfGraphicCard) &&
-            (identical(other.powerSupplyFormFactor, powerSupplyFormFactor) ||
-                other.powerSupplyFormFactor == powerSupplyFormFactor) &&
             (identical(other.description, description) ||
                 other.description == description) &&
             (identical(other.recommendedPrice, recommendedPrice) ||
@@ -460,7 +447,6 @@ class _$_PcCase implements _PcCase {
       usb_2_0,
       const DeepCollectionEquality().hash(_designFeatures),
       maxLengthOfGraphicCard,
-      powerSupplyFormFactor,
       description,
       recommendedPrice,
       performanceLevel);
@@ -479,11 +465,11 @@ class _$_PcCase implements _PcCase {
   }
 }
 
-abstract class _PcCase implements PcCase {
+abstract class _PcCase extends PcCase {
   const factory _PcCase(
       {required final int id,
       required final String name,
-      required final CaseProducer caseProducer,
+      required final Producers caseProducer,
       required final CaseSize caseSize,
       required final List<FormFactor> formFactor,
       required final CasePowerSupplyLocation casePowerSupplyLocation,
@@ -493,10 +479,10 @@ abstract class _PcCase implements PcCase {
       required final int usb_2_0,
       required final List<CaseDesignFeatures> designFeatures,
       required final int maxLengthOfGraphicCard,
-      required final int powerSupplyFormFactor,
       required final String description,
       required final int recommendedPrice,
-      required final PerformanceLevel performanceLevel}) = _$_PcCase;
+      required final PerformanceLevel? performanceLevel}) = _$_PcCase;
+  const _PcCase._() : super._();
 
   factory _PcCase.fromJson(Map<String, dynamic> json) = _$_PcCase.fromJson;
 
@@ -505,7 +491,7 @@ abstract class _PcCase implements PcCase {
   @override
   String get name;
   @override
-  CaseProducer get caseProducer;
+  Producers get caseProducer;
   @override
   CaseSize get caseSize;
   @override
@@ -525,13 +511,11 @@ abstract class _PcCase implements PcCase {
   @override
   int get maxLengthOfGraphicCard;
   @override
-  int get powerSupplyFormFactor;
-  @override
   String get description;
   @override
   int get recommendedPrice;
   @override
-  PerformanceLevel get performanceLevel;
+  PerformanceLevel? get performanceLevel;
   @override
   @JsonKey(ignore: true)
   _$$_PcCaseCopyWith<_$_PcCase> get copyWith =>

@@ -2,6 +2,7 @@ import 'package:build_pc_mobile/common/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class CustomTextFormField extends StatefulWidget {
+  final TextEditingController controller;
   final String labelText;
   final String hintText;
   final TextInputType keyboardType;
@@ -13,6 +14,7 @@ class CustomTextFormField extends StatefulWidget {
     required this.hintText,
     required this.keyboardType,
     required this.checkSuffixIcon,
+    required this.controller,
   }) : super(key: key);
 
   @override
@@ -51,10 +53,12 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
         child: Padding(
           padding: const EdgeInsetsDirectional.fromSTEB(12, 0, 20, 0),
           child: TextFormField(
+            controller: widget.controller,
             style: const TextStyle(
               color: AppColors.tertiaryColor,
             ),
-            obscureText: !_passwordVisible,
+            obscureText:
+                widget.checkSuffixIcon ? _passwordVisible : !_passwordVisible,
             keyboardType: widget.keyboardType,
             textInputAction: TextInputAction.next,
             cursorColor: AppColors.tertiaryColor,
@@ -64,8 +68,8 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
                   ? IconButton(
                       icon: Icon(
                         _passwordVisible
-                            ? Icons.visibility
-                            : Icons.visibility_off,
+                            ? Icons.visibility_off
+                            : Icons.visibility,
                         color: AppColors.tertiaryColor,
                       ),
                       onPressed: () {

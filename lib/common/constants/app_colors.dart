@@ -23,6 +23,7 @@ class AppColors {
 
 class AppLightColors extends AppColors {
   static const primaryTextLightColor = Color(0xFF090F13);
+  static const customBackgroundLightColor = Color(0xFFEFE7E7);
   static const primaryBackgroundLightColor = Color(0xFFF1F4F8);
   static const secondaryBackgroundLightColor = Color(0xFFFFFFFF);
 
@@ -38,6 +39,7 @@ class AppLightColors extends AppColors {
 
 class AppDarkColors extends AppColors {
   static const primaryTextDarkColor = Color(0xFFFFFFFF);
+  static const customBackgroundDarkColor = Color(0xFF232222);
   static const primaryBackgroundDarkColor = Color(0xFF1A1F24);
   static const secondaryBackgroundDarkColor = Color(0xFF090F13);
 

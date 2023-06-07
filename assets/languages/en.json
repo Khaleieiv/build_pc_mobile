@@ -1,7 +1,7 @@
 {
   "auth": {
     "login_page": {
-      "email": "Email",
+      "username": "Username",
       "password": "Password",
       "or": "OR",
       "log_in": "Log In",
@@ -11,7 +11,7 @@
     },
     "registration_page": {
       "name": "Name",
-      "login": "Login",
+      "username": "Username",
       "email": "Email",
       "password": "Password",
       "sign_in": "Sign In",
@@ -37,10 +37,24 @@
     "edit_profile": {
       "edit_profile": "Edit Profile",
       "name": "Name",
-      "login": "Login",
+      "username": "Username",
       "email": "Email",
       "password": "Password",
       "save_changes": "Save Changes"
+    }
+  },
+  "comparison": {
+    "label": "Select a comparison component",
+    "list_comparison": {
+      "processor": "Processor",
+      "motherboard": "Motherboard",
+      "graphic_card": "Graphic Card",
+      "memory": "Memory",
+      "ssd": "Ssd",
+      "hdd": "Hdd",
+      "cooler": "Cooler",
+      "power_supply": "Power Supply",
+      "case": "Case"
     }
   },
   "home": {
@@ -51,7 +65,7 @@
     "bottom_navigation_bar": {
       "component_comparison": "Comparison",
       "pc_build": "Pc Build",
-      "likes": "Likes",
+      "rating": "Rating",
       "profile": "Profile"
     }
   }

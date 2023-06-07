@@ -19,7 +19,7 @@ _$_Motherboard _$$_MotherboardFromJson(Map<String, dynamic> json) =>
           json['motherboardChipset'] as Map<String, dynamic>),
       formFactor:
           FormFactor.fromJson(json['formFactor'] as Map<String, dynamic>),
-      motherboardProducer: MotherboardProducers.fromJson(
+      motherboardProducer: Producers.fromJson(
           json['motherboardProducer'] as Map<String, dynamic>),
       maxTdpOfProcessors: json['maxTdpOfProcessors'] as int,
       memorySlots: json['memorySlots'] as int,

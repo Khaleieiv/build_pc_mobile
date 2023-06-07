@@ -103,8 +103,8 @@ class __$$_CPUTechCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_CPUTech implements _CPUTech {
-  const _$_CPUTech({required this.id, required this.name});
+class _$_CPUTech extends _CPUTech {
+  const _$_CPUTech({required this.id, required this.name}) : super._();
 
   factory _$_CPUTech.fromJson(Map<String, dynamic> json) =>
       _$$_CPUTechFromJson(json);
@@ -146,9 +146,10 @@ class _$_CPUTech implements _CPUTech {
   }
 }
 
-abstract class _CPUTech implements CPUTech {
+abstract class _CPUTech extends CPUTech {
   const factory _CPUTech({required final int id, required final String name}) =
       _$_CPUTech;
+  const _CPUTech._() : super._();
 
   factory _CPUTech.fromJson(Map<String, dynamic> json) = _$_CPUTech.fromJson;
 

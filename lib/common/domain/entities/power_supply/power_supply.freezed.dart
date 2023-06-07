@@ -21,12 +21,11 @@ PowerSupply _$PowerSupplyFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$PowerSupply {
   int get id => throw _privateConstructorUsedError;
-  PowerSupplyProducer get powerSupplyProducer =>
-      throw _privateConstructorUsedError;
+  Producers get powerSupplyProducer => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   int get power => throw _privateConstructorUsedError;
   FormFactor get formFactor => throw _privateConstructorUsedError;
-  PerformanceLevel get performanceLevel => throw _privateConstructorUsedError;
+  PerformanceLevel? get performanceLevel => throw _privateConstructorUsedError;
   bool get pfcModule => throw _privateConstructorUsedError;
   bool get modularConnection => throw _privateConstructorUsedError;
   List<PowerSupplyProtectionFunctions> get powerSupplyProtectionFunctions =>
@@ -57,11 +56,11 @@ abstract class $PowerSupplyCopyWith<$Res> {
   @useResult
   $Res call(
       {int id,
-      PowerSupplyProducer powerSupplyProducer,
+      Producers powerSupplyProducer,
       String name,
       int power,
       FormFactor formFactor,
-      PerformanceLevel performanceLevel,
+      PerformanceLevel? performanceLevel,
       bool pfcModule,
       bool modularConnection,
       List<PowerSupplyProtectionFunctions> powerSupplyProtectionFunctions,
@@ -76,9 +75,9 @@ abstract class $PowerSupplyCopyWith<$Res> {
       String description,
       int recommendedPrice});
 
-  $PowerSupplyProducerCopyWith<$Res> get powerSupplyProducer;
+  $ProducersCopyWith<$Res> get powerSupplyProducer;
   $FormFactorCopyWith<$Res> get formFactor;
-  $PerformanceLevelCopyWith<$Res> get performanceLevel;
+  $PerformanceLevelCopyWith<$Res>? get performanceLevel;
 }
 
 /// @nodoc
@@ -99,7 +98,7 @@ class _$PowerSupplyCopyWithImpl<$Res, $Val extends PowerSupply>
     Object? name = null,
     Object? power = null,
     Object? formFactor = null,
-    Object? performanceLevel = null,
+    Object? performanceLevel = freezed,
     Object? pfcModule = null,
     Object? modularConnection = null,
     Object? powerSupplyProtectionFunctions = null,
@@ -122,7 +121,7 @@ class _$PowerSupplyCopyWithImpl<$Res, $Val extends PowerSupply>
       powerSupplyProducer: null == powerSupplyProducer
           ? _value.powerSupplyProducer
           : powerSupplyProducer // ignore: cast_nullable_to_non_nullable
-              as PowerSupplyProducer,
+              as Producers,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -135,10 +134,10 @@ class _$PowerSupplyCopyWithImpl<$Res, $Val extends PowerSupply>
           ? _value.formFactor
           : formFactor // ignore: cast_nullable_to_non_nullable
               as FormFactor,
-      performanceLevel: null == performanceLevel
+      performanceLevel: freezed == performanceLevel
           ? _value.performanceLevel
           : performanceLevel // ignore: cast_nullable_to_non_nullable
-              as PerformanceLevel,
+              as PerformanceLevel?,
       pfcModule: null == pfcModule
           ? _value.pfcModule
           : pfcModule // ignore: cast_nullable_to_non_nullable
@@ -196,9 +195,8 @@ class _$PowerSupplyCopyWithImpl<$Res, $Val extends PowerSupply>
 
   @override
   @pragma('vm:prefer-inline')
-  $PowerSupplyProducerCopyWith<$Res> get powerSupplyProducer {
-    return $PowerSupplyProducerCopyWith<$Res>(_value.powerSupplyProducer,
-        (value) {
+  $ProducersCopyWith<$Res> get powerSupplyProducer {
+    return $ProducersCopyWith<$Res>(_value.powerSupplyProducer, (value) {
       return _then(_value.copyWith(powerSupplyProducer: value) as $Val);
     });
   }
@@ -213,8 +211,12 @@ class _$PowerSupplyCopyWithImpl<$Res, $Val extends PowerSupply>
 
   @override
   @pragma('vm:prefer-inline')
-  $PerformanceLevelCopyWith<$Res> get performanceLevel {
-    return $PerformanceLevelCopyWith<$Res>(_value.performanceLevel, (value) {
+  $PerformanceLevelCopyWith<$Res>? get performanceLevel {
+    if (_value.performanceLevel == null) {
+      return null;
+    }
+
+    return $PerformanceLevelCopyWith<$Res>(_value.performanceLevel!, (value) {
       return _then(_value.copyWith(performanceLevel: value) as $Val);
     });
   }
@@ -230,11 +232,11 @@ abstract class _$$_PowerSupplyCopyWith<$Res>
   @useResult
   $Res call(
       {int id,
-      PowerSupplyProducer powerSupplyProducer,
+      Producers powerSupplyProducer,
       String name,
       int power,
       FormFactor formFactor,
-      PerformanceLevel performanceLevel,
+      PerformanceLevel? performanceLevel,
       bool pfcModule,
       bool modularConnection,
       List<PowerSupplyProtectionFunctions> powerSupplyProtectionFunctions,
@@ -250,11 +252,11 @@ abstract class _$$_PowerSupplyCopyWith<$Res>
       int recommendedPrice});
 
   @override
-  $PowerSupplyProducerCopyWith<$Res> get powerSupplyProducer;
+  $ProducersCopyWith<$Res> get powerSupplyProducer;
   @override
   $FormFactorCopyWith<$Res> get formFactor;
   @override
-  $PerformanceLevelCopyWith<$Res> get performanceLevel;
+  $PerformanceLevelCopyWith<$Res>? get performanceLevel;
 }
 
 /// @nodoc
@@ -273,7 +275,7 @@ class __$$_PowerSupplyCopyWithImpl<$Res>
     Object? name = null,
     Object? power = null,
     Object? formFactor = null,
-    Object? performanceLevel = null,
+    Object? performanceLevel = freezed,
     Object? pfcModule = null,
     Object? modularConnection = null,
     Object? powerSupplyProtectionFunctions = null,
@@ -296,7 +298,7 @@ class __$$_PowerSupplyCopyWithImpl<$Res>
       powerSupplyProducer: null == powerSupplyProducer
           ? _value.powerSupplyProducer
           : powerSupplyProducer // ignore: cast_nullable_to_non_nullable
-              as PowerSupplyProducer,
+              as Producers,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -309,10 +311,10 @@ class __$$_PowerSupplyCopyWithImpl<$Res>
           ? _value.formFactor
           : formFactor // ignore: cast_nullable_to_non_nullable
               as FormFactor,
-      performanceLevel: null == performanceLevel
+      performanceLevel: freezed == performanceLevel
           ? _value.performanceLevel
           : performanceLevel // ignore: cast_nullable_to_non_nullable
-              as PerformanceLevel,
+              as PerformanceLevel?,
       pfcModule: null == pfcModule
           ? _value.pfcModule
           : pfcModule // ignore: cast_nullable_to_non_nullable
@@ -371,7 +373,7 @@ class __$$_PowerSupplyCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_PowerSupply implements _PowerSupply {
+class _$_PowerSupply extends _PowerSupply {
   const _$_PowerSupply(
       {required this.id,
       required this.powerSupplyProducer,
@@ -393,7 +395,8 @@ class _$_PowerSupply implements _PowerSupply {
       required this.count_of_12_v_lines,
       required this.description,
       required this.recommendedPrice})
-      : _powerSupplyProtectionFunctions = powerSupplyProtectionFunctions;
+      : _powerSupplyProtectionFunctions = powerSupplyProtectionFunctions,
+        super._();
 
   factory _$_PowerSupply.fromJson(Map<String, dynamic> json) =>
       _$$_PowerSupplyFromJson(json);
@@ -401,7 +404,7 @@ class _$_PowerSupply implements _PowerSupply {
   @override
   final int id;
   @override
-  final PowerSupplyProducer powerSupplyProducer;
+  final Producers powerSupplyProducer;
   @override
   final String name;
   @override
@@ -409,7 +412,7 @@ class _$_PowerSupply implements _PowerSupply {
   @override
   final FormFactor formFactor;
   @override
-  final PerformanceLevel performanceLevel;
+  final PerformanceLevel? performanceLevel;
   @override
   final bool pfcModule;
   @override
@@ -529,14 +532,14 @@ class _$_PowerSupply implements _PowerSupply {
   }
 }
 
-abstract class _PowerSupply implements PowerSupply {
+abstract class _PowerSupply extends PowerSupply {
   const factory _PowerSupply(
       {required final int id,
-      required final PowerSupplyProducer powerSupplyProducer,
+      required final Producers powerSupplyProducer,
       required final String name,
       required final int power,
       required final FormFactor formFactor,
-      required final PerformanceLevel performanceLevel,
+      required final PerformanceLevel? performanceLevel,
       required final bool pfcModule,
       required final bool modularConnection,
       required final List<PowerSupplyProtectionFunctions>
@@ -551,6 +554,7 @@ abstract class _PowerSupply implements PowerSupply {
       required final int count_of_12_v_lines,
       required final String description,
       required final int recommendedPrice}) = _$_PowerSupply;
+  const _PowerSupply._() : super._();
 
   factory _PowerSupply.fromJson(Map<String, dynamic> json) =
       _$_PowerSupply.fromJson;
@@ -558,7 +562,7 @@ abstract class _PowerSupply implements PowerSupply {
   @override
   int get id;
   @override
-  PowerSupplyProducer get powerSupplyProducer;
+  Producers get powerSupplyProducer;
   @override
   String get name;
   @override
@@ -566,7 +570,7 @@ abstract class _PowerSupply implements PowerSupply {
   @override
   FormFactor get formFactor;
   @override
-  PerformanceLevel get performanceLevel;
+  PerformanceLevel? get performanceLevel;
   @override
   bool get pfcModule;
   @override

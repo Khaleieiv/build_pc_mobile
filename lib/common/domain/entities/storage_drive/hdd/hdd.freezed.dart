@@ -21,7 +21,8 @@ Hdd _$HddFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Hdd {
   int get id => throw _privateConstructorUsedError;
-  StorageProducer get storageProducer => throw _privateConstructorUsedError;
+  Producers get storageProducer => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
   int get storageSize => throw _privateConstructorUsedError;
   int get speed => throw _privateConstructorUsedError;
   StorageFormFactor get storageFormFactor => throw _privateConstructorUsedError;
@@ -31,7 +32,7 @@ mixin _$Hdd {
   int get writingSpeed => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   int get recommendedPrice => throw _privateConstructorUsedError;
-  PerformanceLevel get performanceLevel => throw _privateConstructorUsedError;
+  PerformanceLevel? get performanceLevel => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -45,7 +46,8 @@ abstract class $HddCopyWith<$Res> {
   @useResult
   $Res call(
       {int id,
-      StorageProducer storageProducer,
+      Producers storageProducer,
+      String name,
       int storageSize,
       int speed,
       StorageFormFactor storageFormFactor,
@@ -55,12 +57,12 @@ abstract class $HddCopyWith<$Res> {
       int writingSpeed,
       String description,
       int recommendedPrice,
-      PerformanceLevel performanceLevel});
+      PerformanceLevel? performanceLevel});
 
-  $StorageProducerCopyWith<$Res> get storageProducer;
+  $ProducersCopyWith<$Res> get storageProducer;
   $StorageFormFactorCopyWith<$Res> get storageFormFactor;
   $StorageInterfaceCopyWith<$Res> get storageInterface;
-  $PerformanceLevelCopyWith<$Res> get performanceLevel;
+  $PerformanceLevelCopyWith<$Res>? get performanceLevel;
 }
 
 /// @nodoc
@@ -77,6 +79,7 @@ class _$HddCopyWithImpl<$Res, $Val extends Hdd> implements $HddCopyWith<$Res> {
   $Res call({
     Object? id = null,
     Object? storageProducer = null,
+    Object? name = null,
     Object? storageSize = null,
     Object? speed = null,
     Object? storageFormFactor = null,
@@ -86,7 +89,7 @@ class _$HddCopyWithImpl<$Res, $Val extends Hdd> implements $HddCopyWith<$Res> {
     Object? writingSpeed = null,
     Object? description = null,
     Object? recommendedPrice = null,
-    Object? performanceLevel = null,
+    Object? performanceLevel = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -96,7 +99,11 @@ class _$HddCopyWithImpl<$Res, $Val extends Hdd> implements $HddCopyWith<$Res> {
       storageProducer: null == storageProducer
           ? _value.storageProducer
           : storageProducer // ignore: cast_nullable_to_non_nullable
-              as StorageProducer,
+              as Producers,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
       storageSize: null == storageSize
           ? _value.storageSize
           : storageSize // ignore: cast_nullable_to_non_nullable
@@ -133,17 +140,17 @@ class _$HddCopyWithImpl<$Res, $Val extends Hdd> implements $HddCopyWith<$Res> {
           ? _value.recommendedPrice
           : recommendedPrice // ignore: cast_nullable_to_non_nullable
               as int,
-      performanceLevel: null == performanceLevel
+      performanceLevel: freezed == performanceLevel
           ? _value.performanceLevel
           : performanceLevel // ignore: cast_nullable_to_non_nullable
-              as PerformanceLevel,
+              as PerformanceLevel?,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $StorageProducerCopyWith<$Res> get storageProducer {
-    return $StorageProducerCopyWith<$Res>(_value.storageProducer, (value) {
+  $ProducersCopyWith<$Res> get storageProducer {
+    return $ProducersCopyWith<$Res>(_value.storageProducer, (value) {
       return _then(_value.copyWith(storageProducer: value) as $Val);
     });
   }
@@ -166,8 +173,12 @@ class _$HddCopyWithImpl<$Res, $Val extends Hdd> implements $HddCopyWith<$Res> {
 
   @override
   @pragma('vm:prefer-inline')
-  $PerformanceLevelCopyWith<$Res> get performanceLevel {
-    return $PerformanceLevelCopyWith<$Res>(_value.performanceLevel, (value) {
+  $PerformanceLevelCopyWith<$Res>? get performanceLevel {
+    if (_value.performanceLevel == null) {
+      return null;
+    }
+
+    return $PerformanceLevelCopyWith<$Res>(_value.performanceLevel!, (value) {
       return _then(_value.copyWith(performanceLevel: value) as $Val);
     });
   }
@@ -181,7 +192,8 @@ abstract class _$$_HddCopyWith<$Res> implements $HddCopyWith<$Res> {
   @useResult
   $Res call(
       {int id,
-      StorageProducer storageProducer,
+      Producers storageProducer,
+      String name,
       int storageSize,
       int speed,
       StorageFormFactor storageFormFactor,
@@ -191,16 +203,16 @@ abstract class _$$_HddCopyWith<$Res> implements $HddCopyWith<$Res> {
       int writingSpeed,
       String description,
       int recommendedPrice,
-      PerformanceLevel performanceLevel});
+      PerformanceLevel? performanceLevel});
 
   @override
-  $StorageProducerCopyWith<$Res> get storageProducer;
+  $ProducersCopyWith<$Res> get storageProducer;
   @override
   $StorageFormFactorCopyWith<$Res> get storageFormFactor;
   @override
   $StorageInterfaceCopyWith<$Res> get storageInterface;
   @override
-  $PerformanceLevelCopyWith<$Res> get performanceLevel;
+  $PerformanceLevelCopyWith<$Res>? get performanceLevel;
 }
 
 /// @nodoc
@@ -214,6 +226,7 @@ class __$$_HddCopyWithImpl<$Res> extends _$HddCopyWithImpl<$Res, _$_Hdd>
   $Res call({
     Object? id = null,
     Object? storageProducer = null,
+    Object? name = null,
     Object? storageSize = null,
     Object? speed = null,
     Object? storageFormFactor = null,
@@ -223,7 +236,7 @@ class __$$_HddCopyWithImpl<$Res> extends _$HddCopyWithImpl<$Res, _$_Hdd>
     Object? writingSpeed = null,
     Object? description = null,
     Object? recommendedPrice = null,
-    Object? performanceLevel = null,
+    Object? performanceLevel = freezed,
   }) {
     return _then(_$_Hdd(
       id: null == id
@@ -233,7 +246,11 @@ class __$$_HddCopyWithImpl<$Res> extends _$HddCopyWithImpl<$Res, _$_Hdd>
       storageProducer: null == storageProducer
           ? _value.storageProducer
           : storageProducer // ignore: cast_nullable_to_non_nullable
-              as StorageProducer,
+              as Producers,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
       storageSize: null == storageSize
           ? _value.storageSize
           : storageSize // ignore: cast_nullable_to_non_nullable
@@ -270,20 +287,21 @@ class __$$_HddCopyWithImpl<$Res> extends _$HddCopyWithImpl<$Res, _$_Hdd>
           ? _value.recommendedPrice
           : recommendedPrice // ignore: cast_nullable_to_non_nullable
               as int,
-      performanceLevel: null == performanceLevel
+      performanceLevel: freezed == performanceLevel
           ? _value.performanceLevel
           : performanceLevel // ignore: cast_nullable_to_non_nullable
-              as PerformanceLevel,
+              as PerformanceLevel?,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$_Hdd implements _Hdd {
+class _$_Hdd extends _Hdd {
   const _$_Hdd(
       {required this.id,
       required this.storageProducer,
+      required this.name,
       required this.storageSize,
       required this.speed,
       required this.storageFormFactor,
@@ -293,14 +311,17 @@ class _$_Hdd implements _Hdd {
       required this.writingSpeed,
       required this.description,
       required this.recommendedPrice,
-      required this.performanceLevel});
+      required this.performanceLevel})
+      : super._();
 
   factory _$_Hdd.fromJson(Map<String, dynamic> json) => _$$_HddFromJson(json);
 
   @override
   final int id;
   @override
-  final StorageProducer storageProducer;
+  final Producers storageProducer;
+  @override
+  final String name;
   @override
   final int storageSize;
   @override
@@ -320,11 +341,11 @@ class _$_Hdd implements _Hdd {
   @override
   final int recommendedPrice;
   @override
-  final PerformanceLevel performanceLevel;
+  final PerformanceLevel? performanceLevel;
 
   @override
   String toString() {
-    return 'Hdd(id: $id, storageProducer: $storageProducer, storageSize: $storageSize, speed: $speed, storageFormFactor: $storageFormFactor, storageInterface: $storageInterface, bufferSize: $bufferSize, readingSpeed: $readingSpeed, writingSpeed: $writingSpeed, description: $description, recommendedPrice: $recommendedPrice, performanceLevel: $performanceLevel)';
+    return 'Hdd(id: $id, storageProducer: $storageProducer, name: $name, storageSize: $storageSize, speed: $speed, storageFormFactor: $storageFormFactor, storageInterface: $storageInterface, bufferSize: $bufferSize, readingSpeed: $readingSpeed, writingSpeed: $writingSpeed, description: $description, recommendedPrice: $recommendedPrice, performanceLevel: $performanceLevel)';
   }
 
   @override
@@ -335,6 +356,7 @@ class _$_Hdd implements _Hdd {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.storageProducer, storageProducer) ||
                 other.storageProducer == storageProducer) &&
+            (identical(other.name, name) || other.name == name) &&
             (identical(other.storageSize, storageSize) ||
                 other.storageSize == storageSize) &&
             (identical(other.speed, speed) || other.speed == speed) &&
@@ -362,6 +384,7 @@ class _$_Hdd implements _Hdd {
       runtimeType,
       id,
       storageProducer,
+      name,
       storageSize,
       speed,
       storageFormFactor,
@@ -387,10 +410,11 @@ class _$_Hdd implements _Hdd {
   }
 }
 
-abstract class _Hdd implements Hdd {
+abstract class _Hdd extends Hdd {
   const factory _Hdd(
       {required final int id,
-      required final StorageProducer storageProducer,
+      required final Producers storageProducer,
+      required final String name,
       required final int storageSize,
       required final int speed,
       required final StorageFormFactor storageFormFactor,
@@ -400,14 +424,17 @@ abstract class _Hdd implements Hdd {
       required final int writingSpeed,
       required final String description,
       required final int recommendedPrice,
-      required final PerformanceLevel performanceLevel}) = _$_Hdd;
+      required final PerformanceLevel? performanceLevel}) = _$_Hdd;
+  const _Hdd._() : super._();
 
   factory _Hdd.fromJson(Map<String, dynamic> json) = _$_Hdd.fromJson;
 
   @override
   int get id;
   @override
-  StorageProducer get storageProducer;
+  Producers get storageProducer;
+  @override
+  String get name;
   @override
   int get storageSize;
   @override
@@ -427,7 +454,7 @@ abstract class _Hdd implements Hdd {
   @override
   int get recommendedPrice;
   @override
-  PerformanceLevel get performanceLevel;
+  PerformanceLevel? get performanceLevel;
   @override
   @JsonKey(ignore: true)
   _$$_HddCopyWith<_$_Hdd> get copyWith => throw _privateConstructorUsedError;

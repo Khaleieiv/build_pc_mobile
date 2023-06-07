@@ -1,12 +1,15 @@
-import 'package:build_pc_mobile/auth/presentation/widgets/or_divider.dart';
+import 'package:build_pc_mobile/auth/presentation/state/auth_notifier.dart';
 import 'package:build_pc_mobile/auth/presentation/widgets/already_have_an_account_check.dart';
 import 'package:build_pc_mobile/auth/presentation/widgets/custom_text_form_field.dart';
+import 'package:build_pc_mobile/auth/presentation/widgets/or_divider.dart';
 import 'package:build_pc_mobile/common/constants/app_colors.dart';
 import 'package:build_pc_mobile/common/constants/app_sizes.dart';
 import 'package:build_pc_mobile/common/presentation/navigation/route_names.dart';
 import 'package:build_pc_mobile/common/widgets/custom_button_widget.dart';
 import 'package:ez_localization/ez_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:panara_dialogs/panara_dialogs.dart';
+import 'package:provider/provider.dart';
 
 class LoginForm extends StatefulWidget {
   const LoginForm({
@@ -18,6 +21,27 @@ class LoginForm extends StatefulWidget {
 }
 
 class _LoginFormState extends State<LoginForm> {
+  final _usernameController = TextEditingController();
+  final _passwordController = TextEditingController();
+
+  bool get _enableSignInButton =>
+      _usernameController.text.isNotEmpty &&
+      _passwordController.text.isNotEmpty;
+
+  @override
+  void initState() {
+    _usernameController.addListener(_inputFieldValueChangeListener);
+    _passwordController.addListener(_inputFieldValueChangeListener);
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      final authNotifier = Provider.of<AuthNotifier>(context, listen: false);
+      if(await authNotifier.trySignInWithStoredCredentials()){
+        if (!mounted) return;
+        await Navigator.pushNamed(context, RouteNames.homePage);
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     const fromSTEBStart = 45.0;
@@ -32,12 +56,14 @@ class _LoginFormState extends State<LoginForm> {
         children: [
           const SizedBox(height: AppSizes.defaultPadding),
           CustomTextFormField(
-            labelText: context.getString('auth.login_page.email'),
-            hintText: context.getString('auth.login_page.email'),
+            controller: _usernameController,
+            labelText: context.getString('auth.login_page.username'),
+            hintText: context.getString('auth.login_page.username'),
             keyboardType: TextInputType.emailAddress,
             checkSuffixIcon: false,
           ),
           CustomTextFormField(
+            controller: _passwordController,
             labelText: context.getString('auth.login_page.password'),
             hintText: context.getString('auth.login_page.password'),
             keyboardType: TextInputType.visiblePassword,
@@ -51,7 +77,7 @@ class _LoginFormState extends State<LoginForm> {
             fromSTEBBottom: fromSTEBBottom,
             heightContainer: heightContainer,
             borderRadius: borderRadius,
-            routeName: RouteNames.registerPage,
+            onPressed: _enableSignInButton ? loginButtonPressed : null,
             nameButton: context.getString('auth.login_page.log_in'),
             colorButton: AppColors.primaryColor,
             fontSizeButton: fontSizeButton,
@@ -71,7 +97,7 @@ class _LoginFormState extends State<LoginForm> {
             fromSTEBBottom: fromSTEBBottom,
             heightContainer: heightContainer,
             borderRadius: borderRadius,
-            routeName: RouteNames.homePage,
+            onPressed: () => Navigator.pushNamed(context, RouteNames.homePage),
             nameButton: context.getString('auth.login_page.guest'),
             colorButton: AppDarkColors.primaryBackgroundDarkColor,
             fontSizeButton: fontSizeButton,
@@ -80,5 +106,38 @@ class _LoginFormState extends State<LoginForm> {
         ],
       ),
     );
+  }
+
+  void _inputFieldValueChangeListener() {
+    setState(() {
+      //TODO
+    });
+  }
+
+  Future<void> loginButtonPressed() async {
+    final authNotifier = Provider.of<AuthNotifier>(context, listen: false);
+    try {
+      await authNotifier.signInWithEmail(
+        _usernameController.text,
+        _passwordController.text,
+      );
+    } catch (error) {
+      PanaraInfoDialog.show(
+        context,
+        title: "Oops",
+        message: error.toString(),
+        buttonText: "Okay",
+        onTapDismiss: () {
+          Navigator.pop(context);
+        },
+        textColor: AppColors.blackColor,
+        panaraDialogType: PanaraDialogType.warning,
+      );
+
+      return;
+    }
+
+    if (!mounted) return;
+    await Navigator.pushNamed(context, RouteNames.homePage);
   }
 }

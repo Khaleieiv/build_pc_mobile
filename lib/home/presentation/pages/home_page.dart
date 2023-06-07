@@ -1,11 +1,16 @@
+import 'package:build_pc_mobile/auth/presentation/state/auth_notifier.dart';
+import 'package:build_pc_mobile/build_pc/presentation/pages/build_pc_page.dart';
 import 'package:build_pc_mobile/common/constants/app_colors.dart';
+import 'package:build_pc_mobile/common/presentation/navigation/route_names.dart';
 import 'package:build_pc_mobile/component_comparison/presentation/pages/component_comparison_page.dart';
-import 'package:build_pc_mobile/home/presentation/state/dark_light_theme_provider.dart';
+import 'package:build_pc_mobile/home/presentation/state/dark_light_theme_notifier.dart';
 import 'package:build_pc_mobile/home/presentation/widgets/custom_dropdown_button_for_localization.dart';
 import 'package:build_pc_mobile/profile/presentation/pages/profile_page.dart';
+import 'package:build_pc_mobile/rating/presentation/pages/rating_page.dart';
 import 'package:ez_localization/ez_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:panara_dialogs/panara_dialogs.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
@@ -21,18 +26,15 @@ class _HomePageState extends State<HomePage> {
 
   final List<Widget> _widgetOptions = <Widget>[
     const ComponentComparisonPage(),
-    const Text(
-      'Home',
-    ),
-    const Text(
-      'Home',
-    ),
+    const BuildPcPage(),
+    const RatingPage(),
     const ProfilePage(),
   ];
 
   @override
   Widget build(BuildContext context) {
-    final themeChange = Provider.of<DarkLightThemeProvider>(context);
+    final themeChange = Provider.of<DarkLightThemeNotifier>(context);
+    final authNotifier = Provider.of<AuthNotifier>(context);
 
     final List<String> _widgetLabel = <String>[
       context.getString(
@@ -42,7 +44,7 @@ class _HomePageState extends State<HomePage> {
         'home.bottom_navigation_bar.pc_build',
       ),
       context.getString(
-        'home.bottom_navigation_bar.likes',
+        'home.bottom_navigation_bar.rating',
       ),
       context.getString(
         'home.bottom_navigation_bar.profile',
@@ -118,6 +120,24 @@ class _HomePageState extends State<HomePage> {
                 GButton(
                   onPressed: () {
                     isAppBarEnabled = true;
+                    if (!authNotifier.isLoggedIn) {
+                      PanaraConfirmDialog.show(
+                        context,
+                        title: "Hello",
+                        message: "To go to this page you need to be logged in",
+                        confirmButtonText: "Confirm",
+                        cancelButtonText: "Cancel",
+                        textColor: AppColors.blackColor,
+                        onTapCancel: () {
+                          Navigator.pushNamed(context, RouteNames.homePage);
+                        },
+                        onTapConfirm: () {
+                          Navigator.pushNamed(context, RouteNames.loginPage);
+                        },
+                        panaraDialogType: PanaraDialogType.warning,
+                        barrierDismissible: false,
+                      );
+                    }
                   },
                   gap: gap,
                   icon: Icons.build_circle_outlined,
@@ -126,9 +146,27 @@ class _HomePageState extends State<HomePage> {
                 GButton(
                   onPressed: () {
                     isAppBarEnabled = true;
+                    if (!authNotifier.isLoggedIn) {
+                      PanaraConfirmDialog.show(
+                        context,
+                        title: "Hello",
+                        message: "To go to this page you need to be logged in",
+                        confirmButtonText: "Confirm",
+                        cancelButtonText: "Cancel",
+                        textColor: AppColors.blackColor,
+                        onTapCancel: () {
+                          Navigator.pushNamed(context, RouteNames.homePage);
+                        },
+                        onTapConfirm: () {
+                          Navigator.pushNamed(context, RouteNames.loginPage);
+                        },
+                        panaraDialogType: PanaraDialogType.warning,
+                        barrierDismissible: false,
+                      );
+                    }
                   },
                   gap: gap,
-                  icon: Icons.heart_broken_rounded,
+                  icon: Icons.star_border,
                   text: _widgetLabel.elementAt(_selectedIndex),
                 ),
                 GButton(

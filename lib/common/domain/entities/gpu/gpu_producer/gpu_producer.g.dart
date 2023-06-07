@@ -9,11 +9,11 @@ part of 'gpu_producer.dart';
 _$_GPUProducer _$$_GPUProducerFromJson(Map<String, dynamic> json) =>
     _$_GPUProducer(
       id: json['id'] as int,
-      producer: json['producer'] as String,
+      name: json['name'] as String,
     );
 
 Map<String, dynamic> _$$_GPUProducerToJson(_$_GPUProducer instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'producer': instance.producer,
+      'name': instance.name,
     };

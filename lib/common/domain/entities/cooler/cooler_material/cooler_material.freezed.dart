@@ -21,7 +21,7 @@ CoolerMaterial _$CoolerMaterialFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$CoolerMaterial {
   int get id => throw _privateConstructorUsedError;
-  String get material => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,7 +35,7 @@ abstract class $CoolerMaterialCopyWith<$Res> {
           CoolerMaterial value, $Res Function(CoolerMaterial) then) =
       _$CoolerMaterialCopyWithImpl<$Res, CoolerMaterial>;
   @useResult
-  $Res call({int id, String material});
+  $Res call({int id, String name});
 }
 
 /// @nodoc
@@ -52,16 +52,16 @@ class _$CoolerMaterialCopyWithImpl<$Res, $Val extends CoolerMaterial>
   @override
   $Res call({
     Object? id = null,
-    Object? material = null,
+    Object? name = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      material: null == material
-          ? _value.material
-          : material // ignore: cast_nullable_to_non_nullable
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -75,7 +75,7 @@ abstract class _$$_CoolerMaterialCopyWith<$Res>
       __$$_CoolerMaterialCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String material});
+  $Res call({int id, String name});
 }
 
 /// @nodoc
@@ -90,16 +90,16 @@ class __$$_CoolerMaterialCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? material = null,
+    Object? name = null,
   }) {
     return _then(_$_CoolerMaterial(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      material: null == material
-          ? _value.material
-          : material // ignore: cast_nullable_to_non_nullable
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -107,8 +107,8 @@ class __$$_CoolerMaterialCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_CoolerMaterial implements _CoolerMaterial {
-  const _$_CoolerMaterial({required this.id, required this.material});
+class _$_CoolerMaterial extends _CoolerMaterial {
+  const _$_CoolerMaterial({required this.id, required this.name}) : super._();
 
   factory _$_CoolerMaterial.fromJson(Map<String, dynamic> json) =>
       _$$_CoolerMaterialFromJson(json);
@@ -116,11 +116,11 @@ class _$_CoolerMaterial implements _CoolerMaterial {
   @override
   final int id;
   @override
-  final String material;
+  final String name;
 
   @override
   String toString() {
-    return 'CoolerMaterial(id: $id, material: $material)';
+    return 'CoolerMaterial(id: $id, name: $name)';
   }
 
   @override
@@ -129,13 +129,12 @@ class _$_CoolerMaterial implements _CoolerMaterial {
         (other.runtimeType == runtimeType &&
             other is _$_CoolerMaterial &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.material, material) ||
-                other.material == material));
+            (identical(other.name, name) || other.name == name));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, material);
+  int get hashCode => Object.hash(runtimeType, id, name);
 
   @JsonKey(ignore: true)
   @override
@@ -151,10 +150,10 @@ class _$_CoolerMaterial implements _CoolerMaterial {
   }
 }
 
-abstract class _CoolerMaterial implements CoolerMaterial {
+abstract class _CoolerMaterial extends CoolerMaterial {
   const factory _CoolerMaterial(
-      {required final int id,
-      required final String material}) = _$_CoolerMaterial;
+      {required final int id, required final String name}) = _$_CoolerMaterial;
+  const _CoolerMaterial._() : super._();
 
   factory _CoolerMaterial.fromJson(Map<String, dynamic> json) =
       _$_CoolerMaterial.fromJson;
@@ -162,7 +161,7 @@ abstract class _CoolerMaterial implements CoolerMaterial {
   @override
   int get id;
   @override
-  String get material;
+  String get name;
   @override
   @JsonKey(ignore: true)
   _$$_CoolerMaterialCopyWith<_$_CoolerMaterial> get copyWith =>

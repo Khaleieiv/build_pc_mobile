@@ -107,8 +107,8 @@ class __$$_CPUPcieVersionCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_CPUPcieVersion implements _CPUPcieVersion {
-  const _$_CPUPcieVersion({required this.id, required this.name});
+class _$_CPUPcieVersion extends _CPUPcieVersion {
+  const _$_CPUPcieVersion({required this.id, required this.name}) : super._();
 
   factory _$_CPUPcieVersion.fromJson(Map<String, dynamic> json) =>
       _$$_CPUPcieVersionFromJson(json);
@@ -150,9 +150,10 @@ class _$_CPUPcieVersion implements _CPUPcieVersion {
   }
 }
 
-abstract class _CPUPcieVersion implements CPUPcieVersion {
+abstract class _CPUPcieVersion extends CPUPcieVersion {
   const factory _CPUPcieVersion(
       {required final int id, required final String name}) = _$_CPUPcieVersion;
+  const _CPUPcieVersion._() : super._();
 
   factory _CPUPcieVersion.fromJson(Map<String, dynamic> json) =
       _$_CPUPcieVersion.fromJson;

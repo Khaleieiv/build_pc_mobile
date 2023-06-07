@@ -21,7 +21,7 @@ CoolerSocket _$CoolerSocketFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$CoolerSocket {
   int get id => throw _privateConstructorUsedError;
-  String get socket => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,7 +35,7 @@ abstract class $CoolerSocketCopyWith<$Res> {
           CoolerSocket value, $Res Function(CoolerSocket) then) =
       _$CoolerSocketCopyWithImpl<$Res, CoolerSocket>;
   @useResult
-  $Res call({int id, String socket});
+  $Res call({int id, String name});
 }
 
 /// @nodoc
@@ -52,16 +52,16 @@ class _$CoolerSocketCopyWithImpl<$Res, $Val extends CoolerSocket>
   @override
   $Res call({
     Object? id = null,
-    Object? socket = null,
+    Object? name = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      socket: null == socket
-          ? _value.socket
-          : socket // ignore: cast_nullable_to_non_nullable
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -75,7 +75,7 @@ abstract class _$$_CoolerSocketCopyWith<$Res>
       __$$_CoolerSocketCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String socket});
+  $Res call({int id, String name});
 }
 
 /// @nodoc
@@ -90,16 +90,16 @@ class __$$_CoolerSocketCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? socket = null,
+    Object? name = null,
   }) {
     return _then(_$_CoolerSocket(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      socket: null == socket
-          ? _value.socket
-          : socket // ignore: cast_nullable_to_non_nullable
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -107,8 +107,8 @@ class __$$_CoolerSocketCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_CoolerSocket implements _CoolerSocket {
-  const _$_CoolerSocket({required this.id, required this.socket});
+class _$_CoolerSocket extends _CoolerSocket {
+  const _$_CoolerSocket({required this.id, required this.name}) : super._();
 
   factory _$_CoolerSocket.fromJson(Map<String, dynamic> json) =>
       _$$_CoolerSocketFromJson(json);
@@ -116,11 +116,11 @@ class _$_CoolerSocket implements _CoolerSocket {
   @override
   final int id;
   @override
-  final String socket;
+  final String name;
 
   @override
   String toString() {
-    return 'CoolerSocket(id: $id, socket: $socket)';
+    return 'CoolerSocket(id: $id, name: $name)';
   }
 
   @override
@@ -129,12 +129,12 @@ class _$_CoolerSocket implements _CoolerSocket {
         (other.runtimeType == runtimeType &&
             other is _$_CoolerSocket &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.socket, socket) || other.socket == socket));
+            (identical(other.name, name) || other.name == name));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, socket);
+  int get hashCode => Object.hash(runtimeType, id, name);
 
   @JsonKey(ignore: true)
   @override
@@ -150,9 +150,10 @@ class _$_CoolerSocket implements _CoolerSocket {
   }
 }
 
-abstract class _CoolerSocket implements CoolerSocket {
+abstract class _CoolerSocket extends CoolerSocket {
   const factory _CoolerSocket(
-      {required final int id, required final String socket}) = _$_CoolerSocket;
+      {required final int id, required final String name}) = _$_CoolerSocket;
+  const _CoolerSocket._() : super._();
 
   factory _CoolerSocket.fromJson(Map<String, dynamic> json) =
       _$_CoolerSocket.fromJson;
@@ -160,7 +161,7 @@ abstract class _CoolerSocket implements CoolerSocket {
   @override
   int get id;
   @override
-  String get socket;
+  String get name;
   @override
   @JsonKey(ignore: true)
   _$$_CoolerSocketCopyWith<_$_CoolerSocket> get copyWith =>

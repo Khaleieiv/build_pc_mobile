@@ -1,8 +1,7 @@
 class LoginUserData {
-  final String? login;
-  final String? password;
+  final String? tokenAccess;
 
-  bool get isValid => login != null && password != null;
+  bool get isValid => tokenAccess != null;
 
-  const LoginUserData(this.login, this.password);
+  const LoginUserData(this.tokenAccess);
 }

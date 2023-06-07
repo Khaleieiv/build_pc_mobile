@@ -2,32 +2,41 @@ import 'package:build_pc_mobile/auth/data/models/login_user_data.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class AuthCredentialsStorage {
-  static const _loginKey = 'login';
-  static const _passwordKey = 'password';
+  static const _tokenAccess = 'tokenAccess';
 
-  Future<LoginUserData> get savedCredentials async {
+  static Future<LoginUserData> get savedCredentials async {
     const storage = FlutterSecureStorage();
-    final login = await storage.read(key: _loginKey);
-    final password = await storage.read(key: _passwordKey);
+    final tokenAccess = await storage.read(key: _tokenAccess);
 
-    return LoginUserData(login, password);
+    return LoginUserData(tokenAccess);
   }
 
-  Future<bool> saveCredentials(
+  static Future<String?> get tokenSaved async {
+    final savedCredentials = await AuthCredentialsStorage.savedCredentials;
+
+    return savedCredentials.tokenAccess;
+  }
+
+  static Future<void> get removeCredentials async {
+    const storage = FlutterSecureStorage();
+    await storage.delete(key: _tokenAccess);
+  }
+
+  static Future<bool> saveCredentials(
     LoginUserData credentials,
   ) async {
     if (!credentials.isValid) return false;
     const storage = FlutterSecureStorage();
-    final loginSaveFuture =
-        storage.write(key: _loginKey, value: credentials.login);
-    final passwordSaveFuture =
-        storage.write(key: _passwordKey, value: credentials.password);
+    final tokenAccessSaveFuture =
+        storage.write(key: _tokenAccess, value: credentials.tokenAccess);
 
     bool caughtErrors = false;
 
     try {
-      await Future.wait([loginSaveFuture, passwordSaveFuture],
-          eagerError: true,);
+      await Future.wait(
+        [tokenAccessSaveFuture],
+        eagerError: true,
+      );
     } catch (error) {
       caughtErrors = true;
     }

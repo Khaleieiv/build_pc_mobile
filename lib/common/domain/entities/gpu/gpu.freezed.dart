@@ -21,9 +21,9 @@ GPU _$GPUFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$GPU {
   int get id => throw _privateConstructorUsedError;
-  GPUProducer get gpuProducer => throw _privateConstructorUsedError;
+  Producers get gpuProducer => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
-  GPUVendor get gpuVendor => throw _privateConstructorUsedError;
+  Producers get gpuVendor => throw _privateConstructorUsedError;
   int get year => throw _privateConstructorUsedError;
   int get technicalProcess => throw _privateConstructorUsedError;
   int get gpuFrequency => throw _privateConstructorUsedError;
@@ -52,9 +52,9 @@ abstract class $GPUCopyWith<$Res> {
   @useResult
   $Res call(
       {int id,
-      GPUProducer gpuProducer,
+      Producers gpuProducer,
       String name,
-      GPUVendor gpuVendor,
+      Producers gpuVendor,
       int year,
       int technicalProcess,
       int gpuFrequency,
@@ -71,8 +71,8 @@ abstract class $GPUCopyWith<$Res> {
       int recommendedPrice,
       PerformanceLevel performanceLevel});
 
-  $GPUProducerCopyWith<$Res> get gpuProducer;
-  $GPUVendorCopyWith<$Res> get gpuVendor;
+  $ProducersCopyWith<$Res> get gpuProducer;
+  $ProducersCopyWith<$Res> get gpuVendor;
   $GPUMemoryTypeCopyWith<$Res> get gpuMemoryType;
   $GPUInterfaceTypeCopyWith<$Res> get gpuInterfaceType;
   $GPUTechnologiesCopyWith<$Res> get gpuTechnologies;
@@ -119,7 +119,7 @@ class _$GPUCopyWithImpl<$Res, $Val extends GPU> implements $GPUCopyWith<$Res> {
       gpuProducer: null == gpuProducer
           ? _value.gpuProducer
           : gpuProducer // ignore: cast_nullable_to_non_nullable
-              as GPUProducer,
+              as Producers,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -127,7 +127,7 @@ class _$GPUCopyWithImpl<$Res, $Val extends GPU> implements $GPUCopyWith<$Res> {
       gpuVendor: null == gpuVendor
           ? _value.gpuVendor
           : gpuVendor // ignore: cast_nullable_to_non_nullable
-              as GPUVendor,
+              as Producers,
       year: null == year
           ? _value.year
           : year // ignore: cast_nullable_to_non_nullable
@@ -193,16 +193,16 @@ class _$GPUCopyWithImpl<$Res, $Val extends GPU> implements $GPUCopyWith<$Res> {
 
   @override
   @pragma('vm:prefer-inline')
-  $GPUProducerCopyWith<$Res> get gpuProducer {
-    return $GPUProducerCopyWith<$Res>(_value.gpuProducer, (value) {
+  $ProducersCopyWith<$Res> get gpuProducer {
+    return $ProducersCopyWith<$Res>(_value.gpuProducer, (value) {
       return _then(_value.copyWith(gpuProducer: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $GPUVendorCopyWith<$Res> get gpuVendor {
-    return $GPUVendorCopyWith<$Res>(_value.gpuVendor, (value) {
+  $ProducersCopyWith<$Res> get gpuVendor {
+    return $ProducersCopyWith<$Res>(_value.gpuVendor, (value) {
       return _then(_value.copyWith(gpuVendor: value) as $Val);
     });
   }
@@ -248,9 +248,9 @@ abstract class _$$_GPUCopyWith<$Res> implements $GPUCopyWith<$Res> {
   @useResult
   $Res call(
       {int id,
-      GPUProducer gpuProducer,
+      Producers gpuProducer,
       String name,
-      GPUVendor gpuVendor,
+      Producers gpuVendor,
       int year,
       int technicalProcess,
       int gpuFrequency,
@@ -268,9 +268,9 @@ abstract class _$$_GPUCopyWith<$Res> implements $GPUCopyWith<$Res> {
       PerformanceLevel performanceLevel});
 
   @override
-  $GPUProducerCopyWith<$Res> get gpuProducer;
+  $ProducersCopyWith<$Res> get gpuProducer;
   @override
-  $GPUVendorCopyWith<$Res> get gpuVendor;
+  $ProducersCopyWith<$Res> get gpuVendor;
   @override
   $GPUMemoryTypeCopyWith<$Res> get gpuMemoryType;
   @override
@@ -318,7 +318,7 @@ class __$$_GPUCopyWithImpl<$Res> extends _$GPUCopyWithImpl<$Res, _$_GPU>
       gpuProducer: null == gpuProducer
           ? _value.gpuProducer
           : gpuProducer // ignore: cast_nullable_to_non_nullable
-              as GPUProducer,
+              as Producers,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -326,7 +326,7 @@ class __$$_GPUCopyWithImpl<$Res> extends _$GPUCopyWithImpl<$Res, _$_GPU>
       gpuVendor: null == gpuVendor
           ? _value.gpuVendor
           : gpuVendor // ignore: cast_nullable_to_non_nullable
-              as GPUVendor,
+              as Producers,
       year: null == year
           ? _value.year
           : year // ignore: cast_nullable_to_non_nullable
@@ -393,7 +393,7 @@ class __$$_GPUCopyWithImpl<$Res> extends _$GPUCopyWithImpl<$Res, _$_GPU>
 
 /// @nodoc
 @JsonSerializable()
-class _$_GPU implements _GPU {
+class _$_GPU extends _GPU {
   const _$_GPU(
       {required this.id,
       required this.gpuProducer,
@@ -414,18 +414,19 @@ class _$_GPU implements _GPU {
       required this.gpuTechnologies,
       required this.recommendedPrice,
       required this.performanceLevel})
-      : _gpuConnector = gpuConnector;
+      : _gpuConnector = gpuConnector,
+        super._();
 
   factory _$_GPU.fromJson(Map<String, dynamic> json) => _$$_GPUFromJson(json);
 
   @override
   final int id;
   @override
-  final GPUProducer gpuProducer;
+  final Producers gpuProducer;
   @override
   final String name;
   @override
-  final GPUVendor gpuVendor;
+  final Producers gpuVendor;
   @override
   final int year;
   @override
@@ -545,12 +546,12 @@ class _$_GPU implements _GPU {
   }
 }
 
-abstract class _GPU implements GPU {
+abstract class _GPU extends GPU {
   const factory _GPU(
       {required final int id,
-      required final GPUProducer gpuProducer,
+      required final Producers gpuProducer,
       required final String name,
-      required final GPUVendor gpuVendor,
+      required final Producers gpuVendor,
       required final int year,
       required final int technicalProcess,
       required final int gpuFrequency,
@@ -566,17 +567,18 @@ abstract class _GPU implements GPU {
       required final GPUTechnologies gpuTechnologies,
       required final int recommendedPrice,
       required final PerformanceLevel performanceLevel}) = _$_GPU;
+  const _GPU._() : super._();
 
   factory _GPU.fromJson(Map<String, dynamic> json) = _$_GPU.fromJson;
 
   @override
   int get id;
   @override
-  GPUProducer get gpuProducer;
+  Producers get gpuProducer;
   @override
   String get name;
   @override
-  GPUVendor get gpuVendor;
+  Producers get gpuVendor;
   @override
   int get year;
   @override

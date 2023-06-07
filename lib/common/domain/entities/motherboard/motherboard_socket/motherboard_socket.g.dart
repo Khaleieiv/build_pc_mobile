@@ -9,12 +9,12 @@ part of 'motherboard_socket.dart';
 _$_MotherboardSocket _$$_MotherboardSocketFromJson(Map<String, dynamic> json) =>
     _$_MotherboardSocket(
       id: json['id'] as int,
-      socket: json['socket'] as String,
+      name: json['socket'] as String,
     );
 
 Map<String, dynamic> _$$_MotherboardSocketToJson(
         _$_MotherboardSocket instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'socket': instance.socket,
+      'socket': instance.name,
     };

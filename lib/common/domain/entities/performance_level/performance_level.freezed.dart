@@ -21,7 +21,8 @@ PerformanceLevel _$PerformanceLevelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$PerformanceLevel {
   int get id => throw _privateConstructorUsedError;
-  String get level => throw _privateConstructorUsedError;
+  @JsonKey(name: 'level')
+  String? get name => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,7 +36,7 @@ abstract class $PerformanceLevelCopyWith<$Res> {
           PerformanceLevel value, $Res Function(PerformanceLevel) then) =
       _$PerformanceLevelCopyWithImpl<$Res, PerformanceLevel>;
   @useResult
-  $Res call({int id, String level});
+  $Res call({int id, @JsonKey(name: 'level') String? name});
 }
 
 /// @nodoc
@@ -52,17 +53,17 @@ class _$PerformanceLevelCopyWithImpl<$Res, $Val extends PerformanceLevel>
   @override
   $Res call({
     Object? id = null,
-    Object? level = null,
+    Object? name = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      level: null == level
-          ? _value.level
-          : level // ignore: cast_nullable_to_non_nullable
-              as String,
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -75,7 +76,7 @@ abstract class _$$_PerformanceLevelCopyWith<$Res>
       __$$_PerformanceLevelCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String level});
+  $Res call({int id, @JsonKey(name: 'level') String? name});
 }
 
 /// @nodoc
@@ -90,25 +91,27 @@ class __$$_PerformanceLevelCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? level = null,
+    Object? name = freezed,
   }) {
     return _then(_$_PerformanceLevel(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      level: null == level
-          ? _value.level
-          : level // ignore: cast_nullable_to_non_nullable
-              as String,
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$_PerformanceLevel implements _PerformanceLevel {
-  const _$_PerformanceLevel({required this.id, required this.level});
+class _$_PerformanceLevel extends _PerformanceLevel {
+  const _$_PerformanceLevel(
+      {required this.id, @JsonKey(name: 'level') required this.name})
+      : super._();
 
   factory _$_PerformanceLevel.fromJson(Map<String, dynamic> json) =>
       _$$_PerformanceLevelFromJson(json);
@@ -116,11 +119,12 @@ class _$_PerformanceLevel implements _PerformanceLevel {
   @override
   final int id;
   @override
-  final String level;
+  @JsonKey(name: 'level')
+  final String? name;
 
   @override
   String toString() {
-    return 'PerformanceLevel(id: $id, level: $level)';
+    return 'PerformanceLevel(id: $id, name: $name)';
   }
 
   @override
@@ -129,12 +133,12 @@ class _$_PerformanceLevel implements _PerformanceLevel {
         (other.runtimeType == runtimeType &&
             other is _$_PerformanceLevel &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.level, level) || other.level == level));
+            (identical(other.name, name) || other.name == name));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, level);
+  int get hashCode => Object.hash(runtimeType, id, name);
 
   @JsonKey(ignore: true)
   @override
@@ -150,10 +154,12 @@ class _$_PerformanceLevel implements _PerformanceLevel {
   }
 }
 
-abstract class _PerformanceLevel implements PerformanceLevel {
+abstract class _PerformanceLevel extends PerformanceLevel {
   const factory _PerformanceLevel(
-      {required final int id,
-      required final String level}) = _$_PerformanceLevel;
+          {required final int id,
+          @JsonKey(name: 'level') required final String? name}) =
+      _$_PerformanceLevel;
+  const _PerformanceLevel._() : super._();
 
   factory _PerformanceLevel.fromJson(Map<String, dynamic> json) =
       _$_PerformanceLevel.fromJson;
@@ -161,7 +167,8 @@ abstract class _PerformanceLevel implements PerformanceLevel {
   @override
   int get id;
   @override
-  String get level;
+  @JsonKey(name: 'level')
+  String? get name;
   @override
   @JsonKey(ignore: true)
   _$$_PerformanceLevelCopyWith<_$_PerformanceLevel> get copyWith =>

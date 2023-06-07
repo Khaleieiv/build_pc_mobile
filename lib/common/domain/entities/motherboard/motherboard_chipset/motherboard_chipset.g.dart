@@ -10,12 +10,12 @@ _$_MotherboardChipset _$$_MotherboardChipsetFromJson(
         Map<String, dynamic> json) =>
     _$_MotherboardChipset(
       id: json['id'] as int,
-      chipset: json['chipset'] as String,
+      name: json['name'] as String,
     );
 
 Map<String, dynamic> _$$_MotherboardChipsetToJson(
         _$_MotherboardChipset instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'chipset': instance.chipset,
+      'name': instance.name,
     };

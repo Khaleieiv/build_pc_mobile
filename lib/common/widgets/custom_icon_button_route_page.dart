@@ -1,24 +1,21 @@
-import 'package:build_pc_mobile/common/presentation/navigation/route_names.dart';
 import 'package:flutter/material.dart';
 
 class CustomIconButtonRoutePage extends StatelessWidget {
-  final String routePage;
   final IconData icon;
   final double sizeIcon;
+  final Function()? onPressed;
 
   const CustomIconButtonRoutePage({
     Key? key,
     required this.icon,
     required this.sizeIcon,
-    required this.routePage,
+    required this.onPressed,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return IconButton(
-      onPressed: () {
-        Navigator.pushNamed(context, routePage);
-      },
+      onPressed: onPressed,
       icon: Icon(
         icon,
         size: sizeIcon,

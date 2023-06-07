@@ -107,8 +107,8 @@ class __$$_GPUTechnologiesCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_GPUTechnologies implements _GPUTechnologies {
-  const _$_GPUTechnologies({required this.id, required this.name});
+class _$_GPUTechnologies extends _GPUTechnologies {
+  const _$_GPUTechnologies({required this.id, required this.name}) : super._();
 
   factory _$_GPUTechnologies.fromJson(Map<String, dynamic> json) =>
       _$$_GPUTechnologiesFromJson(json);
@@ -150,9 +150,10 @@ class _$_GPUTechnologies implements _GPUTechnologies {
   }
 }
 
-abstract class _GPUTechnologies implements GPUTechnologies {
+abstract class _GPUTechnologies extends GPUTechnologies {
   const factory _GPUTechnologies(
       {required final int id, required final String name}) = _$_GPUTechnologies;
+  const _GPUTechnologies._() : super._();
 
   factory _GPUTechnologies.fromJson(Map<String, dynamic> json) =
       _$_GPUTechnologies.fromJson;

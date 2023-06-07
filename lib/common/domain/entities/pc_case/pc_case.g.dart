@@ -10,7 +10,7 @@ _$_PcCase _$$_PcCaseFromJson(Map<String, dynamic> json) => _$_PcCase(
       id: json['id'] as int,
       name: json['name'] as String,
       caseProducer:
-          CaseProducer.fromJson(json['caseProducer'] as Map<String, dynamic>),
+          Producers.fromJson(json['caseProducer'] as Map<String, dynamic>),
       caseSize: CaseSize.fromJson(json['caseSize'] as Map<String, dynamic>),
       formFactor: (json['formFactor'] as List<dynamic>)
           .map((e) => FormFactor.fromJson(e as Map<String, dynamic>))
@@ -25,11 +25,12 @@ _$_PcCase _$$_PcCaseFromJson(Map<String, dynamic> json) => _$_PcCase(
           .map((e) => CaseDesignFeatures.fromJson(e as Map<String, dynamic>))
           .toList(),
       maxLengthOfGraphicCard: json['maxLengthOfGraphicCard'] as int,
-      powerSupplyFormFactor: json['powerSupplyFormFactor'] as int,
       description: json['description'] as String,
       recommendedPrice: json['recommendedPrice'] as int,
-      performanceLevel: PerformanceLevel.fromJson(
-          json['performanceLevel'] as Map<String, dynamic>),
+      performanceLevel: json['performanceLevel'] == null
+          ? null
+          : PerformanceLevel.fromJson(
+              json['performanceLevel'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_PcCaseToJson(_$_PcCase instance) => <String, dynamic>{
@@ -45,7 +46,6 @@ Map<String, dynamic> _$$_PcCaseToJson(_$_PcCase instance) => <String, dynamic>{
       'usb_2_0': instance.usb_2_0,
       'designFeatures': instance.designFeatures,
       'maxLengthOfGraphicCard': instance.maxLengthOfGraphicCard,
-      'powerSupplyFormFactor': instance.powerSupplyFormFactor,
       'description': instance.description,
       'recommendedPrice': instance.recommendedPrice,
       'performanceLevel': instance.performanceLevel,

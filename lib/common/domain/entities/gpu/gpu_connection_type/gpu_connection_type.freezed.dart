@@ -21,7 +21,7 @@ GPUConnectionType _$GPUConnectionTypeFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$GPUConnectionType {
   int get id => throw _privateConstructorUsedError;
-  String get connectionType => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,7 +35,7 @@ abstract class $GPUConnectionTypeCopyWith<$Res> {
           GPUConnectionType value, $Res Function(GPUConnectionType) then) =
       _$GPUConnectionTypeCopyWithImpl<$Res, GPUConnectionType>;
   @useResult
-  $Res call({int id, String connectionType});
+  $Res call({int id, String name});
 }
 
 /// @nodoc
@@ -52,16 +52,16 @@ class _$GPUConnectionTypeCopyWithImpl<$Res, $Val extends GPUConnectionType>
   @override
   $Res call({
     Object? id = null,
-    Object? connectionType = null,
+    Object? name = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      connectionType: null == connectionType
-          ? _value.connectionType
-          : connectionType // ignore: cast_nullable_to_non_nullable
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -75,7 +75,7 @@ abstract class _$$_GPUConnectionTypeCopyWith<$Res>
       __$$_GPUConnectionTypeCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String connectionType});
+  $Res call({int id, String name});
 }
 
 /// @nodoc
@@ -90,16 +90,16 @@ class __$$_GPUConnectionTypeCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? connectionType = null,
+    Object? name = null,
   }) {
     return _then(_$_GPUConnectionType(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      connectionType: null == connectionType
-          ? _value.connectionType
-          : connectionType // ignore: cast_nullable_to_non_nullable
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -107,8 +107,9 @@ class __$$_GPUConnectionTypeCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_GPUConnectionType implements _GPUConnectionType {
-  const _$_GPUConnectionType({required this.id, required this.connectionType});
+class _$_GPUConnectionType extends _GPUConnectionType {
+  const _$_GPUConnectionType({required this.id, required this.name})
+      : super._();
 
   factory _$_GPUConnectionType.fromJson(Map<String, dynamic> json) =>
       _$$_GPUConnectionTypeFromJson(json);
@@ -116,11 +117,11 @@ class _$_GPUConnectionType implements _GPUConnectionType {
   @override
   final int id;
   @override
-  final String connectionType;
+  final String name;
 
   @override
   String toString() {
-    return 'GPUConnectionType(id: $id, connectionType: $connectionType)';
+    return 'GPUConnectionType(id: $id, name: $name)';
   }
 
   @override
@@ -129,13 +130,12 @@ class _$_GPUConnectionType implements _GPUConnectionType {
         (other.runtimeType == runtimeType &&
             other is _$_GPUConnectionType &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.connectionType, connectionType) ||
-                other.connectionType == connectionType));
+            (identical(other.name, name) || other.name == name));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, connectionType);
+  int get hashCode => Object.hash(runtimeType, id, name);
 
   @JsonKey(ignore: true)
   @override
@@ -152,10 +152,11 @@ class _$_GPUConnectionType implements _GPUConnectionType {
   }
 }
 
-abstract class _GPUConnectionType implements GPUConnectionType {
+abstract class _GPUConnectionType extends GPUConnectionType {
   const factory _GPUConnectionType(
       {required final int id,
-      required final String connectionType}) = _$_GPUConnectionType;
+      required final String name}) = _$_GPUConnectionType;
+  const _GPUConnectionType._() : super._();
 
   factory _GPUConnectionType.fromJson(Map<String, dynamic> json) =
       _$_GPUConnectionType.fromJson;
@@ -163,7 +164,7 @@ abstract class _GPUConnectionType implements GPUConnectionType {
   @override
   int get id;
   @override
-  String get connectionType;
+  String get name;
   @override
   @JsonKey(ignore: true)
   _$$_GPUConnectionTypeCopyWith<_$_GPUConnectionType> get copyWith =>

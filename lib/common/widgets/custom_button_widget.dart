@@ -8,7 +8,7 @@ class CustomButtonWidget extends StatelessWidget {
   final double fromSTEBBottom;
   final double heightContainer;
   final double borderRadius;
-  final String routeName;
+  final Function()? onPressed;
   final String nameButton;
   final Color colorTextButton;
   final Color colorButton;
@@ -22,11 +22,11 @@ class CustomButtonWidget extends StatelessWidget {
     required this.fromSTEBBottom,
     required this.heightContainer,
     required this.borderRadius,
-    required this.routeName,
     required this.nameButton,
     required this.colorButton,
     required this.fontSizeButton,
     required this.colorTextButton,
+    this.onPressed,
   }) : super(key: key);
 
   @override
@@ -46,9 +46,7 @@ class CustomButtonWidget extends StatelessWidget {
           borderRadius: BorderRadius.circular(borderRadius),
         ),
         child: ElevatedButton(
-          onPressed: () {
-            Navigator.pushNamed(context, routeName);
-          },
+          onPressed: onPressed,
           style: ElevatedButton.styleFrom(
             padding: EdgeInsets.zero,
             backgroundColor: colorButton,

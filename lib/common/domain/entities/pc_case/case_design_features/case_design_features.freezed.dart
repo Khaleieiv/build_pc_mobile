@@ -21,7 +21,7 @@ CaseDesignFeatures _$CaseDesignFeaturesFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$CaseDesignFeatures {
   int get id => throw _privateConstructorUsedError;
-  String get designFeatures => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,7 +35,7 @@ abstract class $CaseDesignFeaturesCopyWith<$Res> {
           CaseDesignFeatures value, $Res Function(CaseDesignFeatures) then) =
       _$CaseDesignFeaturesCopyWithImpl<$Res, CaseDesignFeatures>;
   @useResult
-  $Res call({int id, String designFeatures});
+  $Res call({int id, String name});
 }
 
 /// @nodoc
@@ -52,16 +52,16 @@ class _$CaseDesignFeaturesCopyWithImpl<$Res, $Val extends CaseDesignFeatures>
   @override
   $Res call({
     Object? id = null,
-    Object? designFeatures = null,
+    Object? name = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      designFeatures: null == designFeatures
-          ? _value.designFeatures
-          : designFeatures // ignore: cast_nullable_to_non_nullable
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -75,7 +75,7 @@ abstract class _$$_CaseDesignFeaturesCopyWith<$Res>
       __$$_CaseDesignFeaturesCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String designFeatures});
+  $Res call({int id, String name});
 }
 
 /// @nodoc
@@ -90,16 +90,16 @@ class __$$_CaseDesignFeaturesCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? designFeatures = null,
+    Object? name = null,
   }) {
     return _then(_$_CaseDesignFeatures(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      designFeatures: null == designFeatures
-          ? _value.designFeatures
-          : designFeatures // ignore: cast_nullable_to_non_nullable
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -107,8 +107,9 @@ class __$$_CaseDesignFeaturesCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_CaseDesignFeatures implements _CaseDesignFeatures {
-  const _$_CaseDesignFeatures({required this.id, required this.designFeatures});
+class _$_CaseDesignFeatures extends _CaseDesignFeatures {
+  const _$_CaseDesignFeatures({required this.id, required this.name})
+      : super._();
 
   factory _$_CaseDesignFeatures.fromJson(Map<String, dynamic> json) =>
       _$$_CaseDesignFeaturesFromJson(json);
@@ -116,11 +117,11 @@ class _$_CaseDesignFeatures implements _CaseDesignFeatures {
   @override
   final int id;
   @override
-  final String designFeatures;
+  final String name;
 
   @override
   String toString() {
-    return 'CaseDesignFeatures(id: $id, designFeatures: $designFeatures)';
+    return 'CaseDesignFeatures(id: $id, name: $name)';
   }
 
   @override
@@ -129,13 +130,12 @@ class _$_CaseDesignFeatures implements _CaseDesignFeatures {
         (other.runtimeType == runtimeType &&
             other is _$_CaseDesignFeatures &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.designFeatures, designFeatures) ||
-                other.designFeatures == designFeatures));
+            (identical(other.name, name) || other.name == name));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, designFeatures);
+  int get hashCode => Object.hash(runtimeType, id, name);
 
   @JsonKey(ignore: true)
   @override
@@ -152,10 +152,11 @@ class _$_CaseDesignFeatures implements _CaseDesignFeatures {
   }
 }
 
-abstract class _CaseDesignFeatures implements CaseDesignFeatures {
+abstract class _CaseDesignFeatures extends CaseDesignFeatures {
   const factory _CaseDesignFeatures(
       {required final int id,
-      required final String designFeatures}) = _$_CaseDesignFeatures;
+      required final String name}) = _$_CaseDesignFeatures;
+  const _CaseDesignFeatures._() : super._();
 
   factory _CaseDesignFeatures.fromJson(Map<String, dynamic> json) =
       _$_CaseDesignFeatures.fromJson;
@@ -163,7 +164,7 @@ abstract class _CaseDesignFeatures implements CaseDesignFeatures {
   @override
   int get id;
   @override
-  String get designFeatures;
+  String get name;
   @override
   @JsonKey(ignore: true)
   _$$_CaseDesignFeaturesCopyWith<_$_CaseDesignFeatures> get copyWith =>

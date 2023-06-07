@@ -107,8 +107,8 @@ class __$$_CPUGenerationCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_CPUGeneration implements _CPUGeneration {
-  const _$_CPUGeneration({required this.id, required this.name});
+class _$_CPUGeneration extends _CPUGeneration {
+  const _$_CPUGeneration({required this.id, required this.name}) : super._();
 
   factory _$_CPUGeneration.fromJson(Map<String, dynamic> json) =>
       _$$_CPUGenerationFromJson(json);
@@ -150,9 +150,10 @@ class _$_CPUGeneration implements _CPUGeneration {
   }
 }
 
-abstract class _CPUGeneration implements CPUGeneration {
+abstract class _CPUGeneration extends CPUGeneration {
   const factory _CPUGeneration(
       {required final int id, required final String name}) = _$_CPUGeneration;
+  const _CPUGeneration._() : super._();
 
   factory _CPUGeneration.fromJson(Map<String, dynamic> json) =
       _$_CPUGeneration.fromJson;

@@ -1,15 +1,17 @@
+import 'package:build_pc_mobile/auth/presentation/state/auth_notifier.dart';
 import 'package:build_pc_mobile/common/constants/app_colors.dart';
 import 'package:build_pc_mobile/common/constants/app_sizes.dart';
 import 'package:build_pc_mobile/common/presentation/navigation/route_names.dart';
 import 'package:build_pc_mobile/common/widgets/custom_button_widget.dart';
+import 'package:build_pc_mobile/common/widgets/custom_icon_button_route_page.dart';
 import 'package:build_pc_mobile/common/widgets/custom_logo_widget.dart';
-import 'package:build_pc_mobile/home/presentation/state/dark_light_theme_provider.dart';
+import 'package:build_pc_mobile/home/presentation/state/dark_light_theme_notifier.dart';
 import 'package:build_pc_mobile/home/presentation/widgets/custom_dark_mode_button.dart';
 import 'package:build_pc_mobile/profile/presentation/widgets/custom_features_profile.dart';
-import 'package:build_pc_mobile/profile/presentation/widgets/custom_icon_button_route_page.dart';
 import 'package:build_pc_mobile/profile/presentation/widgets/custom_label_profile.dart';
 import 'package:ez_localization/ez_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:panara_dialogs/panara_dialogs.dart';
 import 'package:provider/provider.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -17,7 +19,15 @@ class ProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final themeChange = Provider.of<DarkLightThemeProvider>(context);
+    final themeChange = Provider.of<DarkLightThemeNotifier>(context);
+    final authNotifier = Provider.of<AuthNotifier>(context);
+    final isCheckLoggedIn = authNotifier.isLoggedIn;
+
+    void logOut() {
+      authNotifier.signOut();
+      Navigator.pushNamed(context, RouteNames.loginPage);
+    }
+
     const heightContainer = 400.0;
     const fontSizeContainer = 14.0;
     const fromSTEBTopContainer = 4.0;
@@ -33,6 +43,8 @@ class ProfilePage extends StatelessWidget {
     const heightButtonLogOut = 50.0;
     const borderRadiusButtonLogOut = 25.0;
     const fontSizeButtonButtonLogOut = 16.0;
+
+    const sizeIcon = 20.0;
 
     return Scaffold(
       backgroundColor: themeChange.darkTheme
@@ -58,7 +70,10 @@ class ProfilePage extends StatelessWidget {
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        const CustomLogoWidget(),
+                        const CustomLogoWidget(
+                          label: 'PcBuild',
+                          fontSize: 60,
+                        ),
                         Row(
                           mainAxisSize: MainAxisSize.max,
                           children: [
@@ -79,9 +94,11 @@ class ProfilePage extends StatelessWidget {
                                     ),
                                   ),
                                   CustomLabelProfile(
-                                    labelText: context.getString(
-                                      'profile.user_status.user_name',
-                                    ),
+                                    labelText: isCheckLoggedIn
+                                        ? authNotifier.currentUser?.name ?? ""
+                                        : context.getString(
+                                            'profile.user_status.user_name',
+                                          ),
                                     fontFamily: fontFamily,
                                     textColor: themeChange.darkTheme
                                         ? AppLightColors.primaryTextLightColor
@@ -94,9 +111,11 @@ class ProfilePage extends StatelessWidget {
                                     fromSTEBBottom: 0,
                                   ),
                                   CustomLabelProfile(
-                                    labelText: context.getString(
-                                      'profile.user_status.status',
-                                    ),
+                                    labelText: isCheckLoggedIn
+                                        ? "User"
+                                        : context.getString(
+                                            'profile.user_status.status',
+                                          ),
                                     fontFamily: fontFamily,
                                     textColor: AppColors.secondaryTextColor,
                                     fontWeight: FontWeight.normal,
@@ -107,9 +126,11 @@ class ProfilePage extends StatelessWidget {
                                     fromSTEBBottom: 0,
                                   ),
                                   CustomLabelProfile(
-                                    labelText: context.getString(
-                                      'profile.user_status.email',
-                                    ),
+                                    labelText: isCheckLoggedIn
+                                        ? authNotifier.currentUser?.email ?? ""
+                                        : context.getString(
+                                            'profile.user_status.email',
+                                          ),
                                     fontFamily: fontFamily,
                                     textColor: AppColors.secondaryColor,
                                     fontWeight: FontWeight.normal,
@@ -170,10 +191,31 @@ class ProfilePage extends StatelessWidget {
               fontFamily: fontFamily,
               fontWeight: FontWeight.normal,
               fontSize: fontSize,
-              widget: const CustomIconButtonRoutePage(
+              widget: CustomIconButtonRoutePage(
                 icon: Icons.arrow_forward_ios_outlined,
-                sizeIcon: 20,
-                routePage: RouteNames.editProfilePage,
+                sizeIcon: sizeIcon,
+                onPressed: () {
+                  if (isCheckLoggedIn) {
+                    Navigator.pushNamed(context, RouteNames.editProfilePage);
+                  } else {
+                    PanaraConfirmDialog.show(
+                      context,
+                      title: "Hello",
+                      message: "To go to this page you need to be logged in",
+                      confirmButtonText: "Confirm",
+                      cancelButtonText: "Cancel",
+                      textColor: AppColors.blackColor,
+                      onTapCancel: () {
+                        Navigator.pop(context);
+                      },
+                      onTapConfirm: () {
+                        Navigator.pushNamed(context, RouteNames.loginPage);
+                      },
+                      panaraDialogType: PanaraDialogType.warning,
+                      barrierDismissible: false,
+                    );
+                  }
+                },
               ),
             ),
             const Divider(
@@ -191,10 +233,31 @@ class ProfilePage extends StatelessWidget {
               fontFamily: fontFamily,
               fontWeight: FontWeight.normal,
               fontSize: fontSize,
-              widget: const CustomIconButtonRoutePage(
+              widget: CustomIconButtonRoutePage(
                 icon: Icons.arrow_forward_ios_outlined,
-                sizeIcon: 20,
-                routePage: RouteNames.loginPage,
+                sizeIcon: sizeIcon,
+                onPressed: () {
+                  if (isCheckLoggedIn) {
+                    Navigator.pushNamed(context, RouteNames.editProfilePage);
+                  } else {
+                    PanaraConfirmDialog.show(
+                      context,
+                      title: "Hello",
+                      message: "To go to this page you need to be logged in",
+                      confirmButtonText: "Confirm",
+                      cancelButtonText: "Cancel",
+                      textColor: AppColors.blackColor,
+                      onTapCancel: () {
+                        Navigator.pop(context);
+                      },
+                      onTapConfirm: () {
+                        Navigator.pushNamed(context, RouteNames.loginPage);
+                      },
+                      panaraDialogType: PanaraDialogType.warning,
+                      barrierDismissible: false,
+                    );
+                  }
+                },
               ),
             ),
             const SizedBox(height: AppSizes.defaultPadding * 1.5),
@@ -205,7 +268,7 @@ class ProfilePage extends StatelessWidget {
               fromSTEBBottom: fromSTEBBottomButtonLogOut,
               heightContainer: heightButtonLogOut,
               borderRadius: borderRadiusButtonLogOut,
-              routeName: RouteNames.loginPage,
+              onPressed: logOut,
               nameButton: context.getString('profile.account.log_out'),
               colorButton: AppLightColors.primaryBackgroundLightColor,
               fontSizeButton: fontSizeButtonButtonLogOut,

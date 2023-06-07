@@ -1,7 +1,7 @@
 {
   "auth": {
     "login_page": {
-      "email": "Пошта",
+      "username": "Логін",
       "password": "Пароль",
       "or": "або",
       "log_in": "Увійти",
@@ -11,7 +11,7 @@
     },
     "registration_page": {
       "name": "Ім'я",
-      "login": "Логін",
+      "username": "Логін",
       "email": "Пошта",
       "password": "Пароль",
       "sign_in": "Вхід",
@@ -37,10 +37,24 @@
     "edit_profile": {
       "edit_profile": "Редагування профіля",
       "name": "Ім'я",
-      "login": "Логін",
+      "username": "Логін",
       "email": "Пошта",
       "password": "Пароль",
       "save_changes": "Зберегти зміни"
+    }
+  },
+  "comparison": {
+    "label": "Виберіть компонент для порівняння",
+    "list_comparison": {
+      "processor": "Процесор",
+      "motherboard": "Материнська плата",
+      "graphic_card": "Відеокарта",
+      "memory": "Пам'ять",
+      "ssd": "Ssd",
+      "hdd": "Hdd",
+      "cooler": "Кулер",
+      "power_supply": "Блок живлення",
+      "case": "Корпус"
     }
   },
   "home": {
@@ -51,7 +65,7 @@
     "bottom_navigation_bar": {
       "component_comparison": "Порівняння",
       "pc_build": "Збірка",
-      "likes": "Вподобайки",
+      "rating": "Рейтинг",
       "profile": "Профіль"
     }
   }

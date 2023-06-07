@@ -115,9 +115,10 @@ class __$$_PowerSupplyProtectionFunctionsCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_PowerSupplyProtectionFunctions
-    implements _PowerSupplyProtectionFunctions {
+    extends _PowerSupplyProtectionFunctions {
   const _$_PowerSupplyProtectionFunctions(
-      {required this.id, required this.name});
+      {required this.id, required this.name})
+      : super._();
 
   factory _$_PowerSupplyProtectionFunctions.fromJson(
           Map<String, dynamic> json) =>
@@ -162,10 +163,11 @@ class _$_PowerSupplyProtectionFunctions
 }
 
 abstract class _PowerSupplyProtectionFunctions
-    implements PowerSupplyProtectionFunctions {
+    extends PowerSupplyProtectionFunctions {
   const factory _PowerSupplyProtectionFunctions(
       {required final int id,
       required final String name}) = _$_PowerSupplyProtectionFunctions;
+  const _PowerSupplyProtectionFunctions._() : super._();
 
   factory _PowerSupplyProtectionFunctions.fromJson(Map<String, dynamic> json) =
       _$_PowerSupplyProtectionFunctions.fromJson;

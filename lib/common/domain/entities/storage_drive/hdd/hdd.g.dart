@@ -8,8 +8,9 @@ part of 'hdd.dart';
 
 _$_Hdd _$$_HddFromJson(Map<String, dynamic> json) => _$_Hdd(
       id: json['id'] as int,
-      storageProducer: StorageProducer.fromJson(
-          json['storageProducer'] as Map<String, dynamic>),
+      storageProducer:
+          Producers.fromJson(json['storageProducer'] as Map<String, dynamic>),
+      name: json['name'] as String,
       storageSize: json['storageSize'] as int,
       speed: json['speed'] as int,
       storageFormFactor: StorageFormFactor.fromJson(
@@ -21,13 +22,16 @@ _$_Hdd _$$_HddFromJson(Map<String, dynamic> json) => _$_Hdd(
       writingSpeed: json['writingSpeed'] as int,
       description: json['description'] as String,
       recommendedPrice: json['recommendedPrice'] as int,
-      performanceLevel: PerformanceLevel.fromJson(
-          json['performanceLevel'] as Map<String, dynamic>),
+      performanceLevel: json['performanceLevel'] == null
+          ? null
+          : PerformanceLevel.fromJson(
+              json['performanceLevel'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_HddToJson(_$_Hdd instance) => <String, dynamic>{
       'id': instance.id,
       'storageProducer': instance.storageProducer,
+      'name': instance.name,
       'storageSize': instance.storageSize,
       'speed': instance.speed,
       'storageFormFactor': instance.storageFormFactor,

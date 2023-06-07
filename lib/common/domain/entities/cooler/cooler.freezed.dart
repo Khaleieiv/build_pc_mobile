@@ -22,14 +22,14 @@ Cooler _$CoolerFromJson(Map<String, dynamic> json) {
 mixin _$Cooler {
   int get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
-  CoolerProducer get coolerProducer => throw _privateConstructorUsedError;
-  CoolerSocket get coolerSocket => throw _privateConstructorUsedError;
+  Producers get coolerProducer => throw _privateConstructorUsedError;
+  List<CoolerSocket> get coolerSocket => throw _privateConstructorUsedError;
   CoolerMaterial get coolerMaterial => throw _privateConstructorUsedError;
   int get maxTdp => throw _privateConstructorUsedError;
   int get thermalTubes => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   int get recommendedPrice => throw _privateConstructorUsedError;
-  PerformanceLevel get performanceLevel => throw _privateConstructorUsedError;
+  PerformanceLevel? get performanceLevel => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -44,19 +44,18 @@ abstract class $CoolerCopyWith<$Res> {
   $Res call(
       {int id,
       String name,
-      CoolerProducer coolerProducer,
-      CoolerSocket coolerSocket,
+      Producers coolerProducer,
+      List<CoolerSocket> coolerSocket,
       CoolerMaterial coolerMaterial,
       int maxTdp,
       int thermalTubes,
       String description,
       int recommendedPrice,
-      PerformanceLevel performanceLevel});
+      PerformanceLevel? performanceLevel});
 
-  $CoolerProducerCopyWith<$Res> get coolerProducer;
-  $CoolerSocketCopyWith<$Res> get coolerSocket;
+  $ProducersCopyWith<$Res> get coolerProducer;
   $CoolerMaterialCopyWith<$Res> get coolerMaterial;
-  $PerformanceLevelCopyWith<$Res> get performanceLevel;
+  $PerformanceLevelCopyWith<$Res>? get performanceLevel;
 }
 
 /// @nodoc
@@ -81,7 +80,7 @@ class _$CoolerCopyWithImpl<$Res, $Val extends Cooler>
     Object? thermalTubes = null,
     Object? description = null,
     Object? recommendedPrice = null,
-    Object? performanceLevel = null,
+    Object? performanceLevel = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -95,11 +94,11 @@ class _$CoolerCopyWithImpl<$Res, $Val extends Cooler>
       coolerProducer: null == coolerProducer
           ? _value.coolerProducer
           : coolerProducer // ignore: cast_nullable_to_non_nullable
-              as CoolerProducer,
+              as Producers,
       coolerSocket: null == coolerSocket
           ? _value.coolerSocket
           : coolerSocket // ignore: cast_nullable_to_non_nullable
-              as CoolerSocket,
+              as List<CoolerSocket>,
       coolerMaterial: null == coolerMaterial
           ? _value.coolerMaterial
           : coolerMaterial // ignore: cast_nullable_to_non_nullable
@@ -120,26 +119,18 @@ class _$CoolerCopyWithImpl<$Res, $Val extends Cooler>
           ? _value.recommendedPrice
           : recommendedPrice // ignore: cast_nullable_to_non_nullable
               as int,
-      performanceLevel: null == performanceLevel
+      performanceLevel: freezed == performanceLevel
           ? _value.performanceLevel
           : performanceLevel // ignore: cast_nullable_to_non_nullable
-              as PerformanceLevel,
+              as PerformanceLevel?,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $CoolerProducerCopyWith<$Res> get coolerProducer {
-    return $CoolerProducerCopyWith<$Res>(_value.coolerProducer, (value) {
+  $ProducersCopyWith<$Res> get coolerProducer {
+    return $ProducersCopyWith<$Res>(_value.coolerProducer, (value) {
       return _then(_value.copyWith(coolerProducer: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $CoolerSocketCopyWith<$Res> get coolerSocket {
-    return $CoolerSocketCopyWith<$Res>(_value.coolerSocket, (value) {
-      return _then(_value.copyWith(coolerSocket: value) as $Val);
     });
   }
 
@@ -153,8 +144,12 @@ class _$CoolerCopyWithImpl<$Res, $Val extends Cooler>
 
   @override
   @pragma('vm:prefer-inline')
-  $PerformanceLevelCopyWith<$Res> get performanceLevel {
-    return $PerformanceLevelCopyWith<$Res>(_value.performanceLevel, (value) {
+  $PerformanceLevelCopyWith<$Res>? get performanceLevel {
+    if (_value.performanceLevel == null) {
+      return null;
+    }
+
+    return $PerformanceLevelCopyWith<$Res>(_value.performanceLevel!, (value) {
       return _then(_value.copyWith(performanceLevel: value) as $Val);
     });
   }
@@ -169,23 +164,21 @@ abstract class _$$_CoolerCopyWith<$Res> implements $CoolerCopyWith<$Res> {
   $Res call(
       {int id,
       String name,
-      CoolerProducer coolerProducer,
-      CoolerSocket coolerSocket,
+      Producers coolerProducer,
+      List<CoolerSocket> coolerSocket,
       CoolerMaterial coolerMaterial,
       int maxTdp,
       int thermalTubes,
       String description,
       int recommendedPrice,
-      PerformanceLevel performanceLevel});
+      PerformanceLevel? performanceLevel});
 
   @override
-  $CoolerProducerCopyWith<$Res> get coolerProducer;
-  @override
-  $CoolerSocketCopyWith<$Res> get coolerSocket;
+  $ProducersCopyWith<$Res> get coolerProducer;
   @override
   $CoolerMaterialCopyWith<$Res> get coolerMaterial;
   @override
-  $PerformanceLevelCopyWith<$Res> get performanceLevel;
+  $PerformanceLevelCopyWith<$Res>? get performanceLevel;
 }
 
 /// @nodoc
@@ -207,7 +200,7 @@ class __$$_CoolerCopyWithImpl<$Res>
     Object? thermalTubes = null,
     Object? description = null,
     Object? recommendedPrice = null,
-    Object? performanceLevel = null,
+    Object? performanceLevel = freezed,
   }) {
     return _then(_$_Cooler(
       id: null == id
@@ -221,11 +214,11 @@ class __$$_CoolerCopyWithImpl<$Res>
       coolerProducer: null == coolerProducer
           ? _value.coolerProducer
           : coolerProducer // ignore: cast_nullable_to_non_nullable
-              as CoolerProducer,
+              as Producers,
       coolerSocket: null == coolerSocket
-          ? _value.coolerSocket
+          ? _value._coolerSocket
           : coolerSocket // ignore: cast_nullable_to_non_nullable
-              as CoolerSocket,
+              as List<CoolerSocket>,
       coolerMaterial: null == coolerMaterial
           ? _value.coolerMaterial
           : coolerMaterial // ignore: cast_nullable_to_non_nullable
@@ -246,28 +239,30 @@ class __$$_CoolerCopyWithImpl<$Res>
           ? _value.recommendedPrice
           : recommendedPrice // ignore: cast_nullable_to_non_nullable
               as int,
-      performanceLevel: null == performanceLevel
+      performanceLevel: freezed == performanceLevel
           ? _value.performanceLevel
           : performanceLevel // ignore: cast_nullable_to_non_nullable
-              as PerformanceLevel,
+              as PerformanceLevel?,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$_Cooler implements _Cooler {
+class _$_Cooler extends _Cooler {
   const _$_Cooler(
       {required this.id,
       required this.name,
       required this.coolerProducer,
-      required this.coolerSocket,
+      required final List<CoolerSocket> coolerSocket,
       required this.coolerMaterial,
       required this.maxTdp,
       required this.thermalTubes,
       required this.description,
       required this.recommendedPrice,
-      required this.performanceLevel});
+      required this.performanceLevel})
+      : _coolerSocket = coolerSocket,
+        super._();
 
   factory _$_Cooler.fromJson(Map<String, dynamic> json) =>
       _$$_CoolerFromJson(json);
@@ -277,9 +272,14 @@ class _$_Cooler implements _Cooler {
   @override
   final String name;
   @override
-  final CoolerProducer coolerProducer;
+  final Producers coolerProducer;
+  final List<CoolerSocket> _coolerSocket;
   @override
-  final CoolerSocket coolerSocket;
+  List<CoolerSocket> get coolerSocket {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_coolerSocket);
+  }
+
   @override
   final CoolerMaterial coolerMaterial;
   @override
@@ -291,7 +291,7 @@ class _$_Cooler implements _Cooler {
   @override
   final int recommendedPrice;
   @override
-  final PerformanceLevel performanceLevel;
+  final PerformanceLevel? performanceLevel;
 
   @override
   String toString() {
@@ -307,8 +307,8 @@ class _$_Cooler implements _Cooler {
             (identical(other.name, name) || other.name == name) &&
             (identical(other.coolerProducer, coolerProducer) ||
                 other.coolerProducer == coolerProducer) &&
-            (identical(other.coolerSocket, coolerSocket) ||
-                other.coolerSocket == coolerSocket) &&
+            const DeepCollectionEquality()
+                .equals(other._coolerSocket, _coolerSocket) &&
             (identical(other.coolerMaterial, coolerMaterial) ||
                 other.coolerMaterial == coolerMaterial) &&
             (identical(other.maxTdp, maxTdp) || other.maxTdp == maxTdp) &&
@@ -329,7 +329,7 @@ class _$_Cooler implements _Cooler {
       id,
       name,
       coolerProducer,
-      coolerSocket,
+      const DeepCollectionEquality().hash(_coolerSocket),
       coolerMaterial,
       maxTdp,
       thermalTubes,
@@ -351,18 +351,19 @@ class _$_Cooler implements _Cooler {
   }
 }
 
-abstract class _Cooler implements Cooler {
+abstract class _Cooler extends Cooler {
   const factory _Cooler(
       {required final int id,
       required final String name,
-      required final CoolerProducer coolerProducer,
-      required final CoolerSocket coolerSocket,
+      required final Producers coolerProducer,
+      required final List<CoolerSocket> coolerSocket,
       required final CoolerMaterial coolerMaterial,
       required final int maxTdp,
       required final int thermalTubes,
       required final String description,
       required final int recommendedPrice,
-      required final PerformanceLevel performanceLevel}) = _$_Cooler;
+      required final PerformanceLevel? performanceLevel}) = _$_Cooler;
+  const _Cooler._() : super._();
 
   factory _Cooler.fromJson(Map<String, dynamic> json) = _$_Cooler.fromJson;
 
@@ -371,9 +372,9 @@ abstract class _Cooler implements Cooler {
   @override
   String get name;
   @override
-  CoolerProducer get coolerProducer;
+  Producers get coolerProducer;
   @override
-  CoolerSocket get coolerSocket;
+  List<CoolerSocket> get coolerSocket;
   @override
   CoolerMaterial get coolerMaterial;
   @override
@@ -385,7 +386,7 @@ abstract class _Cooler implements Cooler {
   @override
   int get recommendedPrice;
   @override
-  PerformanceLevel get performanceLevel;
+  PerformanceLevel? get performanceLevel;
   @override
   @JsonKey(ignore: true)
   _$$_CoolerCopyWith<_$_Cooler> get copyWith =>

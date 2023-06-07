@@ -9,9 +9,9 @@ part of 'gpu.dart';
 _$_GPU _$$_GPUFromJson(Map<String, dynamic> json) => _$_GPU(
       id: json['id'] as int,
       gpuProducer:
-          GPUProducer.fromJson(json['gpuProducer'] as Map<String, dynamic>),
+          Producers.fromJson(json['gpuProducer'] as Map<String, dynamic>),
       name: json['name'] as String,
-      gpuVendor: GPUVendor.fromJson(json['gpuVendor'] as Map<String, dynamic>),
+      gpuVendor: Producers.fromJson(json['gpuVendor'] as Map<String, dynamic>),
       year: json['year'] as int,
       technicalProcess: json['technicalProcess'] as int,
       gpuFrequency: json['gpuFrequency'] as int,

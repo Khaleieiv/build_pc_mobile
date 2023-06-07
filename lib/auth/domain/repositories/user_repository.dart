@@ -6,9 +6,11 @@ abstract class UserRepository {
   Future<void> registerUser(User userData);
 
   Future<void> loginUser(
-      String email,
+      String username,
       String password,
       );
 
   Future<void> updateProfile(User userData);
+
+  Future<void> signOut();
 }

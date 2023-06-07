@@ -19,7 +19,10 @@ class RegistrationPage extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: const [
-                  CustomLogoWidget(),
+                  CustomLogoWidget(
+                    label: 'PcBuild',
+                    fontSize: 60,
+                  ),
                 ],
               ),
             ),
@@ -43,7 +46,10 @@ class MobileSignupScreen extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        const CustomLogoWidget(),
+        const CustomLogoWidget(
+          label: 'PcBuild',
+          fontSize: 60,
+        ),
         const SizedBox(height: AppSizes.defaultPadding * 4),
         Row(
           children: const [

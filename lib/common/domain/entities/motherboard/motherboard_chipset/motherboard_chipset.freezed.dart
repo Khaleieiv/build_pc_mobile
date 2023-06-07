@@ -21,7 +21,7 @@ MotherboardChipset _$MotherboardChipsetFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$MotherboardChipset {
   int get id => throw _privateConstructorUsedError;
-  String get chipset => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,7 +35,7 @@ abstract class $MotherboardChipsetCopyWith<$Res> {
           MotherboardChipset value, $Res Function(MotherboardChipset) then) =
       _$MotherboardChipsetCopyWithImpl<$Res, MotherboardChipset>;
   @useResult
-  $Res call({int id, String chipset});
+  $Res call({int id, String name});
 }
 
 /// @nodoc
@@ -52,16 +52,16 @@ class _$MotherboardChipsetCopyWithImpl<$Res, $Val extends MotherboardChipset>
   @override
   $Res call({
     Object? id = null,
-    Object? chipset = null,
+    Object? name = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      chipset: null == chipset
-          ? _value.chipset
-          : chipset // ignore: cast_nullable_to_non_nullable
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -75,7 +75,7 @@ abstract class _$$_MotherboardChipsetCopyWith<$Res>
       __$$_MotherboardChipsetCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String chipset});
+  $Res call({int id, String name});
 }
 
 /// @nodoc
@@ -90,16 +90,16 @@ class __$$_MotherboardChipsetCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? chipset = null,
+    Object? name = null,
   }) {
     return _then(_$_MotherboardChipset(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      chipset: null == chipset
-          ? _value.chipset
-          : chipset // ignore: cast_nullable_to_non_nullable
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -107,8 +107,9 @@ class __$$_MotherboardChipsetCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_MotherboardChipset implements _MotherboardChipset {
-  const _$_MotherboardChipset({required this.id, required this.chipset});
+class _$_MotherboardChipset extends _MotherboardChipset {
+  const _$_MotherboardChipset({required this.id, required this.name})
+      : super._();
 
   factory _$_MotherboardChipset.fromJson(Map<String, dynamic> json) =>
       _$$_MotherboardChipsetFromJson(json);
@@ -116,11 +117,11 @@ class _$_MotherboardChipset implements _MotherboardChipset {
   @override
   final int id;
   @override
-  final String chipset;
+  final String name;
 
   @override
   String toString() {
-    return 'MotherboardChipset(id: $id, chipset: $chipset)';
+    return 'MotherboardChipset(id: $id, name: $name)';
   }
 
   @override
@@ -129,12 +130,12 @@ class _$_MotherboardChipset implements _MotherboardChipset {
         (other.runtimeType == runtimeType &&
             other is _$_MotherboardChipset &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.chipset, chipset) || other.chipset == chipset));
+            (identical(other.name, name) || other.name == name));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, chipset);
+  int get hashCode => Object.hash(runtimeType, id, name);
 
   @JsonKey(ignore: true)
   @override
@@ -151,10 +152,11 @@ class _$_MotherboardChipset implements _MotherboardChipset {
   }
 }
 
-abstract class _MotherboardChipset implements MotherboardChipset {
+abstract class _MotherboardChipset extends MotherboardChipset {
   const factory _MotherboardChipset(
       {required final int id,
-      required final String chipset}) = _$_MotherboardChipset;
+      required final String name}) = _$_MotherboardChipset;
+  const _MotherboardChipset._() : super._();
 
   factory _MotherboardChipset.fromJson(Map<String, dynamic> json) =
       _$_MotherboardChipset.fromJson;
@@ -162,7 +164,7 @@ abstract class _MotherboardChipset implements MotherboardChipset {
   @override
   int get id;
   @override
-  String get chipset;
+  String get name;
   @override
   @JsonKey(ignore: true)
   _$$_MotherboardChipsetCopyWith<_$_MotherboardChipset> get copyWith =>

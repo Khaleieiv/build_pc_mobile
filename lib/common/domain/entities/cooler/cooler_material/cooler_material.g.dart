@@ -9,11 +9,11 @@ part of 'cooler_material.dart';
 _$_CoolerMaterial _$$_CoolerMaterialFromJson(Map<String, dynamic> json) =>
     _$_CoolerMaterial(
       id: json['id'] as int,
-      material: json['material'] as String,
+      name: json['name'] as String,
     );
 
 Map<String, dynamic> _$$_CoolerMaterialToJson(_$_CoolerMaterial instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'material': instance.material,
+      'name': instance.name,
     };

@@ -3,20 +3,28 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
 class CustomLogoWidget extends StatelessWidget {
-  const CustomLogoWidget({Key? key}) : super(key: key);
+  final String label;
+  final double fontSize;
+
+  const CustomLogoWidget({
+    Key? key,
+    required this.label,
+    required this.fontSize,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    const timeAnimation = 2000;
+    const timeAnimation = 3000;
 
-    return const Text(
-      'PcBuild',
+    return Text(
+      label,
       style: TextStyle(
         fontWeight: FontWeight.w900,
-        fontSize: 60,
+        fontSize: fontSize,
         color: AppColors.tertiaryColor,
       ),
-    ).animate(onPlay: (controller) => controller.repeat())
+    )
+        .animate(onPlay: (controller) => controller.repeat())
         .shimmer(duration: timeAnimation.ms, color: AppColors.primaryColor)
         .animate() // this wraps the previous Animate in another Animate
         .fadeIn(duration: timeAnimation.ms, curve: Curves.easeOutQuad)

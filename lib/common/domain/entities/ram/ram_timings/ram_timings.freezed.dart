@@ -21,7 +21,7 @@ RamTimings _$RamTimingsFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$RamTimings {
   int get id => throw _privateConstructorUsedError;
-  String get timings => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,7 +35,7 @@ abstract class $RamTimingsCopyWith<$Res> {
           RamTimings value, $Res Function(RamTimings) then) =
       _$RamTimingsCopyWithImpl<$Res, RamTimings>;
   @useResult
-  $Res call({int id, String timings});
+  $Res call({int id, String name});
 }
 
 /// @nodoc
@@ -52,16 +52,16 @@ class _$RamTimingsCopyWithImpl<$Res, $Val extends RamTimings>
   @override
   $Res call({
     Object? id = null,
-    Object? timings = null,
+    Object? name = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      timings: null == timings
-          ? _value.timings
-          : timings // ignore: cast_nullable_to_non_nullable
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -75,7 +75,7 @@ abstract class _$$_RamTimingsCopyWith<$Res>
       __$$_RamTimingsCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String timings});
+  $Res call({int id, String name});
 }
 
 /// @nodoc
@@ -90,16 +90,16 @@ class __$$_RamTimingsCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? timings = null,
+    Object? name = null,
   }) {
     return _then(_$_RamTimings(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      timings: null == timings
-          ? _value.timings
-          : timings // ignore: cast_nullable_to_non_nullable
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -107,8 +107,8 @@ class __$$_RamTimingsCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_RamTimings implements _RamTimings {
-  const _$_RamTimings({required this.id, required this.timings});
+class _$_RamTimings extends _RamTimings {
+  const _$_RamTimings({required this.id, required this.name}) : super._();
 
   factory _$_RamTimings.fromJson(Map<String, dynamic> json) =>
       _$$_RamTimingsFromJson(json);
@@ -116,11 +116,11 @@ class _$_RamTimings implements _RamTimings {
   @override
   final int id;
   @override
-  final String timings;
+  final String name;
 
   @override
   String toString() {
-    return 'RamTimings(id: $id, timings: $timings)';
+    return 'RamTimings(id: $id, name: $name)';
   }
 
   @override
@@ -129,12 +129,12 @@ class _$_RamTimings implements _RamTimings {
         (other.runtimeType == runtimeType &&
             other is _$_RamTimings &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.timings, timings) || other.timings == timings));
+            (identical(other.name, name) || other.name == name));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, timings);
+  int get hashCode => Object.hash(runtimeType, id, name);
 
   @JsonKey(ignore: true)
   @override
@@ -150,9 +150,10 @@ class _$_RamTimings implements _RamTimings {
   }
 }
 
-abstract class _RamTimings implements RamTimings {
+abstract class _RamTimings extends RamTimings {
   const factory _RamTimings(
-      {required final int id, required final String timings}) = _$_RamTimings;
+      {required final int id, required final String name}) = _$_RamTimings;
+  const _RamTimings._() : super._();
 
   factory _RamTimings.fromJson(Map<String, dynamic> json) =
       _$_RamTimings.fromJson;
@@ -160,7 +161,7 @@ abstract class _RamTimings implements RamTimings {
   @override
   int get id;
   @override
-  String get timings;
+  String get name;
   @override
   @JsonKey(ignore: true)
   _$$_RamTimingsCopyWith<_$_RamTimings> get copyWith =>

@@ -21,7 +21,7 @@ GPUConnector _$GPUConnectorFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$GPUConnector {
   int get id => throw _privateConstructorUsedError;
-  String get connector => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,7 +35,7 @@ abstract class $GPUConnectorCopyWith<$Res> {
           GPUConnector value, $Res Function(GPUConnector) then) =
       _$GPUConnectorCopyWithImpl<$Res, GPUConnector>;
   @useResult
-  $Res call({int id, String connector});
+  $Res call({int id, String name});
 }
 
 /// @nodoc
@@ -52,16 +52,16 @@ class _$GPUConnectorCopyWithImpl<$Res, $Val extends GPUConnector>
   @override
   $Res call({
     Object? id = null,
-    Object? connector = null,
+    Object? name = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      connector: null == connector
-          ? _value.connector
-          : connector // ignore: cast_nullable_to_non_nullable
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -75,7 +75,7 @@ abstract class _$$_GPUConnectorCopyWith<$Res>
       __$$_GPUConnectorCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String connector});
+  $Res call({int id, String name});
 }
 
 /// @nodoc
@@ -90,16 +90,16 @@ class __$$_GPUConnectorCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? connector = null,
+    Object? name = null,
   }) {
     return _then(_$_GPUConnector(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      connector: null == connector
-          ? _value.connector
-          : connector // ignore: cast_nullable_to_non_nullable
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -107,8 +107,8 @@ class __$$_GPUConnectorCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_GPUConnector implements _GPUConnector {
-  const _$_GPUConnector({required this.id, required this.connector});
+class _$_GPUConnector extends _GPUConnector {
+  const _$_GPUConnector({required this.id, required this.name}) : super._();
 
   factory _$_GPUConnector.fromJson(Map<String, dynamic> json) =>
       _$$_GPUConnectorFromJson(json);
@@ -116,11 +116,11 @@ class _$_GPUConnector implements _GPUConnector {
   @override
   final int id;
   @override
-  final String connector;
+  final String name;
 
   @override
   String toString() {
-    return 'GPUConnector(id: $id, connector: $connector)';
+    return 'GPUConnector(id: $id, name: $name)';
   }
 
   @override
@@ -129,13 +129,12 @@ class _$_GPUConnector implements _GPUConnector {
         (other.runtimeType == runtimeType &&
             other is _$_GPUConnector &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.connector, connector) ||
-                other.connector == connector));
+            (identical(other.name, name) || other.name == name));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, connector);
+  int get hashCode => Object.hash(runtimeType, id, name);
 
   @JsonKey(ignore: true)
   @override
@@ -151,10 +150,10 @@ class _$_GPUConnector implements _GPUConnector {
   }
 }
 
-abstract class _GPUConnector implements GPUConnector {
+abstract class _GPUConnector extends GPUConnector {
   const factory _GPUConnector(
-      {required final int id,
-      required final String connector}) = _$_GPUConnector;
+      {required final int id, required final String name}) = _$_GPUConnector;
+  const _GPUConnector._() : super._();
 
   factory _GPUConnector.fromJson(Map<String, dynamic> json) =
       _$_GPUConnector.fromJson;
@@ -162,7 +161,7 @@ abstract class _GPUConnector implements GPUConnector {
   @override
   int get id;
   @override
-  String get connector;
+  String get name;
   @override
   @JsonKey(ignore: true)
   _$$_GPUConnectorCopyWith<_$_GPUConnector> get copyWith =>

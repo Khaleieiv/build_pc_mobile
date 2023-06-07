@@ -107,8 +107,8 @@ class __$$_FormFactorCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_FormFactor implements _FormFactor {
-  const _$_FormFactor({required this.id, required this.name});
+class _$_FormFactor extends _FormFactor {
+  const _$_FormFactor({required this.id, required this.name}) : super._();
 
   factory _$_FormFactor.fromJson(Map<String, dynamic> json) =>
       _$$_FormFactorFromJson(json);
@@ -150,9 +150,10 @@ class _$_FormFactor implements _FormFactor {
   }
 }
 
-abstract class _FormFactor implements FormFactor {
+abstract class _FormFactor extends FormFactor {
   const factory _FormFactor(
       {required final int id, required final String name}) = _$_FormFactor;
+  const _FormFactor._() : super._();
 
   factory _FormFactor.fromJson(Map<String, dynamic> json) =
       _$_FormFactor.fromJson;

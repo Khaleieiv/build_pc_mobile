@@ -10,7 +10,7 @@ _$_Ram _$$_RamFromJson(Map<String, dynamic> json) => _$_Ram(
       id: json['id'] as int,
       name: json['name'] as String,
       ramProducer:
-          RamProducer.fromJson(json['ramProducer'] as Map<String, dynamic>),
+          Producers.fromJson(json['ramProducer'] as Map<String, dynamic>),
       ramMemoryType:
           RamMemoryType.fromJson(json['ramMemoryType'] as Map<String, dynamic>),
       memoryCapacity: json['memoryCapacity'] as int,
@@ -20,8 +20,10 @@ _$_Ram _$$_RamFromJson(Map<String, dynamic> json) => _$_Ram(
       powerSupplyVoltage: (json['powerSupplyVoltage'] as num).toDouble(),
       description: json['description'] as String,
       recommendedPrice: json['recommendedPrice'] as int,
-      performanceLevel: PerformanceLevel.fromJson(
-          json['performanceLevel'] as Map<String, dynamic>),
+      performanceLevel: json['performanceLevel'] == null
+          ? null
+          : PerformanceLevel.fromJson(
+              json['performanceLevel'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_RamToJson(_$_Ram instance) => <String, dynamic>{

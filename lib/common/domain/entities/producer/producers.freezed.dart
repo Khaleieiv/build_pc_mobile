@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'cooler_producer.dart';
+part of 'producers.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,34 +14,33 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-CoolerProducer _$CoolerProducerFromJson(Map<String, dynamic> json) {
-  return _CoolerProducer.fromJson(json);
+Producers _$ProducersFromJson(Map<String, dynamic> json) {
+  return _Producers.fromJson(json);
 }
 
 /// @nodoc
-mixin _$CoolerProducer {
+mixin _$Producers {
   int get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $CoolerProducerCopyWith<CoolerProducer> get copyWith =>
+  $ProducersCopyWith<Producers> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $CoolerProducerCopyWith<$Res> {
-  factory $CoolerProducerCopyWith(
-          CoolerProducer value, $Res Function(CoolerProducer) then) =
-      _$CoolerProducerCopyWithImpl<$Res, CoolerProducer>;
+abstract class $ProducersCopyWith<$Res> {
+  factory $ProducersCopyWith(Producers value, $Res Function(Producers) then) =
+      _$ProducersCopyWithImpl<$Res, Producers>;
   @useResult
   $Res call({int id, String name});
 }
 
 /// @nodoc
-class _$CoolerProducerCopyWithImpl<$Res, $Val extends CoolerProducer>
-    implements $CoolerProducerCopyWith<$Res> {
-  _$CoolerProducerCopyWithImpl(this._value, this._then);
+class _$ProducersCopyWithImpl<$Res, $Val extends Producers>
+    implements $ProducersCopyWith<$Res> {
+  _$ProducersCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -68,22 +67,21 @@ class _$CoolerProducerCopyWithImpl<$Res, $Val extends CoolerProducer>
 }
 
 /// @nodoc
-abstract class _$$_CoolerProducerCopyWith<$Res>
-    implements $CoolerProducerCopyWith<$Res> {
-  factory _$$_CoolerProducerCopyWith(
-          _$_CoolerProducer value, $Res Function(_$_CoolerProducer) then) =
-      __$$_CoolerProducerCopyWithImpl<$Res>;
+abstract class _$$_ProducersCopyWith<$Res> implements $ProducersCopyWith<$Res> {
+  factory _$$_ProducersCopyWith(
+          _$_Producers value, $Res Function(_$_Producers) then) =
+      __$$_ProducersCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({int id, String name});
 }
 
 /// @nodoc
-class __$$_CoolerProducerCopyWithImpl<$Res>
-    extends _$CoolerProducerCopyWithImpl<$Res, _$_CoolerProducer>
-    implements _$$_CoolerProducerCopyWith<$Res> {
-  __$$_CoolerProducerCopyWithImpl(
-      _$_CoolerProducer _value, $Res Function(_$_CoolerProducer) _then)
+class __$$_ProducersCopyWithImpl<$Res>
+    extends _$ProducersCopyWithImpl<$Res, _$_Producers>
+    implements _$$_ProducersCopyWith<$Res> {
+  __$$_ProducersCopyWithImpl(
+      _$_Producers _value, $Res Function(_$_Producers) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -92,7 +90,7 @@ class __$$_CoolerProducerCopyWithImpl<$Res>
     Object? id = null,
     Object? name = null,
   }) {
-    return _then(_$_CoolerProducer(
+    return _then(_$_Producers(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -107,11 +105,11 @@ class __$$_CoolerProducerCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_CoolerProducer implements _CoolerProducer {
-  const _$_CoolerProducer({required this.id, required this.name});
+class _$_Producers extends _Producers {
+  const _$_Producers({required this.id, required this.name}) : super._();
 
-  factory _$_CoolerProducer.fromJson(Map<String, dynamic> json) =>
-      _$$_CoolerProducerFromJson(json);
+  factory _$_Producers.fromJson(Map<String, dynamic> json) =>
+      _$$_ProducersFromJson(json);
 
   @override
   final int id;
@@ -120,14 +118,14 @@ class _$_CoolerProducer implements _CoolerProducer {
 
   @override
   String toString() {
-    return 'CoolerProducer(id: $id, name: $name)';
+    return 'Producers(id: $id, name: $name)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_CoolerProducer &&
+            other is _$_Producers &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name));
   }
@@ -139,23 +137,24 @@ class _$_CoolerProducer implements _CoolerProducer {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_CoolerProducerCopyWith<_$_CoolerProducer> get copyWith =>
-      __$$_CoolerProducerCopyWithImpl<_$_CoolerProducer>(this, _$identity);
+  _$$_ProducersCopyWith<_$_Producers> get copyWith =>
+      __$$_ProducersCopyWithImpl<_$_Producers>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_CoolerProducerToJson(
+    return _$$_ProducersToJson(
       this,
     );
   }
 }
 
-abstract class _CoolerProducer implements CoolerProducer {
-  const factory _CoolerProducer(
-      {required final int id, required final String name}) = _$_CoolerProducer;
+abstract class _Producers extends Producers {
+  const factory _Producers(
+      {required final int id, required final String name}) = _$_Producers;
+  const _Producers._() : super._();
 
-  factory _CoolerProducer.fromJson(Map<String, dynamic> json) =
-      _$_CoolerProducer.fromJson;
+  factory _Producers.fromJson(Map<String, dynamic> json) =
+      _$_Producers.fromJson;
 
   @override
   int get id;
@@ -163,6 +162,6 @@ abstract class _CoolerProducer implements CoolerProducer {
   String get name;
   @override
   @JsonKey(ignore: true)
-  _$$_CoolerProducerCopyWith<_$_CoolerProducer> get copyWith =>
+  _$$_ProducersCopyWith<_$_Producers> get copyWith =>
       throw _privateConstructorUsedError;
 }

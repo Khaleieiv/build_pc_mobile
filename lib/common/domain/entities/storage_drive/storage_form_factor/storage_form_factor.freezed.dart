@@ -107,8 +107,9 @@ class __$$_StorageFormFactorCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_StorageFormFactor implements _StorageFormFactor {
-  const _$_StorageFormFactor({required this.id, required this.name});
+class _$_StorageFormFactor extends _StorageFormFactor {
+  const _$_StorageFormFactor({required this.id, required this.name})
+      : super._();
 
   factory _$_StorageFormFactor.fromJson(Map<String, dynamic> json) =>
       _$$_StorageFormFactorFromJson(json);
@@ -151,10 +152,11 @@ class _$_StorageFormFactor implements _StorageFormFactor {
   }
 }
 
-abstract class _StorageFormFactor implements StorageFormFactor {
+abstract class _StorageFormFactor extends StorageFormFactor {
   const factory _StorageFormFactor(
       {required final int id,
       required final String name}) = _$_StorageFormFactor;
+  const _StorageFormFactor._() : super._();
 
   factory _StorageFormFactor.fromJson(Map<String, dynamic> json) =
       _$_StorageFormFactor.fromJson;

@@ -27,8 +27,7 @@ mixin _$Motherboard {
   MotherboardChipset get motherboardChipset =>
       throw _privateConstructorUsedError;
   FormFactor get formFactor => throw _privateConstructorUsedError;
-  MotherboardProducers get motherboardProducer =>
-      throw _privateConstructorUsedError;
+  Producers get motherboardProducer => throw _privateConstructorUsedError;
   int get maxTdpOfProcessors => throw _privateConstructorUsedError;
   int get memorySlots => throw _privateConstructorUsedError;
   int get supportedMemoryFrequency => throw _privateConstructorUsedError;
@@ -78,7 +77,7 @@ abstract class $MotherboardCopyWith<$Res> {
       List<CPUGeneration> cpuGenerations,
       MotherboardChipset motherboardChipset,
       FormFactor formFactor,
-      MotherboardProducers motherboardProducer,
+      Producers motherboardProducer,
       int maxTdpOfProcessors,
       int memorySlots,
       int supportedMemoryFrequency,
@@ -107,7 +106,7 @@ abstract class $MotherboardCopyWith<$Res> {
   $MotherboardSocketCopyWith<$Res> get socket;
   $MotherboardChipsetCopyWith<$Res> get motherboardChipset;
   $FormFactorCopyWith<$Res> get formFactor;
-  $MotherboardProducersCopyWith<$Res> get motherboardProducer;
+  $ProducersCopyWith<$Res> get motherboardProducer;
   $MotherboardNetworkCopyWith<$Res> get motherboardNetwork;
   $CPUPcieVersionCopyWith<$Res> get cpuPcieVersion;
   $PerformanceLevelCopyWith<$Res> get performanceLevel;
@@ -186,7 +185,7 @@ class _$MotherboardCopyWithImpl<$Res, $Val extends Motherboard>
       motherboardProducer: null == motherboardProducer
           ? _value.motherboardProducer
           : motherboardProducer // ignore: cast_nullable_to_non_nullable
-              as MotherboardProducers,
+              as Producers,
       maxTdpOfProcessors: null == maxTdpOfProcessors
           ? _value.maxTdpOfProcessors
           : maxTdpOfProcessors // ignore: cast_nullable_to_non_nullable
@@ -313,9 +312,8 @@ class _$MotherboardCopyWithImpl<$Res, $Val extends Motherboard>
 
   @override
   @pragma('vm:prefer-inline')
-  $MotherboardProducersCopyWith<$Res> get motherboardProducer {
-    return $MotherboardProducersCopyWith<$Res>(_value.motherboardProducer,
-        (value) {
+  $ProducersCopyWith<$Res> get motherboardProducer {
+    return $ProducersCopyWith<$Res>(_value.motherboardProducer, (value) {
       return _then(_value.copyWith(motherboardProducer: value) as $Val);
     });
   }
@@ -361,7 +359,7 @@ abstract class _$$_MotherboardCopyWith<$Res>
       List<CPUGeneration> cpuGenerations,
       MotherboardChipset motherboardChipset,
       FormFactor formFactor,
-      MotherboardProducers motherboardProducer,
+      Producers motherboardProducer,
       int maxTdpOfProcessors,
       int memorySlots,
       int supportedMemoryFrequency,
@@ -394,7 +392,7 @@ abstract class _$$_MotherboardCopyWith<$Res>
   @override
   $FormFactorCopyWith<$Res> get formFactor;
   @override
-  $MotherboardProducersCopyWith<$Res> get motherboardProducer;
+  $ProducersCopyWith<$Res> get motherboardProducer;
   @override
   $MotherboardNetworkCopyWith<$Res> get motherboardNetwork;
   @override
@@ -474,7 +472,7 @@ class __$$_MotherboardCopyWithImpl<$Res>
       motherboardProducer: null == motherboardProducer
           ? _value.motherboardProducer
           : motherboardProducer // ignore: cast_nullable_to_non_nullable
-              as MotherboardProducers,
+              as Producers,
       maxTdpOfProcessors: null == maxTdpOfProcessors
           ? _value.maxTdpOfProcessors
           : maxTdpOfProcessors // ignore: cast_nullable_to_non_nullable
@@ -577,7 +575,7 @@ class __$$_MotherboardCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Motherboard implements _Motherboard {
+class _$_Motherboard extends _Motherboard {
   const _$_Motherboard(
       {required this.id,
       required this.name,
@@ -610,7 +608,8 @@ class _$_Motherboard implements _Motherboard {
       required this.description,
       required this.recommendedPrice,
       required this.performanceLevel})
-      : _cpuGenerations = cpuGenerations;
+      : _cpuGenerations = cpuGenerations,
+        super._();
 
   factory _$_Motherboard.fromJson(Map<String, dynamic> json) =>
       _$$_MotherboardFromJson(json);
@@ -633,7 +632,7 @@ class _$_Motherboard implements _Motherboard {
   @override
   final FormFactor formFactor;
   @override
-  final MotherboardProducers motherboardProducer;
+  final Producers motherboardProducer;
   @override
   final int maxTdpOfProcessors;
   @override
@@ -802,7 +801,7 @@ class _$_Motherboard implements _Motherboard {
   }
 }
 
-abstract class _Motherboard implements Motherboard {
+abstract class _Motherboard extends Motherboard {
   const factory _Motherboard(
       {required final int id,
       required final String name,
@@ -810,7 +809,7 @@ abstract class _Motherboard implements Motherboard {
       required final List<CPUGeneration> cpuGenerations,
       required final MotherboardChipset motherboardChipset,
       required final FormFactor formFactor,
-      required final MotherboardProducers motherboardProducer,
+      required final Producers motherboardProducer,
       required final int maxTdpOfProcessors,
       required final int memorySlots,
       required final int supportedMemoryFrequency,
@@ -835,6 +834,7 @@ abstract class _Motherboard implements Motherboard {
       required final String description,
       required final int recommendedPrice,
       required final PerformanceLevel performanceLevel}) = _$_Motherboard;
+  const _Motherboard._() : super._();
 
   factory _Motherboard.fromJson(Map<String, dynamic> json) =
       _$_Motherboard.fromJson;
@@ -852,7 +852,7 @@ abstract class _Motherboard implements Motherboard {
   @override
   FormFactor get formFactor;
   @override
-  MotherboardProducers get motherboardProducer;
+  Producers get motherboardProducer;
   @override
   int get maxTdpOfProcessors;
   @override

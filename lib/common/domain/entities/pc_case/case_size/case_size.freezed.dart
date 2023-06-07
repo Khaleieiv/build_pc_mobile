@@ -21,7 +21,7 @@ CaseSize _$CaseSizeFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$CaseSize {
   int get id => throw _privateConstructorUsedError;
-  String get powerSupplyLocation => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -34,7 +34,7 @@ abstract class $CaseSizeCopyWith<$Res> {
   factory $CaseSizeCopyWith(CaseSize value, $Res Function(CaseSize) then) =
       _$CaseSizeCopyWithImpl<$Res, CaseSize>;
   @useResult
-  $Res call({int id, String powerSupplyLocation});
+  $Res call({int id, String name});
 }
 
 /// @nodoc
@@ -51,16 +51,16 @@ class _$CaseSizeCopyWithImpl<$Res, $Val extends CaseSize>
   @override
   $Res call({
     Object? id = null,
-    Object? powerSupplyLocation = null,
+    Object? name = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      powerSupplyLocation: null == powerSupplyLocation
-          ? _value.powerSupplyLocation
-          : powerSupplyLocation // ignore: cast_nullable_to_non_nullable
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -73,7 +73,7 @@ abstract class _$$_CaseSizeCopyWith<$Res> implements $CaseSizeCopyWith<$Res> {
       __$$_CaseSizeCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String powerSupplyLocation});
+  $Res call({int id, String name});
 }
 
 /// @nodoc
@@ -88,16 +88,16 @@ class __$$_CaseSizeCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? powerSupplyLocation = null,
+    Object? name = null,
   }) {
     return _then(_$_CaseSize(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      powerSupplyLocation: null == powerSupplyLocation
-          ? _value.powerSupplyLocation
-          : powerSupplyLocation // ignore: cast_nullable_to_non_nullable
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -105,8 +105,8 @@ class __$$_CaseSizeCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_CaseSize implements _CaseSize {
-  const _$_CaseSize({required this.id, required this.powerSupplyLocation});
+class _$_CaseSize extends _CaseSize {
+  const _$_CaseSize({required this.id, required this.name}) : super._();
 
   factory _$_CaseSize.fromJson(Map<String, dynamic> json) =>
       _$$_CaseSizeFromJson(json);
@@ -114,11 +114,11 @@ class _$_CaseSize implements _CaseSize {
   @override
   final int id;
   @override
-  final String powerSupplyLocation;
+  final String name;
 
   @override
   String toString() {
-    return 'CaseSize(id: $id, powerSupplyLocation: $powerSupplyLocation)';
+    return 'CaseSize(id: $id, name: $name)';
   }
 
   @override
@@ -127,13 +127,12 @@ class _$_CaseSize implements _CaseSize {
         (other.runtimeType == runtimeType &&
             other is _$_CaseSize &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.powerSupplyLocation, powerSupplyLocation) ||
-                other.powerSupplyLocation == powerSupplyLocation));
+            (identical(other.name, name) || other.name == name));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, powerSupplyLocation);
+  int get hashCode => Object.hash(runtimeType, id, name);
 
   @JsonKey(ignore: true)
   @override
@@ -149,17 +148,17 @@ class _$_CaseSize implements _CaseSize {
   }
 }
 
-abstract class _CaseSize implements CaseSize {
-  const factory _CaseSize(
-      {required final int id,
-      required final String powerSupplyLocation}) = _$_CaseSize;
+abstract class _CaseSize extends CaseSize {
+  const factory _CaseSize({required final int id, required final String name}) =
+      _$_CaseSize;
+  const _CaseSize._() : super._();
 
   factory _CaseSize.fromJson(Map<String, dynamic> json) = _$_CaseSize.fromJson;
 
   @override
   int get id;
   @override
-  String get powerSupplyLocation;
+  String get name;
   @override
   @JsonKey(ignore: true)
   _$$_CaseSizeCopyWith<_$_CaseSize> get copyWith =>

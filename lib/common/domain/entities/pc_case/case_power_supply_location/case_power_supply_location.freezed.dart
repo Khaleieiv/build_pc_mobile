@@ -22,7 +22,7 @@ CasePowerSupplyLocation _$CasePowerSupplyLocationFromJson(
 /// @nodoc
 mixin _$CasePowerSupplyLocation {
   int get id => throw _privateConstructorUsedError;
-  String get powerSupplyLocation => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -36,7 +36,7 @@ abstract class $CasePowerSupplyLocationCopyWith<$Res> {
           $Res Function(CasePowerSupplyLocation) then) =
       _$CasePowerSupplyLocationCopyWithImpl<$Res, CasePowerSupplyLocation>;
   @useResult
-  $Res call({int id, String powerSupplyLocation});
+  $Res call({int id, String name});
 }
 
 /// @nodoc
@@ -54,16 +54,16 @@ class _$CasePowerSupplyLocationCopyWithImpl<$Res,
   @override
   $Res call({
     Object? id = null,
-    Object? powerSupplyLocation = null,
+    Object? name = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      powerSupplyLocation: null == powerSupplyLocation
-          ? _value.powerSupplyLocation
-          : powerSupplyLocation // ignore: cast_nullable_to_non_nullable
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -77,7 +77,7 @@ abstract class _$$_CasePowerSupplyLocationCopyWith<$Res>
       __$$_CasePowerSupplyLocationCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String powerSupplyLocation});
+  $Res call({int id, String name});
 }
 
 /// @nodoc
@@ -93,16 +93,16 @@ class __$$_CasePowerSupplyLocationCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? powerSupplyLocation = null,
+    Object? name = null,
   }) {
     return _then(_$_CasePowerSupplyLocation(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      powerSupplyLocation: null == powerSupplyLocation
-          ? _value.powerSupplyLocation
-          : powerSupplyLocation // ignore: cast_nullable_to_non_nullable
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -110,9 +110,9 @@ class __$$_CasePowerSupplyLocationCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_CasePowerSupplyLocation implements _CasePowerSupplyLocation {
-  const _$_CasePowerSupplyLocation(
-      {required this.id, required this.powerSupplyLocation});
+class _$_CasePowerSupplyLocation extends _CasePowerSupplyLocation {
+  const _$_CasePowerSupplyLocation({required this.id, required this.name})
+      : super._();
 
   factory _$_CasePowerSupplyLocation.fromJson(Map<String, dynamic> json) =>
       _$$_CasePowerSupplyLocationFromJson(json);
@@ -120,11 +120,11 @@ class _$_CasePowerSupplyLocation implements _CasePowerSupplyLocation {
   @override
   final int id;
   @override
-  final String powerSupplyLocation;
+  final String name;
 
   @override
   String toString() {
-    return 'CasePowerSupplyLocation(id: $id, powerSupplyLocation: $powerSupplyLocation)';
+    return 'CasePowerSupplyLocation(id: $id, name: $name)';
   }
 
   @override
@@ -133,13 +133,12 @@ class _$_CasePowerSupplyLocation implements _CasePowerSupplyLocation {
         (other.runtimeType == runtimeType &&
             other is _$_CasePowerSupplyLocation &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.powerSupplyLocation, powerSupplyLocation) ||
-                other.powerSupplyLocation == powerSupplyLocation));
+            (identical(other.name, name) || other.name == name));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, powerSupplyLocation);
+  int get hashCode => Object.hash(runtimeType, id, name);
 
   @JsonKey(ignore: true)
   @override
@@ -157,10 +156,11 @@ class _$_CasePowerSupplyLocation implements _CasePowerSupplyLocation {
   }
 }
 
-abstract class _CasePowerSupplyLocation implements CasePowerSupplyLocation {
+abstract class _CasePowerSupplyLocation extends CasePowerSupplyLocation {
   const factory _CasePowerSupplyLocation(
       {required final int id,
-      required final String powerSupplyLocation}) = _$_CasePowerSupplyLocation;
+      required final String name}) = _$_CasePowerSupplyLocation;
+  const _CasePowerSupplyLocation._() : super._();
 
   factory _CasePowerSupplyLocation.fromJson(Map<String, dynamic> json) =
       _$_CasePowerSupplyLocation.fromJson;
@@ -168,7 +168,7 @@ abstract class _CasePowerSupplyLocation implements CasePowerSupplyLocation {
   @override
   int get id;
   @override
-  String get powerSupplyLocation;
+  String get name;
   @override
   @JsonKey(ignore: true)
   _$$_CasePowerSupplyLocationCopyWith<_$_CasePowerSupplyLocation>

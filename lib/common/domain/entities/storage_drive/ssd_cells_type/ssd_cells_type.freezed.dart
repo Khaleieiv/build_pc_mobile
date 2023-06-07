@@ -107,8 +107,8 @@ class __$$_SsdCellsTypeCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_SsdCellsType implements _SsdCellsType {
-  const _$_SsdCellsType({required this.id, required this.name});
+class _$_SsdCellsType extends _SsdCellsType {
+  const _$_SsdCellsType({required this.id, required this.name}) : super._();
 
   factory _$_SsdCellsType.fromJson(Map<String, dynamic> json) =>
       _$$_SsdCellsTypeFromJson(json);
@@ -150,9 +150,10 @@ class _$_SsdCellsType implements _SsdCellsType {
   }
 }
 
-abstract class _SsdCellsType implements SsdCellsType {
+abstract class _SsdCellsType extends SsdCellsType {
   const factory _SsdCellsType(
       {required final int id, required final String name}) = _$_SsdCellsType;
+  const _SsdCellsType._() : super._();
 
   factory _SsdCellsType.fromJson(Map<String, dynamic> json) =
       _$_SsdCellsType.fromJson;

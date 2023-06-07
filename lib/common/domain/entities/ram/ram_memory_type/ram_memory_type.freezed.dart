@@ -21,7 +21,7 @@ RamMemoryType _$RamMemoryTypeFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$RamMemoryType {
   int get id => throw _privateConstructorUsedError;
-  String get memoryType => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,7 +35,7 @@ abstract class $RamMemoryTypeCopyWith<$Res> {
           RamMemoryType value, $Res Function(RamMemoryType) then) =
       _$RamMemoryTypeCopyWithImpl<$Res, RamMemoryType>;
   @useResult
-  $Res call({int id, String memoryType});
+  $Res call({int id, String name});
 }
 
 /// @nodoc
@@ -52,16 +52,16 @@ class _$RamMemoryTypeCopyWithImpl<$Res, $Val extends RamMemoryType>
   @override
   $Res call({
     Object? id = null,
-    Object? memoryType = null,
+    Object? name = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      memoryType: null == memoryType
-          ? _value.memoryType
-          : memoryType // ignore: cast_nullable_to_non_nullable
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -75,7 +75,7 @@ abstract class _$$_RamMemoryTypeCopyWith<$Res>
       __$$_RamMemoryTypeCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String memoryType});
+  $Res call({int id, String name});
 }
 
 /// @nodoc
@@ -90,16 +90,16 @@ class __$$_RamMemoryTypeCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? memoryType = null,
+    Object? name = null,
   }) {
     return _then(_$_RamMemoryType(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      memoryType: null == memoryType
-          ? _value.memoryType
-          : memoryType // ignore: cast_nullable_to_non_nullable
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -107,8 +107,8 @@ class __$$_RamMemoryTypeCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_RamMemoryType implements _RamMemoryType {
-  const _$_RamMemoryType({required this.id, required this.memoryType});
+class _$_RamMemoryType extends _RamMemoryType {
+  const _$_RamMemoryType({required this.id, required this.name}) : super._();
 
   factory _$_RamMemoryType.fromJson(Map<String, dynamic> json) =>
       _$$_RamMemoryTypeFromJson(json);
@@ -116,11 +116,11 @@ class _$_RamMemoryType implements _RamMemoryType {
   @override
   final int id;
   @override
-  final String memoryType;
+  final String name;
 
   @override
   String toString() {
-    return 'RamMemoryType(id: $id, memoryType: $memoryType)';
+    return 'RamMemoryType(id: $id, name: $name)';
   }
 
   @override
@@ -129,13 +129,12 @@ class _$_RamMemoryType implements _RamMemoryType {
         (other.runtimeType == runtimeType &&
             other is _$_RamMemoryType &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.memoryType, memoryType) ||
-                other.memoryType == memoryType));
+            (identical(other.name, name) || other.name == name));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, memoryType);
+  int get hashCode => Object.hash(runtimeType, id, name);
 
   @JsonKey(ignore: true)
   @override
@@ -151,10 +150,10 @@ class _$_RamMemoryType implements _RamMemoryType {
   }
 }
 
-abstract class _RamMemoryType implements RamMemoryType {
+abstract class _RamMemoryType extends RamMemoryType {
   const factory _RamMemoryType(
-      {required final int id,
-      required final String memoryType}) = _$_RamMemoryType;
+      {required final int id, required final String name}) = _$_RamMemoryType;
+  const _RamMemoryType._() : super._();
 
   factory _RamMemoryType.fromJson(Map<String, dynamic> json) =
       _$_RamMemoryType.fromJson;
@@ -162,7 +161,7 @@ abstract class _RamMemoryType implements RamMemoryType {
   @override
   int get id;
   @override
-  String get memoryType;
+  String get name;
   @override
   @JsonKey(ignore: true)
   _$$_RamMemoryTypeCopyWith<_$_RamMemoryType> get copyWith =>

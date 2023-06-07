@@ -22,7 +22,7 @@ Ram _$RamFromJson(Map<String, dynamic> json) {
 mixin _$Ram {
   int get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
-  RamProducer get ramProducer => throw _privateConstructorUsedError;
+  Producers get ramProducer => throw _privateConstructorUsedError;
   RamMemoryType get ramMemoryType => throw _privateConstructorUsedError;
   int get memoryCapacity => throw _privateConstructorUsedError;
   int get frequency => throw _privateConstructorUsedError;
@@ -30,7 +30,7 @@ mixin _$Ram {
   double get powerSupplyVoltage => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   int get recommendedPrice => throw _privateConstructorUsedError;
-  PerformanceLevel get performanceLevel => throw _privateConstructorUsedError;
+  PerformanceLevel? get performanceLevel => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -45,7 +45,7 @@ abstract class $RamCopyWith<$Res> {
   $Res call(
       {int id,
       String name,
-      RamProducer ramProducer,
+      Producers ramProducer,
       RamMemoryType ramMemoryType,
       int memoryCapacity,
       int frequency,
@@ -53,12 +53,12 @@ abstract class $RamCopyWith<$Res> {
       double powerSupplyVoltage,
       String description,
       int recommendedPrice,
-      PerformanceLevel performanceLevel});
+      PerformanceLevel? performanceLevel});
 
-  $RamProducerCopyWith<$Res> get ramProducer;
+  $ProducersCopyWith<$Res> get ramProducer;
   $RamMemoryTypeCopyWith<$Res> get ramMemoryType;
   $RamTimingsCopyWith<$Res> get ramTimings;
-  $PerformanceLevelCopyWith<$Res> get performanceLevel;
+  $PerformanceLevelCopyWith<$Res>? get performanceLevel;
 }
 
 /// @nodoc
@@ -83,7 +83,7 @@ class _$RamCopyWithImpl<$Res, $Val extends Ram> implements $RamCopyWith<$Res> {
     Object? powerSupplyVoltage = null,
     Object? description = null,
     Object? recommendedPrice = null,
-    Object? performanceLevel = null,
+    Object? performanceLevel = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -97,7 +97,7 @@ class _$RamCopyWithImpl<$Res, $Val extends Ram> implements $RamCopyWith<$Res> {
       ramProducer: null == ramProducer
           ? _value.ramProducer
           : ramProducer // ignore: cast_nullable_to_non_nullable
-              as RamProducer,
+              as Producers,
       ramMemoryType: null == ramMemoryType
           ? _value.ramMemoryType
           : ramMemoryType // ignore: cast_nullable_to_non_nullable
@@ -126,17 +126,17 @@ class _$RamCopyWithImpl<$Res, $Val extends Ram> implements $RamCopyWith<$Res> {
           ? _value.recommendedPrice
           : recommendedPrice // ignore: cast_nullable_to_non_nullable
               as int,
-      performanceLevel: null == performanceLevel
+      performanceLevel: freezed == performanceLevel
           ? _value.performanceLevel
           : performanceLevel // ignore: cast_nullable_to_non_nullable
-              as PerformanceLevel,
+              as PerformanceLevel?,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $RamProducerCopyWith<$Res> get ramProducer {
-    return $RamProducerCopyWith<$Res>(_value.ramProducer, (value) {
+  $ProducersCopyWith<$Res> get ramProducer {
+    return $ProducersCopyWith<$Res>(_value.ramProducer, (value) {
       return _then(_value.copyWith(ramProducer: value) as $Val);
     });
   }
@@ -159,8 +159,12 @@ class _$RamCopyWithImpl<$Res, $Val extends Ram> implements $RamCopyWith<$Res> {
 
   @override
   @pragma('vm:prefer-inline')
-  $PerformanceLevelCopyWith<$Res> get performanceLevel {
-    return $PerformanceLevelCopyWith<$Res>(_value.performanceLevel, (value) {
+  $PerformanceLevelCopyWith<$Res>? get performanceLevel {
+    if (_value.performanceLevel == null) {
+      return null;
+    }
+
+    return $PerformanceLevelCopyWith<$Res>(_value.performanceLevel!, (value) {
       return _then(_value.copyWith(performanceLevel: value) as $Val);
     });
   }
@@ -175,7 +179,7 @@ abstract class _$$_RamCopyWith<$Res> implements $RamCopyWith<$Res> {
   $Res call(
       {int id,
       String name,
-      RamProducer ramProducer,
+      Producers ramProducer,
       RamMemoryType ramMemoryType,
       int memoryCapacity,
       int frequency,
@@ -183,16 +187,16 @@ abstract class _$$_RamCopyWith<$Res> implements $RamCopyWith<$Res> {
       double powerSupplyVoltage,
       String description,
       int recommendedPrice,
-      PerformanceLevel performanceLevel});
+      PerformanceLevel? performanceLevel});
 
   @override
-  $RamProducerCopyWith<$Res> get ramProducer;
+  $ProducersCopyWith<$Res> get ramProducer;
   @override
   $RamMemoryTypeCopyWith<$Res> get ramMemoryType;
   @override
   $RamTimingsCopyWith<$Res> get ramTimings;
   @override
-  $PerformanceLevelCopyWith<$Res> get performanceLevel;
+  $PerformanceLevelCopyWith<$Res>? get performanceLevel;
 }
 
 /// @nodoc
@@ -214,7 +218,7 @@ class __$$_RamCopyWithImpl<$Res> extends _$RamCopyWithImpl<$Res, _$_Ram>
     Object? powerSupplyVoltage = null,
     Object? description = null,
     Object? recommendedPrice = null,
-    Object? performanceLevel = null,
+    Object? performanceLevel = freezed,
   }) {
     return _then(_$_Ram(
       id: null == id
@@ -228,7 +232,7 @@ class __$$_RamCopyWithImpl<$Res> extends _$RamCopyWithImpl<$Res, _$_Ram>
       ramProducer: null == ramProducer
           ? _value.ramProducer
           : ramProducer // ignore: cast_nullable_to_non_nullable
-              as RamProducer,
+              as Producers,
       ramMemoryType: null == ramMemoryType
           ? _value.ramMemoryType
           : ramMemoryType // ignore: cast_nullable_to_non_nullable
@@ -257,17 +261,17 @@ class __$$_RamCopyWithImpl<$Res> extends _$RamCopyWithImpl<$Res, _$_Ram>
           ? _value.recommendedPrice
           : recommendedPrice // ignore: cast_nullable_to_non_nullable
               as int,
-      performanceLevel: null == performanceLevel
+      performanceLevel: freezed == performanceLevel
           ? _value.performanceLevel
           : performanceLevel // ignore: cast_nullable_to_non_nullable
-              as PerformanceLevel,
+              as PerformanceLevel?,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$_Ram implements _Ram {
+class _$_Ram extends _Ram {
   const _$_Ram(
       {required this.id,
       required this.name,
@@ -279,7 +283,8 @@ class _$_Ram implements _Ram {
       required this.powerSupplyVoltage,
       required this.description,
       required this.recommendedPrice,
-      required this.performanceLevel});
+      required this.performanceLevel})
+      : super._();
 
   factory _$_Ram.fromJson(Map<String, dynamic> json) => _$$_RamFromJson(json);
 
@@ -288,7 +293,7 @@ class _$_Ram implements _Ram {
   @override
   final String name;
   @override
-  final RamProducer ramProducer;
+  final Producers ramProducer;
   @override
   final RamMemoryType ramMemoryType;
   @override
@@ -304,7 +309,7 @@ class _$_Ram implements _Ram {
   @override
   final int recommendedPrice;
   @override
-  final PerformanceLevel performanceLevel;
+  final PerformanceLevel? performanceLevel;
 
   @override
   String toString() {
@@ -368,11 +373,11 @@ class _$_Ram implements _Ram {
   }
 }
 
-abstract class _Ram implements Ram {
+abstract class _Ram extends Ram {
   const factory _Ram(
       {required final int id,
       required final String name,
-      required final RamProducer ramProducer,
+      required final Producers ramProducer,
       required final RamMemoryType ramMemoryType,
       required final int memoryCapacity,
       required final int frequency,
@@ -380,7 +385,8 @@ abstract class _Ram implements Ram {
       required final double powerSupplyVoltage,
       required final String description,
       required final int recommendedPrice,
-      required final PerformanceLevel performanceLevel}) = _$_Ram;
+      required final PerformanceLevel? performanceLevel}) = _$_Ram;
+  const _Ram._() : super._();
 
   factory _Ram.fromJson(Map<String, dynamic> json) = _$_Ram.fromJson;
 
@@ -389,7 +395,7 @@ abstract class _Ram implements Ram {
   @override
   String get name;
   @override
-  RamProducer get ramProducer;
+  Producers get ramProducer;
   @override
   RamMemoryType get ramMemoryType;
   @override
@@ -405,7 +411,7 @@ abstract class _Ram implements Ram {
   @override
   int get recommendedPrice;
   @override
-  PerformanceLevel get performanceLevel;
+  PerformanceLevel? get performanceLevel;
   @override
   @JsonKey(ignore: true)
   _$$_RamCopyWith<_$_Ram> get copyWith => throw _privateConstructorUsedError;

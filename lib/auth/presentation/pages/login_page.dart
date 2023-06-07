@@ -19,7 +19,7 @@ class LoginPage extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: const [
-                  CustomLogoWidget(),
+                  CustomLogoWidget(label: 'PcBuild', fontSize: 60,),
                 ],
               ),
             ),
@@ -43,7 +43,7 @@ class MobileLoginScreen extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        const CustomLogoWidget(),
+        const CustomLogoWidget(label: 'PcBuild', fontSize: 60,),
         const SizedBox(height: AppSizes.defaultPadding * 5),
         Row(
           children: const [

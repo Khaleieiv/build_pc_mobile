@@ -1,5 +1,5 @@
 import 'package:build_pc_mobile/common/constants/app_colors.dart';
-import 'package:build_pc_mobile/home/presentation/state/dark_light_theme_provider.dart';
+import 'package:build_pc_mobile/home/presentation/state/dark_light_theme_notifier.dart';
 import 'package:build_pc_mobile/home/presentation/widgets/animation_trigger.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -11,7 +11,7 @@ class CustomDarkModeButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final themeChange = Provider.of<DarkLightThemeProvider>(context);
+    final themeChange = Provider.of<DarkLightThemeNotifier>(context);
 
     final animationsMap = {
       'containerOnActionTriggerAnimation1': AnimationInfo(

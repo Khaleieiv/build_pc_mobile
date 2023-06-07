@@ -21,7 +21,7 @@ GPUProducer _$GPUProducerFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$GPUProducer {
   int get id => throw _privateConstructorUsedError;
-  String get producer => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,7 +35,7 @@ abstract class $GPUProducerCopyWith<$Res> {
           GPUProducer value, $Res Function(GPUProducer) then) =
       _$GPUProducerCopyWithImpl<$Res, GPUProducer>;
   @useResult
-  $Res call({int id, String producer});
+  $Res call({int id, String name});
 }
 
 /// @nodoc
@@ -52,16 +52,16 @@ class _$GPUProducerCopyWithImpl<$Res, $Val extends GPUProducer>
   @override
   $Res call({
     Object? id = null,
-    Object? producer = null,
+    Object? name = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      producer: null == producer
-          ? _value.producer
-          : producer // ignore: cast_nullable_to_non_nullable
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -75,7 +75,7 @@ abstract class _$$_GPUProducerCopyWith<$Res>
       __$$_GPUProducerCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String producer});
+  $Res call({int id, String name});
 }
 
 /// @nodoc
@@ -90,16 +90,16 @@ class __$$_GPUProducerCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? producer = null,
+    Object? name = null,
   }) {
     return _then(_$_GPUProducer(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      producer: null == producer
-          ? _value.producer
-          : producer // ignore: cast_nullable_to_non_nullable
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -107,8 +107,8 @@ class __$$_GPUProducerCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_GPUProducer implements _GPUProducer {
-  const _$_GPUProducer({required this.id, required this.producer});
+class _$_GPUProducer extends _GPUProducer {
+  const _$_GPUProducer({required this.id, required this.name}) : super._();
 
   factory _$_GPUProducer.fromJson(Map<String, dynamic> json) =>
       _$$_GPUProducerFromJson(json);
@@ -116,11 +116,11 @@ class _$_GPUProducer implements _GPUProducer {
   @override
   final int id;
   @override
-  final String producer;
+  final String name;
 
   @override
   String toString() {
-    return 'GPUProducer(id: $id, producer: $producer)';
+    return 'GPUProducer(id: $id, name: $name)';
   }
 
   @override
@@ -129,13 +129,12 @@ class _$_GPUProducer implements _GPUProducer {
         (other.runtimeType == runtimeType &&
             other is _$_GPUProducer &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.producer, producer) ||
-                other.producer == producer));
+            (identical(other.name, name) || other.name == name));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, producer);
+  int get hashCode => Object.hash(runtimeType, id, name);
 
   @JsonKey(ignore: true)
   @override
@@ -151,9 +150,10 @@ class _$_GPUProducer implements _GPUProducer {
   }
 }
 
-abstract class _GPUProducer implements GPUProducer {
+abstract class _GPUProducer extends GPUProducer {
   const factory _GPUProducer(
-      {required final int id, required final String producer}) = _$_GPUProducer;
+      {required final int id, required final String name}) = _$_GPUProducer;
+  const _GPUProducer._() : super._();
 
   factory _GPUProducer.fromJson(Map<String, dynamic> json) =
       _$_GPUProducer.fromJson;
@@ -161,7 +161,7 @@ abstract class _GPUProducer implements GPUProducer {
   @override
   int get id;
   @override
-  String get producer;
+  String get name;
   @override
   @JsonKey(ignore: true)
   _$$_GPUProducerCopyWith<_$_GPUProducer> get copyWith =>

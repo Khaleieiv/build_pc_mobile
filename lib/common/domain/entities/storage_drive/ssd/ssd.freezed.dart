@@ -21,7 +21,8 @@ Ssd _$SsdFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Ssd {
   int get id => throw _privateConstructorUsedError;
-  StorageProducer get storageProducer => throw _privateConstructorUsedError;
+  Producers get storageProducer => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
   int get storageSize => throw _privateConstructorUsedError;
   StorageFormFactor get storageFormFactor => throw _privateConstructorUsedError;
   StorageInterface get storageInterface => throw _privateConstructorUsedError;
@@ -31,7 +32,7 @@ mixin _$Ssd {
   SsdCellsType get ssdCellsType => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   int get recommendedPrice => throw _privateConstructorUsedError;
-  PerformanceLevel get performanceLevel => throw _privateConstructorUsedError;
+  PerformanceLevel? get performanceLevel => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -45,7 +46,8 @@ abstract class $SsdCopyWith<$Res> {
   @useResult
   $Res call(
       {int id,
-      StorageProducer storageProducer,
+      Producers storageProducer,
+      String name,
       int storageSize,
       StorageFormFactor storageFormFactor,
       StorageInterface storageInterface,
@@ -55,13 +57,13 @@ abstract class $SsdCopyWith<$Res> {
       SsdCellsType ssdCellsType,
       String description,
       int recommendedPrice,
-      PerformanceLevel performanceLevel});
+      PerformanceLevel? performanceLevel});
 
-  $StorageProducerCopyWith<$Res> get storageProducer;
+  $ProducersCopyWith<$Res> get storageProducer;
   $StorageFormFactorCopyWith<$Res> get storageFormFactor;
   $StorageInterfaceCopyWith<$Res> get storageInterface;
   $SsdCellsTypeCopyWith<$Res> get ssdCellsType;
-  $PerformanceLevelCopyWith<$Res> get performanceLevel;
+  $PerformanceLevelCopyWith<$Res>? get performanceLevel;
 }
 
 /// @nodoc
@@ -78,6 +80,7 @@ class _$SsdCopyWithImpl<$Res, $Val extends Ssd> implements $SsdCopyWith<$Res> {
   $Res call({
     Object? id = null,
     Object? storageProducer = null,
+    Object? name = null,
     Object? storageSize = null,
     Object? storageFormFactor = null,
     Object? storageInterface = null,
@@ -87,7 +90,7 @@ class _$SsdCopyWithImpl<$Res, $Val extends Ssd> implements $SsdCopyWith<$Res> {
     Object? ssdCellsType = null,
     Object? description = null,
     Object? recommendedPrice = null,
-    Object? performanceLevel = null,
+    Object? performanceLevel = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -97,7 +100,11 @@ class _$SsdCopyWithImpl<$Res, $Val extends Ssd> implements $SsdCopyWith<$Res> {
       storageProducer: null == storageProducer
           ? _value.storageProducer
           : storageProducer // ignore: cast_nullable_to_non_nullable
-              as StorageProducer,
+              as Producers,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
       storageSize: null == storageSize
           ? _value.storageSize
           : storageSize // ignore: cast_nullable_to_non_nullable
@@ -134,17 +141,17 @@ class _$SsdCopyWithImpl<$Res, $Val extends Ssd> implements $SsdCopyWith<$Res> {
           ? _value.recommendedPrice
           : recommendedPrice // ignore: cast_nullable_to_non_nullable
               as int,
-      performanceLevel: null == performanceLevel
+      performanceLevel: freezed == performanceLevel
           ? _value.performanceLevel
           : performanceLevel // ignore: cast_nullable_to_non_nullable
-              as PerformanceLevel,
+              as PerformanceLevel?,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $StorageProducerCopyWith<$Res> get storageProducer {
-    return $StorageProducerCopyWith<$Res>(_value.storageProducer, (value) {
+  $ProducersCopyWith<$Res> get storageProducer {
+    return $ProducersCopyWith<$Res>(_value.storageProducer, (value) {
       return _then(_value.copyWith(storageProducer: value) as $Val);
     });
   }
@@ -175,8 +182,12 @@ class _$SsdCopyWithImpl<$Res, $Val extends Ssd> implements $SsdCopyWith<$Res> {
 
   @override
   @pragma('vm:prefer-inline')
-  $PerformanceLevelCopyWith<$Res> get performanceLevel {
-    return $PerformanceLevelCopyWith<$Res>(_value.performanceLevel, (value) {
+  $PerformanceLevelCopyWith<$Res>? get performanceLevel {
+    if (_value.performanceLevel == null) {
+      return null;
+    }
+
+    return $PerformanceLevelCopyWith<$Res>(_value.performanceLevel!, (value) {
       return _then(_value.copyWith(performanceLevel: value) as $Val);
     });
   }
@@ -190,7 +201,8 @@ abstract class _$$_SsdCopyWith<$Res> implements $SsdCopyWith<$Res> {
   @useResult
   $Res call(
       {int id,
-      StorageProducer storageProducer,
+      Producers storageProducer,
+      String name,
       int storageSize,
       StorageFormFactor storageFormFactor,
       StorageInterface storageInterface,
@@ -200,10 +212,10 @@ abstract class _$$_SsdCopyWith<$Res> implements $SsdCopyWith<$Res> {
       SsdCellsType ssdCellsType,
       String description,
       int recommendedPrice,
-      PerformanceLevel performanceLevel});
+      PerformanceLevel? performanceLevel});
 
   @override
-  $StorageProducerCopyWith<$Res> get storageProducer;
+  $ProducersCopyWith<$Res> get storageProducer;
   @override
   $StorageFormFactorCopyWith<$Res> get storageFormFactor;
   @override
@@ -211,7 +223,7 @@ abstract class _$$_SsdCopyWith<$Res> implements $SsdCopyWith<$Res> {
   @override
   $SsdCellsTypeCopyWith<$Res> get ssdCellsType;
   @override
-  $PerformanceLevelCopyWith<$Res> get performanceLevel;
+  $PerformanceLevelCopyWith<$Res>? get performanceLevel;
 }
 
 /// @nodoc
@@ -225,6 +237,7 @@ class __$$_SsdCopyWithImpl<$Res> extends _$SsdCopyWithImpl<$Res, _$_Ssd>
   $Res call({
     Object? id = null,
     Object? storageProducer = null,
+    Object? name = null,
     Object? storageSize = null,
     Object? storageFormFactor = null,
     Object? storageInterface = null,
@@ -234,7 +247,7 @@ class __$$_SsdCopyWithImpl<$Res> extends _$SsdCopyWithImpl<$Res, _$_Ssd>
     Object? ssdCellsType = null,
     Object? description = null,
     Object? recommendedPrice = null,
-    Object? performanceLevel = null,
+    Object? performanceLevel = freezed,
   }) {
     return _then(_$_Ssd(
       id: null == id
@@ -244,7 +257,11 @@ class __$$_SsdCopyWithImpl<$Res> extends _$SsdCopyWithImpl<$Res, _$_Ssd>
       storageProducer: null == storageProducer
           ? _value.storageProducer
           : storageProducer // ignore: cast_nullable_to_non_nullable
-              as StorageProducer,
+              as Producers,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
       storageSize: null == storageSize
           ? _value.storageSize
           : storageSize // ignore: cast_nullable_to_non_nullable
@@ -281,20 +298,21 @@ class __$$_SsdCopyWithImpl<$Res> extends _$SsdCopyWithImpl<$Res, _$_Ssd>
           ? _value.recommendedPrice
           : recommendedPrice // ignore: cast_nullable_to_non_nullable
               as int,
-      performanceLevel: null == performanceLevel
+      performanceLevel: freezed == performanceLevel
           ? _value.performanceLevel
           : performanceLevel // ignore: cast_nullable_to_non_nullable
-              as PerformanceLevel,
+              as PerformanceLevel?,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$_Ssd implements _Ssd {
+class _$_Ssd extends _Ssd {
   const _$_Ssd(
       {required this.id,
       required this.storageProducer,
+      required this.name,
       required this.storageSize,
       required this.storageFormFactor,
       required this.storageInterface,
@@ -304,14 +322,17 @@ class _$_Ssd implements _Ssd {
       required this.ssdCellsType,
       required this.description,
       required this.recommendedPrice,
-      required this.performanceLevel});
+      required this.performanceLevel})
+      : super._();
 
   factory _$_Ssd.fromJson(Map<String, dynamic> json) => _$$_SsdFromJson(json);
 
   @override
   final int id;
   @override
-  final StorageProducer storageProducer;
+  final Producers storageProducer;
+  @override
+  final String name;
   @override
   final int storageSize;
   @override
@@ -331,11 +352,11 @@ class _$_Ssd implements _Ssd {
   @override
   final int recommendedPrice;
   @override
-  final PerformanceLevel performanceLevel;
+  final PerformanceLevel? performanceLevel;
 
   @override
   String toString() {
-    return 'Ssd(id: $id, storageProducer: $storageProducer, storageSize: $storageSize, storageFormFactor: $storageFormFactor, storageInterface: $storageInterface, bufferSize: $bufferSize, readingSpeed: $readingSpeed, writingSpeed: $writingSpeed, ssdCellsType: $ssdCellsType, description: $description, recommendedPrice: $recommendedPrice, performanceLevel: $performanceLevel)';
+    return 'Ssd(id: $id, storageProducer: $storageProducer, name: $name, storageSize: $storageSize, storageFormFactor: $storageFormFactor, storageInterface: $storageInterface, bufferSize: $bufferSize, readingSpeed: $readingSpeed, writingSpeed: $writingSpeed, ssdCellsType: $ssdCellsType, description: $description, recommendedPrice: $recommendedPrice, performanceLevel: $performanceLevel)';
   }
 
   @override
@@ -346,6 +367,7 @@ class _$_Ssd implements _Ssd {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.storageProducer, storageProducer) ||
                 other.storageProducer == storageProducer) &&
+            (identical(other.name, name) || other.name == name) &&
             (identical(other.storageSize, storageSize) ||
                 other.storageSize == storageSize) &&
             (identical(other.storageFormFactor, storageFormFactor) ||
@@ -374,6 +396,7 @@ class _$_Ssd implements _Ssd {
       runtimeType,
       id,
       storageProducer,
+      name,
       storageSize,
       storageFormFactor,
       storageInterface,
@@ -399,10 +422,11 @@ class _$_Ssd implements _Ssd {
   }
 }
 
-abstract class _Ssd implements Ssd {
+abstract class _Ssd extends Ssd {
   const factory _Ssd(
       {required final int id,
-      required final StorageProducer storageProducer,
+      required final Producers storageProducer,
+      required final String name,
       required final int storageSize,
       required final StorageFormFactor storageFormFactor,
       required final StorageInterface storageInterface,
@@ -412,14 +436,17 @@ abstract class _Ssd implements Ssd {
       required final SsdCellsType ssdCellsType,
       required final String description,
       required final int recommendedPrice,
-      required final PerformanceLevel performanceLevel}) = _$_Ssd;
+      required final PerformanceLevel? performanceLevel}) = _$_Ssd;
+  const _Ssd._() : super._();
 
   factory _Ssd.fromJson(Map<String, dynamic> json) = _$_Ssd.fromJson;
 
   @override
   int get id;
   @override
-  StorageProducer get storageProducer;
+  Producers get storageProducer;
+  @override
+  String get name;
   @override
   int get storageSize;
   @override
@@ -439,7 +466,7 @@ abstract class _Ssd implements Ssd {
   @override
   int get recommendedPrice;
   @override
-  PerformanceLevel get performanceLevel;
+  PerformanceLevel? get performanceLevel;
   @override
   @JsonKey(ignore: true)
   _$$_SsdCopyWith<_$_Ssd> get copyWith => throw _privateConstructorUsedError;

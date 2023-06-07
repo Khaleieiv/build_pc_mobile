@@ -9,11 +9,13 @@ part of 'cpu.dart';
 _$_CPU _$$_CPUFromJson(Map<String, dynamic> json) => _$_CPU(
       id: json['id'] as int,
       name: json['name'] as String,
-      cpuProducer:
-          CPUProducer.fromJson(json['cpuProducer'] as Map<String, dynamic>),
+      producer: json['producer'] == null
+          ? null
+          : Producers.fromJson(json['producer'] as Map<String, dynamic>),
       yearOfRelease: json['yearOfRelease'] as int,
-      motherboardSocket: MotherboardSocket.fromJson(
-          json['motherboardSocket'] as Map<String, dynamic>),
+      socket: json['socket'] == null
+          ? null
+          : MotherboardSocket.fromJson(json['socket'] as Map<String, dynamic>),
       countOfCores: json['countOfCores'] as int,
       countOfThreads: json['countOfThreads'] as int,
       baseFrequency: json['baseFrequency'] as int,
@@ -25,17 +27,28 @@ _$_CPU _$$_CPUFromJson(Map<String, dynamic> json) => _$_CPU(
       tdp: json['tdp'] as int,
       maxTemperature: json['maxTemperature'] as int,
       embeddedGraphic: json['embeddedGraphic'] as bool,
-      cpuPcieVersion: CPUPcieVersion.fromJson(
-          json['cpuPcieVersion'] as Map<String, dynamic>),
+      cpuPcieVersion: json['pcieVersion'] == null
+          ? null
+          : CPUPcieVersion.fromJson(
+              json['pcieVersion'] as Map<String, dynamic>),
+      cpuTech: (json['cpuTech'] as List<dynamic>)
+          .map((e) =>
+              e == null ? null : CPUTech.fromJson(e as Map<String, dynamic>))
+          .toList(),
       description: json['description'] as String,
+      recommendedPrice: json['recommendedPrice'] as int,
+      performanceLevel: json['performanceLevel'] == null
+          ? null
+          : PerformanceLevel.fromJson(
+              json['performanceLevel'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_CPUToJson(_$_CPU instance) => <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
-      'cpuProducer': instance.cpuProducer,
+      'producer': instance.producer,
       'yearOfRelease': instance.yearOfRelease,
-      'motherboardSocket': instance.motherboardSocket,
+      'socket': instance.socket,
       'countOfCores': instance.countOfCores,
       'countOfThreads': instance.countOfThreads,
       'baseFrequency': instance.baseFrequency,
@@ -46,6 +59,9 @@ Map<String, dynamic> _$$_CPUToJson(_$_CPU instance) => <String, dynamic>{
       'tdp': instance.tdp,
       'maxTemperature': instance.maxTemperature,
       'embeddedGraphic': instance.embeddedGraphic,
-      'cpuPcieVersion': instance.cpuPcieVersion,
+      'pcieVersion': instance.cpuPcieVersion,
+      'cpuTech': instance.cpuTech,
       'description': instance.description,
+      'recommendedPrice': instance.recommendedPrice,
+      'performanceLevel': instance.performanceLevel,
     };

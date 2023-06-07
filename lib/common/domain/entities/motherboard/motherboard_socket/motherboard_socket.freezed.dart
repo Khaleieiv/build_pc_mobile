@@ -21,7 +21,8 @@ MotherboardSocket _$MotherboardSocketFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$MotherboardSocket {
   int get id => throw _privateConstructorUsedError;
-  String get socket => throw _privateConstructorUsedError;
+  @JsonKey(name: 'socket')
+  String get name => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,7 +36,7 @@ abstract class $MotherboardSocketCopyWith<$Res> {
           MotherboardSocket value, $Res Function(MotherboardSocket) then) =
       _$MotherboardSocketCopyWithImpl<$Res, MotherboardSocket>;
   @useResult
-  $Res call({int id, String socket});
+  $Res call({int id, @JsonKey(name: 'socket') String name});
 }
 
 /// @nodoc
@@ -52,16 +53,16 @@ class _$MotherboardSocketCopyWithImpl<$Res, $Val extends MotherboardSocket>
   @override
   $Res call({
     Object? id = null,
-    Object? socket = null,
+    Object? name = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      socket: null == socket
-          ? _value.socket
-          : socket // ignore: cast_nullable_to_non_nullable
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -75,7 +76,7 @@ abstract class _$$_MotherboardSocketCopyWith<$Res>
       __$$_MotherboardSocketCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String socket});
+  $Res call({int id, @JsonKey(name: 'socket') String name});
 }
 
 /// @nodoc
@@ -90,16 +91,16 @@ class __$$_MotherboardSocketCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? socket = null,
+    Object? name = null,
   }) {
     return _then(_$_MotherboardSocket(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      socket: null == socket
-          ? _value.socket
-          : socket // ignore: cast_nullable_to_non_nullable
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -107,8 +108,10 @@ class __$$_MotherboardSocketCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_MotherboardSocket implements _MotherboardSocket {
-  const _$_MotherboardSocket({required this.id, required this.socket});
+class _$_MotherboardSocket extends _MotherboardSocket {
+  const _$_MotherboardSocket(
+      {required this.id, @JsonKey(name: 'socket') required this.name})
+      : super._();
 
   factory _$_MotherboardSocket.fromJson(Map<String, dynamic> json) =>
       _$$_MotherboardSocketFromJson(json);
@@ -116,11 +119,12 @@ class _$_MotherboardSocket implements _MotherboardSocket {
   @override
   final int id;
   @override
-  final String socket;
+  @JsonKey(name: 'socket')
+  final String name;
 
   @override
   String toString() {
-    return 'MotherboardSocket(id: $id, socket: $socket)';
+    return 'MotherboardSocket(id: $id, name: $name)';
   }
 
   @override
@@ -129,12 +133,12 @@ class _$_MotherboardSocket implements _MotherboardSocket {
         (other.runtimeType == runtimeType &&
             other is _$_MotherboardSocket &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.socket, socket) || other.socket == socket));
+            (identical(other.name, name) || other.name == name));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, socket);
+  int get hashCode => Object.hash(runtimeType, id, name);
 
   @JsonKey(ignore: true)
   @override
@@ -151,10 +155,12 @@ class _$_MotherboardSocket implements _MotherboardSocket {
   }
 }
 
-abstract class _MotherboardSocket implements MotherboardSocket {
+abstract class _MotherboardSocket extends MotherboardSocket {
   const factory _MotherboardSocket(
-      {required final int id,
-      required final String socket}) = _$_MotherboardSocket;
+          {required final int id,
+          @JsonKey(name: 'socket') required final String name}) =
+      _$_MotherboardSocket;
+  const _MotherboardSocket._() : super._();
 
   factory _MotherboardSocket.fromJson(Map<String, dynamic> json) =
       _$_MotherboardSocket.fromJson;
@@ -162,7 +168,8 @@ abstract class _MotherboardSocket implements MotherboardSocket {
   @override
   int get id;
   @override
-  String get socket;
+  @JsonKey(name: 'socket')
+  String get name;
   @override
   @JsonKey(ignore: true)
   _$$_MotherboardSocketCopyWith<_$_MotherboardSocket> get copyWith =>

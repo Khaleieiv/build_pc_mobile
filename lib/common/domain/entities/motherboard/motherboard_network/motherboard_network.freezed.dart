@@ -21,7 +21,7 @@ MotherboardNetwork _$MotherboardNetworkFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$MotherboardNetwork {
   int get id => throw _privateConstructorUsedError;
-  String get network => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,7 +35,7 @@ abstract class $MotherboardNetworkCopyWith<$Res> {
           MotherboardNetwork value, $Res Function(MotherboardNetwork) then) =
       _$MotherboardNetworkCopyWithImpl<$Res, MotherboardNetwork>;
   @useResult
-  $Res call({int id, String network});
+  $Res call({int id, String name});
 }
 
 /// @nodoc
@@ -52,16 +52,16 @@ class _$MotherboardNetworkCopyWithImpl<$Res, $Val extends MotherboardNetwork>
   @override
   $Res call({
     Object? id = null,
-    Object? network = null,
+    Object? name = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      network: null == network
-          ? _value.network
-          : network // ignore: cast_nullable_to_non_nullable
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -75,7 +75,7 @@ abstract class _$$_MotherboardNetworkCopyWith<$Res>
       __$$_MotherboardNetworkCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String network});
+  $Res call({int id, String name});
 }
 
 /// @nodoc
@@ -90,16 +90,16 @@ class __$$_MotherboardNetworkCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? network = null,
+    Object? name = null,
   }) {
     return _then(_$_MotherboardNetwork(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      network: null == network
-          ? _value.network
-          : network // ignore: cast_nullable_to_non_nullable
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -107,8 +107,9 @@ class __$$_MotherboardNetworkCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_MotherboardNetwork implements _MotherboardNetwork {
-  const _$_MotherboardNetwork({required this.id, required this.network});
+class _$_MotherboardNetwork extends _MotherboardNetwork {
+  const _$_MotherboardNetwork({required this.id, required this.name})
+      : super._();
 
   factory _$_MotherboardNetwork.fromJson(Map<String, dynamic> json) =>
       _$$_MotherboardNetworkFromJson(json);
@@ -116,11 +117,11 @@ class _$_MotherboardNetwork implements _MotherboardNetwork {
   @override
   final int id;
   @override
-  final String network;
+  final String name;
 
   @override
   String toString() {
-    return 'MotherboardNetwork(id: $id, network: $network)';
+    return 'MotherboardNetwork(id: $id, name: $name)';
   }
 
   @override
@@ -129,12 +130,12 @@ class _$_MotherboardNetwork implements _MotherboardNetwork {
         (other.runtimeType == runtimeType &&
             other is _$_MotherboardNetwork &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.network, network) || other.network == network));
+            (identical(other.name, name) || other.name == name));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, network);
+  int get hashCode => Object.hash(runtimeType, id, name);
 
   @JsonKey(ignore: true)
   @override
@@ -151,10 +152,11 @@ class _$_MotherboardNetwork implements _MotherboardNetwork {
   }
 }
 
-abstract class _MotherboardNetwork implements MotherboardNetwork {
+abstract class _MotherboardNetwork extends MotherboardNetwork {
   const factory _MotherboardNetwork(
       {required final int id,
-      required final String network}) = _$_MotherboardNetwork;
+      required final String name}) = _$_MotherboardNetwork;
+  const _MotherboardNetwork._() : super._();
 
   factory _MotherboardNetwork.fromJson(Map<String, dynamic> json) =
       _$_MotherboardNetwork.fromJson;
@@ -162,7 +164,7 @@ abstract class _MotherboardNetwork implements MotherboardNetwork {
   @override
   int get id;
   @override
-  String get network;
+  String get name;
   @override
   @JsonKey(ignore: true)
   _$$_MotherboardNetworkCopyWith<_$_MotherboardNetwork> get copyWith =>

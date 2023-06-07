@@ -107,8 +107,8 @@ class __$$_StorageInterfaceCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_StorageInterface implements _StorageInterface {
-  const _$_StorageInterface({required this.id, required this.name});
+class _$_StorageInterface extends _StorageInterface {
+  const _$_StorageInterface({required this.id, required this.name}) : super._();
 
   factory _$_StorageInterface.fromJson(Map<String, dynamic> json) =>
       _$$_StorageInterfaceFromJson(json);
@@ -150,10 +150,11 @@ class _$_StorageInterface implements _StorageInterface {
   }
 }
 
-abstract class _StorageInterface implements StorageInterface {
+abstract class _StorageInterface extends StorageInterface {
   const factory _StorageInterface(
       {required final int id,
       required final String name}) = _$_StorageInterface;
+  const _StorageInterface._() : super._();
 
   factory _StorageInterface.fromJson(Map<String, dynamic> json) =
       _$_StorageInterface.fromJson;
