@@ -8,12 +8,13 @@ import 'package:build_pc_mobile/auth/domain/repositories/user_repository.dart';
 import 'package:build_pc_mobile/auth/utils/auth_credentials_storage.dart';
 import 'package:build_pc_mobile/common/constants/api.dart';
 import 'package:build_pc_mobile/common/utils/http_response_utils.dart';
+import 'package:build_pc_mobile/profile/data/models/profile_params.dart';
 import 'package:http/http.dart' as http;
 
 class AuthRepositoryImpl extends UserRepository {
   static const _loginPath = '/api/auth/signin';
   static const _registerPath = '/api/auth/signup';
-  static const _updateUserPath = '/api/user';
+  static const _updateUserPath = '/api/user/user';
   static const headers = {
     'Content-type': 'application/json',
   };
@@ -23,6 +24,12 @@ class AuthRepositoryImpl extends UserRepository {
   final credentialsStorage = AuthCredentialsStorage();
 
   final _currentUserController = StreamController<User?>();
+
+  final _currentProfileParamsController = StreamController<ProfileParams>();
+
+  @override
+  Stream<ProfileParams> get currentProfileParams =>
+      _currentProfileParamsController.stream;
 
   @override
   Stream<User?> get currentUser => _currentUserController.stream;
@@ -55,24 +62,45 @@ class AuthRepositoryImpl extends UserRepository {
   }
 
   @override
-  Future<void> updateProfile(User userData) async {
-    final requestBody = userData.toJson();
+  Future<void> getCurrentUser() async {
+    final requestUri = Uri.http(Api.baseUrl, _updateUserPath);
+    final response = await _client.get(
+      requestUri,
+      headers: Api.headers(),
+    );
+    _processGetUserProfileResponse(response);
+  }
+
+  @override
+  Future<void> updateProfile(String name, String username, String email) async {
+    final params = {
+      "name": name,
+      "username": username,
+      "email": email,
+    };
     final requestUri = Uri.http(Api.baseUrl, _updateUserPath);
     final response = await _client.put(
       requestUri,
-      body: jsonEncode(requestBody),
+      headers: Api.headers(),
+      body: jsonEncode(params),
     );
     _processUpdateProfileResponse(response);
 
-    await loginUser(userData.email, userData.password);
+    await getCurrentUser();
   }
 
-  void dispose() {
-    _currentUserController.close();
+  void _processGetUserProfileResponse(http.Response response) {
+    if (response.statusCode == HttpStatus.ok) {
+      _processGetUserResponseOk(response);
+    } else {
+      HttpResponseUtils.processStatusCodeFailed(response);
+    }
   }
 
   void _processUpdateProfileResponse(http.Response response) {
-    if (response.statusCode != HttpStatus.ok) {
+    if (response.statusCode == HttpStatus.ok) {
+      _processLoginResponseOk(response);
+    } else {
       HttpResponseUtils.processStatusCodeFailed(response);
     }
   }
@@ -93,12 +121,17 @@ class AuthRepositoryImpl extends UserRepository {
     }
   }
 
+  void _processGetUserResponseOk(http.Response response) {
+    final decodedResponse = HttpResponseUtils.parseHttpResponse(response);
+    final user = ProfileParams.fromJson(decodedResponse);
+    _currentProfileParamsController.sink.add(user);
+  }
+
   void _processLoginResponseOk(http.Response response) {
     final decodedResponse = HttpResponseUtils.parseHttpResponse(response);
     final user = User.fromJson(decodedResponse);
     final token = decodedResponse["accessToken"];
     AuthCredentialsStorage.saveCredentials(LoginUserData(token.toString()));
-
     _currentUserController.sink.add(user);
   }
 
@@ -106,6 +139,11 @@ class AuthRepositoryImpl extends UserRepository {
     final decodedResponse = HttpResponseUtils.parseHttpResponse(response);
     final user = User.fromJson(decodedResponse);
     _currentUserController.sink.add(user);
+  }
+
+  void dispose() {
+    _currentUserController.close();
+    _currentProfileParamsController.close();
   }
 
   @override

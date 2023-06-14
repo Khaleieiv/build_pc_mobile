@@ -1,3 +1,5 @@
+import 'package:build_pc_mobile/common/domain/entities/base_component.dart';
+import 'package:build_pc_mobile/common/domain/entities/power_supply/power_supply.dart';
 import 'package:build_pc_mobile/common/presentation/state/power_supply_notifier.dart';
 import 'package:build_pc_mobile/common/widgets/custom_no_data_widget.dart';
 import 'package:build_pc_mobile/component_comparison/presentation/state/component_comparison_notifier.dart';
@@ -9,7 +11,10 @@ import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
 
 class PowerSupplyListWidget extends StatefulWidget {
-  const PowerSupplyListWidget({Key? key}) : super(key: key);
+  final TextEditingController searchController;
+
+  const PowerSupplyListWidget({Key? key, required this.searchController})
+      : super(key: key);
 
   @override
   State<PowerSupplyListWidget> createState() => _PowerSupplyListWidgetState();
@@ -28,60 +33,86 @@ class _PowerSupplyListWidgetState extends State<PowerSupplyListWidget> {
   @override
   Widget build(BuildContext context) {
     final powerSupplyProvider = Provider.of<PowerSupplyNotifier>(context);
-    final componentComparisonProvider =
-        Provider.of<ComponentComparisonNotifier>(context);
+    final filteredPowerSupply = powerSupplyProvider.listPowerSupply
+        ?.where(
+          (powerSupply) => powerSupply.name
+              .toLowerCase()
+              .contains(widget.searchController.text.toLowerCase()),
+        )
+        .toList();
 
     return powerSupplyProvider.isLoading
         ? ListView.builder(
-            itemCount: powerSupplyProvider.listPowerSupply?.length,
+            itemCount: filteredPowerSupply?.length,
             itemBuilder: (BuildContext context, int index) {
-              final powerSupply = powerSupplyProvider.listPowerSupply?[index];
-              Widget? result;
-              if (powerSupply != null) {
-                result = CustomComponentWidget(
-                  imagePath: 'assets/icons/power_supply.png',
-                  name: powerSupply.name,
-                  labelTextNameFirst: 'Power',
-                  labelTextComponentFirst: powerSupply.power.toString(),
-                  labelTextNameSecond: 'Performance level',
-                  labelTextComponentSecond:
-                      '${powerSupply.performanceLevel?.name}',
-                  labelTextNameThird: 'Recommended price',
-                  labelTextComponentThird:
-                      powerSupply.recommendedPrice.toString(),
-                  labelTextNameFourth: 'Pfc module',
-                  labelTextComponentFourth: powerSupply.pfcModule.toString(),
-                  labelTextNameFifth: 'Sata',
-                  labelTextComponentFifth: powerSupply.sata.toString(),
-                  button: componentComparisonProvider.swapButton
-                      ? CustomAddToComparisonButtonWidget(
-                          onPressed: () {
-                            setState(() {
-                              componentComparisonProvider.addToComparison(
-                                componentComparisonProvider.modelName,
-                                powerSupply,
-                              );
-                            });
-                          },
-                        )
-                      : CustomRemoveToComparisonButtonWidget(
-                          onPressed: () {
-                            setState(() {
-                              componentComparisonProvider.removeFromComparison(
-                                componentComparisonProvider.modelName,
-                                powerSupply,
-                              );
-                            });
-                          },
-                        ),
-                );
-              }
+              final powerSupply = filteredPowerSupply?[index];
 
-              return result;
+              return PowerSupplyItemWidget(powerSupply: powerSupply);
             },
           )
         : const CustomNoDataWidget(
             text: 'There is no data on these components in the database.',
           );
+  }
+}
+
+class PowerSupplyItemWidget extends StatefulWidget {
+  final PowerSupply? powerSupply;
+
+  const PowerSupplyItemWidget({Key? key, this.powerSupply}) : super(key: key);
+
+  @override
+  _PowerSupplyItemWidgetState createState() => _PowerSupplyItemWidgetState();
+}
+
+class _PowerSupplyItemWidgetState extends State<PowerSupplyItemWidget> {
+  bool isAddedToComparison = false;
+
+  @override
+  Widget build(BuildContext context) {
+    final componentComparisonProvider =
+        Provider.of<ComponentComparisonNotifier>(context);
+
+    return CustomComponentWidget(
+      imagePath: 'assets/icons/power_supply.png',
+      name: widget.powerSupply?.name ?? '',
+      labelTextNameFirst: 'Power',
+      labelTextComponentFirst: widget.powerSupply?.power.toString() ?? '',
+      labelTextNameSecond: 'Performance level',
+      labelTextComponentSecond:
+          widget.powerSupply?.performanceLevel?.name ?? '',
+      labelTextNameThird: 'Recommended price',
+      labelTextComponentThird:
+          widget.powerSupply?.recommendedPrice.toString() ?? '',
+      labelTextNameFourth: 'Pfc module',
+      labelTextComponentFourth: widget.powerSupply?.pfcModule.toString() ?? '',
+      labelTextNameFifth: 'Sata',
+      labelTextComponentFifth: widget.powerSupply?.sata.toString() ?? '',
+      button: isAddedToComparison
+          ? CustomRemoveToComparisonButtonWidget(
+              onPressed: () {
+                setState(() {
+                  isAddedToComparison = false;
+                  componentComparisonProvider.removeFromComparison(
+                    componentComparisonProvider.modelName,
+                    //ignore: cast_nullable_to_non_nullable
+                    widget.powerSupply as BaseComponent,
+                  );
+                });
+              },
+            )
+          : CustomAddToComparisonButtonWidget(
+              onPressed: () {
+                setState(() {
+                  isAddedToComparison = true;
+                  componentComparisonProvider.addToComparison(
+                    componentComparisonProvider.modelName,
+                    //ignore: cast_nullable_to_non_nullable
+                    widget.powerSupply as BaseComponent,
+                  );
+                });
+              },
+            ),
+    );
   }
 }

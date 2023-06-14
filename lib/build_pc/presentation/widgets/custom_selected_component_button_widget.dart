@@ -9,8 +9,8 @@ import 'package:provider/provider.dart';
 
 class CustomSelectedComponentButtonWidget extends StatelessWidget {
   final String imagePath;
-  final String modelName;
   final String nameComponent;
+  final String modelName;
   final Function()? onPressed;
 
   const CustomSelectedComponentButtonWidget({
@@ -74,12 +74,14 @@ class CustomSelectedComponentButtonWidget extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(width: AppSizes.defaultPadding),
-                Text(
-                  nameComponent,
-                  style: const TextStyle(
-                    fontFamily: fontFamily,
-                    fontWeight: FontWeight.w600,
-                    fontSize: fontSizeContainer,
+                Flexible(
+                  child: Text(
+                    nameComponent,
+                    style: const TextStyle(
+                      fontFamily: fontFamily,
+                      fontWeight: FontWeight.w600,
+                      fontSize: fontSizeContainer,
+                    ),
                   ),
                 ),
               ],
@@ -91,6 +93,7 @@ class CustomSelectedComponentButtonWidget extends StatelessWidget {
                   icon: Icons.switch_left,
                   label: 'Switch',
                   onPressed: () {
+                    selectedComponentForBuildNotifier.setModelName(modelName);
                     Navigator.pushNamed(
                       context,
                       RouteNames.listComponentPage,
@@ -100,10 +103,7 @@ class CustomSelectedComponentButtonWidget extends StatelessWidget {
                 CustomElevatedButtonWidget(
                   icon: Icons.remove_circle,
                   label: 'Remove',
-                  onPressed: () {
-                    selectedComponentForBuildNotifier
-                        .removeFromComparison(modelName);
-                  },
+                  onPressed: onPressed,
                 ),
               ],
             )

@@ -9,7 +9,7 @@ part 'ram_memory_type.g.dart';
 class RamMemoryType with _$RamMemoryType implements BaseComponent{
   const factory RamMemoryType({
     required int id,
-    required String name,
+    @JsonKey(name: 'memoryType') required String name,
   }) = _RamMemoryType;
 
   const RamMemoryType._();

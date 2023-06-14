@@ -9,7 +9,7 @@ part 'case_size.g.dart';
 class CaseSize with _$CaseSize implements BaseComponent {
   const factory CaseSize ({
     required int id,
-    required String name,
+    @JsonKey(name: 'size') required String name,
   }) = _CaseSize;
 
   const CaseSize._();

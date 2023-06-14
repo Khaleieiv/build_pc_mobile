@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:build_pc_mobile/auth/utils/auth_credentials_storage.dart';
 import 'package:build_pc_mobile/common/constants/api.dart';
 import 'package:build_pc_mobile/common/domain/entities/cpu/cpu.dart';
 import 'package:build_pc_mobile/common/domain/repositories/cpu_repository.dart';
@@ -20,10 +19,8 @@ class CPURepositoryImpl implements CPURepository {
 
   @override
   Future<void> fetchCPU() async {
-    final savedCredentials = await AuthCredentialsStorage.savedCredentials;
-    final headers = Api.headers(savedCredentials.tokenAccess);
     final requestUri = Uri.http(Api.baseUrl, _fetchCpuPath);
-    final response = await _client.get(requestUri, headers: headers);
+    final response = await _client.get(requestUri, headers: Api.headers());
     _processCPUResponse(response);
   }
 

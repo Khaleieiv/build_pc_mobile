@@ -81,7 +81,6 @@ class ComponentComparisonNotifier extends ChangeNotifier {
       selectedComponents[componentType]?.removeAt(index);
       swapButtonState(value: true);
     }
-    //selectedComponents[componentType]?.remove(component);
     notifyListeners();
   }
 

@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:build_pc_mobile/auth/utils/auth_credentials_storage.dart';
 import 'package:build_pc_mobile/build_pc/domain/entities/build_pc.dart';
 import 'package:build_pc_mobile/build_pc/domain/repositories/build_pc_repository.dart';
 import 'package:build_pc_mobile/common/constants/api.dart';
@@ -25,10 +24,8 @@ class BuildPcRepositoryImpl extends BuildPcRepository {
 
   @override
   Future<void> createBuildPcUserListComponents() async {
-    final savedCredentials = await AuthCredentialsStorage.savedCredentials;
-    final headers = Api.headers(savedCredentials.tokenAccess);
     final requestUri = Uri.http(Api.baseUrl, _fetchBuildPcListUserPath);
-    final response = await _client.post(requestUri, headers: headers);
+    final response = await _client.post(requestUri, headers: Api.headers());
     _processBuildPcUserResponse(response);
   }
 
@@ -36,7 +33,7 @@ class BuildPcRepositoryImpl extends BuildPcRepository {
   Future<void> updateBuildPcUserListComponents(BuildPc buildPc, int? id) async {
     final params = {
       "id": buildPc.id,
-      "nameOfBuild": buildPc.nameOfBuild,
+      "nameOfBuild": buildPc.name,
       "user": {"id": buildPc.user?.id},
       "motherboard": buildPc.motherboard,
       "processor": buildPc.cpu,
@@ -52,31 +49,25 @@ class BuildPcRepositoryImpl extends BuildPcRepository {
       "totalPrice": buildPc.totalPrice
     };
 
-    final savedCredentials = await AuthCredentialsStorage.savedCredentials;
-    final headers = Api.headers(savedCredentials.tokenAccess);
     final requestUri = Uri.http(Api.baseUrl, "$_fetchBuildPcListUserPath/$id");
     final response = await _client.put(requestUri,
-        headers: headers, body: jsonEncode(params),);
+        headers: Api.headers(), body: jsonEncode(params),);
     _processUpdateBuildPcUserResponse(response);
   }
 
   @override
   Future<void> fetchBuildPcUserListComponents() async {
-    final savedCredentials = await AuthCredentialsStorage.savedCredentials;
-    final headers = Api.headers(savedCredentials.tokenAccess);
     final requestUri = Uri.http(Api.baseUrl, _fetchBuildPcListUserPath);
-    final response = await _client.get(requestUri, headers: headers);
+    final response = await _client.get(requestUri, headers: Api.headers());
     _processBuildPcResponse(response);
   }
 
   @override
   Future<void> deleteBuildPcUserListComponents(int? id) async {
-    final savedCredentials = await AuthCredentialsStorage.savedCredentials;
-    final headers = Api.headers(savedCredentials.tokenAccess);
     final requestUri = Uri.http(Api.baseUrl, "$_fetchBuildPcListUserPath/$id");
     await _client.delete(
       requestUri,
-      headers: headers,
+      headers: Api.headers(),
     );
   }
 

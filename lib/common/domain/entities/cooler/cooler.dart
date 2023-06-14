@@ -14,8 +14,11 @@ class Cooler with _$Cooler implements BaseComponent {
   const factory Cooler({
     required int id,
     required String name,
+    @JsonKey(name: 'producer')
     required Producers coolerProducer,
+    @JsonKey(name: 'socket')
     required List<CoolerSocket> coolerSocket,
+    @JsonKey(name: 'material')
     required CoolerMaterial coolerMaterial,
     required int maxTdp,
     required int thermalTubes,
@@ -36,16 +39,15 @@ class Cooler with _$Cooler implements BaseComponent {
     }
 
     final List<String?> fields = [
-      id.toString(),
       name,
       coolerProducer.name,
       coolerSocketField.toString(),
       coolerMaterial.name,
       maxTdp.toString(),
       thermalTubes.toString(),
-      description,
       recommendedPrice.toString(),
       performanceLevel?.name,
+      description,
     ];
 
     return fields;

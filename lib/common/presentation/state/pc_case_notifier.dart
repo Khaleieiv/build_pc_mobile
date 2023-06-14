@@ -19,7 +19,9 @@ class PcCaseNotifier extends ChangeNotifier with LoadingStateNotifier {
 
   CustomException get gpuException => _pcCaseException;
 
-  PcCaseNotifier(this._pcCaseRepositoryImpl);
+  PcCaseNotifier(this._pcCaseRepositoryImpl) {
+    subscribeToPcCaseUpdates(_pcCaseRepositoryImpl.pcCaseStream);
+  }
 
   Future<void> fetchPcCase() async {
     if (isLoading) return;
@@ -31,7 +33,6 @@ class PcCaseNotifier extends ChangeNotifier with LoadingStateNotifier {
       rethrow;
     } finally {
       setLoadingState(value: false);
-      notifyListeners();
     }
   }
 
@@ -39,9 +40,8 @@ class PcCaseNotifier extends ChangeNotifier with LoadingStateNotifier {
       List<PcCase>? listPcCase,
       ) async {
     _listPcCase = listPcCase;
-    setLoadingState(value: false);
+    setLoadingState(value: true);
     _handleCustomError(null);
-    notifyListeners();
   }
 
   Future<void> subscribeToPcCaseUpdates(

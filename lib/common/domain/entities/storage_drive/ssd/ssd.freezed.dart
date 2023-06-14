@@ -21,14 +21,17 @@ Ssd _$SsdFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Ssd {
   int get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'producer')
   Producers get storageProducer => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   int get storageSize => throw _privateConstructorUsedError;
+  @JsonKey(name: 'formFactor')
   StorageFormFactor get storageFormFactor => throw _privateConstructorUsedError;
   StorageInterface get storageInterface => throw _privateConstructorUsedError;
   int get bufferSize => throw _privateConstructorUsedError;
   int get readingSpeed => throw _privateConstructorUsedError;
   int get writingSpeed => throw _privateConstructorUsedError;
+  @JsonKey(name: 'cellsType')
   SsdCellsType get ssdCellsType => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   int get recommendedPrice => throw _privateConstructorUsedError;
@@ -46,15 +49,15 @@ abstract class $SsdCopyWith<$Res> {
   @useResult
   $Res call(
       {int id,
-      Producers storageProducer,
+      @JsonKey(name: 'producer') Producers storageProducer,
       String name,
       int storageSize,
-      StorageFormFactor storageFormFactor,
+      @JsonKey(name: 'formFactor') StorageFormFactor storageFormFactor,
       StorageInterface storageInterface,
       int bufferSize,
       int readingSpeed,
       int writingSpeed,
-      SsdCellsType ssdCellsType,
+      @JsonKey(name: 'cellsType') SsdCellsType ssdCellsType,
       String description,
       int recommendedPrice,
       PerformanceLevel? performanceLevel});
@@ -201,15 +204,15 @@ abstract class _$$_SsdCopyWith<$Res> implements $SsdCopyWith<$Res> {
   @useResult
   $Res call(
       {int id,
-      Producers storageProducer,
+      @JsonKey(name: 'producer') Producers storageProducer,
       String name,
       int storageSize,
-      StorageFormFactor storageFormFactor,
+      @JsonKey(name: 'formFactor') StorageFormFactor storageFormFactor,
       StorageInterface storageInterface,
       int bufferSize,
       int readingSpeed,
       int writingSpeed,
-      SsdCellsType ssdCellsType,
+      @JsonKey(name: 'cellsType') SsdCellsType ssdCellsType,
       String description,
       int recommendedPrice,
       PerformanceLevel? performanceLevel});
@@ -311,15 +314,15 @@ class __$$_SsdCopyWithImpl<$Res> extends _$SsdCopyWithImpl<$Res, _$_Ssd>
 class _$_Ssd extends _Ssd {
   const _$_Ssd(
       {required this.id,
-      required this.storageProducer,
+      @JsonKey(name: 'producer') required this.storageProducer,
       required this.name,
       required this.storageSize,
-      required this.storageFormFactor,
+      @JsonKey(name: 'formFactor') required this.storageFormFactor,
       required this.storageInterface,
       required this.bufferSize,
       required this.readingSpeed,
       required this.writingSpeed,
-      required this.ssdCellsType,
+      @JsonKey(name: 'cellsType') required this.ssdCellsType,
       required this.description,
       required this.recommendedPrice,
       required this.performanceLevel})
@@ -330,12 +333,14 @@ class _$_Ssd extends _Ssd {
   @override
   final int id;
   @override
+  @JsonKey(name: 'producer')
   final Producers storageProducer;
   @override
   final String name;
   @override
   final int storageSize;
   @override
+  @JsonKey(name: 'formFactor')
   final StorageFormFactor storageFormFactor;
   @override
   final StorageInterface storageInterface;
@@ -346,6 +351,7 @@ class _$_Ssd extends _Ssd {
   @override
   final int writingSpeed;
   @override
+  @JsonKey(name: 'cellsType')
   final SsdCellsType ssdCellsType;
   @override
   final String description;
@@ -425,15 +431,18 @@ class _$_Ssd extends _Ssd {
 abstract class _Ssd extends Ssd {
   const factory _Ssd(
       {required final int id,
-      required final Producers storageProducer,
+      @JsonKey(name: 'producer')
+          required final Producers storageProducer,
       required final String name,
       required final int storageSize,
-      required final StorageFormFactor storageFormFactor,
+      @JsonKey(name: 'formFactor')
+          required final StorageFormFactor storageFormFactor,
       required final StorageInterface storageInterface,
       required final int bufferSize,
       required final int readingSpeed,
       required final int writingSpeed,
-      required final SsdCellsType ssdCellsType,
+      @JsonKey(name: 'cellsType')
+          required final SsdCellsType ssdCellsType,
       required final String description,
       required final int recommendedPrice,
       required final PerformanceLevel? performanceLevel}) = _$_Ssd;
@@ -444,12 +453,14 @@ abstract class _Ssd extends Ssd {
   @override
   int get id;
   @override
+  @JsonKey(name: 'producer')
   Producers get storageProducer;
   @override
   String get name;
   @override
   int get storageSize;
   @override
+  @JsonKey(name: 'formFactor')
   StorageFormFactor get storageFormFactor;
   @override
   StorageInterface get storageInterface;
@@ -460,6 +471,7 @@ abstract class _Ssd extends Ssd {
   @override
   int get writingSpeed;
   @override
+  @JsonKey(name: 'cellsType')
   SsdCellsType get ssdCellsType;
   @override
   String get description;

@@ -9,6 +9,7 @@ part 'cooler_material.g.dart';
 class CoolerMaterial with _$CoolerMaterial implements BaseComponent {
   const factory CoolerMaterial({
     required int id,
+    @JsonKey(name: 'material')
     required String name,
   }) = _CoolerMaterial;
 

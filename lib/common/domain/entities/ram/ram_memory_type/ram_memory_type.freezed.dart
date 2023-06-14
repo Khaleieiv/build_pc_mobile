@@ -21,6 +21,7 @@ RamMemoryType _$RamMemoryTypeFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$RamMemoryType {
   int get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'memoryType')
   String get name => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -35,7 +36,7 @@ abstract class $RamMemoryTypeCopyWith<$Res> {
           RamMemoryType value, $Res Function(RamMemoryType) then) =
       _$RamMemoryTypeCopyWithImpl<$Res, RamMemoryType>;
   @useResult
-  $Res call({int id, String name});
+  $Res call({int id, @JsonKey(name: 'memoryType') String name});
 }
 
 /// @nodoc
@@ -75,7 +76,7 @@ abstract class _$$_RamMemoryTypeCopyWith<$Res>
       __$$_RamMemoryTypeCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String name});
+  $Res call({int id, @JsonKey(name: 'memoryType') String name});
 }
 
 /// @nodoc
@@ -108,7 +109,9 @@ class __$$_RamMemoryTypeCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_RamMemoryType extends _RamMemoryType {
-  const _$_RamMemoryType({required this.id, required this.name}) : super._();
+  const _$_RamMemoryType(
+      {required this.id, @JsonKey(name: 'memoryType') required this.name})
+      : super._();
 
   factory _$_RamMemoryType.fromJson(Map<String, dynamic> json) =>
       _$$_RamMemoryTypeFromJson(json);
@@ -116,6 +119,7 @@ class _$_RamMemoryType extends _RamMemoryType {
   @override
   final int id;
   @override
+  @JsonKey(name: 'memoryType')
   final String name;
 
   @override
@@ -152,7 +156,9 @@ class _$_RamMemoryType extends _RamMemoryType {
 
 abstract class _RamMemoryType extends RamMemoryType {
   const factory _RamMemoryType(
-      {required final int id, required final String name}) = _$_RamMemoryType;
+          {required final int id,
+          @JsonKey(name: 'memoryType') required final String name}) =
+      _$_RamMemoryType;
   const _RamMemoryType._() : super._();
 
   factory _RamMemoryType.fromJson(Map<String, dynamic> json) =
@@ -161,6 +167,7 @@ abstract class _RamMemoryType extends RamMemoryType {
   @override
   int get id;
   @override
+  @JsonKey(name: 'memoryType')
   String get name;
   @override
   @JsonKey(ignore: true)

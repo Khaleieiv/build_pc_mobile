@@ -8,24 +8,23 @@ part of 'gpu.dart';
 
 _$_GPU _$$_GPUFromJson(Map<String, dynamic> json) => _$_GPU(
       id: json['id'] as int,
-      gpuProducer:
-          Producers.fromJson(json['gpuProducer'] as Map<String, dynamic>),
+      gpuProducer: Producers.fromJson(json['producer'] as Map<String, dynamic>),
       name: json['name'] as String,
-      gpuVendor: Producers.fromJson(json['gpuVendor'] as Map<String, dynamic>),
+      gpuVendor: Producers.fromJson(json['vendor'] as Map<String, dynamic>),
       year: json['year'] as int,
       technicalProcess: json['technicalProcess'] as int,
       gpuFrequency: json['gpuFrequency'] as int,
       memoryAmount: json['memoryAmount'] as int,
       gpuMemoryType:
-          GPUMemoryType.fromJson(json['gpuMemoryType'] as Map<String, dynamic>),
+          GPUMemoryType.fromJson(json['memoryType'] as Map<String, dynamic>),
       memoryFrequency: json['memoryFrequency'] as int,
       bus: json['bus'] as int,
       tdp: json['tdp'] as int,
-      gpuConnector: (json['gpuConnector'] as List<dynamic>)
+      gpuConnector: (json['connector'] as List<dynamic>)
           .map((e) => GPUConnector.fromJson(e as Map<String, dynamic>))
           .toList(),
       gpuInterfaceType: GPUInterfaceType.fromJson(
-          json['gpuInterfaceType'] as Map<String, dynamic>),
+          json['interfaceType'] as Map<String, dynamic>),
       length: json['length'] as int,
       description: json['description'] as String,
       gpuTechnologies: GPUTechnologies.fromJson(
@@ -37,19 +36,19 @@ _$_GPU _$$_GPUFromJson(Map<String, dynamic> json) => _$_GPU(
 
 Map<String, dynamic> _$$_GPUToJson(_$_GPU instance) => <String, dynamic>{
       'id': instance.id,
-      'gpuProducer': instance.gpuProducer,
+      'producer': instance.gpuProducer,
       'name': instance.name,
-      'gpuVendor': instance.gpuVendor,
+      'vendor': instance.gpuVendor,
       'year': instance.year,
       'technicalProcess': instance.technicalProcess,
       'gpuFrequency': instance.gpuFrequency,
       'memoryAmount': instance.memoryAmount,
-      'gpuMemoryType': instance.gpuMemoryType,
+      'memoryType': instance.gpuMemoryType,
       'memoryFrequency': instance.memoryFrequency,
       'bus': instance.bus,
       'tdp': instance.tdp,
-      'gpuConnector': instance.gpuConnector,
-      'gpuInterfaceType': instance.gpuInterfaceType,
+      'connector': instance.gpuConnector,
+      'interfaceType': instance.gpuInterfaceType,
       'length': instance.length,
       'description': instance.description,
       'gpuTechnologies': instance.gpuTechnologies,

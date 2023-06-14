@@ -26,6 +26,8 @@ class ComponentPage extends StatefulWidget {
 }
 
 class _ComponentPageState extends State<ComponentPage> {
+  final searchController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     final changedModelName = Provider.of<ComponentComparisonNotifier>(context);
@@ -38,23 +40,41 @@ class _ComponentPageState extends State<ComponentPage> {
     Widget? changeComponentWidget() {
       switch (changedModelName.modelName) {
         case 'processor':
-          return const CPUListWidget();
+          return CPUListWidget(
+            searchController: searchController,
+          );
         case 'motherboard':
-          return const MotherboardListWidget();
+          return MotherboardListWidget(
+            searchController: searchController,
+          );
         case 'graphic_card':
-          return const GPUListWidget();
+          return GPUListWidget(
+            searchController: searchController,
+          );
         case 'memory':
-          return const RamListWidget();
+          return RamListWidget(
+            searchController: searchController,
+          );
         case 'ssd':
-          return const SsdListWidget();
+          return SsdListWidget(
+            searchController: searchController,
+          );
         case 'hdd':
-          return const HddListWidget();
+          return HddListWidget(
+            searchController: searchController,
+          );
         case 'cooler':
-          return const CoolerListWidget();
+          return CoolerListWidget(
+            searchController: searchController,
+          );
         case 'power_supply':
-          return const PowerSupplyListWidget();
+          return PowerSupplyListWidget(
+            searchController: searchController,
+          );
         case 'case':
-          return const PcCaseListWidget();
+          return PcCaseListWidget(
+            searchController: searchController,
+          );
         default:
           return const SizedBox();
       }
@@ -72,8 +92,13 @@ class _ComponentPageState extends State<ComponentPage> {
           ),
           Expanded(
             child: SearchBarAnimation(
+              onChanged: (value) {
+                setState(() {
+                  value = searchController.text;
+                });
+              },
               buttonBorderColour: Colors.black45,
-              textEditingController: TextEditingController(),
+              textEditingController: searchController,
               isSearchBoxOnRightSide: true,
               isOriginalAnimation: true,
               enableKeyboardFocus: true,
@@ -128,5 +153,11 @@ class _ComponentPageState extends State<ComponentPage> {
       // ignore: avoid-returning-widgets
       body: changeComponentWidget(),
     );
+  }
+
+  @override
+  void dispose() {
+    searchController.dispose();
+    super.dispose();
   }
 }

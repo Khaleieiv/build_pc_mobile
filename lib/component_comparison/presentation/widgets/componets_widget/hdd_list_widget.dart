@@ -1,3 +1,5 @@
+import 'package:build_pc_mobile/common/domain/entities/base_component.dart';
+import 'package:build_pc_mobile/common/domain/entities/storage_drive/hdd/hdd.dart';
 import 'package:build_pc_mobile/common/presentation/state/hdd_notifier.dart';
 import 'package:build_pc_mobile/common/widgets/custom_no_data_widget.dart';
 import 'package:build_pc_mobile/component_comparison/presentation/state/component_comparison_notifier.dart';
@@ -9,7 +11,10 @@ import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
 
 class HddListWidget extends StatefulWidget {
-  const HddListWidget({Key? key}) : super(key: key);
+  final TextEditingController searchController;
+
+  const HddListWidget({Key? key, required this.searchController})
+      : super(key: key);
 
   @override
   State<HddListWidget> createState() => _HddListWidgetState();
@@ -27,58 +32,84 @@ class _HddListWidgetState extends State<HddListWidget> {
   @override
   Widget build(BuildContext context) {
     final hddProvider = Provider.of<HddNotifier>(context);
-    final componentComparisonProvider =
-        Provider.of<ComponentComparisonNotifier>(context);
+    final filteredHdd = hddProvider.listHdd
+        ?.where(
+          (hdd) => hdd.name
+              .toLowerCase()
+              .contains(widget.searchController.text.toLowerCase()),
+        )
+        .toList();
 
     return hddProvider.isLoading
         ? ListView.builder(
-            itemCount: hddProvider.listHdd?.length,
+            itemCount: filteredHdd?.length,
             itemBuilder: (BuildContext context, int index) {
-              final hdd = hddProvider.listHdd?[index];
-              Widget? result;
-              if (hdd != null) {
-                result = CustomComponentWidget(
-                  imagePath: 'assets/icons/hdd.png',
-                  name: hdd.name,
-                  labelTextNameFirst: 'Reading speed',
-                  labelTextComponentFirst: hdd.readingSpeed.toString(),
-                  labelTextNameSecond: 'Storage size',
-                  labelTextComponentSecond: hdd.storageSize.toString(),
-                  labelTextNameThird: 'Writing speed',
-                  labelTextComponentThird: hdd.writingSpeed.toString(),
-                  labelTextNameFourth: 'Buffer size',
-                  labelTextComponentFourth: hdd.bufferSize.toString(),
-                  labelTextNameFifth: 'Recommended price',
-                  labelTextComponentFifth: hdd.recommendedPrice.toString(),
-                  button: componentComparisonProvider.swapButton
-                      ? CustomAddToComparisonButtonWidget(
-                          onPressed: () {
-                            setState(() {
-                              componentComparisonProvider.addToComparison(
-                                componentComparisonProvider.modelName,
-                                hdd,
-                              );
-                            });
-                          },
-                        )
-                      : CustomRemoveToComparisonButtonWidget(
-                          onPressed: () {
-                            setState(() {
-                              componentComparisonProvider.removeFromComparison(
-                                componentComparisonProvider.modelName,
-                                hdd,
-                              );
-                            });
-                          },
-                        ),
-                );
-              }
+              final hdd = filteredHdd?[index];
 
-              return result;
+              return HddItemWidget(hdd: hdd);
             },
           )
         : const CustomNoDataWidget(
             text: 'There is no data on these components in the database.',
           );
+  }
+}
+
+class HddItemWidget extends StatefulWidget {
+  final Hdd? hdd;
+
+  const HddItemWidget({Key? key, this.hdd}) : super(key: key);
+
+  @override
+  _HddItemWidgetState createState() => _HddItemWidgetState();
+}
+
+class _HddItemWidgetState extends State<HddItemWidget> {
+  bool isAddedToComparison = false;
+
+  @override
+  Widget build(BuildContext context) {
+    final componentComparisonProvider =
+        Provider.of<ComponentComparisonNotifier>(context);
+
+    return CustomComponentWidget(
+      imagePath: 'assets/icons/hdd.png',
+      name: widget.hdd?.name ?? '',
+      labelTextNameFirst: 'Reading speed',
+      labelTextComponentFirst: widget.hdd?.readingSpeed.toString() ?? '',
+      labelTextNameSecond: 'Storage size',
+      labelTextComponentSecond: widget.hdd?.storageSize.toString() ?? '',
+      labelTextNameThird: 'Writing speed',
+      labelTextComponentThird: widget.hdd?.writingSpeed.toString() ?? '',
+      labelTextNameFourth: 'Buffer size',
+      labelTextComponentFourth: widget.hdd?.bufferSize.toString() ?? '',
+      labelTextNameFifth: 'Recommended price',
+      labelTextComponentFifth: widget.hdd?.recommendedPrice.toString() ?? '',
+      button: isAddedToComparison
+          ? CustomRemoveToComparisonButtonWidget(
+              onPressed: () {
+                setState(() {
+                  isAddedToComparison = false;
+                  componentComparisonProvider.removeFromComparison(
+                    componentComparisonProvider.modelName,
+                    //ignore: cast_nullable_to_non_nullable
+                    widget.hdd as BaseComponent,
+                  );
+                });
+              },
+            )
+          : CustomAddToComparisonButtonWidget(
+              onPressed: () {
+                setState(() {
+                  isAddedToComparison = true;
+                  componentComparisonProvider.addToComparison(
+                    componentComparisonProvider.modelName,
+                    //ignore: cast_nullable_to_non_nullable
+                    widget.hdd as BaseComponent,
+                  );
+                });
+              },
+            ),
+    );
   }
 }

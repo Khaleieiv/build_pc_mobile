@@ -9,11 +9,11 @@ part of 'gpu_memory_type.dart';
 _$_GPUMemoryType _$$_GPUMemoryTypeFromJson(Map<String, dynamic> json) =>
     _$_GPUMemoryType(
       id: json['id'] as int,
-      name: json['name'] as String,
+      name: json['type'] as String,
     );
 
 Map<String, dynamic> _$$_GPUMemoryTypeToJson(_$_GPUMemoryType instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'name': instance.name,
+      'type': instance.name,
     };

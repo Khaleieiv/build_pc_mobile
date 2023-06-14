@@ -9,6 +9,7 @@ part 'motherboard_network.g.dart';
 class MotherboardNetwork with _$MotherboardNetwork implements BaseComponent {
   const factory MotherboardNetwork ({
     required int id,
+    @JsonKey(name: 'network')
     required String name,
   }) = _MotherboardNetwork;
 

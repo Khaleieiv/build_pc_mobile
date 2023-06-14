@@ -8,7 +8,7 @@ part of 'build_pc.dart';
 
 _$_BuildPc _$$_BuildPcFromJson(Map<String, dynamic> json) => _$_BuildPc(
       id: json['id'] as int?,
-      nameOfBuild: json['nameOfBuild'] as String?,
+      name: json['nameOfBuild'] as String?,
       user: json['user'] == null
           ? null
           : User.fromJson(json['user'] as Map<String, dynamic>),
@@ -49,7 +49,7 @@ _$_BuildPc _$$_BuildPcFromJson(Map<String, dynamic> json) => _$_BuildPc(
 Map<String, dynamic> _$$_BuildPcToJson(_$_BuildPc instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'nameOfBuild': instance.nameOfBuild,
+      'nameOfBuild': instance.name,
       'user': instance.user,
       'motherboard': instance.motherboard,
       'processor': instance.cpu,

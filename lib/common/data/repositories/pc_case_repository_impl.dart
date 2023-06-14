@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:build_pc_mobile/auth/utils/auth_credentials_storage.dart';
 import 'package:build_pc_mobile/common/constants/api.dart';
 import 'package:build_pc_mobile/common/domain/entities/pc_case/pc_case.dart';
 import 'package:build_pc_mobile/common/domain/repositories/pc_case_repository.dart';
@@ -9,7 +8,7 @@ import 'package:build_pc_mobile/common/utils/http_response_utils.dart';
 import 'package:http/http.dart' as http;
 
 class PcCaseRepositoryImpl implements PcCaseRepository {
-  static const _fetchPcCasePath = '/api/all/pccase';
+  static const _fetchPcCasePath = '/api/all/case';
 
   final _client = http.Client();
 
@@ -21,10 +20,9 @@ class PcCaseRepositoryImpl implements PcCaseRepository {
 
   @override
   Future<void> fetchPcCase() async {
-    final savedCredentials = await AuthCredentialsStorage.savedCredentials;
-    final headers = Api.headers(savedCredentials.tokenAccess);
     final requestUri = Uri.http(Api.baseUrl, _fetchPcCasePath);
-    final response = await _client.get(requestUri, headers: headers);
+    final response = await _client.get(requestUri, headers: Api.headers());
+    print(response.body);
     _processPcCaseResponse(response);
   }
 

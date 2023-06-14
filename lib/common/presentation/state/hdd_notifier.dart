@@ -19,7 +19,9 @@ class HddNotifier extends ChangeNotifier with LoadingStateNotifier {
 
   CustomException get hddException => _hddException;
 
-  HddNotifier(this._hddRepositoryImpl);
+  HddNotifier(this._hddRepositoryImpl) {
+    subscribeToHddUpdates(_hddRepositoryImpl.hddStream);
+  }
 
   Future<void> fetchHdd() async {
     if (isLoading) return;
@@ -31,7 +33,6 @@ class HddNotifier extends ChangeNotifier with LoadingStateNotifier {
       rethrow;
     } finally {
       setLoadingState(value: false);
-      notifyListeners();
     }
   }
 
@@ -39,9 +40,8 @@ class HddNotifier extends ChangeNotifier with LoadingStateNotifier {
       List<Hdd>? listHdd,
       ) async {
     _listHdd = listHdd;
-    setLoadingState(value: false);
+    setLoadingState(value: true);
     _handleCustomError(null);
-    notifyListeners();
   }
 
   Future<void> subscribeToHddUpdates(

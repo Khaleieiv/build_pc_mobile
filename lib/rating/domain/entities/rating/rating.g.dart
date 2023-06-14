@@ -8,8 +8,8 @@ part of 'rating.dart';
 
 _$_Rating _$$_RatingFromJson(Map<String, dynamic> json) => _$_Rating(
       id: json['id'] as int,
-      like: (json['like'] as List<dynamic>)
-          .map((e) => Likes.fromJson(e as Map<String, dynamic>))
+      like: (json['like'] as List<dynamic>?)
+          ?.map((e) => Likes.fromJson(e as Map<String, dynamic>))
           .toList(),
       buildPc: BuildPc.fromJson(json['buildPc'] as Map<String, dynamic>),
     );

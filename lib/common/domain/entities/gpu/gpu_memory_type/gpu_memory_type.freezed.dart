@@ -21,6 +21,7 @@ GPUMemoryType _$GPUMemoryTypeFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$GPUMemoryType {
   int get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'type')
   String get name => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -35,7 +36,7 @@ abstract class $GPUMemoryTypeCopyWith<$Res> {
           GPUMemoryType value, $Res Function(GPUMemoryType) then) =
       _$GPUMemoryTypeCopyWithImpl<$Res, GPUMemoryType>;
   @useResult
-  $Res call({int id, String name});
+  $Res call({int id, @JsonKey(name: 'type') String name});
 }
 
 /// @nodoc
@@ -75,7 +76,7 @@ abstract class _$$_GPUMemoryTypeCopyWith<$Res>
       __$$_GPUMemoryTypeCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String name});
+  $Res call({int id, @JsonKey(name: 'type') String name});
 }
 
 /// @nodoc
@@ -108,7 +109,9 @@ class __$$_GPUMemoryTypeCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_GPUMemoryType extends _GPUMemoryType {
-  const _$_GPUMemoryType({required this.id, required this.name}) : super._();
+  const _$_GPUMemoryType(
+      {required this.id, @JsonKey(name: 'type') required this.name})
+      : super._();
 
   factory _$_GPUMemoryType.fromJson(Map<String, dynamic> json) =>
       _$$_GPUMemoryTypeFromJson(json);
@@ -116,6 +119,7 @@ class _$_GPUMemoryType extends _GPUMemoryType {
   @override
   final int id;
   @override
+  @JsonKey(name: 'type')
   final String name;
 
   @override
@@ -152,7 +156,8 @@ class _$_GPUMemoryType extends _GPUMemoryType {
 
 abstract class _GPUMemoryType extends GPUMemoryType {
   const factory _GPUMemoryType(
-      {required final int id, required final String name}) = _$_GPUMemoryType;
+      {required final int id,
+      @JsonKey(name: 'type') required final String name}) = _$_GPUMemoryType;
   const _GPUMemoryType._() : super._();
 
   factory _GPUMemoryType.fromJson(Map<String, dynamic> json) =
@@ -161,6 +166,7 @@ abstract class _GPUMemoryType extends GPUMemoryType {
   @override
   int get id;
   @override
+  @JsonKey(name: 'type')
   String get name;
   @override
   @JsonKey(ignore: true)

@@ -8,6 +8,7 @@ import 'package:build_pc_mobile/common/domain/entities/producer/producers.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'cpu.freezed.dart';
+
 part 'cpu.g.dart';
 
 @freezed
@@ -28,8 +29,7 @@ class CPU with _$CPU implements BaseComponent {
     required int tdp,
     required int maxTemperature,
     required bool embeddedGraphic,
-    @JsonKey(name: 'pcieVersion')
-    required CPUPcieVersion? cpuPcieVersion,
+    @JsonKey(name: 'pcieVersion') required CPUPcieVersion? cpuPcieVersion,
     required List<CPUTech?> cpuTech,
     required String description,
     required int recommendedPrice,

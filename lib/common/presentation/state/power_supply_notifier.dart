@@ -19,7 +19,9 @@ class PowerSupplyNotifier extends ChangeNotifier with LoadingStateNotifier {
 
   CustomException get gpuException => _powerSupplyException;
 
-  PowerSupplyNotifier(this._powerSupplyRepositoryImpl);
+  PowerSupplyNotifier(this._powerSupplyRepositoryImpl) {
+    subscribeToPowerSupplyUpdates(_powerSupplyRepositoryImpl.powerSupplyStream);
+  }
 
   Future<void> fetchPowerSupply() async {
     if (isLoading) return;
@@ -31,7 +33,6 @@ class PowerSupplyNotifier extends ChangeNotifier with LoadingStateNotifier {
       rethrow;
     } finally {
       setLoadingState(value: false);
-      notifyListeners();
     }
   }
 
@@ -40,8 +41,7 @@ class PowerSupplyNotifier extends ChangeNotifier with LoadingStateNotifier {
       ) async {
     _listPowerSupply = listPowerSupply;
     _handleCustomError(null);
-    setLoadingState(value: false);
-    notifyListeners();
+    setLoadingState(value: true);
   }
 
   Future<void> subscribeToPowerSupplyUpdates(

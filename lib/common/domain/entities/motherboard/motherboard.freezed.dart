@@ -22,21 +22,25 @@ Motherboard _$MotherboardFromJson(Map<String, dynamic> json) {
 mixin _$Motherboard {
   int get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
-  MotherboardSocket get socket => throw _privateConstructorUsedError;
-  List<CPUGeneration> get cpuGenerations => throw _privateConstructorUsedError;
-  MotherboardChipset get motherboardChipset =>
+  MotherboardSocket? get socket => throw _privateConstructorUsedError;
+  List<CPUGeneration>? get cpuGenerations => throw _privateConstructorUsedError;
+  @JsonKey(name: 'chipset')
+  MotherboardChipset? get motherboardChipset =>
       throw _privateConstructorUsedError;
-  FormFactor get formFactor => throw _privateConstructorUsedError;
-  Producers get motherboardProducer => throw _privateConstructorUsedError;
+  FormFactor? get formFactor => throw _privateConstructorUsedError;
+  Producers? get motherboardProducer => throw _privateConstructorUsedError;
   int get maxTdpOfProcessors => throw _privateConstructorUsedError;
   int get memorySlots => throw _privateConstructorUsedError;
   int get supportedMemoryFrequency => throw _privateConstructorUsedError;
   int get maxAmountOfRam => throw _privateConstructorUsedError;
-  MotherboardNetwork get motherboardNetwork =>
+  RamMemoryType? get ramMemoryType => throw _privateConstructorUsedError;
+  @JsonKey(name: 'network')
+  MotherboardNetwork? get motherboardNetwork =>
       throw _privateConstructorUsedError;
   bool get bluetooth => throw _privateConstructorUsedError;
   bool get wifi => throw _privateConstructorUsedError;
-  CPUPcieVersion get cpuPcieVersion =>
+  @JsonKey(name: 'pcieVersion')
+  CPUPcieVersion? get cpuPcieVersion =>
       throw _privateConstructorUsedError; // ignore: non_constant_identifier_names
   int get pci_express_x16 =>
       throw _privateConstructorUsedError; // ignore: non_constant_identifier_names
@@ -45,7 +49,6 @@ mixin _$Motherboard {
   int get pci_express_x1 => throw _privateConstructorUsedError;
   int get sata3 => throw _privateConstructorUsedError;
   int get m2 => throw _privateConstructorUsedError;
-  bool get dSub => throw _privateConstructorUsedError;
   int get dvi => throw _privateConstructorUsedError;
   int get hdmi => throw _privateConstructorUsedError;
   int get displayPort => throw _privateConstructorUsedError;
@@ -56,7 +59,9 @@ mixin _$Motherboard {
   bool get digitalAudioJack => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   int get recommendedPrice => throw _privateConstructorUsedError;
-  PerformanceLevel get performanceLevel => throw _privateConstructorUsedError;
+  PerformanceLevel? get performanceLevel => throw _privateConstructorUsedError;
+  @JsonKey(name: 'dsub')
+  bool get dSub => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -73,25 +78,25 @@ abstract class $MotherboardCopyWith<$Res> {
   $Res call(
       {int id,
       String name,
-      MotherboardSocket socket,
-      List<CPUGeneration> cpuGenerations,
-      MotherboardChipset motherboardChipset,
-      FormFactor formFactor,
-      Producers motherboardProducer,
+      MotherboardSocket? socket,
+      List<CPUGeneration>? cpuGenerations,
+      @JsonKey(name: 'chipset') MotherboardChipset? motherboardChipset,
+      FormFactor? formFactor,
+      Producers? motherboardProducer,
       int maxTdpOfProcessors,
       int memorySlots,
       int supportedMemoryFrequency,
       int maxAmountOfRam,
-      MotherboardNetwork motherboardNetwork,
+      RamMemoryType? ramMemoryType,
+      @JsonKey(name: 'network') MotherboardNetwork? motherboardNetwork,
       bool bluetooth,
       bool wifi,
-      CPUPcieVersion cpuPcieVersion,
+      @JsonKey(name: 'pcieVersion') CPUPcieVersion? cpuPcieVersion,
       int pci_express_x16,
       int pci_express_x4,
       int pci_express_x1,
       int sata3,
       int m2,
-      bool dSub,
       int dvi,
       int hdmi,
       int displayPort,
@@ -101,15 +106,17 @@ abstract class $MotherboardCopyWith<$Res> {
       bool digitalAudioJack,
       String description,
       int recommendedPrice,
-      PerformanceLevel performanceLevel});
+      PerformanceLevel? performanceLevel,
+      @JsonKey(name: 'dsub') bool dSub});
 
-  $MotherboardSocketCopyWith<$Res> get socket;
-  $MotherboardChipsetCopyWith<$Res> get motherboardChipset;
-  $FormFactorCopyWith<$Res> get formFactor;
-  $ProducersCopyWith<$Res> get motherboardProducer;
-  $MotherboardNetworkCopyWith<$Res> get motherboardNetwork;
-  $CPUPcieVersionCopyWith<$Res> get cpuPcieVersion;
-  $PerformanceLevelCopyWith<$Res> get performanceLevel;
+  $MotherboardSocketCopyWith<$Res>? get socket;
+  $MotherboardChipsetCopyWith<$Res>? get motherboardChipset;
+  $FormFactorCopyWith<$Res>? get formFactor;
+  $ProducersCopyWith<$Res>? get motherboardProducer;
+  $RamMemoryTypeCopyWith<$Res>? get ramMemoryType;
+  $MotherboardNetworkCopyWith<$Res>? get motherboardNetwork;
+  $CPUPcieVersionCopyWith<$Res>? get cpuPcieVersion;
+  $PerformanceLevelCopyWith<$Res>? get performanceLevel;
 }
 
 /// @nodoc
@@ -127,25 +134,25 @@ class _$MotherboardCopyWithImpl<$Res, $Val extends Motherboard>
   $Res call({
     Object? id = null,
     Object? name = null,
-    Object? socket = null,
-    Object? cpuGenerations = null,
-    Object? motherboardChipset = null,
-    Object? formFactor = null,
-    Object? motherboardProducer = null,
+    Object? socket = freezed,
+    Object? cpuGenerations = freezed,
+    Object? motherboardChipset = freezed,
+    Object? formFactor = freezed,
+    Object? motherboardProducer = freezed,
     Object? maxTdpOfProcessors = null,
     Object? memorySlots = null,
     Object? supportedMemoryFrequency = null,
     Object? maxAmountOfRam = null,
-    Object? motherboardNetwork = null,
+    Object? ramMemoryType = freezed,
+    Object? motherboardNetwork = freezed,
     Object? bluetooth = null,
     Object? wifi = null,
-    Object? cpuPcieVersion = null,
+    Object? cpuPcieVersion = freezed,
     Object? pci_express_x16 = null,
     Object? pci_express_x4 = null,
     Object? pci_express_x1 = null,
     Object? sata3 = null,
     Object? m2 = null,
-    Object? dSub = null,
     Object? dvi = null,
     Object? hdmi = null,
     Object? displayPort = null,
@@ -155,7 +162,8 @@ class _$MotherboardCopyWithImpl<$Res, $Val extends Motherboard>
     Object? digitalAudioJack = null,
     Object? description = null,
     Object? recommendedPrice = null,
-    Object? performanceLevel = null,
+    Object? performanceLevel = freezed,
+    Object? dSub = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -166,26 +174,26 @@ class _$MotherboardCopyWithImpl<$Res, $Val extends Motherboard>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      socket: null == socket
+      socket: freezed == socket
           ? _value.socket
           : socket // ignore: cast_nullable_to_non_nullable
-              as MotherboardSocket,
-      cpuGenerations: null == cpuGenerations
+              as MotherboardSocket?,
+      cpuGenerations: freezed == cpuGenerations
           ? _value.cpuGenerations
           : cpuGenerations // ignore: cast_nullable_to_non_nullable
-              as List<CPUGeneration>,
-      motherboardChipset: null == motherboardChipset
+              as List<CPUGeneration>?,
+      motherboardChipset: freezed == motherboardChipset
           ? _value.motherboardChipset
           : motherboardChipset // ignore: cast_nullable_to_non_nullable
-              as MotherboardChipset,
-      formFactor: null == formFactor
+              as MotherboardChipset?,
+      formFactor: freezed == formFactor
           ? _value.formFactor
           : formFactor // ignore: cast_nullable_to_non_nullable
-              as FormFactor,
-      motherboardProducer: null == motherboardProducer
+              as FormFactor?,
+      motherboardProducer: freezed == motherboardProducer
           ? _value.motherboardProducer
           : motherboardProducer // ignore: cast_nullable_to_non_nullable
-              as Producers,
+              as Producers?,
       maxTdpOfProcessors: null == maxTdpOfProcessors
           ? _value.maxTdpOfProcessors
           : maxTdpOfProcessors // ignore: cast_nullable_to_non_nullable
@@ -202,10 +210,14 @@ class _$MotherboardCopyWithImpl<$Res, $Val extends Motherboard>
           ? _value.maxAmountOfRam
           : maxAmountOfRam // ignore: cast_nullable_to_non_nullable
               as int,
-      motherboardNetwork: null == motherboardNetwork
+      ramMemoryType: freezed == ramMemoryType
+          ? _value.ramMemoryType
+          : ramMemoryType // ignore: cast_nullable_to_non_nullable
+              as RamMemoryType?,
+      motherboardNetwork: freezed == motherboardNetwork
           ? _value.motherboardNetwork
           : motherboardNetwork // ignore: cast_nullable_to_non_nullable
-              as MotherboardNetwork,
+              as MotherboardNetwork?,
       bluetooth: null == bluetooth
           ? _value.bluetooth
           : bluetooth // ignore: cast_nullable_to_non_nullable
@@ -214,10 +226,10 @@ class _$MotherboardCopyWithImpl<$Res, $Val extends Motherboard>
           ? _value.wifi
           : wifi // ignore: cast_nullable_to_non_nullable
               as bool,
-      cpuPcieVersion: null == cpuPcieVersion
+      cpuPcieVersion: freezed == cpuPcieVersion
           ? _value.cpuPcieVersion
           : cpuPcieVersion // ignore: cast_nullable_to_non_nullable
-              as CPUPcieVersion,
+              as CPUPcieVersion?,
       pci_express_x16: null == pci_express_x16
           ? _value.pci_express_x16
           : pci_express_x16 // ignore: cast_nullable_to_non_nullable
@@ -238,10 +250,6 @@ class _$MotherboardCopyWithImpl<$Res, $Val extends Motherboard>
           ? _value.m2
           : m2 // ignore: cast_nullable_to_non_nullable
               as int,
-      dSub: null == dSub
-          ? _value.dSub
-          : dSub // ignore: cast_nullable_to_non_nullable
-              as bool,
       dvi: null == dvi
           ? _value.dvi
           : dvi // ignore: cast_nullable_to_non_nullable
@@ -278,25 +286,37 @@ class _$MotherboardCopyWithImpl<$Res, $Val extends Motherboard>
           ? _value.recommendedPrice
           : recommendedPrice // ignore: cast_nullable_to_non_nullable
               as int,
-      performanceLevel: null == performanceLevel
+      performanceLevel: freezed == performanceLevel
           ? _value.performanceLevel
           : performanceLevel // ignore: cast_nullable_to_non_nullable
-              as PerformanceLevel,
+              as PerformanceLevel?,
+      dSub: null == dSub
+          ? _value.dSub
+          : dSub // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $MotherboardSocketCopyWith<$Res> get socket {
-    return $MotherboardSocketCopyWith<$Res>(_value.socket, (value) {
+  $MotherboardSocketCopyWith<$Res>? get socket {
+    if (_value.socket == null) {
+      return null;
+    }
+
+    return $MotherboardSocketCopyWith<$Res>(_value.socket!, (value) {
       return _then(_value.copyWith(socket: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $MotherboardChipsetCopyWith<$Res> get motherboardChipset {
-    return $MotherboardChipsetCopyWith<$Res>(_value.motherboardChipset,
+  $MotherboardChipsetCopyWith<$Res>? get motherboardChipset {
+    if (_value.motherboardChipset == null) {
+      return null;
+    }
+
+    return $MotherboardChipsetCopyWith<$Res>(_value.motherboardChipset!,
         (value) {
       return _then(_value.copyWith(motherboardChipset: value) as $Val);
     });
@@ -304,24 +324,48 @@ class _$MotherboardCopyWithImpl<$Res, $Val extends Motherboard>
 
   @override
   @pragma('vm:prefer-inline')
-  $FormFactorCopyWith<$Res> get formFactor {
-    return $FormFactorCopyWith<$Res>(_value.formFactor, (value) {
+  $FormFactorCopyWith<$Res>? get formFactor {
+    if (_value.formFactor == null) {
+      return null;
+    }
+
+    return $FormFactorCopyWith<$Res>(_value.formFactor!, (value) {
       return _then(_value.copyWith(formFactor: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $ProducersCopyWith<$Res> get motherboardProducer {
-    return $ProducersCopyWith<$Res>(_value.motherboardProducer, (value) {
+  $ProducersCopyWith<$Res>? get motherboardProducer {
+    if (_value.motherboardProducer == null) {
+      return null;
+    }
+
+    return $ProducersCopyWith<$Res>(_value.motherboardProducer!, (value) {
       return _then(_value.copyWith(motherboardProducer: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $MotherboardNetworkCopyWith<$Res> get motherboardNetwork {
-    return $MotherboardNetworkCopyWith<$Res>(_value.motherboardNetwork,
+  $RamMemoryTypeCopyWith<$Res>? get ramMemoryType {
+    if (_value.ramMemoryType == null) {
+      return null;
+    }
+
+    return $RamMemoryTypeCopyWith<$Res>(_value.ramMemoryType!, (value) {
+      return _then(_value.copyWith(ramMemoryType: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $MotherboardNetworkCopyWith<$Res>? get motherboardNetwork {
+    if (_value.motherboardNetwork == null) {
+      return null;
+    }
+
+    return $MotherboardNetworkCopyWith<$Res>(_value.motherboardNetwork!,
         (value) {
       return _then(_value.copyWith(motherboardNetwork: value) as $Val);
     });
@@ -329,16 +373,24 @@ class _$MotherboardCopyWithImpl<$Res, $Val extends Motherboard>
 
   @override
   @pragma('vm:prefer-inline')
-  $CPUPcieVersionCopyWith<$Res> get cpuPcieVersion {
-    return $CPUPcieVersionCopyWith<$Res>(_value.cpuPcieVersion, (value) {
+  $CPUPcieVersionCopyWith<$Res>? get cpuPcieVersion {
+    if (_value.cpuPcieVersion == null) {
+      return null;
+    }
+
+    return $CPUPcieVersionCopyWith<$Res>(_value.cpuPcieVersion!, (value) {
       return _then(_value.copyWith(cpuPcieVersion: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $PerformanceLevelCopyWith<$Res> get performanceLevel {
-    return $PerformanceLevelCopyWith<$Res>(_value.performanceLevel, (value) {
+  $PerformanceLevelCopyWith<$Res>? get performanceLevel {
+    if (_value.performanceLevel == null) {
+      return null;
+    }
+
+    return $PerformanceLevelCopyWith<$Res>(_value.performanceLevel!, (value) {
       return _then(_value.copyWith(performanceLevel: value) as $Val);
     });
   }
@@ -355,25 +407,25 @@ abstract class _$$_MotherboardCopyWith<$Res>
   $Res call(
       {int id,
       String name,
-      MotherboardSocket socket,
-      List<CPUGeneration> cpuGenerations,
-      MotherboardChipset motherboardChipset,
-      FormFactor formFactor,
-      Producers motherboardProducer,
+      MotherboardSocket? socket,
+      List<CPUGeneration>? cpuGenerations,
+      @JsonKey(name: 'chipset') MotherboardChipset? motherboardChipset,
+      FormFactor? formFactor,
+      Producers? motherboardProducer,
       int maxTdpOfProcessors,
       int memorySlots,
       int supportedMemoryFrequency,
       int maxAmountOfRam,
-      MotherboardNetwork motherboardNetwork,
+      RamMemoryType? ramMemoryType,
+      @JsonKey(name: 'network') MotherboardNetwork? motherboardNetwork,
       bool bluetooth,
       bool wifi,
-      CPUPcieVersion cpuPcieVersion,
+      @JsonKey(name: 'pcieVersion') CPUPcieVersion? cpuPcieVersion,
       int pci_express_x16,
       int pci_express_x4,
       int pci_express_x1,
       int sata3,
       int m2,
-      bool dSub,
       int dvi,
       int hdmi,
       int displayPort,
@@ -383,22 +435,25 @@ abstract class _$$_MotherboardCopyWith<$Res>
       bool digitalAudioJack,
       String description,
       int recommendedPrice,
-      PerformanceLevel performanceLevel});
+      PerformanceLevel? performanceLevel,
+      @JsonKey(name: 'dsub') bool dSub});
 
   @override
-  $MotherboardSocketCopyWith<$Res> get socket;
+  $MotherboardSocketCopyWith<$Res>? get socket;
   @override
-  $MotherboardChipsetCopyWith<$Res> get motherboardChipset;
+  $MotherboardChipsetCopyWith<$Res>? get motherboardChipset;
   @override
-  $FormFactorCopyWith<$Res> get formFactor;
+  $FormFactorCopyWith<$Res>? get formFactor;
   @override
-  $ProducersCopyWith<$Res> get motherboardProducer;
+  $ProducersCopyWith<$Res>? get motherboardProducer;
   @override
-  $MotherboardNetworkCopyWith<$Res> get motherboardNetwork;
+  $RamMemoryTypeCopyWith<$Res>? get ramMemoryType;
   @override
-  $CPUPcieVersionCopyWith<$Res> get cpuPcieVersion;
+  $MotherboardNetworkCopyWith<$Res>? get motherboardNetwork;
   @override
-  $PerformanceLevelCopyWith<$Res> get performanceLevel;
+  $CPUPcieVersionCopyWith<$Res>? get cpuPcieVersion;
+  @override
+  $PerformanceLevelCopyWith<$Res>? get performanceLevel;
 }
 
 /// @nodoc
@@ -414,25 +469,25 @@ class __$$_MotherboardCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? name = null,
-    Object? socket = null,
-    Object? cpuGenerations = null,
-    Object? motherboardChipset = null,
-    Object? formFactor = null,
-    Object? motherboardProducer = null,
+    Object? socket = freezed,
+    Object? cpuGenerations = freezed,
+    Object? motherboardChipset = freezed,
+    Object? formFactor = freezed,
+    Object? motherboardProducer = freezed,
     Object? maxTdpOfProcessors = null,
     Object? memorySlots = null,
     Object? supportedMemoryFrequency = null,
     Object? maxAmountOfRam = null,
-    Object? motherboardNetwork = null,
+    Object? ramMemoryType = freezed,
+    Object? motherboardNetwork = freezed,
     Object? bluetooth = null,
     Object? wifi = null,
-    Object? cpuPcieVersion = null,
+    Object? cpuPcieVersion = freezed,
     Object? pci_express_x16 = null,
     Object? pci_express_x4 = null,
     Object? pci_express_x1 = null,
     Object? sata3 = null,
     Object? m2 = null,
-    Object? dSub = null,
     Object? dvi = null,
     Object? hdmi = null,
     Object? displayPort = null,
@@ -442,7 +497,8 @@ class __$$_MotherboardCopyWithImpl<$Res>
     Object? digitalAudioJack = null,
     Object? description = null,
     Object? recommendedPrice = null,
-    Object? performanceLevel = null,
+    Object? performanceLevel = freezed,
+    Object? dSub = null,
   }) {
     return _then(_$_Motherboard(
       id: null == id
@@ -453,26 +509,26 @@ class __$$_MotherboardCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      socket: null == socket
+      socket: freezed == socket
           ? _value.socket
           : socket // ignore: cast_nullable_to_non_nullable
-              as MotherboardSocket,
-      cpuGenerations: null == cpuGenerations
+              as MotherboardSocket?,
+      cpuGenerations: freezed == cpuGenerations
           ? _value._cpuGenerations
           : cpuGenerations // ignore: cast_nullable_to_non_nullable
-              as List<CPUGeneration>,
-      motherboardChipset: null == motherboardChipset
+              as List<CPUGeneration>?,
+      motherboardChipset: freezed == motherboardChipset
           ? _value.motherboardChipset
           : motherboardChipset // ignore: cast_nullable_to_non_nullable
-              as MotherboardChipset,
-      formFactor: null == formFactor
+              as MotherboardChipset?,
+      formFactor: freezed == formFactor
           ? _value.formFactor
           : formFactor // ignore: cast_nullable_to_non_nullable
-              as FormFactor,
-      motherboardProducer: null == motherboardProducer
+              as FormFactor?,
+      motherboardProducer: freezed == motherboardProducer
           ? _value.motherboardProducer
           : motherboardProducer // ignore: cast_nullable_to_non_nullable
-              as Producers,
+              as Producers?,
       maxTdpOfProcessors: null == maxTdpOfProcessors
           ? _value.maxTdpOfProcessors
           : maxTdpOfProcessors // ignore: cast_nullable_to_non_nullable
@@ -489,10 +545,14 @@ class __$$_MotherboardCopyWithImpl<$Res>
           ? _value.maxAmountOfRam
           : maxAmountOfRam // ignore: cast_nullable_to_non_nullable
               as int,
-      motherboardNetwork: null == motherboardNetwork
+      ramMemoryType: freezed == ramMemoryType
+          ? _value.ramMemoryType
+          : ramMemoryType // ignore: cast_nullable_to_non_nullable
+              as RamMemoryType?,
+      motherboardNetwork: freezed == motherboardNetwork
           ? _value.motherboardNetwork
           : motherboardNetwork // ignore: cast_nullable_to_non_nullable
-              as MotherboardNetwork,
+              as MotherboardNetwork?,
       bluetooth: null == bluetooth
           ? _value.bluetooth
           : bluetooth // ignore: cast_nullable_to_non_nullable
@@ -501,10 +561,10 @@ class __$$_MotherboardCopyWithImpl<$Res>
           ? _value.wifi
           : wifi // ignore: cast_nullable_to_non_nullable
               as bool,
-      cpuPcieVersion: null == cpuPcieVersion
+      cpuPcieVersion: freezed == cpuPcieVersion
           ? _value.cpuPcieVersion
           : cpuPcieVersion // ignore: cast_nullable_to_non_nullable
-              as CPUPcieVersion,
+              as CPUPcieVersion?,
       pci_express_x16: null == pci_express_x16
           ? _value.pci_express_x16
           : pci_express_x16 // ignore: cast_nullable_to_non_nullable
@@ -525,10 +585,6 @@ class __$$_MotherboardCopyWithImpl<$Res>
           ? _value.m2
           : m2 // ignore: cast_nullable_to_non_nullable
               as int,
-      dSub: null == dSub
-          ? _value.dSub
-          : dSub // ignore: cast_nullable_to_non_nullable
-              as bool,
       dvi: null == dvi
           ? _value.dvi
           : dvi // ignore: cast_nullable_to_non_nullable
@@ -565,10 +621,14 @@ class __$$_MotherboardCopyWithImpl<$Res>
           ? _value.recommendedPrice
           : recommendedPrice // ignore: cast_nullable_to_non_nullable
               as int,
-      performanceLevel: null == performanceLevel
+      performanceLevel: freezed == performanceLevel
           ? _value.performanceLevel
           : performanceLevel // ignore: cast_nullable_to_non_nullable
-              as PerformanceLevel,
+              as PerformanceLevel?,
+      dSub: null == dSub
+          ? _value.dSub
+          : dSub // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -580,24 +640,24 @@ class _$_Motherboard extends _Motherboard {
       {required this.id,
       required this.name,
       required this.socket,
-      required final List<CPUGeneration> cpuGenerations,
-      required this.motherboardChipset,
+      required final List<CPUGeneration>? cpuGenerations,
+      @JsonKey(name: 'chipset') required this.motherboardChipset,
       required this.formFactor,
       required this.motherboardProducer,
       required this.maxTdpOfProcessors,
       required this.memorySlots,
       required this.supportedMemoryFrequency,
       required this.maxAmountOfRam,
-      required this.motherboardNetwork,
+      required this.ramMemoryType,
+      @JsonKey(name: 'network') required this.motherboardNetwork,
       required this.bluetooth,
       required this.wifi,
-      required this.cpuPcieVersion,
+      @JsonKey(name: 'pcieVersion') required this.cpuPcieVersion,
       required this.pci_express_x16,
       required this.pci_express_x4,
       required this.pci_express_x1,
       required this.sata3,
       required this.m2,
-      required this.dSub,
       required this.dvi,
       required this.hdmi,
       required this.displayPort,
@@ -607,7 +667,8 @@ class _$_Motherboard extends _Motherboard {
       required this.digitalAudioJack,
       required this.description,
       required this.recommendedPrice,
-      required this.performanceLevel})
+      required this.performanceLevel,
+      @JsonKey(name: 'dsub') required this.dSub})
       : _cpuGenerations = cpuGenerations,
         super._();
 
@@ -619,20 +680,23 @@ class _$_Motherboard extends _Motherboard {
   @override
   final String name;
   @override
-  final MotherboardSocket socket;
-  final List<CPUGeneration> _cpuGenerations;
+  final MotherboardSocket? socket;
+  final List<CPUGeneration>? _cpuGenerations;
   @override
-  List<CPUGeneration> get cpuGenerations {
+  List<CPUGeneration>? get cpuGenerations {
+    final value = _cpuGenerations;
+    if (value == null) return null;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_cpuGenerations);
+    return EqualUnmodifiableListView(value);
   }
 
   @override
-  final MotherboardChipset motherboardChipset;
+  @JsonKey(name: 'chipset')
+  final MotherboardChipset? motherboardChipset;
   @override
-  final FormFactor formFactor;
+  final FormFactor? formFactor;
   @override
-  final Producers motherboardProducer;
+  final Producers? motherboardProducer;
   @override
   final int maxTdpOfProcessors;
   @override
@@ -642,13 +706,17 @@ class _$_Motherboard extends _Motherboard {
   @override
   final int maxAmountOfRam;
   @override
-  final MotherboardNetwork motherboardNetwork;
+  final RamMemoryType? ramMemoryType;
+  @override
+  @JsonKey(name: 'network')
+  final MotherboardNetwork? motherboardNetwork;
   @override
   final bool bluetooth;
   @override
   final bool wifi;
   @override
-  final CPUPcieVersion cpuPcieVersion;
+  @JsonKey(name: 'pcieVersion')
+  final CPUPcieVersion? cpuPcieVersion;
 // ignore: non_constant_identifier_names
   @override
   final int pci_express_x16;
@@ -662,8 +730,6 @@ class _$_Motherboard extends _Motherboard {
   final int sata3;
   @override
   final int m2;
-  @override
-  final bool dSub;
   @override
   final int dvi;
   @override
@@ -684,11 +750,14 @@ class _$_Motherboard extends _Motherboard {
   @override
   final int recommendedPrice;
   @override
-  final PerformanceLevel performanceLevel;
+  final PerformanceLevel? performanceLevel;
+  @override
+  @JsonKey(name: 'dsub')
+  final bool dSub;
 
   @override
   String toString() {
-    return 'Motherboard(id: $id, name: $name, socket: $socket, cpuGenerations: $cpuGenerations, motherboardChipset: $motherboardChipset, formFactor: $formFactor, motherboardProducer: $motherboardProducer, maxTdpOfProcessors: $maxTdpOfProcessors, memorySlots: $memorySlots, supportedMemoryFrequency: $supportedMemoryFrequency, maxAmountOfRam: $maxAmountOfRam, motherboardNetwork: $motherboardNetwork, bluetooth: $bluetooth, wifi: $wifi, cpuPcieVersion: $cpuPcieVersion, pci_express_x16: $pci_express_x16, pci_express_x4: $pci_express_x4, pci_express_x1: $pci_express_x1, sata3: $sata3, m2: $m2, dSub: $dSub, dvi: $dvi, hdmi: $hdmi, displayPort: $displayPort, usb_2_0: $usb_2_0, usb_3_0: $usb_3_0, usb_type_c: $usb_type_c, digitalAudioJack: $digitalAudioJack, description: $description, recommendedPrice: $recommendedPrice, performanceLevel: $performanceLevel)';
+    return 'Motherboard(id: $id, name: $name, socket: $socket, cpuGenerations: $cpuGenerations, motherboardChipset: $motherboardChipset, formFactor: $formFactor, motherboardProducer: $motherboardProducer, maxTdpOfProcessors: $maxTdpOfProcessors, memorySlots: $memorySlots, supportedMemoryFrequency: $supportedMemoryFrequency, maxAmountOfRam: $maxAmountOfRam, ramMemoryType: $ramMemoryType, motherboardNetwork: $motherboardNetwork, bluetooth: $bluetooth, wifi: $wifi, cpuPcieVersion: $cpuPcieVersion, pci_express_x16: $pci_express_x16, pci_express_x4: $pci_express_x4, pci_express_x1: $pci_express_x1, sata3: $sata3, m2: $m2, dvi: $dvi, hdmi: $hdmi, displayPort: $displayPort, usb_2_0: $usb_2_0, usb_3_0: $usb_3_0, usb_type_c: $usb_type_c, digitalAudioJack: $digitalAudioJack, description: $description, recommendedPrice: $recommendedPrice, performanceLevel: $performanceLevel, dSub: $dSub)';
   }
 
   @override
@@ -716,6 +785,8 @@ class _$_Motherboard extends _Motherboard {
                 other.supportedMemoryFrequency == supportedMemoryFrequency) &&
             (identical(other.maxAmountOfRam, maxAmountOfRam) ||
                 other.maxAmountOfRam == maxAmountOfRam) &&
+            (identical(other.ramMemoryType, ramMemoryType) ||
+                other.ramMemoryType == ramMemoryType) &&
             (identical(other.motherboardNetwork, motherboardNetwork) ||
                 other.motherboardNetwork == motherboardNetwork) &&
             (identical(other.bluetooth, bluetooth) ||
@@ -731,7 +802,6 @@ class _$_Motherboard extends _Motherboard {
                 other.pci_express_x1 == pci_express_x1) &&
             (identical(other.sata3, sata3) || other.sata3 == sata3) &&
             (identical(other.m2, m2) || other.m2 == m2) &&
-            (identical(other.dSub, dSub) || other.dSub == dSub) &&
             (identical(other.dvi, dvi) || other.dvi == dvi) &&
             (identical(other.hdmi, hdmi) || other.hdmi == hdmi) &&
             (identical(other.displayPort, displayPort) ||
@@ -747,7 +817,8 @@ class _$_Motherboard extends _Motherboard {
             (identical(other.recommendedPrice, recommendedPrice) ||
                 other.recommendedPrice == recommendedPrice) &&
             (identical(other.performanceLevel, performanceLevel) ||
-                other.performanceLevel == performanceLevel));
+                other.performanceLevel == performanceLevel) &&
+            (identical(other.dSub, dSub) || other.dSub == dSub));
   }
 
   @JsonKey(ignore: true)
@@ -765,6 +836,7 @@ class _$_Motherboard extends _Motherboard {
         memorySlots,
         supportedMemoryFrequency,
         maxAmountOfRam,
+        ramMemoryType,
         motherboardNetwork,
         bluetooth,
         wifi,
@@ -774,7 +846,6 @@ class _$_Motherboard extends _Motherboard {
         pci_express_x1,
         sata3,
         m2,
-        dSub,
         dvi,
         hdmi,
         displayPort,
@@ -784,7 +855,8 @@ class _$_Motherboard extends _Motherboard {
         digitalAudioJack,
         description,
         recommendedPrice,
-        performanceLevel
+        performanceLevel,
+        dSub
       ]);
 
   @JsonKey(ignore: true)
@@ -805,25 +877,28 @@ abstract class _Motherboard extends Motherboard {
   const factory _Motherboard(
       {required final int id,
       required final String name,
-      required final MotherboardSocket socket,
-      required final List<CPUGeneration> cpuGenerations,
-      required final MotherboardChipset motherboardChipset,
-      required final FormFactor formFactor,
-      required final Producers motherboardProducer,
+      required final MotherboardSocket? socket,
+      required final List<CPUGeneration>? cpuGenerations,
+      @JsonKey(name: 'chipset')
+          required final MotherboardChipset? motherboardChipset,
+      required final FormFactor? formFactor,
+      required final Producers? motherboardProducer,
       required final int maxTdpOfProcessors,
       required final int memorySlots,
       required final int supportedMemoryFrequency,
       required final int maxAmountOfRam,
-      required final MotherboardNetwork motherboardNetwork,
+      required final RamMemoryType? ramMemoryType,
+      @JsonKey(name: 'network')
+          required final MotherboardNetwork? motherboardNetwork,
       required final bool bluetooth,
       required final bool wifi,
-      required final CPUPcieVersion cpuPcieVersion,
+      @JsonKey(name: 'pcieVersion')
+          required final CPUPcieVersion? cpuPcieVersion,
       required final int pci_express_x16,
       required final int pci_express_x4,
       required final int pci_express_x1,
       required final int sata3,
       required final int m2,
-      required final bool dSub,
       required final int dvi,
       required final int hdmi,
       required final int displayPort,
@@ -833,7 +908,9 @@ abstract class _Motherboard extends Motherboard {
       required final bool digitalAudioJack,
       required final String description,
       required final int recommendedPrice,
-      required final PerformanceLevel performanceLevel}) = _$_Motherboard;
+      required final PerformanceLevel? performanceLevel,
+      @JsonKey(name: 'dsub')
+          required final bool dSub}) = _$_Motherboard;
   const _Motherboard._() : super._();
 
   factory _Motherboard.fromJson(Map<String, dynamic> json) =
@@ -844,15 +921,16 @@ abstract class _Motherboard extends Motherboard {
   @override
   String get name;
   @override
-  MotherboardSocket get socket;
+  MotherboardSocket? get socket;
   @override
-  List<CPUGeneration> get cpuGenerations;
+  List<CPUGeneration>? get cpuGenerations;
   @override
-  MotherboardChipset get motherboardChipset;
+  @JsonKey(name: 'chipset')
+  MotherboardChipset? get motherboardChipset;
   @override
-  FormFactor get formFactor;
+  FormFactor? get formFactor;
   @override
-  Producers get motherboardProducer;
+  Producers? get motherboardProducer;
   @override
   int get maxTdpOfProcessors;
   @override
@@ -862,13 +940,17 @@ abstract class _Motherboard extends Motherboard {
   @override
   int get maxAmountOfRam;
   @override
-  MotherboardNetwork get motherboardNetwork;
+  RamMemoryType? get ramMemoryType;
+  @override
+  @JsonKey(name: 'network')
+  MotherboardNetwork? get motherboardNetwork;
   @override
   bool get bluetooth;
   @override
   bool get wifi;
   @override
-  CPUPcieVersion get cpuPcieVersion;
+  @JsonKey(name: 'pcieVersion')
+  CPUPcieVersion? get cpuPcieVersion;
   @override // ignore: non_constant_identifier_names
   int get pci_express_x16;
   @override // ignore: non_constant_identifier_names
@@ -879,8 +961,6 @@ abstract class _Motherboard extends Motherboard {
   int get sata3;
   @override
   int get m2;
-  @override
-  bool get dSub;
   @override
   int get dvi;
   @override
@@ -900,7 +980,10 @@ abstract class _Motherboard extends Motherboard {
   @override
   int get recommendedPrice;
   @override
-  PerformanceLevel get performanceLevel;
+  PerformanceLevel? get performanceLevel;
+  @override
+  @JsonKey(name: 'dsub')
+  bool get dSub;
   @override
   @JsonKey(ignore: true)
   _$$_MotherboardCopyWith<_$_Motherboard> get copyWith =>

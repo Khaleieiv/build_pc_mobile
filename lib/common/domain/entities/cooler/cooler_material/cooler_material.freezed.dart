@@ -21,6 +21,7 @@ CoolerMaterial _$CoolerMaterialFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$CoolerMaterial {
   int get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'material')
   String get name => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -35,7 +36,7 @@ abstract class $CoolerMaterialCopyWith<$Res> {
           CoolerMaterial value, $Res Function(CoolerMaterial) then) =
       _$CoolerMaterialCopyWithImpl<$Res, CoolerMaterial>;
   @useResult
-  $Res call({int id, String name});
+  $Res call({int id, @JsonKey(name: 'material') String name});
 }
 
 /// @nodoc
@@ -75,7 +76,7 @@ abstract class _$$_CoolerMaterialCopyWith<$Res>
       __$$_CoolerMaterialCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String name});
+  $Res call({int id, @JsonKey(name: 'material') String name});
 }
 
 /// @nodoc
@@ -108,7 +109,9 @@ class __$$_CoolerMaterialCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_CoolerMaterial extends _CoolerMaterial {
-  const _$_CoolerMaterial({required this.id, required this.name}) : super._();
+  const _$_CoolerMaterial(
+      {required this.id, @JsonKey(name: 'material') required this.name})
+      : super._();
 
   factory _$_CoolerMaterial.fromJson(Map<String, dynamic> json) =>
       _$$_CoolerMaterialFromJson(json);
@@ -116,6 +119,7 @@ class _$_CoolerMaterial extends _CoolerMaterial {
   @override
   final int id;
   @override
+  @JsonKey(name: 'material')
   final String name;
 
   @override
@@ -152,7 +156,9 @@ class _$_CoolerMaterial extends _CoolerMaterial {
 
 abstract class _CoolerMaterial extends CoolerMaterial {
   const factory _CoolerMaterial(
-      {required final int id, required final String name}) = _$_CoolerMaterial;
+          {required final int id,
+          @JsonKey(name: 'material') required final String name}) =
+      _$_CoolerMaterial;
   const _CoolerMaterial._() : super._();
 
   factory _CoolerMaterial.fromJson(Map<String, dynamic> json) =
@@ -161,6 +167,7 @@ abstract class _CoolerMaterial extends CoolerMaterial {
   @override
   int get id;
   @override
+  @JsonKey(name: 'material')
   String get name;
   @override
   @JsonKey(ignore: true)

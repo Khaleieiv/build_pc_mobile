@@ -21,7 +21,7 @@ Rating _$RatingFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Rating {
   int get id => throw _privateConstructorUsedError;
-  List<Likes> get like => throw _privateConstructorUsedError;
+  List<Likes>? get like => throw _privateConstructorUsedError;
   BuildPc get buildPc => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -34,7 +34,7 @@ abstract class $RatingCopyWith<$Res> {
   factory $RatingCopyWith(Rating value, $Res Function(Rating) then) =
       _$RatingCopyWithImpl<$Res, Rating>;
   @useResult
-  $Res call({int id, List<Likes> like, BuildPc buildPc});
+  $Res call({int id, List<Likes>? like, BuildPc buildPc});
 
   $BuildPcCopyWith<$Res> get buildPc;
 }
@@ -53,7 +53,7 @@ class _$RatingCopyWithImpl<$Res, $Val extends Rating>
   @override
   $Res call({
     Object? id = null,
-    Object? like = null,
+    Object? like = freezed,
     Object? buildPc = null,
   }) {
     return _then(_value.copyWith(
@@ -61,10 +61,10 @@ class _$RatingCopyWithImpl<$Res, $Val extends Rating>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      like: null == like
+      like: freezed == like
           ? _value.like
           : like // ignore: cast_nullable_to_non_nullable
-              as List<Likes>,
+              as List<Likes>?,
       buildPc: null == buildPc
           ? _value.buildPc
           : buildPc // ignore: cast_nullable_to_non_nullable
@@ -87,7 +87,7 @@ abstract class _$$_RatingCopyWith<$Res> implements $RatingCopyWith<$Res> {
       __$$_RatingCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, List<Likes> like, BuildPc buildPc});
+  $Res call({int id, List<Likes>? like, BuildPc buildPc});
 
   @override
   $BuildPcCopyWith<$Res> get buildPc;
@@ -104,7 +104,7 @@ class __$$_RatingCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? like = null,
+    Object? like = freezed,
     Object? buildPc = null,
   }) {
     return _then(_$_Rating(
@@ -112,10 +112,10 @@ class __$$_RatingCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      like: null == like
+      like: freezed == like
           ? _value._like
           : like // ignore: cast_nullable_to_non_nullable
-              as List<Likes>,
+              as List<Likes>?,
       buildPc: null == buildPc
           ? _value.buildPc
           : buildPc // ignore: cast_nullable_to_non_nullable
@@ -129,7 +129,7 @@ class __$$_RatingCopyWithImpl<$Res>
 class _$_Rating implements _Rating {
   const _$_Rating(
       {required this.id,
-      required final List<Likes> like,
+      required final List<Likes>? like,
       required this.buildPc})
       : _like = like;
 
@@ -138,11 +138,13 @@ class _$_Rating implements _Rating {
 
   @override
   final int id;
-  final List<Likes> _like;
+  final List<Likes>? _like;
   @override
-  List<Likes> get like {
+  List<Likes>? get like {
+    final value = _like;
+    if (value == null) return null;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_like);
+    return EqualUnmodifiableListView(value);
   }
 
   @override
@@ -185,7 +187,7 @@ class _$_Rating implements _Rating {
 abstract class _Rating implements Rating {
   const factory _Rating(
       {required final int id,
-      required final List<Likes> like,
+      required final List<Likes>? like,
       required final BuildPc buildPc}) = _$_Rating;
 
   factory _Rating.fromJson(Map<String, dynamic> json) = _$_Rating.fromJson;
@@ -193,7 +195,7 @@ abstract class _Rating implements Rating {
   @override
   int get id;
   @override
-  List<Likes> get like;
+  List<Likes>? get like;
   @override
   BuildPc get buildPc;
   @override

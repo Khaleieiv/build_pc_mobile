@@ -8,11 +8,11 @@ part of 'case_size.dart';
 
 _$_CaseSize _$$_CaseSizeFromJson(Map<String, dynamic> json) => _$_CaseSize(
       id: json['id'] as int,
-      name: json['name'] as String,
+      name: json['size'] as String,
     );
 
 Map<String, dynamic> _$$_CaseSizeToJson(_$_CaseSize instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'name': instance.name,
+      'size': instance.name,
     };

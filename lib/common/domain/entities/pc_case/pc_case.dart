@@ -15,9 +15,10 @@ class PcCase with _$PcCase implements BaseComponent {
   const factory PcCase({
     required int id,
     required String name,
-    required Producers caseProducer,
-    required CaseSize caseSize,
+    @JsonKey(name: 'producer') required Producers caseProducer,
+    @JsonKey(name: 'size') required CaseSize caseSize,
     required List<FormFactor> formFactor,
+    @JsonKey(name: 'powerSupplyLocation')
     required CasePowerSupplyLocation casePowerSupplyLocation,
     required bool fansIncluded,
     required int usb_3_2,

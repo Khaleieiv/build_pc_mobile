@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:build_pc_mobile/auth/utils/auth_credentials_storage.dart';
 import 'package:build_pc_mobile/common/constants/api.dart';
 import 'package:build_pc_mobile/common/domain/entities/ram/ram.dart';
 import 'package:build_pc_mobile/common/domain/repositories/ram_repository.dart';
@@ -21,10 +20,8 @@ class RamRepositoryImpl implements RamRepository {
 
   @override
   Future<void> fetchRam() async {
-    final savedCredentials = await AuthCredentialsStorage.savedCredentials;
-    final headers = Api.headers(savedCredentials.tokenAccess);
     final requestUri = Uri.http(Api.baseUrl, _fetchRamPath);
-    final response = await _client.get(requestUri, headers: headers);
+    final response = await _client.get(requestUri, headers: Api.headers());
 
     _processRamResponse(response);
   }

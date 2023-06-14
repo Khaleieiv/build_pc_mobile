@@ -9,6 +9,7 @@ part 'cooler_socket.g.dart';
 class CoolerSocket with _$CoolerSocket implements BaseComponent {
   const factory CoolerSocket({
     required int id,
+    @JsonKey(name: 'socket')
     required String name,
   }) = _CoolerSocket;
 

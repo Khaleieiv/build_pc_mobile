@@ -1,9 +1,13 @@
 import 'package:build_pc_mobile/build_pc/presentation/state/build_pc_notifier.dart';
+import 'package:build_pc_mobile/build_pc/presentation/state/components_for_build_pc_notifier.dart';
 import 'package:build_pc_mobile/build_pc/presentation/state/selected_component_for_build_notifier.dart';
 import 'package:build_pc_mobile/build_pc/presentation/widgets/custom_add_to_build_button_widget.dart';
 import 'package:build_pc_mobile/build_pc/presentation/widgets/custom_alert_dialog_widget.dart';
 import 'package:build_pc_mobile/build_pc/presentation/widgets/custom_selected_component_button_widget.dart';
 import 'package:build_pc_mobile/common/constants/app_colors.dart';
+import 'package:build_pc_mobile/common/domain/entities/ram/ram.dart';
+import 'package:build_pc_mobile/common/domain/entities/storage_drive/hdd/hdd.dart';
+import 'package:build_pc_mobile/common/domain/entities/storage_drive/ssd/ssd.dart';
 import 'package:build_pc_mobile/common/presentation/navigation/route_names.dart';
 import 'package:build_pc_mobile/common/widgets/custom_icon_button_route_page.dart';
 import 'package:flutter/material.dart';
@@ -30,8 +34,22 @@ class _AddComponentToBuildPageState extends State<AddComponentToBuildPage> {
   Widget build(BuildContext context) {
     final selectedComponentForBuildNotifier =
         Provider.of<SelectedComponentForBuildNotifier>(context);
+    final buildPcNotifier = Provider.of<BuildPcNotifier>(context);
 
     const sizeIcon = 25.0;
+
+    final ram = selectedComponentForBuildNotifier.getComponentName<Ram>(
+      selectedComponentForBuildNotifier.addToBuildPcComponents["memory"]
+          as List<Ram>?,
+    );
+    final hdd = selectedComponentForBuildNotifier.getComponentName<Hdd>(
+      selectedComponentForBuildNotifier.addToBuildPcComponents["hdd"]
+          as List<Hdd>?,
+    );
+    final ssd = selectedComponentForBuildNotifier.getComponentName<Ssd>(
+      selectedComponentForBuildNotifier.addToBuildPcComponents["ssd"]
+          as List<Ssd>?,
+    );
 
     return Scaffold(
       appBar: AppBar(
@@ -40,8 +58,11 @@ class _AddComponentToBuildPageState extends State<AddComponentToBuildPage> {
           icon: Icons.arrow_back,
           sizeIcon: sizeIcon,
           onPressed: () {
-            _buildPcNotifier
-                .deleteBuildPcUserListComponents(_buildPcNotifier.buildPc?.id);
+            selectedComponentForBuildNotifier.clearSwapButton(
+              clear: true,
+            );
+            buildPcNotifier
+                .deleteBuildPcUserListComponents(buildPcNotifier.buildPc?.id);
             Navigator.pop(context);
           },
         ),
@@ -58,6 +79,7 @@ class _AddComponentToBuildPageState extends State<AddComponentToBuildPage> {
                 CustomAddToBuildButtonWidget(
                   label: 'Processor',
                   onPressed: () {
+                    selectedComponentForBuildNotifier.setModelName("processor");
                     Navigator.pushNamed(
                       context,
                       RouteNames.listComponentPage,
@@ -67,140 +89,264 @@ class _AddComponentToBuildPageState extends State<AddComponentToBuildPage> {
               else
                 CustomSelectedComponentButtonWidget(
                   imagePath: 'assets/icons/cpu.png',
-                  modelName: "processor",
                   //ignore: avoid_dynamic_calls
                   nameComponent: selectedComponentForBuildNotifier
                           .addToBuildPcComponents["processor"]?.name
                           .toString() ??
                       '',
+                  onPressed: () {
+                    Provider.of<ComponentsForBuildPcNotifier>(
+                      context,
+                      listen: false,
+                    ).deleteCpuListBuildPcComponents(
+                      _buildPcNotifier.buildPc?.id,
+                    );
+                    selectedComponentForBuildNotifier
+                        .removeFromComparison("processor");
+                  },
+                  modelName: 'processor',
                 ),
               if (selectedComponentForBuildNotifier.checkAddMotherboard)
                 CustomAddToBuildButtonWidget(
                   label: 'Motherboard',
                   onPressed: () {
-                    //TODO
+                    selectedComponentForBuildNotifier
+                        .setModelName("motherboard");
+                    Navigator.pushNamed(
+                      context,
+                      RouteNames.listComponentPage,
+                    );
                   },
                 )
               else
                 CustomSelectedComponentButtonWidget(
                   imagePath: 'assets/icons/motherboard.png',
-                  nameComponent: '',
+                  //ignore: avoid_dynamic_calls
+                  nameComponent: selectedComponentForBuildNotifier
+                          .addToBuildPcComponents["motherboard"]?.name
+                          .toString() ??
+                      '',
                   onPressed: () {
-                    //TODO
+                    Provider.of<ComponentsForBuildPcNotifier>(
+                      context,
+                      listen: false,
+                    ).deleteMotherboardListBuildPcComponents(
+                      _buildPcNotifier.buildPc?.id,
+                    );
+                    selectedComponentForBuildNotifier
+                        .removeFromComparison("motherboard");
                   },
-                  modelName: '',
+                  modelName: 'motherboard',
                 ),
               if (selectedComponentForBuildNotifier.checkAddCooler)
                 CustomAddToBuildButtonWidget(
                   label: 'Cooler',
                   onPressed: () {
-                    //TODO
+                    selectedComponentForBuildNotifier.setModelName("cooler");
+                    Navigator.pushNamed(
+                      context,
+                      RouteNames.listComponentPage,
+                    );
                   },
                 )
               else
                 CustomSelectedComponentButtonWidget(
                   imagePath: 'assets/icons/fan.png',
-                  nameComponent: '',
+                  //ignore: avoid_dynamic_calls
+                  nameComponent: selectedComponentForBuildNotifier
+                          .addToBuildPcComponents["cooler"]?.name
+                          .toString() ??
+                      '',
                   onPressed: () {
-                    //TODO
+                    Provider.of<ComponentsForBuildPcNotifier>(
+                      context,
+                      listen: false,
+                    ).deleteCoolerListBuildPcComponents(
+                      _buildPcNotifier.buildPc?.id,
+                    );
+                    selectedComponentForBuildNotifier
+                        .removeFromComparison("cooler");
                   },
-                  modelName: '',
+                  modelName: 'cooler',
                 ),
               if (selectedComponentForBuildNotifier.checkAddGPU)
                 CustomAddToBuildButtonWidget(
                   label: 'Graphic Card',
                   onPressed: () {
-                    //TODO
+                    selectedComponentForBuildNotifier
+                        .setModelName("graphic_card");
+                    Navigator.pushNamed(
+                      context,
+                      RouteNames.listComponentPage,
+                    );
                   },
                 )
               else
                 CustomSelectedComponentButtonWidget(
                   imagePath: 'assets/icons/gpu.png',
-                  nameComponent: '',
+                  //ignore: avoid_dynamic_calls
+                  nameComponent: selectedComponentForBuildNotifier
+                          .addToBuildPcComponents["graphic_card"]?.name
+                          .toString() ??
+                      '',
                   onPressed: () {
-                    //TODO
+                    Provider.of<ComponentsForBuildPcNotifier>(
+                      context,
+                      listen: false,
+                    ).deleteGpuListBuildPcComponents(
+                      _buildPcNotifier.buildPc?.id,
+                    );
+                    selectedComponentForBuildNotifier
+                        .removeFromComparison("graphic_card");
                   },
-                  modelName: '',
+                  modelName: 'graphic_card',
                 ),
               if (selectedComponentForBuildNotifier.checkAddMemory)
                 CustomAddToBuildButtonWidget(
                   label: 'Memory',
                   onPressed: () {
-                    //TODO
+                    selectedComponentForBuildNotifier.setModelName("memory");
+                    Navigator.pushNamed(
+                      context,
+                      RouteNames.listComponentPage,
+                    );
                   },
                 )
               else
                 CustomSelectedComponentButtonWidget(
-                  imagePath: 'assets/icons/ram.png',
-                  nameComponent: '',
+                  imagePath: 'assets/icons/memory.png',
+                  //ignore: avoid_dynamic_calls
+                  nameComponent: '$ram',
                   onPressed: () {
-                    //TODO
+                    Provider.of<ComponentsForBuildPcNotifier>(
+                      context,
+                      listen: false,
+                    ).deleteRamListBuildPcComponents(
+                      _buildPcNotifier.buildPc?.id,
+                    );
+                    selectedComponentForBuildNotifier
+                        .removeFromComparison("memory");
                   },
-                  modelName: '',
+                  modelName: 'memory',
                 ),
               if (selectedComponentForBuildNotifier.checkAddHdd)
                 CustomAddToBuildButtonWidget(
                   label: 'Hdd',
                   onPressed: () {
-                    //TODO
+                    selectedComponentForBuildNotifier.setModelName("hdd");
+                    Navigator.pushNamed(
+                      context,
+                      RouteNames.listComponentPage,
+                    );
                   },
                 )
               else
                 CustomSelectedComponentButtonWidget(
                   imagePath: 'assets/icons/hdd.png',
-                  nameComponent: '',
+                  //ignore: avoid_dynamic_calls
+                  nameComponent: '$hdd',
                   onPressed: () {
-                    //TODO
+                    Provider.of<ComponentsForBuildPcNotifier>(
+                      context,
+                      listen: false,
+                    ).deleteHddListBuildPcComponents(
+                      _buildPcNotifier.buildPc?.id,
+                    );
+                    selectedComponentForBuildNotifier
+                        .removeFromComparison("hdd");
                   },
-                  modelName: '',
+                  modelName: 'hdd',
                 ),
               if (selectedComponentForBuildNotifier.checkAddSsd)
                 CustomAddToBuildButtonWidget(
                   label: 'Ssd',
                   onPressed: () {
-                    //TODO
+                    selectedComponentForBuildNotifier.setModelName("ssd");
+                    Navigator.pushNamed(
+                      context,
+                      RouteNames.listComponentPage,
+                    );
                   },
                 )
               else
                 CustomSelectedComponentButtonWidget(
                   imagePath: 'assets/icons/ssd.png',
-                  nameComponent: '',
+                  //ignore: avoid_dynamic_calls
+                  nameComponent: '$ssd',
                   onPressed: () {
-                    //TODO
+                    Provider.of<ComponentsForBuildPcNotifier>(
+                      context,
+                      listen: false,
+                    ).deleteSsdListBuildPcComponents(
+                      _buildPcNotifier.buildPc?.id,
+                    );
+                    selectedComponentForBuildNotifier
+                        .removeFromComparison("ssd");
                   },
-                  modelName: '',
+                  modelName: 'ssd',
                 ),
               if (selectedComponentForBuildNotifier.checkAddPowerSupply)
                 CustomAddToBuildButtonWidget(
                   label: 'Power Supply',
                   onPressed: () {
-                    //TODO
+                    selectedComponentForBuildNotifier
+                        .setModelName("power_supply");
+                    Navigator.pushNamed(
+                      context,
+                      RouteNames.listComponentPage,
+                    );
                   },
                 )
               else
                 CustomSelectedComponentButtonWidget(
                   imagePath: 'assets/icons/power_supply.png',
-                  nameComponent: '',
+                  //ignore: avoid_dynamic_calls
+                  nameComponent: selectedComponentForBuildNotifier
+                      .addToBuildPcComponents["power_supply"]?.name
+                      .toString() ??
+                      '',
                   onPressed: () {
-                    //TODO
+                    Provider.of<ComponentsForBuildPcNotifier>(
+                      context,
+                      listen: false,
+                    ).deletePowerSupplyListBuildPcComponents(
+                      _buildPcNotifier.buildPc?.id,
+                    );
+                    selectedComponentForBuildNotifier
+                        .removeFromComparison("power_supply");
                   },
-                  modelName: '',
+                  modelName: 'power_supply',
                 ),
               if (selectedComponentForBuildNotifier.checkAddCase)
                 CustomAddToBuildButtonWidget(
                   label: 'Case',
                   onPressed: () {
-                    //TODO
+                    selectedComponentForBuildNotifier.setModelName("case");
+                    Navigator.pushNamed(
+                      context,
+                      RouteNames.listComponentPage,
+                    );
                   },
                 )
               else
                 CustomSelectedComponentButtonWidget(
                   imagePath: 'assets/icons/case.png',
-                  nameComponent: '',
+                  //ignore: avoid_dynamic_calls
+                  nameComponent: selectedComponentForBuildNotifier
+                          .addToBuildPcComponents["case"]?.name
+                          .toString() ??
+                      '',
                   onPressed: () {
-                    //TODO
+                    Provider.of<ComponentsForBuildPcNotifier>(
+                      context,
+                      listen: false,
+                    ).deletePowerSupplyListBuildPcComponents(
+                      _buildPcNotifier.buildPc?.id,
+                    );
+                    selectedComponentForBuildNotifier
+                        .removeFromComparison("case");
                   },
-                  modelName: '',
+                  modelName: 'case',
                 ),
             ],
           ),

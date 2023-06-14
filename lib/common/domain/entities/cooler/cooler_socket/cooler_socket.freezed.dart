@@ -21,6 +21,7 @@ CoolerSocket _$CoolerSocketFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$CoolerSocket {
   int get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'socket')
   String get name => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -35,7 +36,7 @@ abstract class $CoolerSocketCopyWith<$Res> {
           CoolerSocket value, $Res Function(CoolerSocket) then) =
       _$CoolerSocketCopyWithImpl<$Res, CoolerSocket>;
   @useResult
-  $Res call({int id, String name});
+  $Res call({int id, @JsonKey(name: 'socket') String name});
 }
 
 /// @nodoc
@@ -75,7 +76,7 @@ abstract class _$$_CoolerSocketCopyWith<$Res>
       __$$_CoolerSocketCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String name});
+  $Res call({int id, @JsonKey(name: 'socket') String name});
 }
 
 /// @nodoc
@@ -108,7 +109,9 @@ class __$$_CoolerSocketCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_CoolerSocket extends _CoolerSocket {
-  const _$_CoolerSocket({required this.id, required this.name}) : super._();
+  const _$_CoolerSocket(
+      {required this.id, @JsonKey(name: 'socket') required this.name})
+      : super._();
 
   factory _$_CoolerSocket.fromJson(Map<String, dynamic> json) =>
       _$$_CoolerSocketFromJson(json);
@@ -116,6 +119,7 @@ class _$_CoolerSocket extends _CoolerSocket {
   @override
   final int id;
   @override
+  @JsonKey(name: 'socket')
   final String name;
 
   @override
@@ -152,7 +156,8 @@ class _$_CoolerSocket extends _CoolerSocket {
 
 abstract class _CoolerSocket extends CoolerSocket {
   const factory _CoolerSocket(
-      {required final int id, required final String name}) = _$_CoolerSocket;
+      {required final int id,
+      @JsonKey(name: 'socket') required final String name}) = _$_CoolerSocket;
   const _CoolerSocket._() : super._();
 
   factory _CoolerSocket.fromJson(Map<String, dynamic> json) =
@@ -161,6 +166,7 @@ abstract class _CoolerSocket extends CoolerSocket {
   @override
   int get id;
   @override
+  @JsonKey(name: 'socket')
   String get name;
   @override
   @JsonKey(ignore: true)

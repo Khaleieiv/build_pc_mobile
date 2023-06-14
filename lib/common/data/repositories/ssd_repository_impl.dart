@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:build_pc_mobile/auth/utils/auth_credentials_storage.dart';
 import 'package:build_pc_mobile/common/constants/api.dart';
 import 'package:build_pc_mobile/common/domain/entities/storage_drive/ssd/ssd.dart';
 import 'package:build_pc_mobile/common/domain/repositories/ssd_repository.dart';
@@ -21,10 +20,8 @@ class SsdRepositoryImpl implements SsdRepository {
 
   @override
   Future<void> fetchSsd() async {
-    final savedCredentials = await AuthCredentialsStorage.savedCredentials;
-    final headers = Api.headers(savedCredentials.tokenAccess);
     final requestUri = Uri.http(Api.baseUrl, _fetchRamPath);
-    final response = await _client.get(requestUri, headers: headers);
+    final response = await _client.get(requestUri, headers: Api.headers());
     _processSsdResponse(response);
   }
 

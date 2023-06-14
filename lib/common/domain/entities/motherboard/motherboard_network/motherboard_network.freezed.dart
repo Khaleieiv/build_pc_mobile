@@ -21,6 +21,7 @@ MotherboardNetwork _$MotherboardNetworkFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$MotherboardNetwork {
   int get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'network')
   String get name => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -35,7 +36,7 @@ abstract class $MotherboardNetworkCopyWith<$Res> {
           MotherboardNetwork value, $Res Function(MotherboardNetwork) then) =
       _$MotherboardNetworkCopyWithImpl<$Res, MotherboardNetwork>;
   @useResult
-  $Res call({int id, String name});
+  $Res call({int id, @JsonKey(name: 'network') String name});
 }
 
 /// @nodoc
@@ -75,7 +76,7 @@ abstract class _$$_MotherboardNetworkCopyWith<$Res>
       __$$_MotherboardNetworkCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String name});
+  $Res call({int id, @JsonKey(name: 'network') String name});
 }
 
 /// @nodoc
@@ -108,7 +109,8 @@ class __$$_MotherboardNetworkCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_MotherboardNetwork extends _MotherboardNetwork {
-  const _$_MotherboardNetwork({required this.id, required this.name})
+  const _$_MotherboardNetwork(
+      {required this.id, @JsonKey(name: 'network') required this.name})
       : super._();
 
   factory _$_MotherboardNetwork.fromJson(Map<String, dynamic> json) =>
@@ -117,6 +119,7 @@ class _$_MotherboardNetwork extends _MotherboardNetwork {
   @override
   final int id;
   @override
+  @JsonKey(name: 'network')
   final String name;
 
   @override
@@ -154,8 +157,9 @@ class _$_MotherboardNetwork extends _MotherboardNetwork {
 
 abstract class _MotherboardNetwork extends MotherboardNetwork {
   const factory _MotherboardNetwork(
-      {required final int id,
-      required final String name}) = _$_MotherboardNetwork;
+          {required final int id,
+          @JsonKey(name: 'network') required final String name}) =
+      _$_MotherboardNetwork;
   const _MotherboardNetwork._() : super._();
 
   factory _MotherboardNetwork.fromJson(Map<String, dynamic> json) =
@@ -164,6 +168,7 @@ abstract class _MotherboardNetwork extends MotherboardNetwork {
   @override
   int get id;
   @override
+  @JsonKey(name: 'network')
   String get name;
   @override
   @JsonKey(ignore: true)

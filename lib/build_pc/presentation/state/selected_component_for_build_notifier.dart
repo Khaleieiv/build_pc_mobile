@@ -1,13 +1,15 @@
 import 'dart:core';
 
+import 'package:build_pc_mobile/build_pc/domain/entities/build_pc.dart';
 import 'package:build_pc_mobile/common/domain/entities/ram/ram.dart';
 import 'package:build_pc_mobile/common/domain/entities/storage_drive/hdd/hdd.dart';
 import 'package:build_pc_mobile/common/domain/entities/storage_drive/ssd/ssd.dart';
 import 'package:flutter/material.dart';
 
 class SelectedComponentForBuildNotifier extends ChangeNotifier {
-
   String? _modelName;
+
+  BuildPc? _buildPc;
 
   bool _checkAddProcessor = true;
   bool _checkAddMotherboard = true;
@@ -20,7 +22,8 @@ class SelectedComponentForBuildNotifier extends ChangeNotifier {
   bool _checkAddCase = true;
 
   Map<String, dynamic> addToBuildPcComponents = {
-    "nameBuild": null,
+    "id": null,
+    "nameBuild": "Draft",
     "processor": null,
     "motherboard": null,
     "graphic_card": null,
@@ -33,6 +36,8 @@ class SelectedComponentForBuildNotifier extends ChangeNotifier {
   };
 
   String? get modelName => _modelName;
+
+  BuildPc? get buildPc => _buildPc;
 
   bool get checkAddProcessor => _checkAddProcessor;
 
@@ -52,12 +57,20 @@ class SelectedComponentForBuildNotifier extends ChangeNotifier {
 
   bool get checkAddCase => _checkAddCase;
 
-  set modelName(String? value) {
+  set buildPc(BuildPc? value) {
+    _buildPc = value;
+    notifyListeners();
+  }
+
+  Future<void> setModelName(String? value) async {
     _modelName = value;
     notifyListeners();
   }
 
-  void swapButtonState({required bool value, required String? variableName}) {
+  void swapButtonState({
+    required bool value,
+    required String? variableName,
+  }) {
     switch (variableName) {
       case 'processor':
         if (_checkAddProcessor == value) return;
@@ -98,22 +111,67 @@ class SelectedComponentForBuildNotifier extends ChangeNotifier {
       default:
         return;
     }
-
     notifyListeners();
   }
 
-  Future<void> addToComparison(
-      String componentType,
-      dynamic component,
-      ) async {
-    addToBuildPcComponents[componentType] = component;
+  Future<void> clearAddToBuildPcComponents() async {
+    addToBuildPcComponents.clear();
+    notifyListeners();
+  }
+
+  Future<void> clearSwapButton({required bool clear}) async {
+    if (clear) {
+      _checkAddProcessor = true;
+      _checkAddMotherboard = true;
+      _checkAddCooler = true;
+      _checkAddGPU = true;
+      _checkAddMemory = true;
+      _checkAddHdd = true;
+      _checkAddSsd = true;
+      _checkAddPowerSupply = true;
+      _checkAddCase = true;
+    }
+    notifyListeners();
+  }
+
+  Future<void> addToComparison(String componentType, dynamic component) async {
+    switch (componentType) {
+      case "memory":
+        addToBuildPcComponents[componentType] = [component as Ram];
+        break;
+      case "hdd":
+        addToBuildPcComponents[componentType] = [component as Hdd];
+        break;
+      case "ssd":
+        addToBuildPcComponents[componentType] = [component as Ssd];
+        break;
+      default:
+        addToBuildPcComponents[componentType] = component;
+    }
+
     swapButtonState(value: false, variableName: componentType);
     notifyListeners();
   }
 
+  String? getComponentName<T>(List<T>? list) {
+    if (list != null && list.isNotEmpty) {
+      for (final component in list) {
+        if (component is Ram) {
+          return component.name;
+        } else if (component is Hdd) {
+          return component.name;
+        } else if (component is Ssd) {
+          return component.name;
+        }
+      }
+    }
+
+    return null;
+  }
+
   Future<void> removeFromComparison(
-      String componentType,
-      ) async {
+    String componentType,
+  ) async {
     addToBuildPcComponents[componentType] = null;
     swapButtonState(value: true, variableName: componentType);
     notifyListeners();

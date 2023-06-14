@@ -22,9 +22,12 @@ PcCase _$PcCaseFromJson(Map<String, dynamic> json) {
 mixin _$PcCase {
   int get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
+  @JsonKey(name: 'producer')
   Producers get caseProducer => throw _privateConstructorUsedError;
+  @JsonKey(name: 'size')
   CaseSize get caseSize => throw _privateConstructorUsedError;
   List<FormFactor> get formFactor => throw _privateConstructorUsedError;
+  @JsonKey(name: 'powerSupplyLocation')
   CasePowerSupplyLocation get casePowerSupplyLocation =>
       throw _privateConstructorUsedError;
   bool get fansIncluded => throw _privateConstructorUsedError;
@@ -51,10 +54,13 @@ abstract class $PcCaseCopyWith<$Res> {
   $Res call(
       {int id,
       String name,
-      Producers caseProducer,
-      CaseSize caseSize,
+      @JsonKey(name: 'producer')
+          Producers caseProducer,
+      @JsonKey(name: 'size')
+          CaseSize caseSize,
       List<FormFactor> formFactor,
-      CasePowerSupplyLocation casePowerSupplyLocation,
+      @JsonKey(name: 'powerSupplyLocation')
+          CasePowerSupplyLocation casePowerSupplyLocation,
       bool fansIncluded,
       int usb_3_2,
       int usb_3_0,
@@ -211,10 +217,13 @@ abstract class _$$_PcCaseCopyWith<$Res> implements $PcCaseCopyWith<$Res> {
   $Res call(
       {int id,
       String name,
-      Producers caseProducer,
-      CaseSize caseSize,
+      @JsonKey(name: 'producer')
+          Producers caseProducer,
+      @JsonKey(name: 'size')
+          CaseSize caseSize,
       List<FormFactor> formFactor,
-      CasePowerSupplyLocation casePowerSupplyLocation,
+      @JsonKey(name: 'powerSupplyLocation')
+          CasePowerSupplyLocation casePowerSupplyLocation,
       bool fansIncluded,
       int usb_3_2,
       int usb_3_0,
@@ -332,10 +341,13 @@ class _$_PcCase extends _PcCase {
   const _$_PcCase(
       {required this.id,
       required this.name,
-      required this.caseProducer,
-      required this.caseSize,
+      @JsonKey(name: 'producer')
+          required this.caseProducer,
+      @JsonKey(name: 'size')
+          required this.caseSize,
       required final List<FormFactor> formFactor,
-      required this.casePowerSupplyLocation,
+      @JsonKey(name: 'powerSupplyLocation')
+          required this.casePowerSupplyLocation,
       required this.fansIncluded,
       required this.usb_3_2,
       required this.usb_3_0,
@@ -357,8 +369,10 @@ class _$_PcCase extends _PcCase {
   @override
   final String name;
   @override
+  @JsonKey(name: 'producer')
   final Producers caseProducer;
   @override
+  @JsonKey(name: 'size')
   final CaseSize caseSize;
   final List<FormFactor> _formFactor;
   @override
@@ -368,6 +382,7 @@ class _$_PcCase extends _PcCase {
   }
 
   @override
+  @JsonKey(name: 'powerSupplyLocation')
   final CasePowerSupplyLocation casePowerSupplyLocation;
   @override
   final bool fansIncluded;
@@ -469,10 +484,13 @@ abstract class _PcCase extends PcCase {
   const factory _PcCase(
       {required final int id,
       required final String name,
-      required final Producers caseProducer,
-      required final CaseSize caseSize,
+      @JsonKey(name: 'producer')
+          required final Producers caseProducer,
+      @JsonKey(name: 'size')
+          required final CaseSize caseSize,
       required final List<FormFactor> formFactor,
-      required final CasePowerSupplyLocation casePowerSupplyLocation,
+      @JsonKey(name: 'powerSupplyLocation')
+          required final CasePowerSupplyLocation casePowerSupplyLocation,
       required final bool fansIncluded,
       required final int usb_3_2,
       required final int usb_3_0,
@@ -491,12 +509,15 @@ abstract class _PcCase extends PcCase {
   @override
   String get name;
   @override
+  @JsonKey(name: 'producer')
   Producers get caseProducer;
   @override
+  @JsonKey(name: 'size')
   CaseSize get caseSize;
   @override
   List<FormFactor> get formFactor;
   @override
+  @JsonKey(name: 'powerSupplyLocation')
   CasePowerSupplyLocation get casePowerSupplyLocation;
   @override
   bool get fansIncluded;

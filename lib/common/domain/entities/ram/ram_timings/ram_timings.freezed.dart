@@ -21,6 +21,7 @@ RamTimings _$RamTimingsFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$RamTimings {
   int get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'timings')
   String get name => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -35,7 +36,7 @@ abstract class $RamTimingsCopyWith<$Res> {
           RamTimings value, $Res Function(RamTimings) then) =
       _$RamTimingsCopyWithImpl<$Res, RamTimings>;
   @useResult
-  $Res call({int id, String name});
+  $Res call({int id, @JsonKey(name: 'timings') String name});
 }
 
 /// @nodoc
@@ -75,7 +76,7 @@ abstract class _$$_RamTimingsCopyWith<$Res>
       __$$_RamTimingsCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String name});
+  $Res call({int id, @JsonKey(name: 'timings') String name});
 }
 
 /// @nodoc
@@ -108,7 +109,9 @@ class __$$_RamTimingsCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_RamTimings extends _RamTimings {
-  const _$_RamTimings({required this.id, required this.name}) : super._();
+  const _$_RamTimings(
+      {required this.id, @JsonKey(name: 'timings') required this.name})
+      : super._();
 
   factory _$_RamTimings.fromJson(Map<String, dynamic> json) =>
       _$$_RamTimingsFromJson(json);
@@ -116,6 +119,7 @@ class _$_RamTimings extends _RamTimings {
   @override
   final int id;
   @override
+  @JsonKey(name: 'timings')
   final String name;
 
   @override
@@ -152,7 +156,8 @@ class _$_RamTimings extends _RamTimings {
 
 abstract class _RamTimings extends RamTimings {
   const factory _RamTimings(
-      {required final int id, required final String name}) = _$_RamTimings;
+      {required final int id,
+      @JsonKey(name: 'timings') required final String name}) = _$_RamTimings;
   const _RamTimings._() : super._();
 
   factory _RamTimings.fromJson(Map<String, dynamic> json) =
@@ -161,6 +166,7 @@ abstract class _RamTimings extends RamTimings {
   @override
   int get id;
   @override
+  @JsonKey(name: 'timings')
   String get name;
   @override
   @JsonKey(ignore: true)

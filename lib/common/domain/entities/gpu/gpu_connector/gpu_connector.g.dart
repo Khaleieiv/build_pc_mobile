@@ -9,11 +9,11 @@ part of 'gpu_connector.dart';
 _$_GPUConnector _$$_GPUConnectorFromJson(Map<String, dynamic> json) =>
     _$_GPUConnector(
       id: json['id'] as int,
-      name: json['name'] as String,
+      name: json['connector'] as String,
     );
 
 Map<String, dynamic> _$$_GPUConnectorToJson(_$_GPUConnector instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'name': instance.name,
+      'connector': instance.name,
     };

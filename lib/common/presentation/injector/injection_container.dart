@@ -25,6 +25,10 @@ import 'package:build_pc_mobile/common/presentation/state/ram_notifier.dart';
 import 'package:build_pc_mobile/common/presentation/state/ssd_notifier.dart';
 import 'package:build_pc_mobile/component_comparison/presentation/state/component_comparison_notifier.dart';
 import 'package:build_pc_mobile/home/presentation/state/dark_light_theme_notifier.dart';
+import 'package:build_pc_mobile/profile/data/repositories/profile_repository_impl.dart';
+import 'package:build_pc_mobile/profile/presentation/state/profile_notifier.dart';
+import 'package:build_pc_mobile/rating/data/repositories/rating_repository_impl.dart';
+import 'package:build_pc_mobile/rating/presentation/state/rating_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -50,6 +54,8 @@ class _InjectionContainerState extends State<InjectionContainer> {
   SsdNotifier? _ssdNotifier;
   BuildPcNotifier? _buildPcNotifier;
   ComponentsForBuildPcNotifier? _componentsForBuildPcNotifier;
+  ProfileNotifier? _profileNotifier;
+  RatingNotifier? _ratingNotifier;
 
   final _darkLightThemeNotifier = DarkLightThemeNotifier();
   final _componentComparisonNotifier = ComponentComparisonNotifier();
@@ -107,6 +113,12 @@ class _InjectionContainerState extends State<InjectionContainer> {
     _componentsForBuildPcNotifier = ComponentsForBuildPcNotifier(
       componentsForBuildPcRepositoryImpl,
     );
+    final _profileRepositoryImpl = ProfileRepositoryImpl();
+    _profileNotifier = ProfileNotifier(
+      _profileRepositoryImpl,
+    );
+    final _ratingRepositoryImpl = RatingRepositoryImpl();
+    _ratingNotifier = RatingNotifier(_ratingRepositoryImpl,);
 
     getCurrentAppTheme();
     super.initState();
@@ -137,7 +149,8 @@ class _InjectionContainerState extends State<InjectionContainer> {
         ChangeNotifierProvider.value(value: _buildPcNotifier),
         ChangeNotifierProvider.value(value: _selectedComponentForBuildNotifier),
         ChangeNotifierProvider.value(value: _componentsForBuildPcNotifier),
-
+        ChangeNotifierProvider.value(value: _profileNotifier),
+        ChangeNotifierProvider.value(value: _ratingNotifier),
       ],
       child: widget.child,
     );

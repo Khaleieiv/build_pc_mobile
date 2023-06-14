@@ -13,15 +13,15 @@ part 'ssd.g.dart';
 class Ssd with _$Ssd implements BaseComponent{
   const factory Ssd({
     required int id,
-    required Producers storageProducer,
+    @JsonKey(name: 'producer') required Producers storageProducer,
     required String name,
     required int storageSize,
-    required StorageFormFactor storageFormFactor,
+    @JsonKey(name: 'formFactor') required StorageFormFactor storageFormFactor,
     required StorageInterface storageInterface,
     required int bufferSize,
     required int readingSpeed,
     required int writingSpeed,
-    required SsdCellsType ssdCellsType,
+    @JsonKey(name: 'cellsType') required SsdCellsType ssdCellsType,
     required String description,
     required int recommendedPrice,
     required PerformanceLevel? performanceLevel,

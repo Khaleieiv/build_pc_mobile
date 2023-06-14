@@ -33,18 +33,18 @@ class CPUNotifier extends ChangeNotifier with LoadingStateNotifier {
       rethrow;
     }
     finally {
-      notifyListeners();
+      setLoadingState(value: false);
     }
   }
 
   Future<void> _cpuStreamListener(List<CPU>? listCPU) async {
     _listCPU = listCPU;
-
+    setLoadingState(value: true);
     _handleCustomError(null);
-    notifyListeners();
   }
 
   Future<void> subscribeToCPUUpdates(Stream<List<CPU>> cpuStream) async {
+    await _cpuSubscription?.cancel();
     _cpuSubscription = cpuStream.listen(_cpuStreamListener);
   }
 

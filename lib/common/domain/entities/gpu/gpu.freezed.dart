@@ -21,18 +21,23 @@ GPU _$GPUFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$GPU {
   int get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'producer')
   Producers get gpuProducer => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
+  @JsonKey(name: 'vendor')
   Producers get gpuVendor => throw _privateConstructorUsedError;
   int get year => throw _privateConstructorUsedError;
   int get technicalProcess => throw _privateConstructorUsedError;
   int get gpuFrequency => throw _privateConstructorUsedError;
   int get memoryAmount => throw _privateConstructorUsedError;
+  @JsonKey(name: 'memoryType')
   GPUMemoryType get gpuMemoryType => throw _privateConstructorUsedError;
   int get memoryFrequency => throw _privateConstructorUsedError;
   int get bus => throw _privateConstructorUsedError;
   int get tdp => throw _privateConstructorUsedError;
+  @JsonKey(name: 'connector')
   List<GPUConnector> get gpuConnector => throw _privateConstructorUsedError;
+  @JsonKey(name: 'interfaceType')
   GPUInterfaceType get gpuInterfaceType => throw _privateConstructorUsedError;
   int get length => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
@@ -52,19 +57,19 @@ abstract class $GPUCopyWith<$Res> {
   @useResult
   $Res call(
       {int id,
-      Producers gpuProducer,
+      @JsonKey(name: 'producer') Producers gpuProducer,
       String name,
-      Producers gpuVendor,
+      @JsonKey(name: 'vendor') Producers gpuVendor,
       int year,
       int technicalProcess,
       int gpuFrequency,
       int memoryAmount,
-      GPUMemoryType gpuMemoryType,
+      @JsonKey(name: 'memoryType') GPUMemoryType gpuMemoryType,
       int memoryFrequency,
       int bus,
       int tdp,
-      List<GPUConnector> gpuConnector,
-      GPUInterfaceType gpuInterfaceType,
+      @JsonKey(name: 'connector') List<GPUConnector> gpuConnector,
+      @JsonKey(name: 'interfaceType') GPUInterfaceType gpuInterfaceType,
       int length,
       String description,
       GPUTechnologies gpuTechnologies,
@@ -248,19 +253,19 @@ abstract class _$$_GPUCopyWith<$Res> implements $GPUCopyWith<$Res> {
   @useResult
   $Res call(
       {int id,
-      Producers gpuProducer,
+      @JsonKey(name: 'producer') Producers gpuProducer,
       String name,
-      Producers gpuVendor,
+      @JsonKey(name: 'vendor') Producers gpuVendor,
       int year,
       int technicalProcess,
       int gpuFrequency,
       int memoryAmount,
-      GPUMemoryType gpuMemoryType,
+      @JsonKey(name: 'memoryType') GPUMemoryType gpuMemoryType,
       int memoryFrequency,
       int bus,
       int tdp,
-      List<GPUConnector> gpuConnector,
-      GPUInterfaceType gpuInterfaceType,
+      @JsonKey(name: 'connector') List<GPUConnector> gpuConnector,
+      @JsonKey(name: 'interfaceType') GPUInterfaceType gpuInterfaceType,
       int length,
       String description,
       GPUTechnologies gpuTechnologies,
@@ -396,19 +401,24 @@ class __$$_GPUCopyWithImpl<$Res> extends _$GPUCopyWithImpl<$Res, _$_GPU>
 class _$_GPU extends _GPU {
   const _$_GPU(
       {required this.id,
-      required this.gpuProducer,
+      @JsonKey(name: 'producer')
+          required this.gpuProducer,
       required this.name,
-      required this.gpuVendor,
+      @JsonKey(name: 'vendor')
+          required this.gpuVendor,
       required this.year,
       required this.technicalProcess,
       required this.gpuFrequency,
       required this.memoryAmount,
-      required this.gpuMemoryType,
+      @JsonKey(name: 'memoryType')
+          required this.gpuMemoryType,
       required this.memoryFrequency,
       required this.bus,
       required this.tdp,
-      required final List<GPUConnector> gpuConnector,
-      required this.gpuInterfaceType,
+      @JsonKey(name: 'connector')
+          required final List<GPUConnector> gpuConnector,
+      @JsonKey(name: 'interfaceType')
+          required this.gpuInterfaceType,
       required this.length,
       required this.description,
       required this.gpuTechnologies,
@@ -422,10 +432,12 @@ class _$_GPU extends _GPU {
   @override
   final int id;
   @override
+  @JsonKey(name: 'producer')
   final Producers gpuProducer;
   @override
   final String name;
   @override
+  @JsonKey(name: 'vendor')
   final Producers gpuVendor;
   @override
   final int year;
@@ -436,6 +448,7 @@ class _$_GPU extends _GPU {
   @override
   final int memoryAmount;
   @override
+  @JsonKey(name: 'memoryType')
   final GPUMemoryType gpuMemoryType;
   @override
   final int memoryFrequency;
@@ -445,12 +458,14 @@ class _$_GPU extends _GPU {
   final int tdp;
   final List<GPUConnector> _gpuConnector;
   @override
+  @JsonKey(name: 'connector')
   List<GPUConnector> get gpuConnector {
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_gpuConnector);
   }
 
   @override
+  @JsonKey(name: 'interfaceType')
   final GPUInterfaceType gpuInterfaceType;
   @override
   final int length;
@@ -549,19 +564,24 @@ class _$_GPU extends _GPU {
 abstract class _GPU extends GPU {
   const factory _GPU(
       {required final int id,
-      required final Producers gpuProducer,
+      @JsonKey(name: 'producer')
+          required final Producers gpuProducer,
       required final String name,
-      required final Producers gpuVendor,
+      @JsonKey(name: 'vendor')
+          required final Producers gpuVendor,
       required final int year,
       required final int technicalProcess,
       required final int gpuFrequency,
       required final int memoryAmount,
-      required final GPUMemoryType gpuMemoryType,
+      @JsonKey(name: 'memoryType')
+          required final GPUMemoryType gpuMemoryType,
       required final int memoryFrequency,
       required final int bus,
       required final int tdp,
-      required final List<GPUConnector> gpuConnector,
-      required final GPUInterfaceType gpuInterfaceType,
+      @JsonKey(name: 'connector')
+          required final List<GPUConnector> gpuConnector,
+      @JsonKey(name: 'interfaceType')
+          required final GPUInterfaceType gpuInterfaceType,
       required final int length,
       required final String description,
       required final GPUTechnologies gpuTechnologies,
@@ -574,10 +594,12 @@ abstract class _GPU extends GPU {
   @override
   int get id;
   @override
+  @JsonKey(name: 'producer')
   Producers get gpuProducer;
   @override
   String get name;
   @override
+  @JsonKey(name: 'vendor')
   Producers get gpuVendor;
   @override
   int get year;
@@ -588,6 +610,7 @@ abstract class _GPU extends GPU {
   @override
   int get memoryAmount;
   @override
+  @JsonKey(name: 'memoryType')
   GPUMemoryType get gpuMemoryType;
   @override
   int get memoryFrequency;
@@ -596,8 +619,10 @@ abstract class _GPU extends GPU {
   @override
   int get tdp;
   @override
+  @JsonKey(name: 'connector')
   List<GPUConnector> get gpuConnector;
   @override
+  @JsonKey(name: 'interfaceType')
   GPUInterfaceType get gpuInterfaceType;
   @override
   int get length;

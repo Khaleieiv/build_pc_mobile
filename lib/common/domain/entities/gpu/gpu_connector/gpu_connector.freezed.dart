@@ -21,6 +21,7 @@ GPUConnector _$GPUConnectorFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$GPUConnector {
   int get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'connector')
   String get name => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -35,7 +36,7 @@ abstract class $GPUConnectorCopyWith<$Res> {
           GPUConnector value, $Res Function(GPUConnector) then) =
       _$GPUConnectorCopyWithImpl<$Res, GPUConnector>;
   @useResult
-  $Res call({int id, String name});
+  $Res call({int id, @JsonKey(name: 'connector') String name});
 }
 
 /// @nodoc
@@ -75,7 +76,7 @@ abstract class _$$_GPUConnectorCopyWith<$Res>
       __$$_GPUConnectorCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String name});
+  $Res call({int id, @JsonKey(name: 'connector') String name});
 }
 
 /// @nodoc
@@ -108,7 +109,9 @@ class __$$_GPUConnectorCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_GPUConnector extends _GPUConnector {
-  const _$_GPUConnector({required this.id, required this.name}) : super._();
+  const _$_GPUConnector(
+      {required this.id, @JsonKey(name: 'connector') required this.name})
+      : super._();
 
   factory _$_GPUConnector.fromJson(Map<String, dynamic> json) =>
       _$$_GPUConnectorFromJson(json);
@@ -116,6 +119,7 @@ class _$_GPUConnector extends _GPUConnector {
   @override
   final int id;
   @override
+  @JsonKey(name: 'connector')
   final String name;
 
   @override
@@ -152,7 +156,9 @@ class _$_GPUConnector extends _GPUConnector {
 
 abstract class _GPUConnector extends GPUConnector {
   const factory _GPUConnector(
-      {required final int id, required final String name}) = _$_GPUConnector;
+          {required final int id,
+          @JsonKey(name: 'connector') required final String name}) =
+      _$_GPUConnector;
   const _GPUConnector._() : super._();
 
   factory _GPUConnector.fromJson(Map<String, dynamic> json) =
@@ -161,6 +167,7 @@ abstract class _GPUConnector extends GPUConnector {
   @override
   int get id;
   @override
+  @JsonKey(name: 'connector')
   String get name;
   @override
   @JsonKey(ignore: true)

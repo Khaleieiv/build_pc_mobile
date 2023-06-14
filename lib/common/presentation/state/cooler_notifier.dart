@@ -19,7 +19,9 @@ class CoolerNotifier extends ChangeNotifier with LoadingStateNotifier {
 
   CustomException get coolerException => _coolerException;
 
-  CoolerNotifier(this._coolerRepositoryImpl);
+  CoolerNotifier(this._coolerRepositoryImpl) {
+    subscribeToCoolerUpdates(_coolerRepositoryImpl.coolerStream);
+  }
 
   Future<void> fetchCooler() async {
     if (isLoading) return;
@@ -31,15 +33,13 @@ class CoolerNotifier extends ChangeNotifier with LoadingStateNotifier {
       rethrow;
     } finally {
       setLoadingState(value: false);
-      notifyListeners();
     }
   }
 
   Future<void> _coolerStreamListener(List<Cooler>? listCooler) async {
     _listCooler = listCooler;
-    setLoadingState(value: false);
+    setLoadingState(value: true);
     _handleCustomError(null);
-    notifyListeners();
   }
 
   Future<void> subscribeToCoolerUpdates(

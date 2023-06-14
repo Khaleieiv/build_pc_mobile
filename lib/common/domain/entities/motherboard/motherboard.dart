@@ -7,9 +7,11 @@ import 'package:build_pc_mobile/common/domain/entities/motherboard/motherboard_n
 import 'package:build_pc_mobile/common/domain/entities/motherboard/motherboard_socket/motherboard_socket.dart';
 import 'package:build_pc_mobile/common/domain/entities/performance_level/performance_level.dart';
 import 'package:build_pc_mobile/common/domain/entities/producer/producers.dart';
+import 'package:build_pc_mobile/common/domain/entities/ram/ram_memory_type/ram_memory_type.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'motherboard.freezed.dart';
+
 part 'motherboard.g.dart';
 
 @freezed
@@ -17,19 +19,20 @@ class Motherboard with _$Motherboard implements BaseComponent {
   const factory Motherboard({
     required int id,
     required String name,
-    required MotherboardSocket socket,
-    required List<CPUGeneration> cpuGenerations,
-    required MotherboardChipset motherboardChipset,
-    required FormFactor formFactor,
-    required Producers motherboardProducer,
+    required MotherboardSocket? socket,
+    required List<CPUGeneration>? cpuGenerations,
+    @JsonKey(name: 'chipset') required MotherboardChipset? motherboardChipset,
+    required FormFactor? formFactor,
+    required Producers? motherboardProducer,
     required int maxTdpOfProcessors,
     required int memorySlots,
     required int supportedMemoryFrequency,
     required int maxAmountOfRam,
-    required MotherboardNetwork motherboardNetwork,
+    required RamMemoryType? ramMemoryType,
+    @JsonKey(name: 'network') required MotherboardNetwork? motherboardNetwork,
     required bool bluetooth,
     required bool wifi,
-    required CPUPcieVersion cpuPcieVersion,
+    @JsonKey(name: 'pcieVersion') required CPUPcieVersion? cpuPcieVersion,
     // ignore: non_constant_identifier_names
     required int pci_express_x16,
     // ignore: non_constant_identifier_names
@@ -38,7 +41,6 @@ class Motherboard with _$Motherboard implements BaseComponent {
     required int pci_express_x1,
     required int sata3,
     required int m2,
-    required bool dSub,
     required int dvi,
     required int hdmi,
     required int displayPort,
@@ -49,7 +51,8 @@ class Motherboard with _$Motherboard implements BaseComponent {
     required bool digitalAudioJack,
     required String description,
     required int recommendedPrice,
-    required PerformanceLevel performanceLevel,
+    required PerformanceLevel? performanceLevel,
+    @JsonKey(name: 'dsub') required bool dSub,
   }) = _Motherboard;
 
   const Motherboard._();
@@ -60,27 +63,27 @@ class Motherboard with _$Motherboard implements BaseComponent {
   @override
   List<String?> parsedModels() {
     final cpuGen = [];
-    for (final generation in cpuGenerations) {
+    for (final generation in cpuGenerations!) {
       cpuGen.add(generation.name);
     }
 
     final fields = [
       name,
-      socket.name,
+      socket?.name,
       cpuGen.toString(),
-      motherboardChipset.name,
+      motherboardChipset?.name,
       formFactor.toString(),
-      motherboardProducer.name,
+      motherboardProducer?.name,
       maxTdpOfProcessors.toString(),
       memorySlots.toString(),
       maxTdpOfProcessors.toString(),
       memorySlots.toString(),
       supportedMemoryFrequency.toString(),
       maxAmountOfRam.toString(),
-      motherboardNetwork.name,
+      motherboardNetwork?.name,
       bluetooth.toString(),
       wifi.toString(),
-      cpuPcieVersion.name,
+      cpuPcieVersion?.name,
       pci_express_x16.toString(),
       pci_express_x4.toString(),
       pci_express_x1.toString(),
@@ -95,7 +98,7 @@ class Motherboard with _$Motherboard implements BaseComponent {
       usb_type_c.toString(),
       digitalAudioJack.toString(),
       recommendedPrice.toString(),
-      performanceLevel.name,
+      performanceLevel?.name,
       description,
     ];
 

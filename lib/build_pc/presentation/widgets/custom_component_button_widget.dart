@@ -20,7 +20,7 @@ class CustomComponentButtonWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final themeChange = Provider.of<DarkLightThemeNotifier>(context);
 
-    const fontSize = 26.0;
+    const fontSize = 24.0;
     const fontFamily = 'Lexend Deca';
 
     const heightContainer = 110.0;
@@ -68,12 +68,14 @@ class CustomComponentButtonWidget extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(width: AppSizes.defaultPadding),
-                  Text(
-                    nameComponent ?? '',
-                    style: const TextStyle(
-                      fontFamily: fontFamily,
-                      fontWeight: FontWeight.w600,
-                      fontSize: fontSize,
+                  Flexible(
+                    child: Text(
+                      nameComponent ?? '',
+                      style: const TextStyle(
+                        fontFamily: fontFamily,
+                        fontWeight: FontWeight.w600,
+                        fontSize: fontSize,
+                      ),
                     ),
                   ),
                 ],

@@ -13,14 +13,14 @@ part 'power_supply.g.dart';
 class PowerSupply with _$PowerSupply implements BaseComponent {
   const factory PowerSupply({
     required int id,
-    required Producers powerSupplyProducer,
+    @JsonKey(name: 'producer') required Producers powerSupplyProducer,
     required String name,
     required int power,
     required FormFactor formFactor,
     required PerformanceLevel? performanceLevel,
     required bool pfcModule,
     required bool modularConnection,
-    required List<PowerSupplyProtectionFunctions>
+    @JsonKey(name: 'protection') required List<PowerSupplyProtectionFunctions>
         powerSupplyProtectionFunctions,
     required int cpu_4pin,
     required int cpu_4plus4pin,

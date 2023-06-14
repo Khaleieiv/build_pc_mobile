@@ -9,7 +9,7 @@ part 'case_design_features.g.dart';
 class CaseDesignFeatures  with _$CaseDesignFeatures implements BaseComponent {
   const factory CaseDesignFeatures ({
     required int id,
-    required String name,
+    @JsonKey(name: 'designFeatures') required String name,
   }) = _CaseDesignFeatures;
 
   const CaseDesignFeatures._();

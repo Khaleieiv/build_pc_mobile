@@ -9,11 +9,11 @@ part of 'gpu_interface_type.dart';
 _$_GPUInterfaceType _$$_GPUInterfaceTypeFromJson(Map<String, dynamic> json) =>
     _$_GPUInterfaceType(
       id: json['id'] as int,
-      name: json['name'] as String,
+      name: json['interfaceType'] as String,
     );
 
 Map<String, dynamic> _$$_GPUInterfaceTypeToJson(_$_GPUInterfaceType instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'name': instance.name,
+      'interfaceType': instance.name,
     };

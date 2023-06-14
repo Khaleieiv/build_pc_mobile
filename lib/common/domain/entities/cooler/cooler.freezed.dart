@@ -22,8 +22,11 @@ Cooler _$CoolerFromJson(Map<String, dynamic> json) {
 mixin _$Cooler {
   int get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
+  @JsonKey(name: 'producer')
   Producers get coolerProducer => throw _privateConstructorUsedError;
+  @JsonKey(name: 'socket')
   List<CoolerSocket> get coolerSocket => throw _privateConstructorUsedError;
+  @JsonKey(name: 'material')
   CoolerMaterial get coolerMaterial => throw _privateConstructorUsedError;
   int get maxTdp => throw _privateConstructorUsedError;
   int get thermalTubes => throw _privateConstructorUsedError;
@@ -44,9 +47,9 @@ abstract class $CoolerCopyWith<$Res> {
   $Res call(
       {int id,
       String name,
-      Producers coolerProducer,
-      List<CoolerSocket> coolerSocket,
-      CoolerMaterial coolerMaterial,
+      @JsonKey(name: 'producer') Producers coolerProducer,
+      @JsonKey(name: 'socket') List<CoolerSocket> coolerSocket,
+      @JsonKey(name: 'material') CoolerMaterial coolerMaterial,
       int maxTdp,
       int thermalTubes,
       String description,
@@ -164,9 +167,9 @@ abstract class _$$_CoolerCopyWith<$Res> implements $CoolerCopyWith<$Res> {
   $Res call(
       {int id,
       String name,
-      Producers coolerProducer,
-      List<CoolerSocket> coolerSocket,
-      CoolerMaterial coolerMaterial,
+      @JsonKey(name: 'producer') Producers coolerProducer,
+      @JsonKey(name: 'socket') List<CoolerSocket> coolerSocket,
+      @JsonKey(name: 'material') CoolerMaterial coolerMaterial,
       int maxTdp,
       int thermalTubes,
       String description,
@@ -253,9 +256,9 @@ class _$_Cooler extends _Cooler {
   const _$_Cooler(
       {required this.id,
       required this.name,
-      required this.coolerProducer,
-      required final List<CoolerSocket> coolerSocket,
-      required this.coolerMaterial,
+      @JsonKey(name: 'producer') required this.coolerProducer,
+      @JsonKey(name: 'socket') required final List<CoolerSocket> coolerSocket,
+      @JsonKey(name: 'material') required this.coolerMaterial,
       required this.maxTdp,
       required this.thermalTubes,
       required this.description,
@@ -272,15 +275,18 @@ class _$_Cooler extends _Cooler {
   @override
   final String name;
   @override
+  @JsonKey(name: 'producer')
   final Producers coolerProducer;
   final List<CoolerSocket> _coolerSocket;
   @override
+  @JsonKey(name: 'socket')
   List<CoolerSocket> get coolerSocket {
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_coolerSocket);
   }
 
   @override
+  @JsonKey(name: 'material')
   final CoolerMaterial coolerMaterial;
   @override
   final int maxTdp;
@@ -355,9 +361,9 @@ abstract class _Cooler extends Cooler {
   const factory _Cooler(
       {required final int id,
       required final String name,
-      required final Producers coolerProducer,
-      required final List<CoolerSocket> coolerSocket,
-      required final CoolerMaterial coolerMaterial,
+      @JsonKey(name: 'producer') required final Producers coolerProducer,
+      @JsonKey(name: 'socket') required final List<CoolerSocket> coolerSocket,
+      @JsonKey(name: 'material') required final CoolerMaterial coolerMaterial,
       required final int maxTdp,
       required final int thermalTubes,
       required final String description,
@@ -372,10 +378,13 @@ abstract class _Cooler extends Cooler {
   @override
   String get name;
   @override
+  @JsonKey(name: 'producer')
   Producers get coolerProducer;
   @override
+  @JsonKey(name: 'socket')
   List<CoolerSocket> get coolerSocket;
   @override
+  @JsonKey(name: 'material')
   CoolerMaterial get coolerMaterial;
   @override
   int get maxTdp;

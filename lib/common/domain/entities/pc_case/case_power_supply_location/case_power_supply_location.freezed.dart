@@ -22,6 +22,7 @@ CasePowerSupplyLocation _$CasePowerSupplyLocationFromJson(
 /// @nodoc
 mixin _$CasePowerSupplyLocation {
   int get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'powerSupplyLocation')
   String get name => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -36,7 +37,7 @@ abstract class $CasePowerSupplyLocationCopyWith<$Res> {
           $Res Function(CasePowerSupplyLocation) then) =
       _$CasePowerSupplyLocationCopyWithImpl<$Res, CasePowerSupplyLocation>;
   @useResult
-  $Res call({int id, String name});
+  $Res call({int id, @JsonKey(name: 'powerSupplyLocation') String name});
 }
 
 /// @nodoc
@@ -77,7 +78,7 @@ abstract class _$$_CasePowerSupplyLocationCopyWith<$Res>
       __$$_CasePowerSupplyLocationCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String name});
+  $Res call({int id, @JsonKey(name: 'powerSupplyLocation') String name});
 }
 
 /// @nodoc
@@ -111,7 +112,9 @@ class __$$_CasePowerSupplyLocationCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_CasePowerSupplyLocation extends _CasePowerSupplyLocation {
-  const _$_CasePowerSupplyLocation({required this.id, required this.name})
+  const _$_CasePowerSupplyLocation(
+      {required this.id,
+      @JsonKey(name: 'powerSupplyLocation') required this.name})
       : super._();
 
   factory _$_CasePowerSupplyLocation.fromJson(Map<String, dynamic> json) =>
@@ -120,6 +123,7 @@ class _$_CasePowerSupplyLocation extends _CasePowerSupplyLocation {
   @override
   final int id;
   @override
+  @JsonKey(name: 'powerSupplyLocation')
   final String name;
 
   @override
@@ -158,8 +162,9 @@ class _$_CasePowerSupplyLocation extends _CasePowerSupplyLocation {
 
 abstract class _CasePowerSupplyLocation extends CasePowerSupplyLocation {
   const factory _CasePowerSupplyLocation(
-      {required final int id,
-      required final String name}) = _$_CasePowerSupplyLocation;
+          {required final int id,
+          @JsonKey(name: 'powerSupplyLocation') required final String name}) =
+      _$_CasePowerSupplyLocation;
   const _CasePowerSupplyLocation._() : super._();
 
   factory _CasePowerSupplyLocation.fromJson(Map<String, dynamic> json) =
@@ -168,6 +173,7 @@ abstract class _CasePowerSupplyLocation extends CasePowerSupplyLocation {
   @override
   int get id;
   @override
+  @JsonKey(name: 'powerSupplyLocation')
   String get name;
   @override
   @JsonKey(ignore: true)

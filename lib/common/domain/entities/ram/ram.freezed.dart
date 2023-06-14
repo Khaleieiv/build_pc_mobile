@@ -22,10 +22,13 @@ Ram _$RamFromJson(Map<String, dynamic> json) {
 mixin _$Ram {
   int get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
+  @JsonKey(name: 'producer')
   Producers get ramProducer => throw _privateConstructorUsedError;
+  @JsonKey(name: 'memoryType')
   RamMemoryType get ramMemoryType => throw _privateConstructorUsedError;
   int get memoryCapacity => throw _privateConstructorUsedError;
   int get frequency => throw _privateConstructorUsedError;
+  @JsonKey(name: 'timings')
   RamTimings get ramTimings => throw _privateConstructorUsedError;
   double get powerSupplyVoltage => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
@@ -45,11 +48,11 @@ abstract class $RamCopyWith<$Res> {
   $Res call(
       {int id,
       String name,
-      Producers ramProducer,
-      RamMemoryType ramMemoryType,
+      @JsonKey(name: 'producer') Producers ramProducer,
+      @JsonKey(name: 'memoryType') RamMemoryType ramMemoryType,
       int memoryCapacity,
       int frequency,
-      RamTimings ramTimings,
+      @JsonKey(name: 'timings') RamTimings ramTimings,
       double powerSupplyVoltage,
       String description,
       int recommendedPrice,
@@ -179,11 +182,11 @@ abstract class _$$_RamCopyWith<$Res> implements $RamCopyWith<$Res> {
   $Res call(
       {int id,
       String name,
-      Producers ramProducer,
-      RamMemoryType ramMemoryType,
+      @JsonKey(name: 'producer') Producers ramProducer,
+      @JsonKey(name: 'memoryType') RamMemoryType ramMemoryType,
       int memoryCapacity,
       int frequency,
-      RamTimings ramTimings,
+      @JsonKey(name: 'timings') RamTimings ramTimings,
       double powerSupplyVoltage,
       String description,
       int recommendedPrice,
@@ -275,11 +278,11 @@ class _$_Ram extends _Ram {
   const _$_Ram(
       {required this.id,
       required this.name,
-      required this.ramProducer,
-      required this.ramMemoryType,
+      @JsonKey(name: 'producer') required this.ramProducer,
+      @JsonKey(name: 'memoryType') required this.ramMemoryType,
       required this.memoryCapacity,
       required this.frequency,
-      required this.ramTimings,
+      @JsonKey(name: 'timings') required this.ramTimings,
       required this.powerSupplyVoltage,
       required this.description,
       required this.recommendedPrice,
@@ -293,14 +296,17 @@ class _$_Ram extends _Ram {
   @override
   final String name;
   @override
+  @JsonKey(name: 'producer')
   final Producers ramProducer;
   @override
+  @JsonKey(name: 'memoryType')
   final RamMemoryType ramMemoryType;
   @override
   final int memoryCapacity;
   @override
   final int frequency;
   @override
+  @JsonKey(name: 'timings')
   final RamTimings ramTimings;
   @override
   final double powerSupplyVoltage;
@@ -377,11 +383,11 @@ abstract class _Ram extends Ram {
   const factory _Ram(
       {required final int id,
       required final String name,
-      required final Producers ramProducer,
-      required final RamMemoryType ramMemoryType,
+      @JsonKey(name: 'producer') required final Producers ramProducer,
+      @JsonKey(name: 'memoryType') required final RamMemoryType ramMemoryType,
       required final int memoryCapacity,
       required final int frequency,
-      required final RamTimings ramTimings,
+      @JsonKey(name: 'timings') required final RamTimings ramTimings,
       required final double powerSupplyVoltage,
       required final String description,
       required final int recommendedPrice,
@@ -395,14 +401,17 @@ abstract class _Ram extends Ram {
   @override
   String get name;
   @override
+  @JsonKey(name: 'producer')
   Producers get ramProducer;
   @override
+  @JsonKey(name: 'memoryType')
   RamMemoryType get ramMemoryType;
   @override
   int get memoryCapacity;
   @override
   int get frequency;
   @override
+  @JsonKey(name: 'timings')
   RamTimings get ramTimings;
   @override
   double get powerSupplyVoltage;

@@ -23,7 +23,6 @@ class ListComponentsParameters {
   static final gpuList = [
     "Name",
     "Gpu producer",
-    "Name",
     "Gpu vendor",
     "Year of release",
     "Technical process",
@@ -50,7 +49,7 @@ class ListComponentsParameters {
     "Producer",
     "Max TDP of Processors",
     "Memory Slots",
-    "Supported Memory Frequency",
+    "Memory Frequency",
     "Max Amount of RAM",
     "Network",
     "Bluetooth",
@@ -120,6 +119,7 @@ class ListComponentsParameters {
     "Cooler material",
     "Max TDP",
     "Thermal tubes",
+
     "Recommended price",
     "Performance level",
     "Description",
@@ -149,7 +149,7 @@ class ListComponentsParameters {
     "Case producer",
     "Case size",
     "Form factor",
-    "Case power supply location",
+    "Power supply location",
     "Fans included",
     "USB 3.2",
     "USB 3.0",

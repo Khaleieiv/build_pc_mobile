@@ -21,6 +21,7 @@ MotherboardChipset _$MotherboardChipsetFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$MotherboardChipset {
   int get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'chipset')
   String get name => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -35,7 +36,7 @@ abstract class $MotherboardChipsetCopyWith<$Res> {
           MotherboardChipset value, $Res Function(MotherboardChipset) then) =
       _$MotherboardChipsetCopyWithImpl<$Res, MotherboardChipset>;
   @useResult
-  $Res call({int id, String name});
+  $Res call({int id, @JsonKey(name: 'chipset') String name});
 }
 
 /// @nodoc
@@ -75,7 +76,7 @@ abstract class _$$_MotherboardChipsetCopyWith<$Res>
       __$$_MotherboardChipsetCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String name});
+  $Res call({int id, @JsonKey(name: 'chipset') String name});
 }
 
 /// @nodoc
@@ -108,7 +109,8 @@ class __$$_MotherboardChipsetCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_MotherboardChipset extends _MotherboardChipset {
-  const _$_MotherboardChipset({required this.id, required this.name})
+  const _$_MotherboardChipset(
+      {required this.id, @JsonKey(name: 'chipset') required this.name})
       : super._();
 
   factory _$_MotherboardChipset.fromJson(Map<String, dynamic> json) =>
@@ -117,6 +119,7 @@ class _$_MotherboardChipset extends _MotherboardChipset {
   @override
   final int id;
   @override
+  @JsonKey(name: 'chipset')
   final String name;
 
   @override
@@ -154,8 +157,9 @@ class _$_MotherboardChipset extends _MotherboardChipset {
 
 abstract class _MotherboardChipset extends MotherboardChipset {
   const factory _MotherboardChipset(
-      {required final int id,
-      required final String name}) = _$_MotherboardChipset;
+          {required final int id,
+          @JsonKey(name: 'chipset') required final String name}) =
+      _$_MotherboardChipset;
   const _MotherboardChipset._() : super._();
 
   factory _MotherboardChipset.fromJson(Map<String, dynamic> json) =
@@ -164,6 +168,7 @@ abstract class _MotherboardChipset extends MotherboardChipset {
   @override
   int get id;
   @override
+  @JsonKey(name: 'chipset')
   String get name;
   @override
   @JsonKey(ignore: true)

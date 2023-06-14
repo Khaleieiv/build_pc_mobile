@@ -21,10 +21,12 @@ Hdd _$HddFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Hdd {
   int get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'producer')
   Producers get storageProducer => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   int get storageSize => throw _privateConstructorUsedError;
   int get speed => throw _privateConstructorUsedError;
+  @JsonKey(name: 'formFactor')
   StorageFormFactor get storageFormFactor => throw _privateConstructorUsedError;
   StorageInterface get storageInterface => throw _privateConstructorUsedError;
   int get bufferSize => throw _privateConstructorUsedError;
@@ -46,11 +48,11 @@ abstract class $HddCopyWith<$Res> {
   @useResult
   $Res call(
       {int id,
-      Producers storageProducer,
+      @JsonKey(name: 'producer') Producers storageProducer,
       String name,
       int storageSize,
       int speed,
-      StorageFormFactor storageFormFactor,
+      @JsonKey(name: 'formFactor') StorageFormFactor storageFormFactor,
       StorageInterface storageInterface,
       int bufferSize,
       int readingSpeed,
@@ -192,11 +194,11 @@ abstract class _$$_HddCopyWith<$Res> implements $HddCopyWith<$Res> {
   @useResult
   $Res call(
       {int id,
-      Producers storageProducer,
+      @JsonKey(name: 'producer') Producers storageProducer,
       String name,
       int storageSize,
       int speed,
-      StorageFormFactor storageFormFactor,
+      @JsonKey(name: 'formFactor') StorageFormFactor storageFormFactor,
       StorageInterface storageInterface,
       int bufferSize,
       int readingSpeed,
@@ -300,11 +302,11 @@ class __$$_HddCopyWithImpl<$Res> extends _$HddCopyWithImpl<$Res, _$_Hdd>
 class _$_Hdd extends _Hdd {
   const _$_Hdd(
       {required this.id,
-      required this.storageProducer,
+      @JsonKey(name: 'producer') required this.storageProducer,
       required this.name,
       required this.storageSize,
       required this.speed,
-      required this.storageFormFactor,
+      @JsonKey(name: 'formFactor') required this.storageFormFactor,
       required this.storageInterface,
       required this.bufferSize,
       required this.readingSpeed,
@@ -319,6 +321,7 @@ class _$_Hdd extends _Hdd {
   @override
   final int id;
   @override
+  @JsonKey(name: 'producer')
   final Producers storageProducer;
   @override
   final String name;
@@ -327,6 +330,7 @@ class _$_Hdd extends _Hdd {
   @override
   final int speed;
   @override
+  @JsonKey(name: 'formFactor')
   final StorageFormFactor storageFormFactor;
   @override
   final StorageInterface storageInterface;
@@ -413,11 +417,13 @@ class _$_Hdd extends _Hdd {
 abstract class _Hdd extends Hdd {
   const factory _Hdd(
       {required final int id,
-      required final Producers storageProducer,
+      @JsonKey(name: 'producer')
+          required final Producers storageProducer,
       required final String name,
       required final int storageSize,
       required final int speed,
-      required final StorageFormFactor storageFormFactor,
+      @JsonKey(name: 'formFactor')
+          required final StorageFormFactor storageFormFactor,
       required final StorageInterface storageInterface,
       required final int bufferSize,
       required final int readingSpeed,
@@ -432,6 +438,7 @@ abstract class _Hdd extends Hdd {
   @override
   int get id;
   @override
+  @JsonKey(name: 'producer')
   Producers get storageProducer;
   @override
   String get name;
@@ -440,6 +447,7 @@ abstract class _Hdd extends Hdd {
   @override
   int get speed;
   @override
+  @JsonKey(name: 'formFactor')
   StorageFormFactor get storageFormFactor;
   @override
   StorageInterface get storageInterface;

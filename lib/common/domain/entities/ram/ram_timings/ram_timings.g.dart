@@ -9,11 +9,11 @@ part of 'ram_timings.dart';
 _$_RamTimings _$$_RamTimingsFromJson(Map<String, dynamic> json) =>
     _$_RamTimings(
       id: json['id'] as int,
-      name: json['name'] as String,
+      name: json['timings'] as String,
     );
 
 Map<String, dynamic> _$$_RamTimingsToJson(_$_RamTimings instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'name': instance.name,
+      'timings': instance.name,
     };

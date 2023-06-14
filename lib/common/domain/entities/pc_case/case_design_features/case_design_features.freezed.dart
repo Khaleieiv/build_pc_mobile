@@ -21,6 +21,7 @@ CaseDesignFeatures _$CaseDesignFeaturesFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$CaseDesignFeatures {
   int get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'designFeatures')
   String get name => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -35,7 +36,7 @@ abstract class $CaseDesignFeaturesCopyWith<$Res> {
           CaseDesignFeatures value, $Res Function(CaseDesignFeatures) then) =
       _$CaseDesignFeaturesCopyWithImpl<$Res, CaseDesignFeatures>;
   @useResult
-  $Res call({int id, String name});
+  $Res call({int id, @JsonKey(name: 'designFeatures') String name});
 }
 
 /// @nodoc
@@ -75,7 +76,7 @@ abstract class _$$_CaseDesignFeaturesCopyWith<$Res>
       __$$_CaseDesignFeaturesCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String name});
+  $Res call({int id, @JsonKey(name: 'designFeatures') String name});
 }
 
 /// @nodoc
@@ -108,7 +109,8 @@ class __$$_CaseDesignFeaturesCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_CaseDesignFeatures extends _CaseDesignFeatures {
-  const _$_CaseDesignFeatures({required this.id, required this.name})
+  const _$_CaseDesignFeatures(
+      {required this.id, @JsonKey(name: 'designFeatures') required this.name})
       : super._();
 
   factory _$_CaseDesignFeatures.fromJson(Map<String, dynamic> json) =>
@@ -117,6 +119,7 @@ class _$_CaseDesignFeatures extends _CaseDesignFeatures {
   @override
   final int id;
   @override
+  @JsonKey(name: 'designFeatures')
   final String name;
 
   @override
@@ -154,8 +157,9 @@ class _$_CaseDesignFeatures extends _CaseDesignFeatures {
 
 abstract class _CaseDesignFeatures extends CaseDesignFeatures {
   const factory _CaseDesignFeatures(
-      {required final int id,
-      required final String name}) = _$_CaseDesignFeatures;
+          {required final int id,
+          @JsonKey(name: 'designFeatures') required final String name}) =
+      _$_CaseDesignFeatures;
   const _CaseDesignFeatures._() : super._();
 
   factory _CaseDesignFeatures.fromJson(Map<String, dynamic> json) =
@@ -164,6 +168,7 @@ abstract class _CaseDesignFeatures extends CaseDesignFeatures {
   @override
   int get id;
   @override
+  @JsonKey(name: 'designFeatures')
   String get name;
   @override
   @JsonKey(ignore: true)

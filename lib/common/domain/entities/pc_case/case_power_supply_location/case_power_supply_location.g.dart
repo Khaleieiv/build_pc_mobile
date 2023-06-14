@@ -10,12 +10,12 @@ _$_CasePowerSupplyLocation _$$_CasePowerSupplyLocationFromJson(
         Map<String, dynamic> json) =>
     _$_CasePowerSupplyLocation(
       id: json['id'] as int,
-      name: json['name'] as String,
+      name: json['powerSupplyLocation'] as String,
     );
 
 Map<String, dynamic> _$$_CasePowerSupplyLocationToJson(
         _$_CasePowerSupplyLocation instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'name': instance.name,
+      'powerSupplyLocation': instance.name,
     };

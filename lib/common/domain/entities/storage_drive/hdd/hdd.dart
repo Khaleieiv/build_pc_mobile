@@ -6,17 +6,18 @@ import 'package:build_pc_mobile/common/domain/entities/storage_drive/storage_int
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'hdd.freezed.dart';
+
 part 'hdd.g.dart';
 
 @freezed
 class Hdd with _$Hdd implements BaseComponent {
   const factory Hdd({
     required int id,
-    required Producers storageProducer,
+    @JsonKey(name: 'producer') required Producers storageProducer,
     required String name,
     required int storageSize,
     required int speed,
-    required StorageFormFactor storageFormFactor,
+    @JsonKey(name: 'formFactor') required StorageFormFactor storageFormFactor,
     required StorageInterface storageInterface,
     required int bufferSize,
     required int readingSpeed,

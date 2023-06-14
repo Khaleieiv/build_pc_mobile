@@ -19,7 +19,9 @@ class RamNotifier extends ChangeNotifier with LoadingStateNotifier {
 
   CustomException get ramException => _ramException;
 
-  RamNotifier(this._ramRepositoryImpl);
+  RamNotifier(this._ramRepositoryImpl) {
+    subscribeToRamUpdates(_ramRepositoryImpl.ramStream);
+  }
 
   Future<void> fetchRam() async {
     if (isLoading) return;
@@ -31,7 +33,6 @@ class RamNotifier extends ChangeNotifier with LoadingStateNotifier {
       rethrow;
     } finally {
       setLoadingState(value: false);
-      notifyListeners();
     }
   }
 
@@ -39,9 +40,8 @@ class RamNotifier extends ChangeNotifier with LoadingStateNotifier {
       List<Ram>? listRam,
       ) async {
     _listRam = listRam;
-    setLoadingState(value: false);
+    setLoadingState(value: true);
     _handleCustomError(null);
-    notifyListeners();
   }
 
   Future<void> subscribeToRamUpdates(

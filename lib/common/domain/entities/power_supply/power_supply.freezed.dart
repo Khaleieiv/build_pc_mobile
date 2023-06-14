@@ -21,6 +21,7 @@ PowerSupply _$PowerSupplyFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$PowerSupply {
   int get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'producer')
   Producers get powerSupplyProducer => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   int get power => throw _privateConstructorUsedError;
@@ -28,6 +29,7 @@ mixin _$PowerSupply {
   PerformanceLevel? get performanceLevel => throw _privateConstructorUsedError;
   bool get pfcModule => throw _privateConstructorUsedError;
   bool get modularConnection => throw _privateConstructorUsedError;
+  @JsonKey(name: 'protection')
   List<PowerSupplyProtectionFunctions> get powerSupplyProtectionFunctions =>
       throw _privateConstructorUsedError;
   int get cpu_4pin => throw _privateConstructorUsedError;
@@ -56,14 +58,16 @@ abstract class $PowerSupplyCopyWith<$Res> {
   @useResult
   $Res call(
       {int id,
-      Producers powerSupplyProducer,
+      @JsonKey(name: 'producer')
+          Producers powerSupplyProducer,
       String name,
       int power,
       FormFactor formFactor,
       PerformanceLevel? performanceLevel,
       bool pfcModule,
       bool modularConnection,
-      List<PowerSupplyProtectionFunctions> powerSupplyProtectionFunctions,
+      @JsonKey(name: 'protection')
+          List<PowerSupplyProtectionFunctions> powerSupplyProtectionFunctions,
       int cpu_4pin,
       int cpu_4plus4pin,
       int cpu_8pin,
@@ -232,14 +236,16 @@ abstract class _$$_PowerSupplyCopyWith<$Res>
   @useResult
   $Res call(
       {int id,
-      Producers powerSupplyProducer,
+      @JsonKey(name: 'producer')
+          Producers powerSupplyProducer,
       String name,
       int power,
       FormFactor formFactor,
       PerformanceLevel? performanceLevel,
       bool pfcModule,
       bool modularConnection,
-      List<PowerSupplyProtectionFunctions> powerSupplyProtectionFunctions,
+      @JsonKey(name: 'protection')
+          List<PowerSupplyProtectionFunctions> powerSupplyProtectionFunctions,
       int cpu_4pin,
       int cpu_4plus4pin,
       int cpu_8pin,
@@ -376,15 +382,17 @@ class __$$_PowerSupplyCopyWithImpl<$Res>
 class _$_PowerSupply extends _PowerSupply {
   const _$_PowerSupply(
       {required this.id,
-      required this.powerSupplyProducer,
+      @JsonKey(name: 'producer')
+          required this.powerSupplyProducer,
       required this.name,
       required this.power,
       required this.formFactor,
       required this.performanceLevel,
       required this.pfcModule,
       required this.modularConnection,
-      required final List<PowerSupplyProtectionFunctions>
-          powerSupplyProtectionFunctions,
+      @JsonKey(name: 'protection')
+          required final List<PowerSupplyProtectionFunctions>
+              powerSupplyProtectionFunctions,
       required this.cpu_4pin,
       required this.cpu_4plus4pin,
       required this.cpu_8pin,
@@ -404,6 +412,7 @@ class _$_PowerSupply extends _PowerSupply {
   @override
   final int id;
   @override
+  @JsonKey(name: 'producer')
   final Producers powerSupplyProducer;
   @override
   final String name;
@@ -419,6 +428,7 @@ class _$_PowerSupply extends _PowerSupply {
   final bool modularConnection;
   final List<PowerSupplyProtectionFunctions> _powerSupplyProtectionFunctions;
   @override
+  @JsonKey(name: 'protection')
   List<PowerSupplyProtectionFunctions> get powerSupplyProtectionFunctions {
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_powerSupplyProtectionFunctions);
@@ -535,15 +545,17 @@ class _$_PowerSupply extends _PowerSupply {
 abstract class _PowerSupply extends PowerSupply {
   const factory _PowerSupply(
       {required final int id,
-      required final Producers powerSupplyProducer,
+      @JsonKey(name: 'producer')
+          required final Producers powerSupplyProducer,
       required final String name,
       required final int power,
       required final FormFactor formFactor,
       required final PerformanceLevel? performanceLevel,
       required final bool pfcModule,
       required final bool modularConnection,
-      required final List<PowerSupplyProtectionFunctions>
-          powerSupplyProtectionFunctions,
+      @JsonKey(name: 'protection')
+          required final List<PowerSupplyProtectionFunctions>
+              powerSupplyProtectionFunctions,
       required final int cpu_4pin,
       required final int cpu_4plus4pin,
       required final int cpu_8pin,
@@ -562,6 +574,7 @@ abstract class _PowerSupply extends PowerSupply {
   @override
   int get id;
   @override
+  @JsonKey(name: 'producer')
   Producers get powerSupplyProducer;
   @override
   String get name;
@@ -576,6 +589,7 @@ abstract class _PowerSupply extends PowerSupply {
   @override
   bool get modularConnection;
   @override
+  @JsonKey(name: 'protection')
   List<PowerSupplyProtectionFunctions> get powerSupplyProtectionFunctions;
   @override
   int get cpu_4pin;

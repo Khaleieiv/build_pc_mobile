@@ -19,7 +19,9 @@ class GPUNotifier extends ChangeNotifier with LoadingStateNotifier {
 
   CustomException get gpuException => _gpuException;
 
-  GPUNotifier(this._gpuRepositoryImpl);
+  GPUNotifier(this._gpuRepositoryImpl) {
+    subscribeToGPUUpdates(_gpuRepositoryImpl.gpuStream);
+  }
 
   Future<void> fetchGPU() async {
     if (isLoading) return;
@@ -32,15 +34,13 @@ class GPUNotifier extends ChangeNotifier with LoadingStateNotifier {
     }
     finally {
       setLoadingState(value: false);
-      notifyListeners();
     }
   }
 
   Future<void> _gpuStreamListener(List<GPU>? listGPU) async {
     _listGPU = listGPU;
-    setLoadingState(value: false);
+    setLoadingState(value: true);
     _handleCustomError(null);
-    notifyListeners();
   }
 
   Future<void> subscribeToGPUUpdates(Stream<List<GPU>> gpuStream) async {

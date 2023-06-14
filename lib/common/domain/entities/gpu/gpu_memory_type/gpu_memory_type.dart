@@ -9,6 +9,7 @@ part 'gpu_memory_type.g.dart';
 class GPUMemoryType with _$GPUMemoryType implements BaseComponent {
   const factory GPUMemoryType ({
     required int id,
+    @JsonKey(name: 'type')
     required String name,
   }) = _GPUMemoryType;
 

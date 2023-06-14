@@ -11,16 +11,33 @@ import 'package:build_pc_mobile/profile/presentation/widgets/custom_features_pro
 import 'package:build_pc_mobile/profile/presentation/widgets/custom_label_profile.dart';
 import 'package:ez_localization/ez_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:panara_dialogs/panara_dialogs.dart';
 import 'package:provider/provider.dart';
 
-class ProfilePage extends StatelessWidget {
+class ProfilePage extends StatefulWidget {
   const ProfilePage({Key? key}) : super(key: key);
+
+  @override
+  State<ProfilePage> createState() => _ProfilePageState();
+}
+
+class _ProfilePageState extends State<ProfilePage> {
+  AuthNotifier get authNotifier => Provider.of<AuthNotifier>(context);
+
+  @override
+  void initState() {
+    super.initState();
+    SchedulerBinding.instance.addPostFrameCallback((_) {
+      Provider.of<AuthNotifier>(context, listen: false).getCurrentUser();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     final themeChange = Provider.of<DarkLightThemeNotifier>(context);
-    final authNotifier = Provider.of<AuthNotifier>(context);
+    final authNotifier = context.watch<AuthNotifier>();
+
     final isCheckLoggedIn = authNotifier.isLoggedIn;
 
     void logOut() {
@@ -95,7 +112,9 @@ class ProfilePage extends StatelessWidget {
                                   ),
                                   CustomLabelProfile(
                                     labelText: isCheckLoggedIn
-                                        ? authNotifier.currentUser?.name ?? ""
+                                        ? authNotifier
+                                                .currentProfileParams?.name ??
+                                            ""
                                         : context.getString(
                                             'profile.user_status.user_name',
                                           ),
@@ -127,7 +146,9 @@ class ProfilePage extends StatelessWidget {
                                   ),
                                   CustomLabelProfile(
                                     labelText: isCheckLoggedIn
-                                        ? authNotifier.currentUser?.email ?? ""
+                                        ? authNotifier
+                                                .currentProfileParams?.email ??
+                                            ""
                                         : context.getString(
                                             'profile.user_status.email',
                                           ),
@@ -238,7 +259,7 @@ class ProfilePage extends StatelessWidget {
                 sizeIcon: sizeIcon,
                 onPressed: () {
                   if (isCheckLoggedIn) {
-                    Navigator.pushNamed(context, RouteNames.editProfilePage);
+                    Navigator.pushNamed(context, RouteNames.changePasswordPage);
                   } else {
                     PanaraConfirmDialog.show(
                       context,

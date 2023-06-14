@@ -94,14 +94,14 @@ class BuildPcNotifier extends ChangeNotifier with LoadingStateNotifier {
       case 'gpu':
         return buildPc.gpu;
       case 'memory':
-      //ignore: avoid-non-null-assertion
-        return buildPc.ram!.isNotEmpty ? buildPc.ram : null;
+        //ignore: avoid-non-null-assertion
+        return buildPc.ram!.isNotEmpty ? buildPc.ram!.first : null;
       case 'hdd':
         //ignore: avoid-non-null-assertion
-        return  buildPc.hdd!.isNotEmpty ? buildPc.hdd : null;
+        return buildPc.hdd!.isNotEmpty ? buildPc.hdd!.first : null;
       case 'ssd':
-      //ignore: avoid-non-null-assertion
-        return buildPc.ssd!.isNotEmpty ? buildPc.ssd : null;
+        //ignore: avoid-non-null-assertion
+        return buildPc.ssd!.isNotEmpty ? buildPc.ssd!.first : null;
       case 'power_supply':
         return buildPc.powerSupply;
       case 'case':
@@ -112,16 +112,16 @@ class BuildPcNotifier extends ChangeNotifier with LoadingStateNotifier {
   }
 
   Future<void> _buildPcUserListStreamListener(
-      List<BuildPc>? listBuildPc,
-      ) async {
+    List<BuildPc>? listBuildPc,
+  ) async {
     _listBuildPc = listBuildPc;
     _handleCustomError(null);
     notifyListeners();
   }
 
   Future<void> _buildPcUserStreamListener(
-      BuildPc? buildPc,
-      ) async {
+    BuildPc? buildPc,
+  ) async {
     _buildPc = buildPc;
     _handleCustomError(null);
     notifyListeners();
@@ -135,12 +135,10 @@ class BuildPcNotifier extends ChangeNotifier with LoadingStateNotifier {
   }
 
   Future<void> subscribeToBuildPcUserUpdates(
-      Stream<BuildPc?> buildPcStream,
-      ) async {
-    _buildPcUserSubscription =
-        buildPcStream.listen(_buildPcUserStreamListener);
+    Stream<BuildPc?> buildPcStream,
+  ) async {
+    _buildPcUserSubscription = buildPcStream.listen(_buildPcUserStreamListener);
   }
-
 
   void _handleCustomError(Exception? exception) {
     _buildPcException = CustomException(exception);

@@ -9,6 +9,7 @@ part 'motherboard_chipset.g.dart';
 class MotherboardChipset with _$MotherboardChipset implements BaseComponent{
   const factory MotherboardChipset ({
     required int id,
+    @JsonKey(name: 'chipset')
     required String name,
   }) = _MotherboardChipset;
 

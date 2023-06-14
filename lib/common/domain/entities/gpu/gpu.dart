@@ -8,25 +8,26 @@ import 'package:build_pc_mobile/common/domain/entities/producer/producers.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'gpu.freezed.dart';
+
 part 'gpu.g.dart';
 
 @freezed
 class GPU with _$GPU implements BaseComponent {
   const factory GPU({
     required int id,
-    required Producers gpuProducer,
+    @JsonKey(name: 'producer') required Producers gpuProducer,
     required String name,
-    required Producers gpuVendor,
+    @JsonKey(name: 'vendor') required Producers gpuVendor,
     required int year,
     required int technicalProcess,
     required int gpuFrequency,
     required int memoryAmount,
-    required GPUMemoryType gpuMemoryType,
+    @JsonKey(name: 'memoryType') required GPUMemoryType gpuMemoryType,
     required int memoryFrequency,
     required int bus,
     required int tdp,
-    required List<GPUConnector> gpuConnector,
-    required GPUInterfaceType gpuInterfaceType,
+    @JsonKey(name: 'connector') required List<GPUConnector> gpuConnector,
+    @JsonKey(name: 'interfaceType') required GPUInterfaceType gpuInterfaceType,
     required int length,
     required String description,
     required GPUTechnologies gpuTechnologies,
@@ -41,13 +42,13 @@ class GPU with _$GPU implements BaseComponent {
   @override
   List<String?> parsedModels() {
     final connectors = [];
-    for(final connector in gpuConnector){
+    for (final connector in gpuConnector) {
       connectors.add(connector.name);
     }
 
     final fields = [
-      gpuProducer.name,
       name,
+      gpuProducer.name,
       gpuVendor.name,
       year.toString(),
       technicalProcess.toString(),

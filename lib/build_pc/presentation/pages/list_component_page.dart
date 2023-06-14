@@ -1,10 +1,7 @@
-import 'package:build_pc_mobile/build_pc/presentation/state/build_pc_notifier.dart';
-import 'package:build_pc_mobile/build_pc/presentation/state/components_for_build_pc_notifier.dart';
 import 'package:build_pc_mobile/build_pc/presentation/state/selected_component_for_build_notifier.dart';
-import 'package:build_pc_mobile/build_pc/presentation/widgets/custom_component_button_widget.dart';
+import 'package:build_pc_mobile/build_pc/presentation/widgets/component_widget.dart';
 import 'package:build_pc_mobile/common/constants/app_colors.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
 import 'package:searchbar_animation/searchbar_animation.dart';
 
@@ -16,24 +13,64 @@ class ListComponentPage extends StatefulWidget {
 }
 
 class _ListComponentPageState extends State<ListComponentPage> {
-  BuildPcNotifier get _buildPcNotifier =>
-      Provider.of<BuildPcNotifier>(context, listen: false);
-
-  @override
-  void initState() {
-    super.initState();
-    SchedulerBinding.instance.addPostFrameCallback((_) {
-      Provider.of<ComponentsForBuildPcNotifier>(context, listen: false)
-          .fetchBuildPcUserListComponents(_buildPcNotifier.buildPc?.id);
-    });
-  }
+  final searchController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    final componentsForBuildPcNotifier =
-        Provider.of<ComponentsForBuildPcNotifier>(context);
     final selectedComponentForBuildNotifier =
-        Provider.of<SelectedComponentForBuildNotifier>(context);
+    Provider.of<SelectedComponentForBuildNotifier>(context);
+
+    Widget? changeComponentWidget() {
+      switch (selectedComponentForBuildNotifier.modelName) {
+        case 'processor':
+          return ComponentWidget(searchController: searchController,
+            componentName: 'processor',
+            imagePath: 'assets/icons/cpu.png',
+          );
+        case 'motherboard':
+          return ComponentWidget(searchController: searchController,
+            componentName: 'motherboard',
+            imagePath: 'assets/icons/motherboard.png',
+          );
+        case 'graphic_card':
+          return ComponentWidget(searchController: searchController,
+            componentName: 'graphic_card',
+            imagePath: 'assets/icons/gpu.png',
+          );
+        case 'memory':
+          return ComponentWidget(searchController: searchController,
+            componentName: 'memory',
+            imagePath: 'assets/icons/memory.png',
+          );
+        case 'ssd':
+          return ComponentWidget(searchController: searchController,
+            componentName: 'ssd',
+            imagePath: 'assets/icons/ssd.png',
+          );
+        case 'hdd':
+          return ComponentWidget(searchController: searchController,
+            componentName: 'hdd',
+            imagePath: 'assets/icons/hdd.png',
+          );
+        case 'cooler':
+          return ComponentWidget(searchController: searchController,
+            componentName: 'cooler',
+            imagePath: 'assets/icons/fan.png',
+          );
+        case 'power_supply':
+          return ComponentWidget(searchController: searchController,
+            componentName: 'power_supply',
+            imagePath: 'assets/icons/power_supply.png',
+          );
+        case 'case':
+          return ComponentWidget(searchController: searchController,
+            componentName: 'case',
+            imagePath: 'assets/icons/case.png',
+          );
+        default:
+          return const SizedBox();
+      }
+    }
 
     return Scaffold(
       appBar: AppBar(
@@ -41,8 +78,13 @@ class _ListComponentPageState extends State<ListComponentPage> {
         actions: [
           Expanded(
             child: SearchBarAnimation(
+              onChanged: (value) {
+                setState(() {
+                  value = searchController.text;
+                });
+              },
               buttonBorderColour: Colors.black45,
-              textEditingController: TextEditingController(),
+              textEditingController: searchController,
               isSearchBoxOnRightSide: true,
               isOriginalAnimation: true,
               enableKeyboardFocus: true,
@@ -69,24 +111,9 @@ class _ListComponentPageState extends State<ListComponentPage> {
           ),
         ],
       ),
-      body: ListView.builder(
-        itemCount: componentsForBuildPcNotifier.listCpuBuildPc?.length,
-        itemBuilder: (BuildContext context, int index) {
-          return CustomComponentButtonWidget(
-            imagePath: 'assets/icons/cpu.png',
-            nameComponent:
-                componentsForBuildPcNotifier.listCpuBuildPc?[index].name,
-            onTap: () {
-              selectedComponentForBuildNotifier.addToComparison(
-                "processor",
-                //ignore: avoid-non-null-assertion
-                componentsForBuildPcNotifier.listCpuBuildPc![index],
-              );
-              Navigator.pop(context);
-            },
-          );
-        },
-      ),
+      // ignore: avoid-returning-widgets
+      body: changeComponentWidget(),
     );
   }
+
 }

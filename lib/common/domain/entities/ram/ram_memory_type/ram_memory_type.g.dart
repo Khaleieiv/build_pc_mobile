@@ -9,11 +9,11 @@ part of 'ram_memory_type.dart';
 _$_RamMemoryType _$$_RamMemoryTypeFromJson(Map<String, dynamic> json) =>
     _$_RamMemoryType(
       id: json['id'] as int,
-      name: json['name'] as String,
+      name: json['memoryType'] as String,
     );
 
 Map<String, dynamic> _$$_RamMemoryTypeToJson(_$_RamMemoryType instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'name': instance.name,
+      'memoryType': instance.name,
     };

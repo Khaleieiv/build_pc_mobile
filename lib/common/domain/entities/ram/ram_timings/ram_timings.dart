@@ -9,7 +9,7 @@ part 'ram_timings.g.dart';
 class RamTimings with _$RamTimings implements BaseComponent{
   const factory RamTimings ({
     required int id,
-    required String name,
+    @JsonKey(name: 'timings') required String name,
   }) = _RamTimings;
 
   const RamTimings._();

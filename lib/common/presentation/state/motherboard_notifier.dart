@@ -19,7 +19,9 @@ class MotherboardNotifier extends ChangeNotifier with LoadingStateNotifier {
 
   CustomException get motherboardException => _motherboardException;
 
-  MotherboardNotifier(this._motherboardRepositoryImpl);
+  MotherboardNotifier(this._motherboardRepositoryImpl){
+    subscribeToMotherboardUpdates(_motherboardRepositoryImpl.motherboardStream);
+  }
 
   Future<void> fetchMotherboard() async {
     if (isLoading) return;
@@ -31,7 +33,6 @@ class MotherboardNotifier extends ChangeNotifier with LoadingStateNotifier {
       rethrow;
     } finally {
       setLoadingState(value: false);
-      notifyListeners();
     }
   }
 
@@ -39,14 +40,14 @@ class MotherboardNotifier extends ChangeNotifier with LoadingStateNotifier {
     List<Motherboard>? listMotherboard,
   ) async {
     _listMotherboard = listMotherboard;
-    setLoadingState(value: false);
+    setLoadingState(value: true);
     _handleCustomError(null);
-    notifyListeners();
   }
 
   Future<void> subscribeToMotherboardUpdates(
     Stream<List<Motherboard>> motherboardStream,
   ) async {
+    await _motherboardSubscription?.cancel();
     _motherboardSubscription =
         motherboardStream.listen(_motherboardStreamListener);
   }

@@ -10,12 +10,12 @@ _$_CaseDesignFeatures _$$_CaseDesignFeaturesFromJson(
         Map<String, dynamic> json) =>
     _$_CaseDesignFeatures(
       id: json['id'] as int,
-      name: json['name'] as String,
+      name: json['designFeatures'] as String,
     );
 
 Map<String, dynamic> _$$_CaseDesignFeaturesToJson(
         _$_CaseDesignFeatures instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'name': instance.name,
+      'designFeatures': instance.name,
     };

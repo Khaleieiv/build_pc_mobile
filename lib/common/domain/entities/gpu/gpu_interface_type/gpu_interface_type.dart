@@ -9,6 +9,7 @@ part 'gpu_interface_type.g.dart';
 class GPUInterfaceType with _$GPUInterfaceType implements BaseComponent {
   const factory GPUInterfaceType ({
     required int id,
+    @JsonKey(name: 'interfaceType')
     required String name,
   }) = _GPUInterfaceType;
 

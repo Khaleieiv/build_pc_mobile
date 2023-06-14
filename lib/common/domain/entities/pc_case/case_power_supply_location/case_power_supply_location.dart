@@ -11,7 +11,7 @@ class CasePowerSupplyLocation
     implements BaseComponent {
   const factory CasePowerSupplyLocation({
     required int id,
-    required String name,
+    @JsonKey(name: 'powerSupplyLocation') required String name,
   }) = _CasePowerSupplyLocation;
 
   const CasePowerSupplyLocation._();

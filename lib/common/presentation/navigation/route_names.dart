@@ -9,6 +9,8 @@ class RouteNames {
   static const String comparisonPage = '/comparison';
   static const String buildPcPage = '/build_pc';
   static const String addComponentToBuildPage = '/add_component';
+  static const String infoBuildPcPage = '/info_buildPc';
   static const String listComponentPage = '/list_component';
   static const String ratingPage = '/rating';
+  static const String changePasswordPage = '/change_password';
 }

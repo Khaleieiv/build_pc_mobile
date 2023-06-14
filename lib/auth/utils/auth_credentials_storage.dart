@@ -4,11 +4,15 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 class AuthCredentialsStorage {
   static const _tokenAccess = 'tokenAccess';
 
+  static String? _tokenAccessGet;
+
+  static String? get tokenAccessGet => _tokenAccessGet;
+
   static Future<LoginUserData> get savedCredentials async {
     const storage = FlutterSecureStorage();
-    final tokenAccess = await storage.read(key: _tokenAccess);
+    _tokenAccessGet = await storage.read(key: _tokenAccess);
 
-    return LoginUserData(tokenAccess);
+    return LoginUserData(_tokenAccessGet);
   }
 
   static Future<String?> get tokenSaved async {

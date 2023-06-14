@@ -19,7 +19,9 @@ class SsdNotifier extends ChangeNotifier with LoadingStateNotifier {
 
   CustomException get ssdException => _ssdException;
 
-  SsdNotifier(this._ssdRepositoryImpl);
+  SsdNotifier(this._ssdRepositoryImpl) {
+    subscribeToSsdUpdates(_ssdRepositoryImpl.ssdStream);
+  }
 
   Future<void> fetchSsd() async {
     if (isLoading) return;
@@ -31,7 +33,6 @@ class SsdNotifier extends ChangeNotifier with LoadingStateNotifier {
       rethrow;
     } finally {
       setLoadingState(value: false);
-      notifyListeners();
     }
   }
 
@@ -39,9 +40,8 @@ class SsdNotifier extends ChangeNotifier with LoadingStateNotifier {
       List<Ssd>? listSsd,
       ) async {
     _listSsd = listSsd;
-    setLoadingState(value: false);
+    setLoadingState(value: true);
     _handleCustomError(null);
-    notifyListeners();
   }
 
   Future<void> subscribeToSsdUpdates(

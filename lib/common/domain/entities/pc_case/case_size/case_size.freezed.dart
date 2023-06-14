@@ -21,6 +21,7 @@ CaseSize _$CaseSizeFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$CaseSize {
   int get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'size')
   String get name => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -34,7 +35,7 @@ abstract class $CaseSizeCopyWith<$Res> {
   factory $CaseSizeCopyWith(CaseSize value, $Res Function(CaseSize) then) =
       _$CaseSizeCopyWithImpl<$Res, CaseSize>;
   @useResult
-  $Res call({int id, String name});
+  $Res call({int id, @JsonKey(name: 'size') String name});
 }
 
 /// @nodoc
@@ -73,7 +74,7 @@ abstract class _$$_CaseSizeCopyWith<$Res> implements $CaseSizeCopyWith<$Res> {
       __$$_CaseSizeCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String name});
+  $Res call({int id, @JsonKey(name: 'size') String name});
 }
 
 /// @nodoc
@@ -106,7 +107,9 @@ class __$$_CaseSizeCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_CaseSize extends _CaseSize {
-  const _$_CaseSize({required this.id, required this.name}) : super._();
+  const _$_CaseSize(
+      {required this.id, @JsonKey(name: 'size') required this.name})
+      : super._();
 
   factory _$_CaseSize.fromJson(Map<String, dynamic> json) =>
       _$$_CaseSizeFromJson(json);
@@ -114,6 +117,7 @@ class _$_CaseSize extends _CaseSize {
   @override
   final int id;
   @override
+  @JsonKey(name: 'size')
   final String name;
 
   @override
@@ -149,8 +153,9 @@ class _$_CaseSize extends _CaseSize {
 }
 
 abstract class _CaseSize extends CaseSize {
-  const factory _CaseSize({required final int id, required final String name}) =
-      _$_CaseSize;
+  const factory _CaseSize(
+      {required final int id,
+      @JsonKey(name: 'size') required final String name}) = _$_CaseSize;
   const _CaseSize._() : super._();
 
   factory _CaseSize.fromJson(Map<String, dynamic> json) = _$_CaseSize.fromJson;
@@ -158,6 +163,7 @@ abstract class _CaseSize extends CaseSize {
   @override
   int get id;
   @override
+  @JsonKey(name: 'size')
   String get name;
   @override
   @JsonKey(ignore: true)

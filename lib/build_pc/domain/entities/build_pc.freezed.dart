@@ -21,7 +21,8 @@ BuildPc _$BuildPcFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$BuildPc {
   int? get id => throw _privateConstructorUsedError;
-  String? get nameOfBuild => throw _privateConstructorUsedError;
+  @JsonKey(name: 'nameOfBuild')
+  String? get name => throw _privateConstructorUsedError;
   User? get user => throw _privateConstructorUsedError;
   Motherboard? get motherboard => throw _privateConstructorUsedError;
   @JsonKey(name: 'processor')
@@ -50,7 +51,7 @@ abstract class $BuildPcCopyWith<$Res> {
   @useResult
   $Res call(
       {int? id,
-      String? nameOfBuild,
+      @JsonKey(name: 'nameOfBuild') String? name,
       User? user,
       Motherboard? motherboard,
       @JsonKey(name: 'processor') CPU? cpu,
@@ -89,7 +90,7 @@ class _$BuildPcCopyWithImpl<$Res, $Val extends BuildPc>
   @override
   $Res call({
     Object? id = freezed,
-    Object? nameOfBuild = freezed,
+    Object? name = freezed,
     Object? user = freezed,
     Object? motherboard = freezed,
     Object? cpu = freezed,
@@ -109,9 +110,9 @@ class _$BuildPcCopyWithImpl<$Res, $Val extends BuildPc>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int?,
-      nameOfBuild: freezed == nameOfBuild
-          ? _value.nameOfBuild
-          : nameOfBuild // ignore: cast_nullable_to_non_nullable
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String?,
       user: freezed == user
           ? _value.user
@@ -274,7 +275,7 @@ abstract class _$$_BuildPcCopyWith<$Res> implements $BuildPcCopyWith<$Res> {
   @useResult
   $Res call(
       {int? id,
-      String? nameOfBuild,
+      @JsonKey(name: 'nameOfBuild') String? name,
       User? user,
       Motherboard? motherboard,
       @JsonKey(name: 'processor') CPU? cpu,
@@ -318,7 +319,7 @@ class __$$_BuildPcCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
-    Object? nameOfBuild = freezed,
+    Object? name = freezed,
     Object? user = freezed,
     Object? motherboard = freezed,
     Object? cpu = freezed,
@@ -338,9 +339,9 @@ class __$$_BuildPcCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int?,
-      nameOfBuild: freezed == nameOfBuild
-          ? _value.nameOfBuild
-          : nameOfBuild // ignore: cast_nullable_to_non_nullable
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String?,
       user: freezed == user
           ? _value.user
@@ -400,10 +401,10 @@ class __$$_BuildPcCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_BuildPc implements _BuildPc {
+class _$_BuildPc extends _BuildPc {
   const _$_BuildPc(
       {required this.id,
-      required this.nameOfBuild,
+      @JsonKey(name: 'nameOfBuild') required this.name,
       required this.user,
       required this.motherboard,
       @JsonKey(name: 'processor') required this.cpu,
@@ -419,7 +420,8 @@ class _$_BuildPc implements _BuildPc {
       required this.totalPrice})
       : _ram = ram,
         _hdd = hdd,
-        _ssd = ssd;
+        _ssd = ssd,
+        super._();
 
   factory _$_BuildPc.fromJson(Map<String, dynamic> json) =>
       _$$_BuildPcFromJson(json);
@@ -427,7 +429,8 @@ class _$_BuildPc implements _BuildPc {
   @override
   final int? id;
   @override
-  final String? nameOfBuild;
+  @JsonKey(name: 'nameOfBuild')
+  final String? name;
   @override
   final User? user;
   @override
@@ -480,7 +483,7 @@ class _$_BuildPc implements _BuildPc {
 
   @override
   String toString() {
-    return 'BuildPc(id: $id, nameOfBuild: $nameOfBuild, user: $user, motherboard: $motherboard, cpu: $cpu, gpu: $gpu, ram: $ram, powerSupply: $powerSupply, hdd: $hdd, ssd: $ssd, pcCase: $pcCase, cooler: $cooler, countOfLikes: $countOfLikes, ratingId: $ratingId, totalPrice: $totalPrice)';
+    return 'BuildPc(id: $id, name: $name, user: $user, motherboard: $motherboard, cpu: $cpu, gpu: $gpu, ram: $ram, powerSupply: $powerSupply, hdd: $hdd, ssd: $ssd, pcCase: $pcCase, cooler: $cooler, countOfLikes: $countOfLikes, ratingId: $ratingId, totalPrice: $totalPrice)';
   }
 
   @override
@@ -489,8 +492,7 @@ class _$_BuildPc implements _BuildPc {
         (other.runtimeType == runtimeType &&
             other is _$_BuildPc &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.nameOfBuild, nameOfBuild) ||
-                other.nameOfBuild == nameOfBuild) &&
+            (identical(other.name, name) || other.name == name) &&
             (identical(other.user, user) || other.user == user) &&
             (identical(other.motherboard, motherboard) ||
                 other.motherboard == motherboard) &&
@@ -516,7 +518,7 @@ class _$_BuildPc implements _BuildPc {
   int get hashCode => Object.hash(
       runtimeType,
       id,
-      nameOfBuild,
+      name,
       user,
       motherboard,
       cpu,
@@ -545,10 +547,10 @@ class _$_BuildPc implements _BuildPc {
   }
 }
 
-abstract class _BuildPc implements BuildPc {
+abstract class _BuildPc extends BuildPc {
   const factory _BuildPc(
       {required final int? id,
-      required final String? nameOfBuild,
+      @JsonKey(name: 'nameOfBuild') required final String? name,
       required final User? user,
       required final Motherboard? motherboard,
       @JsonKey(name: 'processor') required final CPU? cpu,
@@ -562,13 +564,15 @@ abstract class _BuildPc implements BuildPc {
       required final int countOfLikes,
       required final Rating? ratingId,
       required final int totalPrice}) = _$_BuildPc;
+  const _BuildPc._() : super._();
 
   factory _BuildPc.fromJson(Map<String, dynamic> json) = _$_BuildPc.fromJson;
 
   @override
   int? get id;
   @override
-  String? get nameOfBuild;
+  @JsonKey(name: 'nameOfBuild')
+  String? get name;
   @override
   User? get user;
   @override

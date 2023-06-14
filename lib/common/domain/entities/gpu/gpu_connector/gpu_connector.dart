@@ -9,6 +9,7 @@ part 'gpu_connector.g.dart';
 class GPUConnector with _$GPUConnector implements BaseComponent {
   const factory GPUConnector ({
     required int id,
+    @JsonKey(name: 'connector')
     required String name,
   }) = _GPUConnector;
 

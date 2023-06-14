@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:build_pc_mobile/auth/utils/auth_credentials_storage.dart';
 import 'package:build_pc_mobile/common/constants/api.dart';
 import 'package:build_pc_mobile/common/domain/entities/power_supply/power_supply.dart';
 import 'package:build_pc_mobile/common/domain/repositories/power_supply_repository.dart';
@@ -9,7 +8,7 @@ import 'package:build_pc_mobile/common/utils/http_response_utils.dart';
 import 'package:http/http.dart' as http;
 
 class PowerSupplyRepositoryImpl implements PowerSupplyRepository {
-  static const _fetchPowerSupplyPath = '/api/all/power_supply';
+  static const _fetchPowerSupplyPath = '/api/all/powerSupply';
 
   final _client = http.Client();
 
@@ -21,10 +20,8 @@ class PowerSupplyRepositoryImpl implements PowerSupplyRepository {
 
   @override
   Future<void> fetchPowerSupply() async {
-    final savedCredentials = await AuthCredentialsStorage.savedCredentials;
-    final headers = Api.headers(savedCredentials.tokenAccess);
     final requestUri = Uri.http(Api.baseUrl, _fetchPowerSupplyPath);
-    final response = await _client.get(requestUri, headers: headers);
+    final response = await _client.get(requestUri, headers: Api.headers());
     _processPowerSupplyResponse(response);
   }
 

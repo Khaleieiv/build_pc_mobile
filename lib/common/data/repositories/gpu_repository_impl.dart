@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:build_pc_mobile/auth/utils/auth_credentials_storage.dart';
 import 'package:build_pc_mobile/common/constants/api.dart';
 import 'package:build_pc_mobile/common/domain/entities/gpu/gpu.dart';
 import 'package:build_pc_mobile/common/domain/repositories/gpu_repository.dart';
@@ -9,7 +8,7 @@ import 'package:build_pc_mobile/common/utils/http_response_utils.dart';
 import 'package:http/http.dart' as http;
 
 class GPURepositoryImpl implements GPURepository {
-  static const _fetchGpuPath = '/api/all/gpu';
+  static const _fetchGpuPath = '/api/all/graphicCard';
 
   final _client = http.Client();
 
@@ -20,10 +19,8 @@ class GPURepositoryImpl implements GPURepository {
 
   @override
   Future<void> fetchGPU() async {
-    final savedCredentials = await AuthCredentialsStorage.savedCredentials;
-    final headers = Api.headers(savedCredentials.tokenAccess);
     final requestUri = Uri.http(Api.baseUrl, _fetchGpuPath);
-    final response = await _client.get(requestUri, headers: headers);
+    final response = await _client.get(requestUri, headers: Api.headers());
     _processGPUResponse(response);
   }
 

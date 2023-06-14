@@ -21,6 +21,7 @@ GPUInterfaceType _$GPUInterfaceTypeFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$GPUInterfaceType {
   int get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'interfaceType')
   String get name => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -35,7 +36,7 @@ abstract class $GPUInterfaceTypeCopyWith<$Res> {
           GPUInterfaceType value, $Res Function(GPUInterfaceType) then) =
       _$GPUInterfaceTypeCopyWithImpl<$Res, GPUInterfaceType>;
   @useResult
-  $Res call({int id, String name});
+  $Res call({int id, @JsonKey(name: 'interfaceType') String name});
 }
 
 /// @nodoc
@@ -75,7 +76,7 @@ abstract class _$$_GPUInterfaceTypeCopyWith<$Res>
       __$$_GPUInterfaceTypeCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String name});
+  $Res call({int id, @JsonKey(name: 'interfaceType') String name});
 }
 
 /// @nodoc
@@ -108,7 +109,9 @@ class __$$_GPUInterfaceTypeCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_GPUInterfaceType extends _GPUInterfaceType {
-  const _$_GPUInterfaceType({required this.id, required this.name}) : super._();
+  const _$_GPUInterfaceType(
+      {required this.id, @JsonKey(name: 'interfaceType') required this.name})
+      : super._();
 
   factory _$_GPUInterfaceType.fromJson(Map<String, dynamic> json) =>
       _$$_GPUInterfaceTypeFromJson(json);
@@ -116,6 +119,7 @@ class _$_GPUInterfaceType extends _GPUInterfaceType {
   @override
   final int id;
   @override
+  @JsonKey(name: 'interfaceType')
   final String name;
 
   @override
@@ -152,8 +156,9 @@ class _$_GPUInterfaceType extends _GPUInterfaceType {
 
 abstract class _GPUInterfaceType extends GPUInterfaceType {
   const factory _GPUInterfaceType(
-      {required final int id,
-      required final String name}) = _$_GPUInterfaceType;
+          {required final int id,
+          @JsonKey(name: 'interfaceType') required final String name}) =
+      _$_GPUInterfaceType;
   const _GPUInterfaceType._() : super._();
 
   factory _GPUInterfaceType.fromJson(Map<String, dynamic> json) =
@@ -162,6 +167,7 @@ abstract class _GPUInterfaceType extends GPUInterfaceType {
   @override
   int get id;
   @override
+  @JsonKey(name: 'interfaceType')
   String get name;
   @override
   @JsonKey(ignore: true)

@@ -2,25 +2,80 @@ import 'package:build_pc_mobile/auth/presentation/state/auth_notifier.dart';
 import 'package:build_pc_mobile/auth/presentation/widgets/custom_text_form_field.dart';
 import 'package:build_pc_mobile/common/constants/app_colors.dart';
 import 'package:build_pc_mobile/common/constants/app_sizes.dart';
-import 'package:build_pc_mobile/common/presentation/navigation/route_names.dart';
 import 'package:build_pc_mobile/common/widgets/custom_button_widget.dart';
 import 'package:ez_localization/ez_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:panara_dialogs/panara_dialogs.dart';
 import 'package:provider/provider.dart';
 
-class EditProfilePage extends StatelessWidget {
+class EditProfilePage extends StatefulWidget {
   const EditProfilePage({Key? key}) : super(key: key);
+
+  @override
+  State<EditProfilePage> createState() => _EditProfilePageState();
+}
+
+class _EditProfilePageState extends State<EditProfilePage> {
+
+  final _nameController = TextEditingController();
+  final _usernameController = TextEditingController();
+  final _emailController = TextEditingController();
+
+  bool get _enableSignInButton =>
+      _nameController.text.isNotEmpty &&
+      _usernameController.text.isNotEmpty &&
+      _emailController.text.isNotEmpty;
 
   @override
   Widget build(BuildContext context) {
     final authNotifier = Provider.of<AuthNotifier>(context);
+    final _name = "${authNotifier.currentUser?.name}";
+    final _username = "${authNotifier.currentUser?.username}";
+    final _email= "${authNotifier.currentUser?.email}";
+    _nameController.value = TextEditingValue(
+      text: _name,
+      selection: TextSelection.fromPosition(
+        TextPosition(offset: _name.length),
+      ),
+    );
+    _usernameController.value = TextEditingValue(
+      text: _username,
+      selection: TextSelection.fromPosition(
+        TextPosition(offset: _username.length),
+      ),
+    );
+    _emailController.value = TextEditingValue(
+      text: _email,
+      selection: TextSelection.fromPosition(
+        TextPosition(offset: _email.length),
+      ),
+    );
 
-    final _nameController = TextEditingController();
-    final _passwordController = TextEditingController();
-    final _usernameController = TextEditingController();
-    final _emailController = TextEditingController();
 
-    const heightContainer = 515.0;
+    Future<void> loginButtonPressed() async {
+      final authNotifier = Provider.of<AuthNotifier>(context, listen: false);
+      await authNotifier.updateProfile(
+        _nameController.text,
+        _usernameController.text,
+        _emailController.text,
+      );
+
+      if (!mounted) return;
+      await PanaraInfoDialog.show(
+        context,
+        title: "Congratulations",
+        message: "Change is successful!",
+        buttonText: "Okay",
+        onTapDismiss: () {
+          Navigator.pop(context);
+        },
+        textColor: AppColors.blackColor,
+        panaraDialogType: PanaraDialogType.warning,
+      );
+      await authNotifier.getCurrentUser();
+    }
+
+    const heightContainer = 450.0;
 
     const fromSTEBStartButtonLogOut = 90.0;
     const fromSTEBEndButtonLogOut = 90.0;
@@ -80,15 +135,6 @@ class EditProfilePage extends StatelessWidget {
                     controller: _usernameController,
                   ),
                   CustomTextFormField(
-                    labelText:
-                        context.getString('profile.edit_profile.password'),
-                    hintText:
-                        context.getString('profile.edit_profile.password'),
-                    keyboardType: TextInputType.visiblePassword,
-                    checkSuffixIcon: false,
-                    controller: _passwordController,
-                  ),
-                  CustomTextFormField(
                     labelText: context.getString('profile.edit_profile.email'),
                     hintText: authNotifier.currentUser?.email ?? "",
                     keyboardType: TextInputType.emailAddress,
@@ -103,8 +149,7 @@ class EditProfilePage extends StatelessWidget {
                     fromSTEBBottom: fromSTEBBottomButtonLogOut,
                     heightContainer: heightButtonLogOut,
                     borderRadius: borderRadiusButtonLogOut,
-                    onPressed: () =>
-                        Navigator.pushNamed(context, RouteNames.loginPage),
+                    onPressed: _enableSignInButton ? loginButtonPressed : null,
                     nameButton:
                         context.getString('profile.edit_profile.save_changes'),
                     colorButton: AppLightColors.primaryBackgroundLightColor,

@@ -11,30 +11,43 @@ import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
 
 class CPUListWidget extends StatefulWidget {
-  const CPUListWidget({Key? key}) : super(key: key);
+  final TextEditingController searchController;
+
+  const CPUListWidget({Key? key, required this.searchController})
+      : super(key: key);
 
   @override
   State<CPUListWidget> createState() => _CPUListWidgetState();
 }
 
 class _CPUListWidgetState extends State<CPUListWidget> {
+  CPUNotifier get _cpuNotifier =>
+      Provider.of<CPUNotifier>(context, listen: false);
+
   @override
   void initState() {
     super.initState();
     SchedulerBinding.instance.addPostFrameCallback((_) {
-      Provider.of<CPUNotifier>(context, listen: false).fetchCPU();
+      _cpuNotifier.fetchCPU();
     });
   }
 
   @override
   Widget build(BuildContext context) {
     final cpuProvider = Provider.of<CPUNotifier>(context);
+    final filteredCPUs = cpuProvider.listCPU
+        ?.where(
+          (cpu) => cpu.name
+              .toLowerCase()
+              .contains(widget.searchController.text.toLowerCase()),
+        )
+        .toList();
 
     return cpuProvider.isLoading
         ? ListView.builder(
-            itemCount: cpuProvider.listCPU?.length,
+            itemCount: filteredCPUs?.length,
             itemBuilder: (BuildContext context, int index) {
-              final cpu = cpuProvider.listCPU?[index];
+              final cpu = filteredCPUs?[index];
 
               return CPUItemWidget(cpu: cpu);
             },
