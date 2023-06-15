@@ -62,10 +62,8 @@ class Motherboard with _$Motherboard implements BaseComponent {
 
   @override
   List<String?> parsedModels() {
-    final cpuGen = [];
-    for (final generation in cpuGenerations!) {
-      cpuGen.add(generation.name);
-    }
+    final cpuGen =
+        cpuGenerations?.map((generation) => generation.name).toList() ?? [];
 
     final fields = [
       name,

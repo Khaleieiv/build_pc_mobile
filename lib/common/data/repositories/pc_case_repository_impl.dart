@@ -22,7 +22,6 @@ class PcCaseRepositoryImpl implements PcCaseRepository {
   Future<void> fetchPcCase() async {
     final requestUri = Uri.http(Api.baseUrl, _fetchPcCasePath);
     final response = await _client.get(requestUri, headers: Api.headers());
-    print(response.body);
     _processPcCaseResponse(response);
   }
 

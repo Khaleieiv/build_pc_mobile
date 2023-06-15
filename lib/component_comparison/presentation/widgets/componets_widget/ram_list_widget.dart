@@ -43,6 +43,8 @@ class _RamListWidgetState extends State<RamListWidget> {
     return ramProvider.isLoading
         ? ListView.builder(
             itemCount: filteredRam?.length,
+            shrinkWrap: false,
+            physics: const BouncingScrollPhysics(),
             itemBuilder: (BuildContext context, int index) {
               final ram = filteredRam?[index];
 

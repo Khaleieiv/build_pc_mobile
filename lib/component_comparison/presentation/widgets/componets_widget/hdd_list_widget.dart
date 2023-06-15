@@ -42,7 +42,9 @@ class _HddListWidgetState extends State<HddListWidget> {
 
     return hddProvider.isLoading
         ? ListView.builder(
+            shrinkWrap: false,
             itemCount: filteredHdd?.length,
+            physics: const BouncingScrollPhysics(),
             itemBuilder: (BuildContext context, int index) {
               final hdd = filteredHdd?[index];
 

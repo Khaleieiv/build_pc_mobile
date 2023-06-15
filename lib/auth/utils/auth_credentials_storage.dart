@@ -15,12 +15,6 @@ class AuthCredentialsStorage {
     return LoginUserData(_tokenAccessGet);
   }
 
-  static Future<String?> get tokenSaved async {
-    final savedCredentials = await AuthCredentialsStorage.savedCredentials;
-
-    return savedCredentials.tokenAccess;
-  }
-
   static Future<void> get removeCredentials async {
     const storage = FlutterSecureStorage();
     await storage.delete(key: _tokenAccess);

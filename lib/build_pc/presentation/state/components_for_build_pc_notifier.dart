@@ -94,23 +94,31 @@ class ComponentsForBuildPcNotifier extends ChangeNotifier
   List<BaseComponent>? getListByComponentName(String componentName) {
     switch (componentName) {
       case 'processor':
-        return _listCpuBuildPc;
+        return _listCpuBuildPc?.isNotEmpty ?? false ? _listCpuBuildPc : null;
       case 'graphic_card':
-        return _listGpuBuildPc;
+        return _listGpuBuildPc?.isNotEmpty ?? false ? _listGpuBuildPc : null;
       case 'motherboard':
-        return _listMotherboardBuildPc;
+        return _listMotherboardBuildPc?.isNotEmpty ?? false
+            ? _listMotherboardBuildPc
+            : null;
       case 'cooler':
-        return _listCoolerBuildPc;
+        return _listCoolerBuildPc?.isNotEmpty ?? false
+            ? _listCoolerBuildPc
+            : null;
       case 'memory':
-        return _listRamBuildPc;
+        return _listRamBuildPc?.isNotEmpty ?? false ? _listRamBuildPc : null;
       case 'hdd':
-        return _listHddBuildPc;
+        return _listHddBuildPc?.isNotEmpty ?? false ? _listHddBuildPc : null;
       case 'ssd':
-        return _listSsdBuildPc;
+        return _listSsdBuildPc?.isNotEmpty ?? false ? _listSsdBuildPc : null;
       case 'case':
-        return _listPcCaseBuildPc;
+        return _listPcCaseBuildPc?.isNotEmpty ?? false
+            ? _listPcCaseBuildPc
+            : null;
       case 'power_supply':
-        return _listPowerSupplyBuildPc;
+        return _listPowerSupplyBuildPc?.isNotEmpty ?? false
+            ? _listPowerSupplyBuildPc
+            : null;
       default:
         return null;
     }
@@ -169,7 +177,6 @@ class ComponentsForBuildPcNotifier extends ChangeNotifier
     setComponentList(componentList);
     _handleCustomError(null);
     notifyListeners();
-
   }
 
   Future<void> _subscribeToBuildPcUpdates<T>(
@@ -177,12 +184,14 @@ class ComponentsForBuildPcNotifier extends ChangeNotifier
     void Function(List<T>?) setComponentList, {
     required StreamSubscription<List<T>?>? componentListSubscription,
   }) async {
+    await componentListSubscription?.cancel();
     componentListSubscription = componentListStream?.listen(
       (componentList) => _listComponentBuildPcStreamListener<T>(
         componentList,
         setComponentList,
       ),
     );
+    notifyListeners();
   }
 
   Future<void> fetchCpuListBuildPcComponents(int? id) async {
@@ -198,7 +207,6 @@ class ComponentsForBuildPcNotifier extends ChangeNotifier
       id,
       _componentsForBuildPcRepositoryImpl.updateCpuComponents,
     );
-    const Duration(milliseconds: 200);
     await fetchMotherboardListBuildPcComponents(id);
     notifyListeners();
   }
@@ -208,25 +216,25 @@ class ComponentsForBuildPcNotifier extends ChangeNotifier
       id,
       _componentsForBuildPcRepositoryImpl.deleteCpuComponents,
     );
-    const Duration(milliseconds: 200);
     await fetchMotherboardListBuildPcComponents(id);
     notifyListeners();
   }
 
   Future<void> _listCpuBuildPcStreamListener(List<CPU>? listCpuBuildPc) async {
     _listCpuBuildPc = listCpuBuildPc;
-    setLoadingState(value: true);
     _handleCustomError(null);
+    notifyListeners();
   }
 
-  Future<void> _subscribeToBuildPcUpdatesForCPU(
+  void _subscribeToBuildPcUpdatesForCPU(
     Stream<List<CPU>?>? listCpuBuildPcStream,
-  ) async {
-    await _subscribeToBuildPcUpdates<CPU>(
+  ) {
+    _subscribeToBuildPcUpdates<CPU>(
       listCpuBuildPcStream,
       _listCpuBuildPcStreamListener,
       componentListSubscription: _listCpuBuildPcSubscription,
     );
+    notifyListeners();
   }
 
   Future<void> fetchMotherboardListBuildPcComponents(int? id) async {
@@ -245,9 +253,7 @@ class ComponentsForBuildPcNotifier extends ChangeNotifier
       id,
       _componentsForBuildPcRepositoryImpl.updateMotherboardComponents,
     );
-    const Duration(milliseconds: 200);
     await fetchCoolerListBuildPcComponents(id);
-    await fetchRamListBuildPcComponents(id);
     notifyListeners();
   }
 
@@ -256,7 +262,6 @@ class ComponentsForBuildPcNotifier extends ChangeNotifier
       id,
       _componentsForBuildPcRepositoryImpl.deleteMotherboardComponents,
     );
-    const Duration(milliseconds: 200);
     await fetchCoolerListBuildPcComponents(id);
     await fetchRamListBuildPcComponents(id);
     notifyListeners();
@@ -266,18 +271,19 @@ class ComponentsForBuildPcNotifier extends ChangeNotifier
     List<Motherboard>? listMotherboardBuildPc,
   ) async {
     _listMotherboardBuildPc = listMotherboardBuildPc;
-    setLoadingState(value: true);
     _handleCustomError(null);
+    notifyListeners();
   }
 
-  Future<void> _subscribeToBuildPcUpdatesForMotherboard(
+  void _subscribeToBuildPcUpdatesForMotherboard(
     Stream<List<Motherboard>?>? listMotherboardBuildPcStream,
-  ) async {
-    await _subscribeToBuildPcUpdates<Motherboard>(
+  ) {
+    _subscribeToBuildPcUpdates<Motherboard>(
       listMotherboardBuildPcStream,
       _listMotherboardBuildPcStreamListener,
       componentListSubscription: _listMotherboardListSubscription,
     );
+    notifyListeners();
   }
 
   Future<void> fetchGpuListBuildPcComponents(int? id) async {
@@ -309,8 +315,8 @@ class ComponentsForBuildPcNotifier extends ChangeNotifier
     List<GPU>? listGpuBuildPc,
   ) async {
     _listGpuBuildPc = listGpuBuildPc;
-    setLoadingState(value: true);
     _handleCustomError(null);
+    notifyListeners();
   }
 
   Future<void> _subscribeToBuildPcUpdatesForGpu(
@@ -352,18 +358,19 @@ class ComponentsForBuildPcNotifier extends ChangeNotifier
     List<Cooler>? listCoolerBuildPc,
   ) async {
     _listCoolerBuildPc = listCoolerBuildPc;
-    setLoadingState(value: true);
     _handleCustomError(null);
+    notifyListeners();
   }
 
-  Future<void> _subscribeToBuildPcUpdatesForCooler(
+  void _subscribeToBuildPcUpdatesForCooler(
     Stream<List<Cooler>?>? listCoolerBuildPcStream,
-  ) async {
-    await _subscribeToBuildPcUpdates<Cooler>(
+  ) {
+    _subscribeToBuildPcUpdates<Cooler>(
       listCoolerBuildPcStream,
       _listCoolerBuildPcStreamListener,
       componentListSubscription: _listCoolerListSubscription,
     );
+    notifyListeners();
   }
 
   Future<void> fetchRamListBuildPcComponents(int? id) async {

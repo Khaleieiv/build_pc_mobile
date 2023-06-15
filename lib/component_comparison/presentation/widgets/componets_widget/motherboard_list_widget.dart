@@ -45,7 +45,9 @@ class _MotherboardListWidgetState extends State<MotherboardListWidget> {
 
     return motherboardProvider.isLoading
         ? ListView.builder(
+            shrinkWrap: false,
             itemCount: filteredMotherboard?.length,
+            physics: const BouncingScrollPhysics(),
             itemBuilder: (BuildContext context, int index) {
               final motherboard = filteredMotherboard?[index];
 

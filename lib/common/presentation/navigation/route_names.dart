@@ -12,5 +12,6 @@ class RouteNames {
   static const String infoBuildPcPage = '/info_buildPc';
   static const String listComponentPage = '/list_component';
   static const String ratingPage = '/rating';
+  static const String infoBuildForRating = '/info_rating';
   static const String changePasswordPage = '/change_password';
 }

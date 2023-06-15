@@ -15,6 +15,7 @@ import 'package:build_pc_mobile/home/presentation/widgets/styles_dark_light_them
 import 'package:build_pc_mobile/profile/presentation/pages/change_password_page.dart';
 import 'package:build_pc_mobile/profile/presentation/pages/edit_profile_page.dart';
 import 'package:build_pc_mobile/profile/presentation/pages/profile_page.dart';
+import 'package:build_pc_mobile/rating/presentation/pages/info_build_in_rating_page.dart';
 import 'package:build_pc_mobile/rating/presentation/pages/rating_page.dart';
 import 'package:ez_localization/ez_localization.dart';
 import 'package:flutter/material.dart';
@@ -60,7 +61,7 @@ class Main extends StatelessWidget {
           RouteNames.ratingPage: (_) => const RatingPage(),
           RouteNames.changePasswordPage: (_) => const ChangePasswordPage(),
           RouteNames.infoBuildPcPage: (_) => const InfoBuildPcPage(),
-
+          RouteNames.infoBuildForRating: (_) => const InfoBuildInRatingPage(),
         },
         localizationsDelegates: localizationDelegate.localizationDelegates,
         supportedLocales: localizationDelegate.supportedLocales,

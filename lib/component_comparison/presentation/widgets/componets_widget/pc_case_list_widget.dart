@@ -43,6 +43,8 @@ class _PcCaseListWidgetState extends State<PcCaseListWidget> {
     return pcCaseProvider.isLoading
         ? ListView.builder(
             itemCount: filteredPcCase?.length,
+            shrinkWrap: false,
+            physics: const BouncingScrollPhysics(),
             itemBuilder: (BuildContext context, int index) {
               final pcCase = filteredPcCase?[index];
 

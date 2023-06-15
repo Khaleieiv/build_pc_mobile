@@ -43,6 +43,8 @@ class _SsdListWidgetState extends State<SsdListWidget> {
     return ssdProvider.isLoading
         ? ListView.builder(
             itemCount: filteredSsd?.length,
+            shrinkWrap: false,
+            physics: const BouncingScrollPhysics(),
             itemBuilder: (BuildContext context, int index) {
               final ssd = filteredSsd?[index];
 

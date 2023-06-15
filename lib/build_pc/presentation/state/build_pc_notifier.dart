@@ -58,7 +58,6 @@ class BuildPcNotifier extends ChangeNotifier with LoadingStateNotifier {
   }
 
   Future<void> fetchBuildPcUserListComponents() async {
-    if (isLoading) return;
     setLoadingState(value: true);
     try {
       await _buildPcRepositoryImpl.fetchBuildPcUserListComponents();

@@ -6,6 +6,7 @@ import 'package:build_pc_mobile/common/constants/app_sizes.dart';
 import 'package:build_pc_mobile/common/presentation/navigation/route_names.dart';
 import 'package:build_pc_mobile/common/widgets/custom_no_data_widget.dart';
 import 'package:build_pc_mobile/home/presentation/state/dark_light_theme_notifier.dart';
+import 'package:build_pc_mobile/rating/presentation/state/rating_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:panara_dialogs/panara_dialogs.dart';
@@ -23,12 +24,15 @@ class BuildPcPage extends StatefulWidget {
 class _BuildPcPageState extends State<BuildPcPage> {
   BuildPcNotifier get _buildPcNotifier =>
       Provider.of<BuildPcNotifier>(context, listen: false);
+  RatingNotifier get _ratingPcNotifier =>
+      Provider.of<RatingNotifier>(context, listen: false);
 
   @override
   void initState() {
     super.initState();
     SchedulerBinding.instance.addPostFrameCallback((_) {
       _buildPcNotifier.fetchBuildPcUserListComponents();
+      _ratingPcNotifier.fetchBuildPcListComponents();
     });
   }
 

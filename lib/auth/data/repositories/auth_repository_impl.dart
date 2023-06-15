@@ -6,6 +6,7 @@ import 'package:build_pc_mobile/auth/data/models/login_user_data.dart';
 import 'package:build_pc_mobile/auth/domain/entities/user/user.dart';
 import 'package:build_pc_mobile/auth/domain/repositories/user_repository.dart';
 import 'package:build_pc_mobile/auth/utils/auth_credentials_storage.dart';
+import 'package:build_pc_mobile/auth/utils/user_preferences.dart';
 import 'package:build_pc_mobile/common/constants/api.dart';
 import 'package:build_pc_mobile/common/utils/http_response_utils.dart';
 import 'package:build_pc_mobile/profile/data/models/profile_params.dart';
@@ -131,7 +132,8 @@ class AuthRepositoryImpl extends UserRepository {
     final decodedResponse = HttpResponseUtils.parseHttpResponse(response);
     final user = User.fromJson(decodedResponse);
     final token = decodedResponse["accessToken"];
-    AuthCredentialsStorage.saveCredentials(LoginUserData(token.toString()));
+    UserPreferences.saveToken(LoginUserData(token.toString()));
+   // AuthCredentialsStorage.saveCredentials(LoginUserData(token.toString()));
     _currentUserController.sink.add(user);
   }
 

@@ -40,9 +40,10 @@ class _ProfilePageState extends State<ProfilePage> {
 
     final isCheckLoggedIn = authNotifier.isLoggedIn;
 
-    void logOut() {
-      authNotifier.signOut();
-      Navigator.pushNamed(context, RouteNames.loginPage);
+    Future<void> logOut() async {
+      await authNotifier.signOut();
+      if(!mounted) return;
+      await Navigator.pushNamed(context, RouteNames.loginPage);
     }
 
     const heightContainer = 400.0;

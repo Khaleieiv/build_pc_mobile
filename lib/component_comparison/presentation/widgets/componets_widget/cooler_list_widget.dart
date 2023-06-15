@@ -43,6 +43,8 @@ class _CoolerListWidgetState extends State<CoolerListWidget> {
     return coolerProvider.isLoading
         ? ListView.builder(
             itemCount: filteredCoolers?.length,
+            shrinkWrap: false,
+            physics: const BouncingScrollPhysics(),
             itemBuilder: (BuildContext context, int index) {
               final cooler = filteredCoolers?[index];
 

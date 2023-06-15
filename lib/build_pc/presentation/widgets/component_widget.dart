@@ -47,45 +47,45 @@ class _ComponentWidgetState extends State<ComponentWidget> {
     });
   }
 
-  void _fetchComponents() {
+  Future<void> _fetchComponents() async {
     final idBuild = int.parse(
       _selectedComponentForBuildNotifier.addToBuildPcComponents["id"]
           .toString(),
     );
     if (widget.componentName == 'processor') {
-      _componentsForBuildPcNotifier.fetchCpuListBuildPcComponents(
+      await _componentsForBuildPcNotifier.fetchCpuListBuildPcComponents(
         idBuild,
       );
     } else if (widget.componentName == 'motherboard') {
-      _componentsForBuildPcNotifier.fetchMotherboardListBuildPcComponents(
+      await _componentsForBuildPcNotifier.fetchMotherboardListBuildPcComponents(
         idBuild,
       );
     } else if (widget.componentName == 'graphic_card') {
-      _componentsForBuildPcNotifier.fetchGpuListBuildPcComponents(
+      await _componentsForBuildPcNotifier.fetchGpuListBuildPcComponents(
         idBuild,
       );
     } else if (widget.componentName == 'cooler') {
-      _componentsForBuildPcNotifier.fetchCoolerListBuildPcComponents(
+      await _componentsForBuildPcNotifier.fetchCoolerListBuildPcComponents(
         idBuild,
       );
     } else if (widget.componentName == 'memory') {
-      _componentsForBuildPcNotifier.fetchRamListBuildPcComponents(
+      await _componentsForBuildPcNotifier.fetchRamListBuildPcComponents(
         idBuild,
       );
     } else if (widget.componentName == 'hdd') {
-      _componentsForBuildPcNotifier.fetchHddListBuildPcComponents(
+      await _componentsForBuildPcNotifier.fetchHddListBuildPcComponents(
         idBuild,
       );
     } else if (widget.componentName == 'ssd') {
-      _componentsForBuildPcNotifier.fetchSsdListBuildPcComponents(
+      await _componentsForBuildPcNotifier.fetchSsdListBuildPcComponents(
         idBuild,
       );
     } else if (widget.componentName == 'case') {
-      _componentsForBuildPcNotifier.fetchPcCaseListBuildPcComponents(
+      await _componentsForBuildPcNotifier.fetchPcCaseListBuildPcComponents(
         idBuild,
       );
     } else if (widget.componentName == 'power_supply') {
-      _componentsForBuildPcNotifier.fetchPowerSupplyListBuildPcComponents(
+      await _componentsForBuildPcNotifier.fetchPowerSupplyListBuildPcComponents(
         idBuild,
       );
     }
@@ -112,53 +112,55 @@ class _ComponentWidgetState extends State<ComponentWidget> {
 
     final filteredComponents = _getFilteredComponents();
 
-    void updateComponents(BaseComponent? model)  {
+    Future<void> updateComponents(BaseComponent? model) async {
       final idBuild = int.parse(
         selectedComponentForBuildNotifier.addToBuildPcComponents["id"]
             .toString(),
       );
       if (widget.componentName == 'processor') {
-        componentsForBuildPcNotifier.updateCpuListBuildPcComponents(
+        await componentsForBuildPcNotifier.updateCpuListBuildPcComponents(
           model as CPU?,
           idBuild,
         );
       } else if (widget.componentName == 'motherboard') {
-        componentsForBuildPcNotifier.updateMotherboardListBuildPcComponents(
+        await componentsForBuildPcNotifier
+            .updateMotherboardListBuildPcComponents(
           model as Motherboard?,
           idBuild,
         );
       } else if (widget.componentName == 'graphic_card') {
-        componentsForBuildPcNotifier.updateGpuListBuildPcComponents(
+        await componentsForBuildPcNotifier.updateGpuListBuildPcComponents(
           model as GPU?,
           idBuild,
         );
       } else if (widget.componentName == 'cooler') {
-        componentsForBuildPcNotifier.updateCoolerListBuildPcComponents(
+        await componentsForBuildPcNotifier.updateCoolerListBuildPcComponents(
           model as Cooler?,
           idBuild,
         );
       } else if (widget.componentName == 'memory') {
-        componentsForBuildPcNotifier.updateRamListBuildPcComponents(
+        await componentsForBuildPcNotifier.updateRamListBuildPcComponents(
           model as Ram?,
           idBuild,
         );
       } else if (widget.componentName == 'hdd') {
-        componentsForBuildPcNotifier.updateHddListBuildPcComponents(
+        await componentsForBuildPcNotifier.updateHddListBuildPcComponents(
           model as Hdd?,
           idBuild,
         );
       } else if (widget.componentName == 'ssd') {
-        componentsForBuildPcNotifier.updateSsdListBuildPcComponents(
+        await componentsForBuildPcNotifier.updateSsdListBuildPcComponents(
           model as Ssd?,
           idBuild,
         );
       } else if (widget.componentName == 'case') {
-        componentsForBuildPcNotifier.updatePcCaseListBuildPcComponents(
+        await componentsForBuildPcNotifier.updatePcCaseListBuildPcComponents(
           model as PcCase?,
           idBuild,
         );
       } else if (widget.componentName == 'power_supply') {
-        componentsForBuildPcNotifier.updatePowerSupplyListBuildPcComponents(
+        await componentsForBuildPcNotifier
+            .updatePowerSupplyListBuildPcComponents(
           model as PowerSupply?,
           idBuild,
         );
@@ -172,16 +174,14 @@ class _ComponentWidgetState extends State<ComponentWidget> {
               return CustomComponentButtonWidget(
                 imagePath: widget.imagePath,
                 nameComponent: filteredComponents[index].name,
-                onTap: () {
-                  const Duration(milliseconds: 3000);
-                  updateComponents(filteredComponents[index]);
-                  const Duration(milliseconds: 3000);
-                  selectedComponentForBuildNotifier.addToComparison(
+                onTap: () async {
+                  await updateComponents(filteredComponents[index]);
+                  await selectedComponentForBuildNotifier.addToComparison(
                     widget.componentName,
                     filteredComponents[index],
                   );
-                  _fetchComponents();
-                  const Duration(milliseconds: 3000);
+                  await _fetchComponents();
+                  if (!mounted) return;
                   Navigator.pop(context);
                 },
               );

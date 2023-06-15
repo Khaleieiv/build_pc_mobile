@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:build_pc_mobile/auth/data/models/login_user_data.dart';
 import 'package:build_pc_mobile/auth/data/repositories/auth_repository_impl.dart';
 import 'package:build_pc_mobile/auth/domain/entities/user/user.dart';
-import 'package:build_pc_mobile/auth/utils/auth_credentials_storage.dart';
 import 'package:build_pc_mobile/auth/utils/user_preferences.dart';
 import 'package:build_pc_mobile/common/utils/custom_exception.dart';
 import 'package:build_pc_mobile/profile/data/models/profile_params.dart';
@@ -34,12 +33,10 @@ class AuthNotifier extends ChangeNotifier {
     subscribeToProfileUpdates(_authRepository.currentProfileParams);
   }
 
-  Future<void> registerAccount(
-    String name,
-    String username,
-    String password,
-    String email,
-  ) async {
+  Future<void> registerAccount(String name,
+      String username,
+      String password,
+      String email,) async {
     _handleAuthError(null);
     notifyListeners();
     try {
@@ -61,10 +58,8 @@ class AuthNotifier extends ChangeNotifier {
     }
   }
 
-  Future<void> signInWithEmail(
-    String username,
-    String password,
-  ) async {
+  Future<void> signInWithEmail(String username,
+      String password,) async {
     _handleAuthError(null);
     notifyListeners();
     try {
@@ -94,11 +89,9 @@ class AuthNotifier extends ChangeNotifier {
     }
   }
 
-  Future<void> updateProfile(
-    String name,
-    String username,
-    String email,
-  ) async {
+  Future<void> updateProfile(String name,
+      String username,
+      String email,) async {
     _handleAuthError(null);
     notifyListeners();
     try {
@@ -119,9 +112,11 @@ class AuthNotifier extends ChangeNotifier {
 
   Future<void> signOut() async {
     _handleAuthError(null);
-    await AuthCredentialsStorage.removeCredentials;
+    // await AuthCredentialsStorage.removeCredentials;
+    await UserPreferences.removeToken();
     await UserPreferences.removeUser();
     await _authRepository.signOut();
+    notifyListeners();
   }
 
   Future<void> _userStreamListener(User? user) async {
@@ -151,7 +146,8 @@ class AuthNotifier extends ChangeNotifier {
     LoginUserData savedCredentials;
     var checkLogin = false;
     try {
-      savedCredentials = await AuthCredentialsStorage.savedCredentials;
+      //savedCredentials = await AuthCredentialsStorage.savedCredentials;
+      savedCredentials = await UserPreferences.getToken;
       if (savedCredentials.isValid) {
         checkLogin = true;
         final storedUser = await UserPreferences.getUser();

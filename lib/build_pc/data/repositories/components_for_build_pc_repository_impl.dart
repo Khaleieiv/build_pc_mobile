@@ -80,19 +80,13 @@ class ComponentsForBuildPcRepositoryImpl
 
   @override
   Future<void> updateCpuComponents(CPU? cpu, int? id) async {
-    final params = {
-      'processor': cpu?.toJson(),
-    };
     final Uri apiUrl = Uri.parse(
-        'http://${Api.baseUrl} $_fetchCpuListUserPath/processor/$id');
-    final requestUri =
-        Uri.http(Api.baseUrl, "$_fetchCpuListUserPath/processor/$id");
+        'http://${Api.baseUrl} $_fetchCpuListUserPath/processor/$id',);
     await _client.put(
       apiUrl,
       headers: Api.headers(),
-      body: jsonEncode(params),
+      body: jsonEncode(cpu),
     );
-    await fetchMotherboardListComponents(id);
   }
 
   @override
@@ -108,9 +102,7 @@ class ComponentsForBuildPcRepositoryImpl
   @override
   Future<void> fetchMotherboardListComponents(int? id) async {
     final Uri apiUrl = Uri.parse(
-        'http://${Api.baseUrl} $_fetchCpuListUserPath/motherboard/$id');
-    final requestUri =
-        Uri.http(Api.baseUrl, "$_fetchCpuListUserPath/motherboard/$id");
+        'http://${Api.baseUrl} $_fetchCpuListUserPath/motherboard/$id',);
     final response = await _client.get(
       apiUrl,
       headers: Api.headers(),
@@ -127,15 +119,12 @@ class ComponentsForBuildPcRepositoryImpl
     Motherboard? motherboard,
     int? id,
   ) async {
-    final params = {
-      'motherboard': motherboard?.toJson(),
-    };
     final requestUri =
         Uri.http(Api.baseUrl, "$_fetchCpuListUserPath/motherboard/$id");
     await _client.put(
       requestUri,
       headers: Api.headers(),
-      body: jsonEncode(params),
+      body: jsonEncode(motherboard),
     );
   }
 
@@ -166,15 +155,12 @@ class ComponentsForBuildPcRepositoryImpl
 
   @override
   Future<void> updateCoolerComponents(Cooler? cooler, int? id) async {
-    final params = {
-      'cooler': cooler?.toJson(),
-    };
     final requestUri =
         Uri.http(Api.baseUrl, "$_fetchCpuListUserPath/cooler/$id");
     await _client.put(
       requestUri,
       headers: Api.headers(),
-      body: jsonEncode(params),
+      body: jsonEncode(cooler),
     );
   }
 
@@ -205,15 +191,12 @@ class ComponentsForBuildPcRepositoryImpl
 
   @override
   Future<void> updateGpuComponents(GPU? gpu, int? id) async {
-    final params = {
-      'graphicCard': gpu?.toJson(),
-    };
     final requestUri =
         Uri.http(Api.baseUrl, "$_fetchCpuListUserPath/graphicCard/$id");
     await _client.put(
       requestUri,
       headers: Api.headers(),
-      body: jsonEncode(params),
+      body: jsonEncode(gpu),
     );
   }
 
@@ -243,14 +226,11 @@ class ComponentsForBuildPcRepositoryImpl
 
   @override
   Future<void> updateRamComponents(Ram? ram, int? id) async {
-    final params = {
-      'ram': ram?.toJson(),
-    };
     final requestUri = Uri.http(Api.baseUrl, "$_fetchCpuListUserPath/ram/$id");
     await _client.put(
       requestUri,
       headers: Api.headers(),
-      body: jsonEncode(params),
+      body: jsonEncode(ram),
     );
   }
 
@@ -280,14 +260,11 @@ class ComponentsForBuildPcRepositoryImpl
 
   @override
   Future<void> updateHddComponents(Hdd? hdd, int? id) async {
-    final params = {
-      'hdd': hdd?.toJson(),
-    };
     final requestUri = Uri.http(Api.baseUrl, "$_fetchCpuListUserPath/hdd/$id");
     await _client.put(
       requestUri,
       headers: Api.headers(),
-      body: jsonEncode(params),
+      body: jsonEncode(hdd),
     );
   }
 
@@ -317,14 +294,11 @@ class ComponentsForBuildPcRepositoryImpl
 
   @override
   Future<void> updateSsdComponents(Ssd? ssd, int? id) async {
-    final params = {
-      'ssd': ssd?.toJson(),
-    };
     final requestUri = Uri.http(Api.baseUrl, "$_fetchCpuListUserPath/ssd/$id");
     await _client.put(
       requestUri,
       headers: Api.headers(),
-      body: jsonEncode(params),
+      body: jsonEncode(ssd),
     );
   }
 
@@ -354,14 +328,11 @@ class ComponentsForBuildPcRepositoryImpl
 
   @override
   Future<void> updatePcCaseComponents(PcCase? pcCase, int? id) async {
-    final params = {
-      'case': pcCase?.toJson(),
-    };
     final requestUri = Uri.http(Api.baseUrl, "$_fetchCpuListUserPath/case/$id");
     await _client.put(
       requestUri,
       headers: Api.headers(),
-      body: jsonEncode(params),
+      body: jsonEncode(pcCase),
     );
   }
 
@@ -394,15 +365,12 @@ class ComponentsForBuildPcRepositoryImpl
     PowerSupply? powerSupply,
     int? id,
   ) async {
-    final params = {
-      'powerSupply': powerSupply?.toJson(),
-    };
     final requestUri =
         Uri.http(Api.baseUrl, "$_fetchCpuListUserPath/powerSupply/$id");
     await _client.put(
       requestUri,
       headers: Api.headers(),
-      body: jsonEncode(params),
+      body: jsonEncode(powerSupply),
     );
   }
 

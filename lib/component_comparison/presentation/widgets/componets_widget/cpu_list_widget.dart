@@ -46,6 +46,8 @@ class _CPUListWidgetState extends State<CPUListWidget> {
     return cpuProvider.isLoading
         ? ListView.builder(
             itemCount: filteredCPUs?.length,
+            shrinkWrap: false,
+            physics: const BouncingScrollPhysics(),
             itemBuilder: (BuildContext context, int index) {
               final cpu = filteredCPUs?[index];
 

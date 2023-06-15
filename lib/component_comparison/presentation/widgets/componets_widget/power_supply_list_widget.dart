@@ -44,6 +44,8 @@ class _PowerSupplyListWidgetState extends State<PowerSupplyListWidget> {
     return powerSupplyProvider.isLoading
         ? ListView.builder(
             itemCount: filteredPowerSupply?.length,
+            shrinkWrap: false,
+            physics: const BouncingScrollPhysics(),
             itemBuilder: (BuildContext context, int index) {
               final powerSupply = filteredPowerSupply?[index];
 

@@ -43,6 +43,8 @@ class _GPUListWidgetState extends State<GPUListWidget> {
     return gpuProvider.isLoading
         ? ListView.builder(
             itemCount: filteredGPUs?.length,
+            shrinkWrap: false,
+            physics: const BouncingScrollPhysics(),
             itemBuilder: (BuildContext context, int index) {
               final gpu = filteredGPUs?[index];
 

@@ -11,7 +11,17 @@ import 'package:build_pc_mobile/common/domain/entities/storage_drive/ssd/ssd.dar
 import 'package:flutter/cupertino.dart';
 
 class ComponentComparisonNotifier extends ChangeNotifier {
-  int _counter = 0;
+  final Map<String, int> _counters = {
+    "processor": 0,
+    "motherboard": 0,
+    "graphic_card": 0,
+    "memory": 0,
+    "ssd": 0,
+    "hdd": 0,
+    "cooler": 0,
+    "power_supply": 0,
+    "case": 0,
+  };
 
   bool _swapButton = true;
 
@@ -36,8 +46,6 @@ class ComponentComparisonNotifier extends ChangeNotifier {
     notifyListeners();
   }
 
-  int get counter => _counter;
-
   bool get swapButton => _swapButton;
 
   Map<String, List<BaseComponent>> get selectedComponents => comparedComponents;
@@ -55,18 +63,18 @@ class ComponentComparisonNotifier extends ChangeNotifier {
   ) async {
     if (!selectedComponents[componentType]!.contains(component)) {
       selectedComponents[componentType]?.add(component);
-      ++_counter;
+      _incrementCounter(componentType ?? "");
       swapButtonState(value: false);
       notifyListeners();
     }
   }
 
   Future<void> clearListComparison(
-    String? componentType,
+      String? componentType,
   ) async {
     selectedComponents[componentType]?.clear();
     swapButtonState(value: true);
-    _counter = 0;
+    _resetCounter(componentType ?? "");
     notifyListeners();
   }
 
@@ -77,14 +85,26 @@ class ComponentComparisonNotifier extends ChangeNotifier {
     final index = selectedComponents[componentType]
         ?.indexWhere((element) => element.id == component.id);
     if (index != null && index >= 0) {
-      --_counter;
+      _decrementCounter(componentType ?? "");
       selectedComponents[componentType]?.removeAt(index);
       swapButtonState(value: true);
     }
     notifyListeners();
   }
 
-  int getCounter() {
-    return _counter;
+  int getCounter(String componentType) {
+    return _counters[componentType] ?? 0;
+  }
+
+  void _incrementCounter(String componentType) {
+    _counters[componentType] = (_counters[componentType] ?? 0) + 1;
+  }
+
+  void _resetCounter(String componentType) {
+    _counters[componentType] = 0;
+  }
+
+  void _decrementCounter(String componentType) {
+    _counters[componentType] = (_counters[componentType] ?? 0) - 1;
   }
 }

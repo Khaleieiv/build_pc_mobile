@@ -11,6 +11,7 @@ import 'package:build_pc_mobile/common/domain/entities/storage_drive/ssd/ssd.dar
 import 'package:build_pc_mobile/common/presentation/navigation/route_names.dart';
 import 'package:build_pc_mobile/common/widgets/custom_icon_button_route_page.dart';
 import 'package:flutter/material.dart';
+import 'package:panara_dialogs/panara_dialogs.dart';
 import 'package:provider/provider.dart';
 
 class AddComponentToBuildPage extends StatefulWidget {
@@ -35,6 +36,9 @@ class _AddComponentToBuildPageState extends State<AddComponentToBuildPage> {
     final selectedComponentForBuildNotifier =
         Provider.of<SelectedComponentForBuildNotifier>(context);
     final buildPcNotifier = Provider.of<BuildPcNotifier>(context);
+
+    print(buildPcNotifier.buildPc?.id);
+    print(buildPcNotifier.buildPc?.totalPrice);
 
     const sizeIcon = 25.0;
 
@@ -110,12 +114,26 @@ class _AddComponentToBuildPageState extends State<AddComponentToBuildPage> {
                 CustomAddToBuildButtonWidget(
                   label: 'Motherboard',
                   onPressed: () {
+                    if (!selectedComponentForBuildNotifier.checkAddProcessor){
                     selectedComponentForBuildNotifier
                         .setModelName("motherboard");
                     Navigator.pushNamed(
                       context,
                       RouteNames.listComponentPage,
                     );
+                    } else {
+                      PanaraInfoDialog.show(
+                        context,
+                        title: "Oops",
+                        message: "You cannot create an empty assembly",
+                        buttonText: "Okay",
+                        onTapDismiss: () {
+                          Navigator.pop(context);
+                        },
+                        textColor: AppColors.blackColor,
+                        panaraDialogType: PanaraDialogType.warning,
+                      );
+                    }
                   },
                 )
               else
@@ -302,8 +320,8 @@ class _AddComponentToBuildPageState extends State<AddComponentToBuildPage> {
                   imagePath: 'assets/icons/power_supply.png',
                   //ignore: avoid_dynamic_calls
                   nameComponent: selectedComponentForBuildNotifier
-                      .addToBuildPcComponents["power_supply"]?.name
-                      .toString() ??
+                          .addToBuildPcComponents["power_supply"]?.name
+                          .toString() ??
                       '',
                   onPressed: () {
                     Provider.of<ComponentsForBuildPcNotifier>(

@@ -8,4 +8,8 @@ abstract class RatingRepository {
   Future<void> fetchBuildPcListComponents();
 
   Future<void> putLike(int id);
+
+  Future<bool> isLiked(int id);
+
+  Future<void> deleteLike(int id);
 }

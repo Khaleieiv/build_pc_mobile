@@ -9,6 +9,7 @@ import 'package:http/http.dart' as http;
 
 class RatingRepositoryImpl extends RatingRepository {
   final _fetchBuildPcListPath = '/api/user/buildPc/rating';
+  final _fetchLikeListPath = '/api/user/like';
   final _client = http.Client();
 
   final _currentBuildPcListController = StreamController<List<BuildPc>?>();
@@ -41,19 +42,37 @@ class RatingRepositoryImpl extends RatingRepository {
     final buildPc = decodedResponse
         .map(
           (row) => BuildPc.fromJson(row),
-    )
+        )
         .toList();
     _currentBuildPcListController.sink.add(buildPc);
+  }
+
+  @override
+  Future<void> putLike(int? id) async {
+    final requestUri = Uri.http(Api.baseUrl, '$_fetchLikeListPath/$id');
+    await _client.post(requestUri, headers: Api.headers());
+  }
+
+  @override
+  Future<bool> isLiked(int? id) async  {
+    final requestUri = Uri.http(Api.baseUrl, '$_fetchLikeListPath/$id');
+    final response = await _client.get(requestUri, headers: Api.headers());
+
+    return convertStringToBool(response.body);
+  }
+
+  bool convertStringToBool(String value) {
+    return value.toLowerCase() == 'true';
+  }
+
+  @override
+  Future<void> deleteLike(int? id) async {
+    final requestUri = Uri.http(Api.baseUrl, '$_fetchLikeListPath/$id');
+    await _client.delete(requestUri, headers: Api.headers());
   }
 
   void dispose() {
     _currentBuildPcListController.close();
     _currentBuildPcController.close();
-  }
-
-  @override
-  Future<void> putLike(int id) {
-    // TODO: implement putLike
-    throw UnimplementedError();
   }
 }

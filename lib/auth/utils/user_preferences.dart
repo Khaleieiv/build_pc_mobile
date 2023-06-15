@@ -1,7 +1,19 @@
+import 'package:build_pc_mobile/auth/data/models/login_user_data.dart';
 import 'package:build_pc_mobile/auth/domain/entities/user/user.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class UserPreferences {
+  static String? _tokenAccessGet;
+
+  static String? get tokenAccessGet => _tokenAccessGet;
+
+  static Future<LoginUserData> get getToken async {
+    final prefs = await SharedPreferences.getInstance();
+    _tokenAccessGet = prefs.getString("token");
+
+    return LoginUserData(_tokenAccessGet);
+  }
+
   static Future<void> saveUser(User? user) async {
     final prefs = await SharedPreferences.getInstance();
 
@@ -39,5 +51,17 @@ class UserPreferences {
     await prefs.remove("name");
     await prefs.remove("email");
     await prefs.remove("username");
+  }
+
+  static Future<void> saveToken(LoginUserData credentials) async {
+    final prefs = await SharedPreferences.getInstance();
+
+    await prefs.setString("token", credentials.tokenAccess ?? "");
+  }
+
+
+  static Future<void> removeToken() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.remove("token");
   }
 }

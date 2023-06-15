@@ -135,7 +135,9 @@ class _ComponentPageState extends State<ComponentPage> {
               badgeColor: AppColors.alternateColor,
             ),
             badgeContent: Text(
-              changedModelName.getCounter().toString(),
+              changedModelName
+                  .getCounter(changedModelName.modelName ?? "")
+                  .toString(),
               style: const TextStyle(color: Colors.white),
             ),
             child: IconButton(
