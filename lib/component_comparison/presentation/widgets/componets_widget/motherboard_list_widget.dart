@@ -6,6 +6,7 @@ import 'package:build_pc_mobile/component_comparison/presentation/state/componen
 import 'package:build_pc_mobile/component_comparison/presentation/widgets/custom_add_to_comparison_button_widget.dart';
 import 'package:build_pc_mobile/component_comparison/presentation/widgets/custom_component_widget.dart';
 import 'package:build_pc_mobile/component_comparison/presentation/widgets/custom_remove_to_comparison_button_widget.dart';
+import 'package:ez_localization/ez_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
@@ -54,8 +55,8 @@ class _MotherboardListWidgetState extends State<MotherboardListWidget> {
               return MotherboardItemWidget(motherboard: motherboard);
             },
           )
-        : const CustomNoDataWidget(
-            text: 'There is no data on these components in the database.',
+        : CustomNoDataWidget(
+            text: context.getString('message_data_base'),
           );
   }
 }
@@ -80,19 +81,24 @@ class _MotherboardItemWidgetState extends State<MotherboardItemWidget> {
     return CustomComponentWidget(
       imagePath: 'assets/icons/motherboard.png',
       name: widget.motherboard?.name ?? '',
-      labelTextNameFirst: 'Max amount of RAM',
+      labelTextNameFirst:
+          context.getString('component_comparison.motherboard.label_first'),
       labelTextComponentFirst:
           widget.motherboard?.maxAmountOfRam.toString() ?? '',
-      labelTextNameSecond: 'Memory slots',
+      labelTextNameSecond:
+          context.getString('component_comparison.motherboard.label_second'),
       labelTextComponentSecond:
           widget.motherboard?.memorySlots.toString() ?? '',
-      labelTextNameThird: 'Max TDP',
+      labelTextNameThird:
+          context.getString('component_comparison.motherboard.label_third'),
       labelTextComponentThird:
           widget.motherboard?.maxTdpOfProcessors.toString() ?? '',
-      labelTextNameFourth: 'Memory frequency',
+      labelTextNameFourth:
+          context.getString('component_comparison.motherboard.label_fourth'),
       labelTextComponentFourth:
           widget.motherboard?.supportedMemoryFrequency.toString() ?? '',
-      labelTextNameFifth: 'Recommended price',
+      labelTextNameFifth:
+          context.getString('component_comparison.motherboard.label_fifth'),
       labelTextComponentFifth:
           widget.motherboard?.recommendedPrice.toString() ?? '',
       button: isAddedToComparison

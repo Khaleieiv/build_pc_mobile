@@ -1,4 +1,5 @@
 import 'package:build_pc_mobile/common/constants/app_colors.dart';
+import 'package:ez_localization/ez_localization.dart';
 import 'package:flutter/material.dart';
 
 class CustomAddToComparisonButtonWidget extends StatelessWidget {
@@ -17,7 +18,7 @@ class CustomAddToComparisonButtonWidget extends StatelessWidget {
         Icons.add,
         size: 28.0,
       ),
-      label: const Text('Add to compassion'),
+      label: Text(context.getString("component_comparison.add_to_compassion")),
     );
   }
 }

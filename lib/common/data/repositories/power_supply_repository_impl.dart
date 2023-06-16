@@ -21,7 +21,8 @@ class PowerSupplyRepositoryImpl implements PowerSupplyRepository {
   @override
   Future<void> fetchPowerSupply() async {
     final requestUri = Uri.http(Api.baseUrl, _fetchPowerSupplyPath);
-    final response = await _client.get(requestUri, headers: Api.headers());
+    final response =
+        await _client.get(requestUri, headers:await Api.headers());
     _processPowerSupplyResponse(response);
   }
 
@@ -38,7 +39,7 @@ class PowerSupplyRepositoryImpl implements PowerSupplyRepository {
     final powerSupply = decodedResponse
         .map(
           (row) => PowerSupply.fromJson(row),
-    )
+        )
         .toList();
     _powerSupplyController.sink.add(powerSupply);
   }

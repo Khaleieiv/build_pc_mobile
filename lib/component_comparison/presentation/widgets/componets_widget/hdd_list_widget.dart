@@ -6,6 +6,7 @@ import 'package:build_pc_mobile/component_comparison/presentation/state/componen
 import 'package:build_pc_mobile/component_comparison/presentation/widgets/custom_add_to_comparison_button_widget.dart';
 import 'package:build_pc_mobile/component_comparison/presentation/widgets/custom_component_widget.dart';
 import 'package:build_pc_mobile/component_comparison/presentation/widgets/custom_remove_to_comparison_button_widget.dart';
+import 'package:ez_localization/ez_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
@@ -51,8 +52,8 @@ class _HddListWidgetState extends State<HddListWidget> {
               return HddItemWidget(hdd: hdd);
             },
           )
-        : const CustomNoDataWidget(
-            text: 'There is no data on these components in the database.',
+        : CustomNoDataWidget(
+            text: context.getString('message_data_base'),
           );
   }
 }
@@ -77,15 +78,20 @@ class _HddItemWidgetState extends State<HddItemWidget> {
     return CustomComponentWidget(
       imagePath: 'assets/icons/hdd.png',
       name: widget.hdd?.name ?? '',
-      labelTextNameFirst: 'Reading speed',
+      labelTextNameFirst:
+          context.getString('component_comparison.gpu.label_first'),
       labelTextComponentFirst: widget.hdd?.readingSpeed.toString() ?? '',
-      labelTextNameSecond: 'Storage size',
+      labelTextNameSecond:
+          context.getString('component_comparison.gpu.label_second'),
       labelTextComponentSecond: widget.hdd?.storageSize.toString() ?? '',
-      labelTextNameThird: 'Writing speed',
+      labelTextNameThird:
+          context.getString('component_comparison.gpu.label_third'),
       labelTextComponentThird: widget.hdd?.writingSpeed.toString() ?? '',
-      labelTextNameFourth: 'Buffer size',
+      labelTextNameFourth:
+          context.getString('component_comparison.gpu.label_fourth'),
       labelTextComponentFourth: widget.hdd?.bufferSize.toString() ?? '',
-      labelTextNameFifth: 'Recommended price',
+      labelTextNameFifth:
+          context.getString('component_comparison.gpu.label_fifth'),
       labelTextComponentFifth: widget.hdd?.recommendedPrice.toString() ?? '',
       button: isAddedToComparison
           ? CustomRemoveToComparisonButtonWidget(

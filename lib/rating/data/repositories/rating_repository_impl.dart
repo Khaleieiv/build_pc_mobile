@@ -25,7 +25,8 @@ class RatingRepositoryImpl extends RatingRepository {
   @override
   Future<void> fetchBuildPcListComponents() async {
     final requestUri = Uri.http(Api.baseUrl, _fetchBuildPcListPath);
-    final response = await _client.get(requestUri, headers: Api.headers());
+    final response =
+        await _client.get(requestUri, headers:await Api.headers());
     _processBuildPcListResponse(response);
   }
 
@@ -50,13 +51,14 @@ class RatingRepositoryImpl extends RatingRepository {
   @override
   Future<void> putLike(int? id) async {
     final requestUri = Uri.http(Api.baseUrl, '$_fetchLikeListPath/$id');
-    await _client.post(requestUri, headers: Api.headers());
+    await _client.post(requestUri, headers:await  Api.headers());
   }
 
   @override
-  Future<bool> isLiked(int? id) async  {
+  Future<bool> isLiked(int? id) async {
     final requestUri = Uri.http(Api.baseUrl, '$_fetchLikeListPath/$id');
-    final response = await _client.get(requestUri, headers: Api.headers());
+    final response =
+        await _client.get(requestUri, headers:await Api.headers());
 
     return convertStringToBool(response.body);
   }
@@ -68,7 +70,7 @@ class RatingRepositoryImpl extends RatingRepository {
   @override
   Future<void> deleteLike(int? id) async {
     final requestUri = Uri.http(Api.baseUrl, '$_fetchLikeListPath/$id');
-    await _client.delete(requestUri, headers: Api.headers());
+    await _client.delete(requestUri, headers:await Api.headers());
   }
 
   void dispose() {

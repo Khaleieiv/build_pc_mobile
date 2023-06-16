@@ -123,10 +123,13 @@ class _HomePageState extends State<HomePage> {
                     if (!authNotifier.isLoggedIn) {
                       PanaraConfirmDialog.show(
                         context,
-                        title: "Hello",
-                        message: "To go to this page you need to be logged in",
-                        confirmButtonText: "Confirm",
-                        cancelButtonText: "Cancel",
+                        title: context.getString("profile.account.hello"),
+                        message:
+                            context.getString("profile.account.login_required"),
+                        confirmButtonText:
+                            context.getString("profile.account.confirm"),
+                        cancelButtonText:
+                            context.getString("profile.account.cancel"),
                         textColor: AppColors.blackColor,
                         onTapCancel: () {
                           Navigator.pushNamed(context, RouteNames.homePage);
@@ -149,10 +152,13 @@ class _HomePageState extends State<HomePage> {
                     if (!authNotifier.isLoggedIn) {
                       PanaraConfirmDialog.show(
                         context,
-                        title: "Hello",
-                        message: "To go to this page you need to be logged in",
-                        confirmButtonText: "Confirm",
-                        cancelButtonText: "Cancel",
+                        title: context.getString("profile.account.hello"),
+                        message:
+                            context.getString("profile.account.login_required"),
+                        confirmButtonText:
+                            context.getString("profile.account.confirm"),
+                        cancelButtonText:
+                            context.getString("profile.account.cancel"),
                         textColor: AppColors.blackColor,
                         onTapCancel: () {
                           Navigator.pushNamed(context, RouteNames.homePage);

@@ -7,11 +7,10 @@ class UserPreferences {
 
   static String? get tokenAccessGet => _tokenAccessGet;
 
-  static Future<LoginUserData> get getToken async {
+  static Future<String?> get getToken async {
     final prefs = await SharedPreferences.getInstance();
-    _tokenAccessGet = prefs.getString("token");
 
-    return LoginUserData(_tokenAccessGet);
+    return prefs.getString("token");
   }
 
   static Future<void> saveUser(User? user) async {
@@ -62,6 +61,6 @@ class UserPreferences {
 
   static Future<void> removeToken() async {
     final prefs = await SharedPreferences.getInstance();
-    await prefs.remove("token");
+    await prefs.clear();
   }
 }

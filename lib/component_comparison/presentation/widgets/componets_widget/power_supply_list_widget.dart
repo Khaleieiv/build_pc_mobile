@@ -6,6 +6,7 @@ import 'package:build_pc_mobile/component_comparison/presentation/state/componen
 import 'package:build_pc_mobile/component_comparison/presentation/widgets/custom_add_to_comparison_button_widget.dart';
 import 'package:build_pc_mobile/component_comparison/presentation/widgets/custom_component_widget.dart';
 import 'package:build_pc_mobile/component_comparison/presentation/widgets/custom_remove_to_comparison_button_widget.dart';
+import 'package:ez_localization/ez_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
@@ -52,8 +53,8 @@ class _PowerSupplyListWidgetState extends State<PowerSupplyListWidget> {
               return PowerSupplyItemWidget(powerSupply: powerSupply);
             },
           )
-        : const CustomNoDataWidget(
-            text: 'There is no data on these components in the database.',
+        : CustomNoDataWidget(
+            text: context.getString('message_data_base'),
           );
   }
 }
@@ -78,17 +79,22 @@ class _PowerSupplyItemWidgetState extends State<PowerSupplyItemWidget> {
     return CustomComponentWidget(
       imagePath: 'assets/icons/power_supply.png',
       name: widget.powerSupply?.name ?? '',
-      labelTextNameFirst: 'Power',
+      labelTextNameFirst:
+          context.getString('component_comparison.power_supply.label_first'),
       labelTextComponentFirst: widget.powerSupply?.power.toString() ?? '',
-      labelTextNameSecond: 'Performance level',
+      labelTextNameSecond:
+          context.getString('component_comparison.power_supply.label_second'),
       labelTextComponentSecond:
           widget.powerSupply?.performanceLevel?.name ?? '',
-      labelTextNameThird: 'Recommended price',
+      labelTextNameThird:
+          context.getString('component_comparison.power_supply.label_third'),
       labelTextComponentThird:
           widget.powerSupply?.recommendedPrice.toString() ?? '',
-      labelTextNameFourth: 'Pfc module',
+      labelTextNameFourth:
+          context.getString('component_comparison.power_supply.label_fourth'),
       labelTextComponentFourth: widget.powerSupply?.pfcModule.toString() ?? '',
-      labelTextNameFifth: 'Sata',
+      labelTextNameFifth:
+          context.getString('component_comparison.power_supply.label_fifth'),
       labelTextComponentFifth: widget.powerSupply?.sata.toString() ?? '',
       button: isAddedToComparison
           ? CustomRemoveToComparisonButtonWidget(

@@ -12,7 +12,9 @@ import 'package:build_pc_mobile/common/domain/entities/power_supply/power_supply
 import 'package:build_pc_mobile/common/domain/entities/ram/ram.dart';
 import 'package:build_pc_mobile/common/domain/entities/storage_drive/hdd/hdd.dart';
 import 'package:build_pc_mobile/common/domain/entities/storage_drive/ssd/ssd.dart';
+import 'package:ez_localization/ez_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:panara_dialogs/panara_dialogs.dart';
 import 'package:provider/provider.dart';
 
@@ -28,20 +30,25 @@ class _CustomAlertDialogWidgetState extends State<CustomAlertDialogWidget> {
   final _textFieldController = TextEditingController();
 
   @override
+  void initState() {
+    super.initState();
+    SchedulerBinding.instance.addPostFrameCallback((_) {
+      final selectedComponentForBuildNotifier =
+      Provider.of<SelectedComponentForBuildNotifier>(context, listen: false);
+      final nameBuild =
+      selectedComponentForBuildNotifier.addToBuildPcComponents["nameBuild"];
+      final _name = nameBuild != null ? nameBuild.toString() : "Draft";
+      _textFieldController.value = TextEditingValue(
+        text: _name,
+        selection: TextSelection.fromPosition(
+          TextPosition(offset: _name.length),
+        ),
+      );
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final selectedComponentForBuildNotifier =
-        Provider.of<SelectedComponentForBuildNotifier>(context, listen: false);
-
-    final nameBuild =
-        selectedComponentForBuildNotifier.addToBuildPcComponents["nameBuild"];
-    final _name = nameBuild != null ? nameBuild.toString() : "Draft";
-
-    _textFieldController.value = TextEditingValue(
-      text: _name,
-      selection: TextSelection.fromPosition(
-        TextPosition(offset: _name.length),
-      ),
-    );
 
     return IconButton(
       onPressed: () {
@@ -69,11 +76,13 @@ class _CustomAlertDialogWidgetState extends State<CustomAlertDialogWidget> {
             context: context,
             builder: (context) {
               return AlertDialog(
-                title: const Text('Enter the build name'),
+                title: Text(context.getString(
+                  'build_pc.alert_dialog.label',
+                ),),
                 content: TextField(
                   onChanged: (value) {
                     setState(() {
-                      selectedComponentForBuildNotifier.addToComparison(
+                     selectedComponentForBuildNotifier.addToComparison(
                         "nameBuild",
                         value,
                       );
@@ -82,10 +91,8 @@ class _CustomAlertDialogWidgetState extends State<CustomAlertDialogWidget> {
                   textInputAction: TextInputAction.next,
                   controller: _textFieldController,
                   decoration: InputDecoration(
-                    hintText: selectedComponentForBuildNotifier
-                        .addToBuildPcComponents["nameBuild"]
-                        .toString(),
-                    labelText: "Name build",
+                    hintText: context.getString('build_pc.info.name_build'),
+                    labelText: context.getString('build_pc.info.name_build'),
                   ),
                 ),
                 actions: <Widget>[
@@ -95,7 +102,9 @@ class _CustomAlertDialogWidgetState extends State<CustomAlertDialogWidget> {
                       MaterialButton(
                         color: Colors.red,
                         textColor: Colors.white,
-                        child: const Text('Cancel'),
+                        child:  Text(context.getString(
+                          'build_pc.alert_dialog.cancel',
+                        ),),
                         onPressed: () {
                           setState(() {
                             Navigator.pop(context);
@@ -105,8 +114,16 @@ class _CustomAlertDialogWidgetState extends State<CustomAlertDialogWidget> {
                       MaterialButton(
                         color: Colors.green,
                         textColor: Colors.white,
-                        onPressed: pressSave,
-                        child: const Text('Ok'),
+                        onPressed: (){
+                          pressSave();
+                          Navigator.popUntil(
+                            context,
+                            ModalRoute.withName('/home'),
+                          );
+                        },
+                        child:  Text(context.getString(
+                          'build_pc.alert_dialog.ok',
+                        ),),
                       ),
                     ],
                   ),
@@ -116,9 +133,15 @@ class _CustomAlertDialogWidgetState extends State<CustomAlertDialogWidget> {
           )
         : PanaraInfoDialog.show(
             context,
-            title: "Oops",
-            message: "You cannot create an empty assembly",
-            buttonText: "Okay",
+            title: context.getString(
+              'build_pc.alert_dialog.oops',
+            ),
+            message: context.getString(
+              'build_pc.alert_dialog.empty_build',
+            ),
+            buttonText: context.getString(
+              'build_pc.alert_dialog.okay',
+            ),
             onTapDismiss: () {
               Navigator.pop(context);
             },
@@ -163,7 +186,10 @@ class _CustomAlertDialogWidgetState extends State<CustomAlertDialogWidget> {
           as PcCase?,
       countOfLikes: 0,
       ratingId: null,
-      totalPrice: 0,
+      totalPrice: int.parse(
+        selectedComponentForBuildNotifier.addToBuildPcComponents["priceBuild"]
+            .toString(),
+      ),
     );
     await buildPcNotifier.updateBuildPcUserComponents(
       buildPc,
@@ -175,10 +201,5 @@ class _CustomAlertDialogWidgetState extends State<CustomAlertDialogWidget> {
     await selectedComponentForBuildNotifier.clearAddToBuildPcComponents();
     await selectedComponentForBuildNotifier.clearSwapButton(clear: true);
 
-    if (!mounted) return;
-    Navigator.popUntil(
-      context,
-      ModalRoute.withName('/home'),
-    );
   }
 }

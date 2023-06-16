@@ -69,7 +69,7 @@ class ComponentsForBuildPcRepositoryImpl
         Uri.http(Api.baseUrl, "$_fetchCpuListUserPath/processor/$id");
     final response = await _client.get(
       requestUri,
-      headers: Api.headers(),
+      headers: await Api.headers(),
     );
     HttpResponseUtils.processListResponse(
       response,
@@ -81,10 +81,11 @@ class ComponentsForBuildPcRepositoryImpl
   @override
   Future<void> updateCpuComponents(CPU? cpu, int? id) async {
     final Uri apiUrl = Uri.parse(
-        'http://${Api.baseUrl} $_fetchCpuListUserPath/processor/$id',);
+      'http://${Api.baseUrl} $_fetchCpuListUserPath/processor/$id',
+    );
     await _client.put(
       apiUrl,
-      headers: Api.headers(),
+      headers: await Api.headers(),
       body: jsonEncode(cpu),
     );
   }
@@ -95,17 +96,18 @@ class ComponentsForBuildPcRepositoryImpl
         Uri.http(Api.baseUrl, "$_fetchCpuListUserPath/processor/$id");
     await _client.delete(
       requestUri,
-      headers: Api.headers(),
+      headers: await Api.headers(),
     );
   }
 
   @override
   Future<void> fetchMotherboardListComponents(int? id) async {
     final Uri apiUrl = Uri.parse(
-        'http://${Api.baseUrl} $_fetchCpuListUserPath/motherboard/$id',);
+      'http://${Api.baseUrl} $_fetchCpuListUserPath/motherboard/$id',
+    );
     final response = await _client.get(
       apiUrl,
-      headers: Api.headers(),
+      headers: await Api.headers(),
     );
     HttpResponseUtils.processListResponse(
       response,
@@ -123,7 +125,7 @@ class ComponentsForBuildPcRepositoryImpl
         Uri.http(Api.baseUrl, "$_fetchCpuListUserPath/motherboard/$id");
     await _client.put(
       requestUri,
-      headers: Api.headers(),
+      headers: await Api.headers(),
       body: jsonEncode(motherboard),
     );
   }
@@ -134,7 +136,7 @@ class ComponentsForBuildPcRepositoryImpl
         Uri.http(Api.baseUrl, "$_fetchCpuListUserPath/motherboard/$id");
     await _client.delete(
       requestUri,
-      headers: Api.headers(),
+      headers: await Api.headers(),
     );
   }
 
@@ -144,7 +146,7 @@ class ComponentsForBuildPcRepositoryImpl
         Uri.http(Api.baseUrl, "$_fetchCpuListUserPath/cooler/$id");
     final response = await _client.get(
       requestUri,
-      headers: Api.headers(),
+      headers: await Api.headers(),
     );
     HttpResponseUtils.processListResponse(
       response,
@@ -159,7 +161,7 @@ class ComponentsForBuildPcRepositoryImpl
         Uri.http(Api.baseUrl, "$_fetchCpuListUserPath/cooler/$id");
     await _client.put(
       requestUri,
-      headers: Api.headers(),
+      headers: await Api.headers(),
       body: jsonEncode(cooler),
     );
   }
@@ -170,7 +172,7 @@ class ComponentsForBuildPcRepositoryImpl
         Uri.http(Api.baseUrl, "$_fetchCpuListUserPath/cooler/$id");
     await _client.delete(
       requestUri,
-      headers: Api.headers(),
+      headers: await Api.headers(),
     );
   }
 
@@ -180,7 +182,7 @@ class ComponentsForBuildPcRepositoryImpl
         Uri.http(Api.baseUrl, "$_fetchCpuListUserPath/graphicCard/$id");
     final response = await _client.get(
       requestUri,
-      headers: Api.headers(),
+      headers: await Api.headers(),
     );
     HttpResponseUtils.processListResponse(
       response,
@@ -195,7 +197,7 @@ class ComponentsForBuildPcRepositoryImpl
         Uri.http(Api.baseUrl, "$_fetchCpuListUserPath/graphicCard/$id");
     await _client.put(
       requestUri,
-      headers: Api.headers(),
+      headers: await Api.headers(),
       body: jsonEncode(gpu),
     );
   }
@@ -206,7 +208,7 @@ class ComponentsForBuildPcRepositoryImpl
         Uri.http(Api.baseUrl, "$_fetchCpuListUserPath/graphicCard/$id");
     await _client.delete(
       requestUri,
-      headers: Api.headers(),
+      headers: await Api.headers(),
     );
   }
 
@@ -215,7 +217,7 @@ class ComponentsForBuildPcRepositoryImpl
     final requestUri = Uri.http(Api.baseUrl, "$_fetchCpuListUserPath/ram/$id");
     final response = await _client.get(
       requestUri,
-      headers: Api.headers(),
+      headers: await Api.headers(),
     );
     HttpResponseUtils.processListResponse(
       response,
@@ -229,18 +231,17 @@ class ComponentsForBuildPcRepositoryImpl
     final requestUri = Uri.http(Api.baseUrl, "$_fetchCpuListUserPath/ram/$id");
     await _client.put(
       requestUri,
-      headers: Api.headers(),
+      headers: await Api.headers(),
       body: jsonEncode(ram),
     );
   }
 
   @override
   Future<void> deleteRamComponents(int? id) async {
-    final requestUri =
-        Uri.http(Api.baseUrl, "$_fetchCpuListUserPath/ram/$id");
+    final requestUri = Uri.http(Api.baseUrl, "$_fetchCpuListUserPath/ram/$id");
     await _client.delete(
       requestUri,
-      headers: Api.headers(),
+      headers: await Api.headers(),
     );
   }
 
@@ -249,7 +250,7 @@ class ComponentsForBuildPcRepositoryImpl
     final requestUri = Uri.http(Api.baseUrl, "$_fetchCpuListUserPath/hdd/$id");
     final response = await _client.get(
       requestUri,
-      headers: Api.headers(),
+      headers: await Api.headers(),
     );
     HttpResponseUtils.processListResponse(
       response,
@@ -263,7 +264,7 @@ class ComponentsForBuildPcRepositoryImpl
     final requestUri = Uri.http(Api.baseUrl, "$_fetchCpuListUserPath/hdd/$id");
     await _client.put(
       requestUri,
-      headers: Api.headers(),
+      headers: await Api.headers(),
       body: jsonEncode(hdd),
     );
   }
@@ -274,7 +275,7 @@ class ComponentsForBuildPcRepositoryImpl
         Uri.http(Api.baseUrl, "$_fetchCpuListUserPath/hddAll/$id");
     await _client.delete(
       requestUri,
-      headers: Api.headers(),
+      headers: await Api.headers(),
     );
   }
 
@@ -283,7 +284,7 @@ class ComponentsForBuildPcRepositoryImpl
     final requestUri = Uri.http(Api.baseUrl, "$_fetchCpuListUserPath/ssd/$id");
     final response = await _client.get(
       requestUri,
-      headers: Api.headers(),
+      headers: await Api.headers(),
     );
     HttpResponseUtils.processListResponse(
       response,
@@ -297,7 +298,7 @@ class ComponentsForBuildPcRepositoryImpl
     final requestUri = Uri.http(Api.baseUrl, "$_fetchCpuListUserPath/ssd/$id");
     await _client.put(
       requestUri,
-      headers: Api.headers(),
+      headers: await Api.headers(),
       body: jsonEncode(ssd),
     );
   }
@@ -308,7 +309,7 @@ class ComponentsForBuildPcRepositoryImpl
         Uri.http(Api.baseUrl, "$_fetchCpuListUserPath/ssdAll/$id");
     await _client.delete(
       requestUri,
-      headers: Api.headers(),
+      headers: await Api.headers(),
     );
   }
 
@@ -317,7 +318,7 @@ class ComponentsForBuildPcRepositoryImpl
     final requestUri = Uri.http(Api.baseUrl, "$_fetchCpuListUserPath/case/$id");
     final response = await _client.get(
       requestUri,
-      headers: Api.headers(),
+      headers: await Api.headers(),
     );
     HttpResponseUtils.processListResponse(
       response,
@@ -331,7 +332,7 @@ class ComponentsForBuildPcRepositoryImpl
     final requestUri = Uri.http(Api.baseUrl, "$_fetchCpuListUserPath/case/$id");
     await _client.put(
       requestUri,
-      headers: Api.headers(),
+      headers: await Api.headers(),
       body: jsonEncode(pcCase),
     );
   }
@@ -341,7 +342,7 @@ class ComponentsForBuildPcRepositoryImpl
     final requestUri = Uri.http(Api.baseUrl, "$_fetchCpuListUserPath/case/$id");
     await _client.delete(
       requestUri,
-      headers: Api.headers(),
+      headers: await Api.headers(),
     );
   }
 
@@ -351,7 +352,7 @@ class ComponentsForBuildPcRepositoryImpl
         Uri.http(Api.baseUrl, "$_fetchCpuListUserPath/powerSupply/$id");
     final response = await _client.get(
       requestUri,
-      headers: Api.headers(),
+      headers: await Api.headers(),
     );
     HttpResponseUtils.processListResponse(
       response,
@@ -369,7 +370,7 @@ class ComponentsForBuildPcRepositoryImpl
         Uri.http(Api.baseUrl, "$_fetchCpuListUserPath/powerSupply/$id");
     await _client.put(
       requestUri,
-      headers: Api.headers(),
+      headers: await Api.headers(),
       body: jsonEncode(powerSupply),
     );
   }
@@ -380,7 +381,7 @@ class ComponentsForBuildPcRepositoryImpl
         Uri.http(Api.baseUrl, "$_fetchCpuListUserPath/powerSupply/$id");
     await _client.delete(
       requestUri,
-      headers: Api.headers(),
+      headers: await Api.headers(),
     );
   }
 

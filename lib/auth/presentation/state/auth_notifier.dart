@@ -1,12 +1,12 @@
 import 'dart:async';
 
-import 'package:build_pc_mobile/auth/data/models/login_user_data.dart';
 import 'package:build_pc_mobile/auth/data/repositories/auth_repository_impl.dart';
 import 'package:build_pc_mobile/auth/domain/entities/user/user.dart';
 import 'package:build_pc_mobile/auth/utils/user_preferences.dart';
 import 'package:build_pc_mobile/common/utils/custom_exception.dart';
 import 'package:build_pc_mobile/profile/data/models/profile_params.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthNotifier extends ChangeNotifier {
   User? _user;
@@ -14,7 +14,7 @@ class AuthNotifier extends ChangeNotifier {
   ProfileParams? _profileParams;
 
   StreamSubscription<User?>? _userSubscription;
-  StreamSubscription<ProfileParams>? _profileParamsSubscription;
+  StreamSubscription<ProfileParams?>? _profileParamsSubscription;
 
   final AuthRepositoryImpl _authRepository;
 
@@ -33,10 +33,12 @@ class AuthNotifier extends ChangeNotifier {
     subscribeToProfileUpdates(_authRepository.currentProfileParams);
   }
 
-  Future<void> registerAccount(String name,
-      String username,
-      String password,
-      String email,) async {
+  Future<void> registerAccount(
+    String name,
+    String username,
+    String password,
+    String email,
+  ) async {
     _handleAuthError(null);
     notifyListeners();
     try {
@@ -58,8 +60,10 @@ class AuthNotifier extends ChangeNotifier {
     }
   }
 
-  Future<void> signInWithEmail(String username,
-      String password,) async {
+  Future<void> signInWithEmail(
+    String username,
+    String password,
+  ) async {
     _handleAuthError(null);
     notifyListeners();
     try {
@@ -89,9 +93,25 @@ class AuthNotifier extends ChangeNotifier {
     }
   }
 
-  Future<void> updateProfile(String name,
-      String username,
-      String email,) async {
+  Future<void> deleteUser() async {
+    _handleAuthError(null);
+    try {
+      await _authRepository.deleteUser();
+      await signOut();
+      notifyListeners();
+    } on CustomResponseException catch (e) {
+      _handleAuthError(e);
+      rethrow;
+    } finally {
+      notifyListeners();
+    }
+  }
+
+  Future<void> updateProfile(
+    String name,
+    String username,
+    String email,
+  ) async {
     _handleAuthError(null);
     notifyListeners();
     try {
@@ -116,6 +136,8 @@ class AuthNotifier extends ChangeNotifier {
     await UserPreferences.removeToken();
     await UserPreferences.removeUser();
     await _authRepository.signOut();
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.clear();
     notifyListeners();
   }
 
@@ -130,25 +152,26 @@ class AuthNotifier extends ChangeNotifier {
     _userSubscription = userStream.listen(_userStreamListener);
   }
 
-  Future<void> _profileParamsStreamListener(ProfileParams profileParams) async {
+  Future<void> _profileParamsStreamListener(
+      ProfileParams? profileParams,) async {
     _profileParams = profileParams;
     _handleAuthError(null);
     notifyListeners();
   }
 
   Future<void> subscribeToProfileUpdates(
-      Stream<ProfileParams> profileStream,) async {
+    Stream<ProfileParams?> profileStream,
+  ) async {
     _profileParamsSubscription =
         profileStream.listen(_profileParamsStreamListener);
   }
 
   Future<bool> trySignInWithStoredCredentials() async {
-    LoginUserData savedCredentials;
     var checkLogin = false;
     try {
       //savedCredentials = await AuthCredentialsStorage.savedCredentials;
-      savedCredentials = await UserPreferences.getToken;
-      if (savedCredentials.isValid) {
+     final token = await UserPreferences.getToken;
+      if (token != null) {
         checkLogin = true;
         final storedUser = await UserPreferences.getUser();
         if (storedUser != null) {

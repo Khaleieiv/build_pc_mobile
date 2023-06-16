@@ -18,6 +18,7 @@ class CustomLogoWidget extends StatelessWidget {
 
     return Text(
       label,
+      textAlign: TextAlign.center,
       style: TextStyle(
         fontWeight: FontWeight.w900,
         fontSize: fontSize,

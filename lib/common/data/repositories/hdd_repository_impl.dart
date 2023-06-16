@@ -15,13 +15,13 @@ class HddRepositoryImpl implements HddRepository {
   final _hddController = StreamController<List<Hdd>>();
 
   @override
-  Stream<List<Hdd>> get hddStream =>
-      _hddController.stream;
+  Stream<List<Hdd>> get hddStream => _hddController.stream;
 
   @override
   Future<void> fetchHdd() async {
     final requestUri = Uri.http(Api.baseUrl, _fetchHddPath);
-    final response = await _client.get(requestUri, headers: Api.headers());
+    final response =
+        await _client.get(requestUri, headers:await Api.headers());
     _processRamResponse(response);
   }
 
@@ -38,7 +38,7 @@ class HddRepositoryImpl implements HddRepository {
     final hdd = decodedResponse
         .map(
           (row) => Hdd.fromJson(row),
-    )
+        )
         .toList();
     _hddController.sink.add(hdd);
   }

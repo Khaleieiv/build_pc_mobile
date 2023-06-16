@@ -26,10 +26,10 @@ class AuthRepositoryImpl extends UserRepository {
 
   final _currentUserController = StreamController<User?>();
 
-  final _currentProfileParamsController = StreamController<ProfileParams>();
+  final _currentProfileParamsController = StreamController<ProfileParams?>();
 
   @override
-  Stream<ProfileParams> get currentProfileParams =>
+  Stream<ProfileParams?> get currentProfileParams =>
       _currentProfileParamsController.stream;
 
   @override
@@ -67,7 +67,7 @@ class AuthRepositoryImpl extends UserRepository {
     final requestUri = Uri.http(Api.baseUrl, _updateUserPath);
     final response = await _client.get(
       requestUri,
-      headers: Api.headers(),
+      headers: await Api.headers(),
     );
     _processGetUserProfileResponse(response);
   }
@@ -82,12 +82,21 @@ class AuthRepositoryImpl extends UserRepository {
     final requestUri = Uri.http(Api.baseUrl, _updateUserPath);
     final response = await _client.put(
       requestUri,
-      headers: Api.headers(),
+      headers:await Api.headers(),
       body: jsonEncode(params),
     );
     _processUpdateProfileResponse(response);
 
     await getCurrentUser();
+  }
+
+  @override
+  Future<void> deleteUser() async {
+    final requestUri = Uri.http(Api.baseUrl, _updateUserPath);
+    await _client.delete(
+      requestUri,
+      headers: await Api.headers(),
+    );
   }
 
   void _processGetUserProfileResponse(http.Response response) {
@@ -128,11 +137,11 @@ class AuthRepositoryImpl extends UserRepository {
     _currentProfileParamsController.sink.add(user);
   }
 
-  void _processLoginResponseOk(http.Response response) {
+  Future<void> _processLoginResponseOk(http.Response response) async {
     final decodedResponse = HttpResponseUtils.parseHttpResponse(response);
     final user = User.fromJson(decodedResponse);
     final token = decodedResponse["accessToken"];
-    UserPreferences.saveToken(LoginUserData(token.toString()));
+    await UserPreferences.saveToken(LoginUserData(token.toString()));
    // AuthCredentialsStorage.saveCredentials(LoginUserData(token.toString()));
     _currentUserController.sink.add(user);
   }
@@ -143,13 +152,15 @@ class AuthRepositoryImpl extends UserRepository {
     _currentUserController.sink.add(user);
   }
 
+  @override
+  Future<void> signOut() async {
+    await UserPreferences.removeToken();
+    _currentUserController.sink.add(null);
+    _currentProfileParamsController.sink.add(null);
+  }
+
   void dispose() {
     _currentUserController.close();
     _currentProfileParamsController.close();
-  }
-
-  @override
-  Future<void> signOut() async {
-    _currentUserController.sink.add(null);
   }
 }

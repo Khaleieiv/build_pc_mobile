@@ -1,4 +1,5 @@
 import 'package:build_pc_mobile/common/constants/app_colors.dart';
+import 'package:ez_localization/ez_localization.dart';
 import 'package:flutter/material.dart';
 
 class CustomRemoveToComparisonButtonWidget extends StatelessWidget {
@@ -19,7 +20,8 @@ class CustomRemoveToComparisonButtonWidget extends StatelessWidget {
         Icons.delete,
         size: 28.0,
       ),
-      label: const Text('Delete to compassion'),
+      label:
+          Text(context.getString("component_comparison.delete_to_compassion")),
     );
   }
 }

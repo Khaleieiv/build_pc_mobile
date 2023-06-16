@@ -1,4 +1,5 @@
 {
+  "message_data_base": "There is no data on these components in the database.",
   "auth": {
     "login_page": {
       "username": "Username",
@@ -32,7 +33,11 @@
       "account_settings": "Account Settings",
       "edit_profile": "Edit Profile",
       "change_password": "Change Password",
-      "log_out": "Log Out"
+      "log_out": "Log Out",
+      "title": "Hello",
+      "message": "To go to this page you need to be logged in",
+      "confirmButtonText": "Confirm",
+      "cancelButtonText": "Cancel"
     },
     "edit_profile": {
       "edit_profile": "Edit Profile",
@@ -40,7 +45,26 @@
       "username": "Username",
       "email": "Email",
       "password": "Password",
-      "save_changes": "Save Changes"
+      "save_changes": "Save Changes",
+      "confirm_delete_account": "Are you sure you want to delete your account?",
+      "confirm": "Confirm",
+      "cancel": "Cancel",
+      "wow": "Wow",
+      "congratulations": "Congratulations",
+      "change_success_message": "Change is successful!",
+      "okay": "Okay"
+    },
+    "change_password": {
+      "label": "Change password",
+      "old_password": "Old password",
+      "new_password": "New password",
+      "save_changes": "Save Changes",
+      "congratulations": "Congratulations",
+      "okay": "Okay",
+      "oops": "Oops",
+      "something_wrong": "Something's wrong.",
+      "change_successful": "Change is successful!",
+      "password_not_match": "Password not match"
     }
   },
   "comparison": {
@@ -57,16 +81,298 @@
       "case": "Case"
     }
   },
+  "component_comparison": {
+    "add_to_compassion": "Add to compassion",
+    "delete_to_compassion": "Delete to compassion",
+    "cooler": {
+      "label_first": "Count of thermal tubes",
+      "label_second": "Socket",
+      "label_third": "Max TDP",
+      "label_fourth": "Cooler material",
+      "label_fifth": "Recommended price"
+    },
+    "cpu": {
+      "label_first": "Count of Cores",
+      "label_second": "Count of Threads",
+      "label_third": "TDP",
+      "label_fourth": "Cache",
+      "label_fifth": "Year Of Release"
+    },
+    "gpu": {
+      "label_first": "GPU frequency",
+      "label_second": "Memory frequency",
+      "label_third": "TDP",
+      "label_fourth": "Technical process",
+      "label_fifth": "Year Of Release"
+    },
+    "hdd": {
+      "label_first": "Reading speed",
+      "label_second": "Storage size",
+      "label_third": "Writing speed",
+      "label_fourth": "Buffer size",
+      "label_fifth": "Recommended price"
+    },
+    "motherboard": {
+      "label_first": "Max amount of RAM",
+      "label_second": "Memory slots",
+      "label_third": "Max TDP",
+      "label_fourth": "Memory frequency",
+      "label_fifth": "Recommended price"
+    },
+    "case": {
+      "label_first": "Fans included",
+      "label_second": "Performance level",
+      "label_third": "Recommended price",
+      "label_fourth": "Power supply form factor",
+      "label_fifth": "Max length of GPU"
+    },
+    "power_supply": {
+      "label_first": "Power",
+      "label_second": "Performance level",
+      "label_third": "Recommended price",
+      "label_fourth": "Pfc module",
+      "label_fifth": "Sata"
+    },
+    "ram": {
+      "label_first": "Frequency",
+      "label_second": "Memory capacity",
+      "label_third": "Recommended price",
+      "label_fourth": "Power supply voltage",
+      "label_fifth": "Memory type"
+    },
+    "ssd": {
+      "label_first": "Reading speed",
+      "label_second": "Storage size",
+      "label_third": "Writing speed",
+      "label_fourth": "Buffer size",
+      "label_fifth": "Recommended price"
+    }
+  },
+  "comparison_component": {
+    "label": "Selected component",
+    "cpu": {
+      "label_first": "Name",
+      "label_second": "Cpu producer",
+      "label_third": "Year of release",
+      "label_fourth": "Motherboard socket",
+      "label_fifth": "Count of cores",
+      "label_sixth": "Count of threads",
+      "label_seventh": "Base frequency",
+      "label_eighth": "Turbo frequency",
+      "label_ninth": "L3 Cache",
+      "label_tenth": "Cpu generation",
+      "label_eleventh": "Technical process",
+      "label_twelfth": "TDP",
+      "label_thirteenth": "Max temperature",
+      "label_fourteenth": "Embedded graphic",
+      "label_fifteenth": "Cpu Pcie version",
+      "label_sixteenth": "CPU Tech",
+      "label_seventeenth": "Recommended price",
+      "label_eighteenth": "Performance level",
+      "label_nineteenth": "Description"
+    },
+    "gpu": {
+      "label_first": "Name",
+      "label_second": "Gpu producer",
+      "label_third": "Gpu vendor",
+      "label_fourth": "Year of release",
+      "label_fifth": "Technical process",
+      "label_sixth": "Gpu frequency",
+      "label_seventh": "Memory amount",
+      "label_eighth": "Gpu memory type",
+      "label_ninth": "Memory frequency",
+      "label_tenth": "Bus",
+      "label_eleventh": "TDP",
+      "label_twelfth": "Gpu connector",
+      "label_thirteenth": "Gpu interface type",
+      "label_fourteenth": "Length",
+      "label_fifteenth": "Gpu technologies",
+      "label_sixteenth": "Recommended price",
+      "label_seventeenth": "Performance level",
+      "label_eighteenth": "Description"
+    },
+    "motherboard": {
+      "label_first": "Name",
+      "label_second": "Socket",
+      "label_third": "CPU Generations",
+      "label_fourth": "Chipset",
+      "label_fifth": "Form Factor",
+      "label_sixth": "Producer",
+      "label_seventh": "Max TDP of Processors",
+      "label_eighth": "Memory Slots",
+      "label_ninth": "Memory Frequency",
+      "label_tenth": "Max Amount of RAM",
+      "label_eleventh": "Network",
+      "label_twelfth": "Bluetooth",
+      "label_thirteenth": "Wi-Fi",
+      "label_fourteenth": "CPU PCIe Version",
+      "label_fifteenth": "PCI Express x16",
+      "label_sixteenth": "PCI Express x4",
+      "label_seventeenth": "PCI Express x1",
+      "label_eighteenth": "SATA3",
+      "label_nineteenth": "M.2",
+      "label_twentieth": "D-Sub",
+      "label_twentyfirst": "DVI",
+      "label_twentysecond": "HDMI",
+      "label_twentythird": "DisplayPort",
+      "label_twentyfourth": "USB 2.0",
+      "label_twentyfifth": "USB 3.0",
+      "label_twentysixth": "USB Type-C",
+      "label_twentyseventh": "Digital Audio Jack",
+      "label_twentyeighth": "Recommended Price",
+      "label_twentyninth": "Performance Level",
+      "label_thirtyth": "Description"
+    },
+    "memory": {
+      "label_first": "Name",
+      "label_second": "Ram producer",
+      "label_third": "Ram memory type",
+      "label_fourth": "Memory capacity",
+      "label_fifth": "Frequency",
+      "label_sixth": "Ram timings",
+      "label_seventh": "Power supply voltage",
+      "label_eighth": "Recommended price",
+      "label_ninth": "Performance level",
+      "label_tenth": "Description"
+    },
+    "ssd": {
+      "label_first": "Name",
+      "label_second": "Storage producer",
+      "label_third": "Storage size",
+      "label_fourth": "Storage form factor",
+      "label_fifth": "Storage interface",
+      "label_sixth": "Buffer size",
+      "label_seventh": "Reading speed",
+      "label_eighth": "Writing speed",
+      "label_ninth": "SSD cells type",
+      "label_tenth": "Recommended price",
+      "label_eleventh": "Performance level",
+      "label_twelfth": "Description"
+    },
+    "hdd": {
+      "label_first": "Name",
+      "label_second": "Storage producer",
+      "label_third": "Storage size",
+      "label_fourth": "Speed",
+      "label_fifth": "Storage form factor",
+      "label_sixth": "Storage interface",
+      "label_seventh": "Buffer size",
+      "label_eighth": "Reading speed",
+      "label_ninth": "Writing speed",
+      "label_tenth": "Recommended price",
+      "label_eleventh": "Performance level",
+      "label_twelfth": "Description"
+    },
+    "cooler": {
+      "label_first": "Name",
+      "label_second": "Cooler producer",
+      "label_third": "Cooler socket",
+      "label_fourth": "Cooler material",
+      "label_fifth": "Max TDP",
+      "label_sixth": "Thermal tubes",
+      "label_seventh": "Recommended price",
+      "label_eighth": "Performance level",
+      "label_ninth": "Description"
+    },
+    "powerSupply": {
+      "label_first": "Power supply producer",
+      "label_second": "Name",
+      "label_third": "Power",
+      "label_fourth": "Form factor",
+      "label_fifth": "Performance level",
+      "label_sixth": "PFC module",
+      "label_seventh": "Modular connection",
+      "label_eighth": "Power supply protection functions",
+      "label_ninth": "CPU 4-pin",
+      "label_tenth": "CPU 4+4-pin",
+      "label_eleventh": "CPU 8-pin",
+      "label_twelfth": "PCIe 6+2-pin",
+      "label_thirteenth": "PCIe 8-pin",
+      "label_fourteenth": "PCIe 5/16-pin",
+      "label_fifteenth": "SATA",
+      "label_sixteenth": "Count of 12V lines",
+      "label_seventeenth": "Recommended price",
+      "label_eighteenth": "Description"
+    },
+    "case": {
+      "label_first": "Name",
+      "label_second": "Case producer",
+      "label_third": "Case size",
+      "label_fourth": "Form factor",
+      "label_fifth": "Power supply location",
+      "label_sixth": "Fans included",
+      "label_seventh": "USB 3.2",
+      "label_eighth": "USB 3.0",
+      "label_ninth": "USB 2.0",
+      "label_tenth": "Design features",
+      "label_eleventh": "Max length of graphic card",
+      "label_twelfth": "Power supply form factor",
+      "label_thirteenth": "Recommended price",
+      "label_fourteenth": "Performance level",
+      "label_fifteenth": "Description"
+    }
+  },
   "home": {
-     "localization": {
-       "first_language" : "English",
-       "second_language" : "Ukrainian"
-     },
+    "localization": {
+      "first_language": "English",
+      "second_language": "Ukrainian"
+    },
     "bottom_navigation_bar": {
       "component_comparison": "Comparison",
       "pc_build": "Pc Build",
       "rating": "Rating",
       "profile": "Profile"
+    }
+  },
+  "rating": {
+    "info": {
+      "name_build": "Name build",
+      "name_user": "User name"
+    }
+  },
+  "build_pc": {
+    "info": {
+      "edit": "Edit",
+      "name_build": "Name build",
+      "name_user": "User name"
+    },
+    "build": {
+      "title": "Hello",
+      "create": "Create build",
+      "message": "Do you really want to delete this assembly",
+      "confirm_text": "Confirm",
+      "cancel_text": "Cancel",
+      "no_data": "You don't have any pc builds."
+    },
+    "add_component": {
+      "okay": "Okay",
+      "oops": "Oops",
+      "total_price": "Total Price",
+      "no_data": "There is no data on these components in the database.",
+      "cpu": "Processor",
+      "motherboard": "Motherboard",
+      "check_m": "You can't create an assembly without a processor",
+      "cooler": "Cooler",
+      "gpu": "Graphic Card",
+      "ram": "Memory",
+      "hdd": "Hdd",
+      "ssd": "Ssd",
+      "power_supply": "Power Supply",
+      "check_d": "You can't create an assembly without a disk",
+      "case": "Case",
+      "check_p": "You can't create an assembly without a power supply"
+    },
+    "alert_dialog":{
+      "label": "Enter the build name",
+      "cancel": "Cancel",
+      "ok": "Ok",
+      "okay": "Okay",
+      "oops": "Oops",
+      "empty_build": "You cannot create an assembly"
+    },
+    "swap": {
+      "switch": "Switch",
+      "remove": "Remove"
     }
   }
 }

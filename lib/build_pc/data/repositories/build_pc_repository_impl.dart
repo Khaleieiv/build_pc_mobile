@@ -2,11 +2,13 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:build_pc_mobile/auth/utils/user_preferences.dart';
 import 'package:build_pc_mobile/build_pc/domain/entities/build_pc.dart';
 import 'package:build_pc_mobile/build_pc/domain/repositories/build_pc_repository.dart';
 import 'package:build_pc_mobile/common/constants/api.dart';
 import 'package:build_pc_mobile/common/utils/http_response_utils.dart';
 import 'package:http/http.dart' as http;
+
 
 class BuildPcRepositoryImpl extends BuildPcRepository {
   final _fetchBuildPcListUserPath = '/api/user/buildPc';
@@ -25,8 +27,24 @@ class BuildPcRepositoryImpl extends BuildPcRepository {
   @override
   Future<void> createBuildPcUserListComponents() async {
     final requestUri = Uri.http(Api.baseUrl, _fetchBuildPcListUserPath);
-    final response = await _client.post(requestUri, headers: Api.headers());
+    final response =
+        await _client.post(requestUri, headers:await Api.headers());
     _processBuildPcUserResponse(response);
+  }
+
+  @override
+  Future<BuildPc?> getBuildPcUserComponents(int? id) async {
+    final requestUri = Uri.http(Api.baseUrl, "$_fetchBuildPcListUserPath/$id");
+    final response =
+        await _client.get(requestUri, headers:await Api.headers());
+
+    if (response.statusCode == HttpStatus.ok) {
+      return _processGetBuildPcUserResponseOk(response);
+    } else {
+      HttpResponseUtils.processStatusCodeFailed(response);
+    }
+
+    return null;
   }
 
   @override
@@ -50,15 +68,26 @@ class BuildPcRepositoryImpl extends BuildPcRepository {
     };
 
     final requestUri = Uri.http(Api.baseUrl, "$_fetchBuildPcListUserPath/$id");
-    final response = await _client.put(requestUri,
-        headers: Api.headers(), body: jsonEncode(params),);
+    final response = await _client.put(
+      requestUri,
+      headers: await Api.headers(),
+      body: jsonEncode(params),
+    );
     _processUpdateBuildPcUserResponse(response);
   }
 
   @override
   Future<void> fetchBuildPcUserListComponents() async {
+    final savedCredentials = await UserPreferences.getToken;
+
+    final headers = {
+      'Content-type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization': 'Bearer $savedCredentials',
+    };
     final requestUri = Uri.http(Api.baseUrl, _fetchBuildPcListUserPath);
-    final response = await _client.get(requestUri, headers: Api.headers());
+    final response =
+        await _client.get(requestUri, headers: headers);
     _processBuildPcResponse(response);
   }
 
@@ -67,7 +96,7 @@ class BuildPcRepositoryImpl extends BuildPcRepository {
     final requestUri = Uri.http(Api.baseUrl, "$_fetchBuildPcListUserPath/$id");
     await _client.delete(
       requestUri,
-      headers: Api.headers(),
+      headers: await Api.headers(),
     );
   }
 
@@ -83,6 +112,12 @@ class BuildPcRepositoryImpl extends BuildPcRepository {
     final decodedResponse = HttpResponseUtils.parseHttpResponse(response);
     final buildPc = BuildPc.fromJson(decodedResponse);
     _currentBuildPcUserController.sink.add(buildPc);
+  }
+
+  BuildPc _processGetBuildPcUserResponseOk(http.Response response) {
+    final decodedResponse = HttpResponseUtils.parseHttpResponse(response);
+
+    return BuildPc.fromJson(decodedResponse);
   }
 
   void _processUpdateBuildPcUserResponse(http.Response response) {

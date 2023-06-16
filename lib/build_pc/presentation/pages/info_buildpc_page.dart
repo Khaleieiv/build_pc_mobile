@@ -7,6 +7,7 @@ import 'package:build_pc_mobile/common/domain/entities/base_component.dart';
 import 'package:build_pc_mobile/common/presentation/navigation/route_names.dart';
 import 'package:build_pc_mobile/common/widgets/custom_container_for_build.dart';
 import 'package:build_pc_mobile/common/widgets/custom_icon_button_route_page.dart';
+import 'package:ez_localization/ez_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -51,11 +52,16 @@ class _InfoBuildPcPageState extends State<InfoBuildPcPage> {
         actions: [
           TextButton.icon(
             onPressed: () async {
+              selectedComponentForBuildNotifier.checkButtonBuild = false;
               await selectedComponentForBuildNotifier
                   .clearAddToBuildPcComponents();
               await selectedComponentForBuildNotifier.addToComparison(
                 "nameBuild",
                 userBuild?.name,
+              );
+              await selectedComponentForBuildNotifier.addToComparison(
+                "priceBuild",
+                userBuild?.totalPrice,
               );
               await selectedComponentForBuildNotifier.addToComparison(
                 "id",
@@ -132,9 +138,9 @@ class _InfoBuildPcPageState extends State<InfoBuildPcPage> {
               size: 24.0,
               color: AppColors.tertiaryColor,
             ),
-            label: const Text(
-              'Edit',
-              style: TextStyle(
+            label: Text(
+              context.getString('build_pc.info.edit'),
+              style: const TextStyle(
                 color: AppColors.tertiaryColor,
                 fontSize: 18,
               ),
@@ -157,14 +163,16 @@ class _InfoBuildPcPageState extends State<InfoBuildPcPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Name build: ${userBuild?.name}',
+                    '${context.getString('build_pc.info.name_build')}: '
+                        '${userBuild?.name}',
                     style: const TextStyle(
                       fontSize: 20,
                       fontFamily: fontFamily,
                     ),
                   ),
                   Text(
-                    'User name: ${userBuild?.user?.name}',
+                    '${context.getString('build_pc.info.name_user')}'
+                        ': ${userBuild?.user?.name}',
                     style: const TextStyle(
                       fontSize: 20,
                       fontFamily: fontFamily,

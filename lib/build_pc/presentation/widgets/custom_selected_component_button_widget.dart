@@ -4,6 +4,7 @@ import 'package:build_pc_mobile/common/constants/app_colors.dart';
 import 'package:build_pc_mobile/common/constants/app_sizes.dart';
 import 'package:build_pc_mobile/common/presentation/navigation/route_names.dart';
 import 'package:build_pc_mobile/home/presentation/state/dark_light_theme_notifier.dart';
+import 'package:ez_localization/ez_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -91,7 +92,7 @@ class CustomSelectedComponentButtonWidget extends StatelessWidget {
               children: [
                 CustomElevatedButtonWidget(
                   icon: Icons.switch_left,
-                  label: 'Switch',
+                  label: context.getString('build_pc.swap.switch'),
                   onPressed: () {
                     selectedComponentForBuildNotifier.setModelName(modelName);
                     Navigator.pushNamed(
@@ -102,7 +103,7 @@ class CustomSelectedComponentButtonWidget extends StatelessWidget {
                 ),
                 CustomElevatedButtonWidget(
                   icon: Icons.remove_circle,
-                  label: 'Remove',
+                  label: context.getString('build_pc.swap.remove'),
                   onPressed: onPressed,
                 ),
               ],

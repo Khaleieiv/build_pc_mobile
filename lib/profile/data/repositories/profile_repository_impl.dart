@@ -21,7 +21,7 @@ class ProfileRepositoryImpl extends ProfileRepository {
     final requestUri = Uri.http(Api.baseUrl, _changePassword);
     final response = await _client.post(
       requestUri,
-      headers: Api.headers(),
+      headers:await Api.headers(),
       body: jsonEncode(params),
     );
 

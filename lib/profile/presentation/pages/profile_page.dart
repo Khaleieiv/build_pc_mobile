@@ -42,7 +42,7 @@ class _ProfilePageState extends State<ProfilePage> {
 
     Future<void> logOut() async {
       await authNotifier.signOut();
-      if(!mounted) return;
+      if (!mounted) return;
       await Navigator.pushNamed(context, RouteNames.loginPage);
     }
 
@@ -222,10 +222,13 @@ class _ProfilePageState extends State<ProfilePage> {
                   } else {
                     PanaraConfirmDialog.show(
                       context,
-                      title: "Hello",
-                      message: "To go to this page you need to be logged in",
-                      confirmButtonText: "Confirm",
-                      cancelButtonText: "Cancel",
+                      title: context.getString("profile.account.hello"),
+                      message:
+                          context.getString("profile.account.login_required"),
+                      confirmButtonText:
+                          context.getString("profile.account.confirm"),
+                      cancelButtonText:
+                          context.getString("profile.account.cancel"),
                       textColor: AppColors.blackColor,
                       onTapCancel: () {
                         Navigator.pop(context);
@@ -264,10 +267,13 @@ class _ProfilePageState extends State<ProfilePage> {
                   } else {
                     PanaraConfirmDialog.show(
                       context,
-                      title: "Hello",
-                      message: "To go to this page you need to be logged in",
-                      confirmButtonText: "Confirm",
-                      cancelButtonText: "Cancel",
+                      title: context.getString("profile.account.hello"),
+                      message:
+                      context.getString("profile.account.login_required"),
+                      confirmButtonText:
+                      context.getString("profile.account.confirm"),
+                      cancelButtonText:
+                      context.getString("profile.account.cancel"),
                       textColor: AppColors.blackColor,
                       onTapCancel: () {
                         Navigator.pop(context);

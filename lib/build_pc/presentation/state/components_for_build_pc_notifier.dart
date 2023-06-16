@@ -216,7 +216,7 @@ class ComponentsForBuildPcNotifier extends ChangeNotifier
       id,
       _componentsForBuildPcRepositoryImpl.deleteCpuComponents,
     );
-    await fetchMotherboardListBuildPcComponents(id);
+    //await fetchMotherboardListBuildPcComponents(id);
     notifyListeners();
   }
 
@@ -262,8 +262,8 @@ class ComponentsForBuildPcNotifier extends ChangeNotifier
       id,
       _componentsForBuildPcRepositoryImpl.deleteMotherboardComponents,
     );
-    await fetchCoolerListBuildPcComponents(id);
-    await fetchRamListBuildPcComponents(id);
+    //await fetchCoolerListBuildPcComponents(id);
+    //await fetchRamListBuildPcComponents(id);
     notifyListeners();
   }
 

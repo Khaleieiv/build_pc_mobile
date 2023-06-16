@@ -21,7 +21,7 @@ class SsdRepositoryImpl implements SsdRepository {
   @override
   Future<void> fetchSsd() async {
     final requestUri = Uri.http(Api.baseUrl, _fetchRamPath);
-    final response = await _client.get(requestUri, headers: Api.headers());
+    final response = await _client.get(requestUri, headers:await Api.headers());
     _processSsdResponse(response);
   }
 

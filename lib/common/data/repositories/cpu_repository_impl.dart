@@ -20,7 +20,7 @@ class CPURepositoryImpl implements CPURepository {
   @override
   Future<void> fetchCPU() async {
     final requestUri = Uri.http(Api.baseUrl, _fetchCpuPath);
-    final response = await _client.get(requestUri, headers: Api.headers());
+    final response = await _client.get(requestUri, headers:await Api.headers());
     _processCPUResponse(response);
   }
 

@@ -6,6 +6,7 @@ import 'package:build_pc_mobile/component_comparison/presentation/state/componen
 import 'package:build_pc_mobile/component_comparison/presentation/widgets/custom_add_to_comparison_button_widget.dart';
 import 'package:build_pc_mobile/component_comparison/presentation/widgets/custom_component_widget.dart';
 import 'package:build_pc_mobile/component_comparison/presentation/widgets/custom_remove_to_comparison_button_widget.dart';
+import 'package:ez_localization/ez_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
@@ -51,8 +52,8 @@ class _PcCaseListWidgetState extends State<PcCaseListWidget> {
               return PcCaseItemWidget(pcCase: pcCase);
             },
           )
-        : const CustomNoDataWidget(
-            text: 'There is no data on these components in the database.',
+        : CustomNoDataWidget(
+            text: context.getString('message_data_base'),
           );
   }
 }
@@ -77,16 +78,21 @@ class _PcCaseItemWidgetState extends State<PcCaseItemWidget> {
     return CustomComponentWidget(
       imagePath: 'assets/icons/power_supply.png',
       name: widget.pcCase?.name ?? '',
-      labelTextNameFirst: 'Fans included',
+      labelTextNameFirst:
+          context.getString('component_comparison.case.label_first'),
       labelTextComponentFirst: widget.pcCase?.fansIncluded.toString() ?? '',
-      labelTextNameSecond: 'Performance level',
+      labelTextNameSecond:
+          context.getString('component_comparison.case.label_second'),
       labelTextComponentSecond: widget.pcCase?.performanceLevel?.name ?? '',
-      labelTextNameThird: 'Recommended price',
+      labelTextNameThird:
+          context.getString('component_comparison.case.label_third'),
       labelTextComponentThird: widget.pcCase?.recommendedPrice.toString() ?? '',
-      labelTextNameFourth: 'Power supply form factor',
+      labelTextNameFourth:
+          context.getString('component_comparison.case.label_fourth'),
       labelTextComponentFourth:
           widget.pcCase?.casePowerSupplyLocation.name ?? '',
-      labelTextNameFifth: 'Max length of GPU',
+      labelTextNameFifth:
+          context.getString('component_comparison.case.label_fifth'),
       labelTextComponentFifth:
           widget.pcCase?.maxLengthOfGraphicCard.toString() ?? '',
       button: isAddedToComparison

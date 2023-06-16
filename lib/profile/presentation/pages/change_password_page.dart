@@ -47,8 +47,8 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          "Change password",
+        title: Text(
+          context.getString('profile.change_password.label'),
         ),
         backgroundColor: AppColors.primaryColor,
       ),
@@ -79,15 +79,19 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                   ),
                   const SizedBox(height: AppSizes.defaultPadding),
                   CustomTextFormField(
-                    labelText: 'Old password',
-                    hintText: 'Old password',
+                    labelText: context
+                        .getString('profile.change_password.old_password'),
+                    hintText: context
+                        .getString('profile.change_password.old_password'),
                     keyboardType: TextInputType.visiblePassword,
                     checkSuffixIcon: true,
                     controller: _passwordOldController,
                   ),
                   CustomTextFormField(
-                    labelText: 'New password',
-                    hintText: 'New password',
+                    labelText: context
+                        .getString('profile.change_password.new_password'),
+                    hintText: context
+                        .getString('profile.change_password.new_password'),
                     keyboardType: TextInputType.visiblePassword,
                     checkSuffixIcon: true,
                     controller: _passwordNewController,
@@ -101,8 +105,8 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                     heightContainer: heightButtonLogOut,
                     borderRadius: borderRadiusButtonLogOut,
                     onPressed: _enableSignInButton ? changePassword : null,
-                    nameButton:
-                        context.getString('profile.edit_profile.save_changes'),
+                    nameButton: context
+                        .getString('profile.change_password.save_changes'),
                     colorButton: AppLightColors.primaryBackgroundLightColor,
                     fontSizeButton: fontSizeButtonButtonLogOut,
                     colorTextButton: AppColors.primaryColor,
@@ -134,9 +138,9 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
       if (!mounted) return;
       await PanaraInfoDialog.show(
         context,
-        title: "Congratulations",
-        message: "Change is successful!",
-        buttonText: "Okay",
+        title: context.getString("profile.change_password.congratulations"),
+        message: context.getString("profile.change_password.change_successful"),
+        buttonText: context.getString("profile.change_password.okay"),
         onTapDismiss: () {
           authNotifier.signOut();
           Navigator.pushNamed(context, RouteNames.loginPage);
@@ -148,9 +152,9 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
       if (!mounted) return;
       await PanaraInfoDialog.show(
         context,
-        title: "Oops",
-        message: "Password not match",
-        buttonText: "Okay",
+        title: context.getString("profile.change_password.oops"),
+        message: context.getString("profile.change_password.password_not_match"),
+        buttonText: context.getString("profile.change_password.okay"),
         onTapDismiss: () {
           Navigator.pop(context);
         },
@@ -162,9 +166,9 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
       if (!mounted) return;
       await PanaraInfoDialog.show(
         context,
-        title: "Oops",
-        message: "Something's wrong.",
-        buttonText: "Okay",
+        title: context.getString("profile.change_password.oops"),
+        message: context.getString("profile.change_password.something_wrong"),
+        buttonText: context.getString("profile.change_password.okay"),
         onTapDismiss: () {
           Navigator.pop(context);
         },

@@ -20,7 +20,7 @@ class CoolerRepositoryImpl implements CoolerRepository {
   @override
   Future<void> fetchCooler() async {
     final requestUri = Uri.http(Api.baseUrl, _fetchCoolerPath);
-    final response = await _client.get(requestUri, headers: Api.headers());
+    final response = await _client.get(requestUri, headers:await Api.headers());
     _processCPUResponse(response);
   }
 

@@ -1,3 +1,4 @@
+import 'package:build_pc_mobile/build_pc/presentation/state/build_pc_notifier.dart';
 import 'package:build_pc_mobile/build_pc/presentation/state/components_for_build_pc_notifier.dart';
 import 'package:build_pc_mobile/build_pc/presentation/state/selected_component_for_build_notifier.dart';
 import 'package:build_pc_mobile/build_pc/presentation/widgets/custom_component_button_widget.dart';
@@ -12,6 +13,7 @@ import 'package:build_pc_mobile/common/domain/entities/ram/ram.dart';
 import 'package:build_pc_mobile/common/domain/entities/storage_drive/hdd/hdd.dart';
 import 'package:build_pc_mobile/common/domain/entities/storage_drive/ssd/ssd.dart';
 import 'package:build_pc_mobile/common/widgets/custom_no_data_widget.dart';
+import 'package:ez_localization/ez_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
@@ -97,6 +99,7 @@ class _ComponentWidgetState extends State<ComponentWidget> {
         context.watch<ComponentsForBuildPcNotifier>();
     final selectedComponentForBuildNotifier =
         Provider.of<SelectedComponentForBuildNotifier>(context);
+    final buildPcNotifier = Provider.of<BuildPcNotifier>(context);
 
     List<BaseComponent>? _getFilteredComponents() {
       return componentsForBuildPcNotifier
@@ -175,7 +178,17 @@ class _ComponentWidgetState extends State<ComponentWidget> {
                 imagePath: widget.imagePath,
                 nameComponent: filteredComponents[index].name,
                 onTap: () async {
+                  final idBuild = int.parse(
+                    _selectedComponentForBuildNotifier
+                        .addToBuildPcComponents["id"]
+                        .toString(),
+                  );
                   await updateComponents(filteredComponents[index]);
+                  if (!mounted) return;
+                  final price =
+                      await buildPcNotifier.getBuildPcUserComponents(idBuild);
+                  await selectedComponentForBuildNotifier.addToComparison(
+                      "priceBuild", price,);
                   await selectedComponentForBuildNotifier.addToComparison(
                     widget.componentName,
                     filteredComponents[index],
@@ -187,8 +200,10 @@ class _ComponentWidgetState extends State<ComponentWidget> {
               );
             },
           )
-        : const CustomNoDataWidget(
-            text: 'There is no data on these components in the database.',
+        : CustomNoDataWidget(
+            text: context.getString(
+              'build_pc.add_component.no_data',
+            ),
           );
   }
 }

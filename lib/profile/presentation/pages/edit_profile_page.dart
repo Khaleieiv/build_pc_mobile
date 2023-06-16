@@ -2,6 +2,7 @@ import 'package:build_pc_mobile/auth/presentation/state/auth_notifier.dart';
 import 'package:build_pc_mobile/auth/presentation/widgets/custom_text_form_field.dart';
 import 'package:build_pc_mobile/common/constants/app_colors.dart';
 import 'package:build_pc_mobile/common/constants/app_sizes.dart';
+import 'package:build_pc_mobile/common/presentation/navigation/route_names.dart';
 import 'package:build_pc_mobile/common/widgets/custom_button_widget.dart';
 import 'package:ez_localization/ez_localization.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +17,6 @@ class EditProfilePage extends StatefulWidget {
 }
 
 class _EditProfilePageState extends State<EditProfilePage> {
-
   final _nameController = TextEditingController();
   final _usernameController = TextEditingController();
   final _emailController = TextEditingController();
@@ -31,7 +31,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
     final authNotifier = Provider.of<AuthNotifier>(context);
     final _name = "${authNotifier.currentUser?.name}";
     final _username = "${authNotifier.currentUser?.username}";
-    final _email= "${authNotifier.currentUser?.email}";
+    final _email = "${authNotifier.currentUser?.email}";
     _nameController.value = TextEditingValue(
       text: _name,
       selection: TextSelection.fromPosition(
@@ -51,7 +51,6 @@ class _EditProfilePageState extends State<EditProfilePage> {
       ),
     );
 
-
     Future<void> loginButtonPressed() async {
       final authNotifier = Provider.of<AuthNotifier>(context, listen: false);
       await authNotifier.updateProfile(
@@ -63,9 +62,9 @@ class _EditProfilePageState extends State<EditProfilePage> {
       if (!mounted) return;
       await PanaraInfoDialog.show(
         context,
-        title: "Congratulations",
-        message: "Change is successful!",
-        buttonText: "Okay",
+        title: context.getString("profile.edit_profile.congratulations"),
+        message: context.getString("profile.edit_profile.change_successful"),
+        buttonText: context.getString("profile.edit_profile.okay"),
         onTapDismiss: () {
           Navigator.pop(context);
         },
@@ -73,6 +72,29 @@ class _EditProfilePageState extends State<EditProfilePage> {
         panaraDialogType: PanaraDialogType.warning,
       );
       await authNotifier.getCurrentUser();
+    }
+
+    Future<void> deleteButtonPressed() async {
+      final authNotifier = Provider.of<AuthNotifier>(context, listen: false);
+
+      if (!mounted) return;
+      PanaraConfirmDialog.show(
+        context,
+        title: context.getString("profile.edit_profile.wow"),
+        message:
+            context.getString("profile.edit_profile.confirm_delete_account"),
+        confirmButtonText: context.getString("profile.edit_profile.confirm"),
+        cancelButtonText: context.getString("profile.edit_profile.cancel"),
+        textColor: AppColors.blackColor,
+        onTapCancel: () {
+          Navigator.pop(context);
+        },
+        onTapConfirm: () {
+          authNotifier.deleteUser();
+          Navigator.pushNamed(context, RouteNames.loginPage);
+        },
+        panaraDialogType: PanaraDialogType.warning,
+      );
     }
 
     const heightContainer = 450.0;
@@ -92,6 +114,13 @@ class _EditProfilePageState extends State<EditProfilePage> {
           context.getString('profile.edit_profile.edit_profile'),
         ),
         backgroundColor: AppColors.primaryColor,
+        actions: [
+          IconButton(
+            color: AppColors.errorColor,
+            onPressed: deleteButtonPressed,
+            icon: const Icon(Icons.delete_forever),
+          ),
+        ],
       ),
       body: SingleChildScrollView(
         child: Form(

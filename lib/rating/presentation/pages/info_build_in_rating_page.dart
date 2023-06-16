@@ -4,6 +4,7 @@ import 'package:build_pc_mobile/common/constants/app_sizes.dart';
 import 'package:build_pc_mobile/common/domain/entities/base_component.dart';
 import 'package:build_pc_mobile/common/widgets/custom_container_for_build.dart';
 import 'package:build_pc_mobile/rating/presentation/state/rating_notifier.dart';
+import 'package:ez_localization/ez_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
@@ -60,14 +61,16 @@ class _InfoBuildInRatingPageState extends State<InfoBuildInRatingPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Name build: ${ratingBuildPc?.name}',
+                    '${context.getString('rating.info.name_build')}: '
+                        '${ratingBuildPc?.name}',
                     style: const TextStyle(
                       fontSize: 20,
                       fontFamily: fontFamily,
                     ),
                   ),
                   Text(
-                    'User name: ${ratingBuildPc?.user?.name}',
+                    '${context.getString('rating.info.name_user')}: '
+                        '${ratingBuildPc?.user?.name}',
                     style: const TextStyle(
                       fontSize: 20,
                       fontFamily: fontFamily,
@@ -87,9 +90,9 @@ class _InfoBuildInRatingPageState extends State<InfoBuildInRatingPage> {
                       ParamsForComponent.listComponents[value].name;
                   final componentExists = ratingBuildPc != null &&
                       ratingNotifier.getComponent(
-                        ratingBuildPc,
-                        componentType,
-                      ) !=
+                            ratingBuildPc,
+                            componentType,
+                          ) !=
                           null;
 
                   //ignore: cast_nullable_to_non_nullable

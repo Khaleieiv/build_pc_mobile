@@ -6,6 +6,7 @@ import 'package:build_pc_mobile/component_comparison/presentation/state/componen
 import 'package:build_pc_mobile/component_comparison/presentation/widgets/custom_add_to_comparison_button_widget.dart';
 import 'package:build_pc_mobile/component_comparison/presentation/widgets/custom_component_widget.dart';
 import 'package:build_pc_mobile/component_comparison/presentation/widgets/custom_remove_to_comparison_button_widget.dart';
+import 'package:ez_localization/ez_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
@@ -51,8 +52,8 @@ class _GPUListWidgetState extends State<GPUListWidget> {
               return GPUItemWidget(gpu: gpu);
             },
           )
-        : const CustomNoDataWidget(
-            text: 'There is no data on these components in the database.',
+        : CustomNoDataWidget(
+            text: context.getString('message_data_base'),
           );
   }
 }
@@ -77,15 +78,20 @@ class _GPUItemWidgetState extends State<GPUItemWidget> {
     return CustomComponentWidget(
       imagePath: 'assets/icons/gpu.png',
       name: widget.gpu?.name ?? '',
-      labelTextNameFirst: 'GPU frequency',
+      labelTextNameFirst:
+          context.getString('component_comparison.gpu.label_first'),
       labelTextComponentFirst: widget.gpu?.gpuFrequency.toString() ?? '',
-      labelTextNameSecond: 'Memory frequency',
+      labelTextNameSecond:
+          context.getString('component_comparison.gpu.label_second'),
       labelTextComponentSecond: widget.gpu?.memoryFrequency.toString() ?? '',
-      labelTextNameThird: 'TDP',
+      labelTextNameThird:
+          context.getString('component_comparison.gpu.label_third'),
       labelTextComponentThird: widget.gpu?.tdp.toString() ?? '',
-      labelTextNameFourth: 'Technical process',
+      labelTextNameFourth:
+          context.getString('component_comparison.gpu.label_fourth'),
       labelTextComponentFourth: widget.gpu?.technicalProcess.toString() ?? '',
-      labelTextNameFifth: 'Year Of Release',
+      labelTextNameFifth:
+          context.getString('component_comparison.gpu.label_fifth'),
       labelTextComponentFifth: widget.gpu?.year.toString() ?? '',
       button: isAddedToComparison
           ? CustomRemoveToComparisonButtonWidget(

@@ -8,6 +8,8 @@ import 'package:build_pc_mobile/common/utils/custom_exception.dart';
 import 'package:flutter/material.dart';
 
 class BuildPcNotifier extends ChangeNotifier with LoadingStateNotifier {
+  int? _priceBuild = 0;
+
   List<BuildPc>? _listBuildPc;
 
   BuildPc? _buildPc;
@@ -20,11 +22,19 @@ class BuildPcNotifier extends ChangeNotifier with LoadingStateNotifier {
 
   CustomException _buildPcException = CustomException(null);
 
+
+  int? get priceBuild => _priceBuild;
+
   BuildPc? get buildPc => _buildPc;
 
   List<BuildPc>? get buildPcList => _listBuildPc;
 
   CustomException get buildPcException => _buildPcException;
+
+  set priceBuild(int? value){
+    _priceBuild = value;
+    notifyListeners();
+  }
 
   BuildPcNotifier(this._buildPcRepositoryImpl) {
     subscribeToBuildPcUpdates(_buildPcRepositoryImpl.currentListBuildPc);
@@ -36,6 +46,19 @@ class BuildPcNotifier extends ChangeNotifier with LoadingStateNotifier {
       await _buildPcRepositoryImpl.createBuildPcUserListComponents();
       await _buildPcRepositoryImpl.fetchBuildPcUserListComponents();
       notifyListeners();
+    } on CustomResponseException catch (e) {
+      _handleCustomError(e);
+      rethrow;
+    } finally {
+      notifyListeners();
+    }
+  }
+
+  Future<int?> getBuildPcUserComponents(int? id) async {
+    try {
+      final build = await _buildPcRepositoryImpl.getBuildPcUserComponents(id);
+
+      return build?.totalPrice;
     } on CustomResponseException catch (e) {
       _handleCustomError(e);
       rethrow;
@@ -66,7 +89,7 @@ class BuildPcNotifier extends ChangeNotifier with LoadingStateNotifier {
       _handleCustomError(e);
       rethrow;
     } finally {
-      notifyListeners();
+      setLoadingState(value: false);
     }
   }
 
@@ -115,7 +138,7 @@ class BuildPcNotifier extends ChangeNotifier with LoadingStateNotifier {
   ) async {
     _listBuildPc = listBuildPc;
     _handleCustomError(null);
-    notifyListeners();
+    setLoadingState(value: true);
   }
 
   Future<void> _buildPcUserStreamListener(

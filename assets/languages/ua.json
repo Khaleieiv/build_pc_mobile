@@ -1,4 +1,5 @@
 {
+  "message_data_base": "У базі даних немає даних про ці компоненти.",
   "auth": {
     "login_page": {
       "username": "Логін",
@@ -32,15 +33,38 @@
       "account_settings": "Налаштування облікового запису",
       "edit_profile": "Редагувати профіль",
       "change_password": "Змінити пароль",
-      "log_out": "Вийти"
+      "log_out": "Вийти",
+      "title": "Привіт",
+      "message": "Для переходу на цю сторінку потрібно увійти в систему",
+      "confirmButtonText": "Підтвердити",
+      "cancelButtonText": "Скасувати"
     },
     "edit_profile": {
-      "edit_profile": "Редагування профіля",
+      "edit_profile": "Редагувати профіль",
       "name": "Ім'я",
-      "username": "Логін",
-      "email": "Пошта",
+      "username": "Ім'я користувача",
+      "email": "Електронна пошта",
       "password": "Пароль",
-      "save_changes": "Зберегти зміни"
+      "save_changes": "Зберегти зміни",
+      "confirm_delete_account": "Ви впевнені, що хочете видалити свій обліковий запис?",
+      "confirm": "Підтвердити",
+      "cancel": "Скасувати",
+      "wow": "Ого",
+      "congratulations": "Вітаємо",
+      "change_success_message": "Зміни виконано успішно!",
+      "okay": "Добре"
+    },
+    "change_password": {
+      "label": "Змінити пароль",
+      "old_password": "Старий пароль",
+      "new_password": "Новий пароль",
+      "save_changes": "Зберегти зміни",
+      "congratulations": "Вітаємо",
+      "okay": "Окей",
+      "oops": "Ой",
+      "something_wrong": "Щось пішло не так.",
+      "change_successful": "Зміна виконана успішно!",
+      "password_not_match": "Паролі не співпадають"
     }
   },
   "comparison": {
@@ -57,6 +81,250 @@
       "case": "Корпус"
     }
   },
+  "component_comparison": {
+    "add_to_compassion": "Додати до порівняння",
+    "delete_to_compassion": "Видалити з порівняння",
+    "cooler": {
+      "label_first": "Кількість теплових трубок",
+      "label_second": "Роз'єм",
+      "label_third": "Максимальна TDP",
+      "label_fourth": "Матеріал кулера",
+      "label_fifth": "Рекомендована ціна"
+    },
+    "cpu": {
+      "label_first": "Кількість ядер",
+      "label_second": "Кількість потоків",
+      "label_third": "TDP",
+      "label_fourth": "Кеш",
+      "label_fifth": "Рік випуску"
+    },
+    "gpu": {
+      "label_first": "Частота GPU",
+      "label_second": "Частота пам'яті",
+      "label_third": "TDP",
+      "label_fourth": "Технологічний процес",
+      "label_fifth": "Рік випуску"
+    },
+    "hdd": {
+      "label_first": "Швидкість читання",
+      "label_second": "Розмір пам'яті",
+      "label_third": "Швидкість запису",
+      "label_fourth": "Розмір буфера",
+      "label_fifth": "Рекомендована ціна"
+    },
+    "motherboard": {
+      "label_first": "Максимальний обсяг RAM",
+      "label_second": "Слоти пам'яті",
+      "label_third": "Максимальна TDP",
+      "label_fourth": "Частота пам'яті",
+      "label_fifth": "Рекомендована ціна"
+    },
+    "case": {
+      "label_first": "Вентилятори в комплекті",
+      "label_second": "Рівень продуктивності",
+      "label_third": "Рекомендована ціна",
+      "label_fourth": "Форм-фактор блока живлення",
+      "label_fifth": "Максимальна довжина відеокарти"
+    },
+    "power_supply": {
+      "label_first": "Потужність",
+      "label_second": "Рівень продуктивності",
+      "label_third": "Рекомендована ціна",
+      "label_fourth": "Модуль Pfc",
+      "label_fifth": "Sata"
+    },
+    "ram": {
+      "label_first": "Частота",
+      "label_second": "Об'єм пам'яті",
+      "label_third": "Рекомендована ціна",
+      "label_fourth": "Напруга живлення",
+      "label_fifth": "Тип пам'яті"
+    },
+    "ssd": {
+      "label_first": "Швидкість читання",
+      "label_second": "Розмір пам'яті",
+      "label_third": "Швидкість запису",
+      "label_fourth": "Розмір буфера",
+      "label_fifth": "Рекомендована ціна"
+    }
+  },
+  "comparison_component": {
+    "label": "Обраний компонент",
+    "cpu": {
+      "label_first": "Назва",
+      "label_second": "Виробник процесора",
+      "label_third": "Рік випуску",
+      "label_fourth": "Роз'єм материнської плати",
+      "label_fifth": "Кількість ядер",
+      "label_sixth": "Кількість потоків",
+      "label_seventh": "Базова частота",
+      "label_eighth": "Турбо частота",
+      "label_ninth": "Кеш L3",
+      "label_tenth": "Покоління процесора",
+      "label_eleventh": "Технічний процес",
+      "label_twelfth": "TDP",
+      "label_thirteenth": "Максимальна температура",
+      "label_fourteenth": "Вбудована графіка",
+      "label_fifteenth": "Версія PCI Express",
+      "label_sixteenth": "Технології CPU",
+      "label_seventeenth": "Рекомендована ціна",
+      "label_eighteenth": "Рівень продуктивності",
+      "label_nineteenth": "Опис"
+    },
+    "gpu": {
+      "label_first": "Назва",
+      "label_second": "Виробник відеокарти",
+      "label_third": "Постачальник відеокарти",
+      "label_fourth": "Рік випуску",
+      "label_fifth": "Технічний процес",
+      "label_sixth": "Частота GPU",
+      "label_seventh": "Обсяг пам'яті",
+      "label_eighth": "Тип пам'яті відеокарти",
+      "label_ninth": "Частота пам'яті",
+      "label_tenth": "Шина",
+      "label_eleventh": "TDP",
+      "label_twelfth": "Роз'єм відеокарти",
+      "label_thirteenth": "Тип інтерфейсу відеокарти",
+      "label_fourteenth": "Довжина",
+      "label_fifteenth": "Технології відеокарти",
+      "label_sixteenth": "Рекомендована ціна",
+      "label_seventeenth": "Рівень продуктивності",
+      "label_eighteenth": "Опис"
+    },
+    "motherboard": {
+      "label_first": "Назва",
+      "label_second": "Роз'єм материнської плати",
+      "label_third": "Покоління процесорів",
+      "label_fourth": "Чіпсет",
+      "label_fifth": "Форм-фактор",
+      "label_sixth": "Виробник",
+      "label_seventh": "Максимальна TDP процесорів",
+      "label_eighth": "Слоти пам'яті",
+      "label_ninth": "Частота пам'яті",
+      "label_tenth": "Максимальний об'єм пам'яті",
+      "label_eleventh": "Мережа",
+      "label_twelfth": "Bluetooth",
+      "label_thirteenth": "Wi-Fi",
+      "label_fourteenth": "Версія PCI Express процесора",
+      "label_fifteenth": "PCI Express x16",
+      "label_sixteenth": "PCI Express x4",
+      "label_seventeenth": "PCI Express x1",
+      "label_eighteenth": "SATA3",
+      "label_nineteenth": "M.2",
+      "label_twentieth": "D-Sub",
+      "label_twentyfirst": "DVI",
+      "label_twentysecond": "HDMI",
+      "label_twentythird": "DisplayPort",
+      "label_twentyfourth": "USB 2.0",
+      "label_twentyfifth": "USB 3.0",
+      "label_twentysixth": "USB Type-C",
+      "label_twentyseventh": "Цифровий аудіороз'єм",
+      "label_twentyeighth": "Рекомендована ціна",
+      "label_twentyninth": "Рівень продуктивності",
+      "label_thirtyth": "Опис"
+    },
+    "memory": {
+      "label_first": "Назва",
+      "label_second": "Виробник оперативної пам'яті",
+      "label_third": "Тип пам'яті",
+      "label_fourth": "Обсяг пам'яті",
+      "label_fifth": "Частота",
+      "label_sixth": "Таймінги оперативної пам'яті",
+      "label_seventh": "Напруга живлення",
+      "label_eighth": "Рекомендована ціна",
+      "label_ninth": "Рівень продуктивності",
+      "label_tenth": "Опис"
+    },
+    "ssd": {
+      "label_first": "Назва",
+      "label_second": "Виробник накопичувача",
+      "label_third": "Об'єм накопичувача",
+      "label_fourth": "Форм-фактор накопичувача",
+      "label_fifth": "Інтерфейс накопичувача",
+      "label_sixth": "Розмір буфера",
+      "label_seventh": "Швидкість читання",
+      "label_eighth": "Швидкість запису",
+      "label_ninth": "Тип комірок SSD",
+      "label_tenth": "Рекомендована ціна",
+      "label_eleventh": "Рівень продуктивності",
+      "label_twelfth": "Опис"
+    },
+    "hdd": {
+      "label_first": "Назва",
+      "label_second": "Виробник накопичувача",
+      "label_third": "Об'єм накопичувача",
+      "label_fourth": "Швидкість",
+      "label_fifth": "Форм-фактор накопичувача",
+      "label_sixth": "Інтерфейс накопичувача",
+      "label_seventh": "Розмір буфера",
+      "label_eighth": "Швидкість читання",
+      "label_ninth": "Швидкість запису",
+      "label_tenth": "Рекомендована ціна",
+      "label_eleventh": "Рівень продуктивності",
+      "label_twelfth": "Опис"
+    },
+    "cooler": {
+      "label_first": "Назва",
+      "label_second": "Виробник системи охолодження",
+      "label_third": "Роз'єм системи охолодження",
+      "label_fourth": "Матеріал системи охолодження",
+      "label_fifth": "Максимальна TDP",
+      "label_sixth": "Теплові трубки",
+      "label_seventh": "Рекомендована ціна",
+      "label_eighth": "Рівень продуктивності",
+      "label_ninth": "Опис"
+    },
+    "powerSupply": {
+      "label_first": "Виробник блока живлення",
+      "label_second": "Назва",
+      "label_third": "Потужність",
+      "label_fourth": "Форм-фактор",
+      "label_fifth": "Рівень продуктивності",
+      "label_sixth": "Модуль PFC",
+      "label_seventh": "Модульна з'єднання",
+      "label_eighth": "Функції захисту блока живлення",
+      "label_ninth": "CPU 4-контактний",
+      "label_tenth": "CPU 4+4-контактний",
+      "label_eleventh": "CPU 8-контактний",
+      "label_twelfth": "PCIe 6+2-контактний",
+      "label_thirteenth": "PCIe 8-контактний",
+      "label_fourteenth": "PCIe 5/16-контактний",
+      "label_fifteenth": "SATA",
+      "label_sixteenth": "Кількість ліній 12V",
+      "label_seventeenth": "Рекомендована ціна",
+      "label_eighteenth": "Опис"
+    },
+    "case": {
+      "label_first": "Назва",
+      "label_second": "Виробник корпусу",
+      "label_third": "Розмір корпусу",
+      "label_fourth": "Форм-фактор",
+      "label_fifth": "Розташування блока живлення",
+      "label_sixth": "Вентилятори в комплекті",
+      "label_seventh": "Вентилятори до встановлення",
+      "label_eighth": "Слоти розширення",
+      "label_ninth": "Максимальна довжина відеокарти",
+      "label_tenth": "Максимальна висота кулера",
+      "label_eleventh": "Рекомендована ціна",
+      "label_twelfth": "Опис"
+    },
+    "monitor": {
+      "label_first": "Назва",
+      "label_second": "Виробник монітора",
+      "label_third": "Діагональ",
+      "label_fourth": "Роздільна здатність",
+      "label_fifth": "Тип панелі",
+      "label_sixth": "Частота оновлення",
+      "label_seventh": "Час реакції",
+      "label_eighth": "Співвідношення сторін",
+      "label_ninth": "Яскравість",
+      "label_tenth": "Контрастність",
+      "label_eleventh": "Кути огляду",
+      "label_twelfth": "Кількість кольорів",
+      "label_thirteenth": "Рекомендована ціна",
+      "label_fourteenth": "Опис"
+    }
+  },
   "home": {
     "localization": {
       "first_language": "Англійська",
@@ -67,6 +335,57 @@
       "pc_build": "Збірка",
       "rating": "Рейтинг",
       "profile": "Профіль"
+    }
+  },
+  "rating": {
+    "info": {
+      "name_build": "Збірка",
+      "name_user": "Користувач"
+    }
+  },
+  "build_pc": {
+    "info": {
+      "edit": "Редагувати",
+      "name_build": "Назва збірки",
+      "name_user": "Ім'я користувача"
+    },
+    "build": {
+      "title": "Привіт",
+      "create": "Створити збірку",
+      "message": "Ви дійсно хочете видалити цю збірку?",
+      "confirm_text": "Підтвердити",
+      "cancel_text": "Скасувати",
+      "no_data": "У вас немає жодних збірок ПК."
+    },
+    "add_component": {
+      "okay": "Добре",
+      "oops": "Ой",
+      "total_price": "Загальна вартість",
+      "no_data": "У базі даних немає інформації про ці компоненти.",
+      "cpu": "Процесор",
+      "motherboard": "Материнська плата",
+      "check_m": "Ви не можете створити збірку без процесора",
+      "cooler": "Охолодження",
+      "gpu": "Графічна карта",
+      "ram": "Оперативна пам'ять",
+      "hdd": "Жорсткий диск",
+      "ssd": "Твердотілий диск",
+      "power_supply": "Блок живлення",
+      "check_d": "Ви не можете створити збірку без диску",
+      "case": "Корпус",
+      "check_p": "Ви не можете створити збірку без блока живлення"
+    },
+    "alert_dialog":{
+      "label": "Введіть назву збірки",
+      "cancel": "Скасувати",
+      "ok": "ОК",
+      "okay": "Добре",
+      "oops": "Ой",
+      "empty_build": "Ви не можете створити збірку"
+    },
+    "swap": {
+      "switch": "Змініти",
+      "remove": "Видалити"
     }
   }
 }

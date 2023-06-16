@@ -7,6 +7,7 @@ import 'package:build_pc_mobile/common/presentation/navigation/route_names.dart'
 import 'package:build_pc_mobile/common/widgets/custom_no_data_widget.dart';
 import 'package:build_pc_mobile/home/presentation/state/dark_light_theme_notifier.dart';
 import 'package:build_pc_mobile/rating/presentation/state/rating_notifier.dart';
+import 'package:ez_localization/ez_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:panara_dialogs/panara_dialogs.dart';
@@ -24,6 +25,7 @@ class BuildPcPage extends StatefulWidget {
 class _BuildPcPageState extends State<BuildPcPage> {
   BuildPcNotifier get _buildPcNotifier =>
       Provider.of<BuildPcNotifier>(context, listen: false);
+
   RatingNotifier get _ratingPcNotifier =>
       Provider.of<RatingNotifier>(context, listen: false);
 
@@ -99,16 +101,19 @@ class _BuildPcPageState extends State<BuildPcPage> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      'Name build: ${buildPcNotifier.buildPcList
-                                      ?[index].name ?? 'Draft'}',
+                                      '${context.getString('build_pc.info.name_build')}'
+                                      ': ${buildPcNotifier.buildPcList?[index]
+                                          .name ?? 'Draft'}',
                                       style: const TextStyle(
                                         fontSize: 20,
                                         fontFamily: fontFamily,
                                       ),
                                     ),
                                     Text(
-                                      'Name user: ${buildPcNotifier.buildPcList?
-                                      [index].user?.name ?? ''}',
+                                      '${context.getString(''
+                                          'build_pc.info.name_user')}'
+                                      ': ${buildPcNotifier.buildPcList?[index]
+                                          .user?.name ?? ''}',
                                       style: const TextStyle(
                                         fontSize: 20,
                                         fontFamily: fontFamily,
@@ -121,11 +126,18 @@ class _BuildPcPageState extends State<BuildPcPage> {
                                     setState(() {
                                       PanaraConfirmDialog.show(
                                         context,
-                                        title: "Hello",
-                                        message: "Do you really want to delete "
-                                            "this assembly",
-                                        confirmButtonText: "Confirm",
-                                        cancelButtonText: "Cancel",
+                                        title: context.getString(
+                                          'build_pc.build.title',
+                                        ),
+                                        message: context.getString(
+                                          'build_pc.build.message',
+                                        ),
+                                        confirmButtonText: context.getString(
+                                          'build_pc.build.confirm_text',
+                                        ),
+                                        cancelButtonText: context.getString(
+                                          'build_pc.build.cancel_text',
+                                        ),
                                         textColor: AppColors.blackColor,
                                         onTapCancel: () {
                                           Navigator.pop(context);
@@ -171,7 +183,8 @@ class _BuildPcPageState extends State<BuildPcPage> {
                                   return Row(
                                     children: [
                                       const SizedBox(
-                                          width: AppSizes.defaultPadding / 3,),
+                                        width: AppSizes.defaultPadding / 3,
+                                      ),
                                       if (componentExists)
                                         Image.asset(
                                           ParamsForComponent
@@ -195,21 +208,30 @@ class _BuildPcPageState extends State<BuildPcPage> {
                 );
               },
             )
-          : const CustomNoDataWidget(
-              text: "You don't have any pc builds.",
+          : CustomNoDataWidget(
+              text: context.getString(
+                'build_pc.build.no_data',
+              ),
             ),
       floatingActionButton: FloatingActionButton.extended(
         backgroundColor: AppColors.alternateColor,
-        label: const Text("Create build"),
+        label: Text(context.getString(
+          'build_pc.build.create',
+        ),),
         icon: const Icon(
           Icons.add,
         ),
         onPressed: () async {
+          selectedComponentForBuildNotifier.checkButtonBuild = true;
           await selectedComponentForBuildNotifier.clearAddToBuildPcComponents();
           await buildPcNotifier.createBuildPcUserComponents();
           await selectedComponentForBuildNotifier.addToComparison(
             "id",
             buildPcNotifier.buildPc?.id,
+          );
+          await selectedComponentForBuildNotifier.addToComparison(
+            "priceBuild",
+            0,
           );
           if (!mounted) return;
           await Navigator.pushNamed(

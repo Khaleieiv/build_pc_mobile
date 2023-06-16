@@ -6,6 +6,7 @@ import 'package:build_pc_mobile/component_comparison/presentation/state/componen
 import 'package:build_pc_mobile/component_comparison/presentation/widgets/custom_add_to_comparison_button_widget.dart';
 import 'package:build_pc_mobile/component_comparison/presentation/widgets/custom_component_widget.dart';
 import 'package:build_pc_mobile/component_comparison/presentation/widgets/custom_remove_to_comparison_button_widget.dart';
+import 'package:ez_localization/ez_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
@@ -51,8 +52,8 @@ class _CoolerListWidgetState extends State<CoolerListWidget> {
               return CoolerItemWidget(cooler: cooler);
             },
           )
-        : const CustomNoDataWidget(
-            text: 'There is no data on these components in the database.',
+        : CustomNoDataWidget(
+            text: context.getString('message_data_base'),
           );
   }
 }
@@ -77,18 +78,23 @@ class _CoolerItemWidgetState extends State<CoolerItemWidget> {
     return CustomComponentWidget(
       imagePath: 'assets/icons/fan.png',
       name: widget.cooler?.name ?? '',
-      labelTextNameFirst: 'Count of thermal tubes',
+      labelTextNameFirst:
+          context.getString('component_comparison.cooler.label_first'),
       labelTextComponentFirst: widget.cooler?.thermalTubes.toString() ?? '',
-      labelTextNameSecond: 'Socket',
+      labelTextNameSecond:
+          context.getString('component_comparison.cooler.label_second'),
       labelTextComponentSecond: widget.cooler?.coolerSocket.isNotEmpty ?? false
           //ignore: avoid-non-null-assertion
           ? widget.cooler!.coolerSocket.first.name
           : '',
-      labelTextNameThird: 'Max TDP',
+      labelTextNameThird:
+          context.getString('component_comparison.cooler.label_third'),
       labelTextComponentThird: widget.cooler?.maxTdp.toString() ?? '',
-      labelTextNameFourth: 'Cooler material',
+      labelTextNameFourth:
+          context.getString('component_comparison.cooler.label_fourth'),
       labelTextComponentFourth: widget.cooler?.coolerMaterial.name ?? '',
-      labelTextNameFifth: 'Recommended price',
+      labelTextNameFifth:
+          context.getString('component_comparison.cooler.label_fifth'),
       labelTextComponentFifth: widget.cooler?.recommendedPrice.toString() ?? '',
       button: isAddedToComparison
           ? CustomRemoveToComparisonButtonWidget(

@@ -7,6 +7,8 @@ abstract class BuildPcRepository {
 
   Future<void> createBuildPcUserListComponents();
 
+  Future<void> getBuildPcUserComponents(int id);
+
   Future<void> updateBuildPcUserListComponents(BuildPc buildPc, int id);
 
   Future<void> fetchBuildPcUserListComponents();

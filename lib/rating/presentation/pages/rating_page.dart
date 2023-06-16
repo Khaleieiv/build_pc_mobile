@@ -6,6 +6,7 @@ import 'package:build_pc_mobile/common/widgets/custom_refresh_indicator_widget.d
 import 'package:build_pc_mobile/home/presentation/state/dark_light_theme_notifier.dart';
 import 'package:build_pc_mobile/rating/presentation/state/rating_notifier.dart';
 import 'package:build_pc_mobile/rating/presentation/widgets/custom_button_rating_widget.dart';
+import 'package:ez_localization/ez_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
@@ -135,7 +136,8 @@ class _RatingPageState extends State<RatingPage> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  'Name build: ${ratingNotifier.buildPcList?
+                                  '${context.getString('rating.info.name_build')
+                                  }: ${ratingNotifier.buildPcList?
                                   [index].name ?? 'Draft'}',
                                   style: const TextStyle(
                                     fontSize: 20,
@@ -143,7 +145,8 @@ class _RatingPageState extends State<RatingPage> {
                                   ),
                                 ),
                                 Text(
-                                  'Name user: ${ratingNotifier.buildPcList?
+                                  '${context.getString('rating.info.name_user')
+                                  }:  ${ratingNotifier.buildPcList?
                                   [index].user?.name ?? ''}',
                                   style: const TextStyle(
                                     fontSize: 20,

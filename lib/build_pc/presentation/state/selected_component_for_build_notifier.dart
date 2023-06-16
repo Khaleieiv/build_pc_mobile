@@ -11,6 +11,8 @@ class SelectedComponentForBuildNotifier extends ChangeNotifier {
 
   BuildPc? _buildPc;
 
+  bool _checkButtonBuild = true;
+
   bool _checkAddProcessor = true;
   bool _checkAddMotherboard = true;
   bool _checkAddCooler = true;
@@ -24,6 +26,7 @@ class SelectedComponentForBuildNotifier extends ChangeNotifier {
   Map<String, dynamic> addToBuildPcComponents = {
     "id": null,
     "nameBuild": "Draft",
+    "priceBuild": 0,
     "processor": null,
     "motherboard": null,
     "graphic_card": null,
@@ -38,6 +41,8 @@ class SelectedComponentForBuildNotifier extends ChangeNotifier {
   String? get modelName => _modelName;
 
   BuildPc? get buildPc => _buildPc;
+
+  bool get checkButtonBuild => _checkButtonBuild;
 
   bool get checkAddProcessor => _checkAddProcessor;
 
@@ -59,6 +64,56 @@ class SelectedComponentForBuildNotifier extends ChangeNotifier {
 
   set buildPc(BuildPc? value) {
     _buildPc = value;
+    notifyListeners();
+  }
+
+  set checkButtonBuild(bool value) {
+    _checkButtonBuild = value;
+    notifyListeners();
+  }
+
+  set checkAddProcessor(bool value) {
+    _checkAddProcessor = value;
+    notifyListeners();
+  }
+
+  set checkAddMotherboard(bool value) {
+    _checkAddMotherboard = value;
+    notifyListeners();
+  }
+
+  set checkAddCooler(bool value) {
+    _checkAddCooler = value;
+    notifyListeners();
+  }
+
+  set checkAddGPU(bool value) {
+    _checkAddGPU = value;
+    notifyListeners();
+  }
+
+  set checkAddMemory(bool value) {
+    _checkAddMemory = value;
+    notifyListeners();
+  }
+
+  set checkAddHdd(bool value) {
+    _checkAddHdd = value;
+    notifyListeners();
+  }
+
+  set checkAddSsd(bool value) {
+    _checkAddSsd = value;
+    notifyListeners();
+  }
+
+  set checkAddPowerSupply(bool value) {
+    _checkAddPowerSupply = value;
+    notifyListeners();
+  }
+
+  set checkAddCase(bool value) {
+    _checkAddCase = value;
     notifyListeners();
   }
 
