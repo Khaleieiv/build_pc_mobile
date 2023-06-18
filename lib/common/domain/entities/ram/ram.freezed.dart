@@ -29,7 +29,7 @@ mixin _$Ram {
   int get memoryCapacity => throw _privateConstructorUsedError;
   int get frequency => throw _privateConstructorUsedError;
   @JsonKey(name: 'timings')
-  RamTimings get ramTimings => throw _privateConstructorUsedError;
+  RamTimings? get ramTimings => throw _privateConstructorUsedError;
   double get powerSupplyVoltage => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   int get recommendedPrice => throw _privateConstructorUsedError;
@@ -52,7 +52,7 @@ abstract class $RamCopyWith<$Res> {
       @JsonKey(name: 'memoryType') RamMemoryType ramMemoryType,
       int memoryCapacity,
       int frequency,
-      @JsonKey(name: 'timings') RamTimings ramTimings,
+      @JsonKey(name: 'timings') RamTimings? ramTimings,
       double powerSupplyVoltage,
       String description,
       int recommendedPrice,
@@ -60,7 +60,7 @@ abstract class $RamCopyWith<$Res> {
 
   $ProducersCopyWith<$Res> get ramProducer;
   $RamMemoryTypeCopyWith<$Res> get ramMemoryType;
-  $RamTimingsCopyWith<$Res> get ramTimings;
+  $RamTimingsCopyWith<$Res>? get ramTimings;
   $PerformanceLevelCopyWith<$Res>? get performanceLevel;
 }
 
@@ -82,7 +82,7 @@ class _$RamCopyWithImpl<$Res, $Val extends Ram> implements $RamCopyWith<$Res> {
     Object? ramMemoryType = null,
     Object? memoryCapacity = null,
     Object? frequency = null,
-    Object? ramTimings = null,
+    Object? ramTimings = freezed,
     Object? powerSupplyVoltage = null,
     Object? description = null,
     Object? recommendedPrice = null,
@@ -113,10 +113,10 @@ class _$RamCopyWithImpl<$Res, $Val extends Ram> implements $RamCopyWith<$Res> {
           ? _value.frequency
           : frequency // ignore: cast_nullable_to_non_nullable
               as int,
-      ramTimings: null == ramTimings
+      ramTimings: freezed == ramTimings
           ? _value.ramTimings
           : ramTimings // ignore: cast_nullable_to_non_nullable
-              as RamTimings,
+              as RamTimings?,
       powerSupplyVoltage: null == powerSupplyVoltage
           ? _value.powerSupplyVoltage
           : powerSupplyVoltage // ignore: cast_nullable_to_non_nullable
@@ -154,8 +154,12 @@ class _$RamCopyWithImpl<$Res, $Val extends Ram> implements $RamCopyWith<$Res> {
 
   @override
   @pragma('vm:prefer-inline')
-  $RamTimingsCopyWith<$Res> get ramTimings {
-    return $RamTimingsCopyWith<$Res>(_value.ramTimings, (value) {
+  $RamTimingsCopyWith<$Res>? get ramTimings {
+    if (_value.ramTimings == null) {
+      return null;
+    }
+
+    return $RamTimingsCopyWith<$Res>(_value.ramTimings!, (value) {
       return _then(_value.copyWith(ramTimings: value) as $Val);
     });
   }
@@ -186,7 +190,7 @@ abstract class _$$_RamCopyWith<$Res> implements $RamCopyWith<$Res> {
       @JsonKey(name: 'memoryType') RamMemoryType ramMemoryType,
       int memoryCapacity,
       int frequency,
-      @JsonKey(name: 'timings') RamTimings ramTimings,
+      @JsonKey(name: 'timings') RamTimings? ramTimings,
       double powerSupplyVoltage,
       String description,
       int recommendedPrice,
@@ -197,7 +201,7 @@ abstract class _$$_RamCopyWith<$Res> implements $RamCopyWith<$Res> {
   @override
   $RamMemoryTypeCopyWith<$Res> get ramMemoryType;
   @override
-  $RamTimingsCopyWith<$Res> get ramTimings;
+  $RamTimingsCopyWith<$Res>? get ramTimings;
   @override
   $PerformanceLevelCopyWith<$Res>? get performanceLevel;
 }
@@ -217,7 +221,7 @@ class __$$_RamCopyWithImpl<$Res> extends _$RamCopyWithImpl<$Res, _$_Ram>
     Object? ramMemoryType = null,
     Object? memoryCapacity = null,
     Object? frequency = null,
-    Object? ramTimings = null,
+    Object? ramTimings = freezed,
     Object? powerSupplyVoltage = null,
     Object? description = null,
     Object? recommendedPrice = null,
@@ -248,10 +252,10 @@ class __$$_RamCopyWithImpl<$Res> extends _$RamCopyWithImpl<$Res, _$_Ram>
           ? _value.frequency
           : frequency // ignore: cast_nullable_to_non_nullable
               as int,
-      ramTimings: null == ramTimings
+      ramTimings: freezed == ramTimings
           ? _value.ramTimings
           : ramTimings // ignore: cast_nullable_to_non_nullable
-              as RamTimings,
+              as RamTimings?,
       powerSupplyVoltage: null == powerSupplyVoltage
           ? _value.powerSupplyVoltage
           : powerSupplyVoltage // ignore: cast_nullable_to_non_nullable
@@ -307,7 +311,7 @@ class _$_Ram extends _Ram {
   final int frequency;
   @override
   @JsonKey(name: 'timings')
-  final RamTimings ramTimings;
+  final RamTimings? ramTimings;
   @override
   final double powerSupplyVoltage;
   @override
@@ -387,7 +391,7 @@ abstract class _Ram extends Ram {
       @JsonKey(name: 'memoryType') required final RamMemoryType ramMemoryType,
       required final int memoryCapacity,
       required final int frequency,
-      @JsonKey(name: 'timings') required final RamTimings ramTimings,
+      @JsonKey(name: 'timings') required final RamTimings? ramTimings,
       required final double powerSupplyVoltage,
       required final String description,
       required final int recommendedPrice,
@@ -412,7 +416,7 @@ abstract class _Ram extends Ram {
   int get frequency;
   @override
   @JsonKey(name: 'timings')
-  RamTimings get ramTimings;
+  RamTimings? get ramTimings;
   @override
   double get powerSupplyVoltage;
   @override

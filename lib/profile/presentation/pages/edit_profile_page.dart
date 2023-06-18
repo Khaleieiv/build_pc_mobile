@@ -6,6 +6,7 @@ import 'package:build_pc_mobile/common/presentation/navigation/route_names.dart'
 import 'package:build_pc_mobile/common/widgets/custom_button_widget.dart';
 import 'package:ez_localization/ez_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:panara_dialogs/panara_dialogs.dart';
 import 'package:provider/provider.dart';
 
@@ -17,6 +18,16 @@ class EditProfilePage extends StatefulWidget {
 }
 
 class _EditProfilePageState extends State<EditProfilePage> {
+  AuthNotifier get authNotifier => Provider.of<AuthNotifier>(context);
+
+  @override
+  void initState() {
+    super.initState();
+    SchedulerBinding.instance.addPostFrameCallback((_) {
+      Provider.of<AuthNotifier>(context, listen: false).getCurrentUser();
+    });
+  }
+
   final _nameController = TextEditingController();
   final _usernameController = TextEditingController();
   final _emailController = TextEditingController();
@@ -28,10 +39,10 @@ class _EditProfilePageState extends State<EditProfilePage> {
 
   @override
   Widget build(BuildContext context) {
-    final authNotifier = Provider.of<AuthNotifier>(context);
-    final _name = "${authNotifier.currentUser?.name}";
-    final _username = "${authNotifier.currentUser?.username}";
-    final _email = "${authNotifier.currentUser?.email}";
+    final authNotifier = context.watch<AuthNotifier>();
+    final _name = "${authNotifier.currentProfileParams?.name}";
+    final _username = "${authNotifier.currentProfileParams?.username}";
+    final _email = "${authNotifier.currentProfileParams?.email}";
     _nameController.value = TextEditingValue(
       text: _name,
       selection: TextSelection.fromPosition(
@@ -63,7 +74,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
       await PanaraInfoDialog.show(
         context,
         title: context.getString("profile.edit_profile.congratulations"),
-        message: context.getString("profile.edit_profile.change_successful"),
+        message:
+            context.getString("profile.edit_profile.change_success_message"),
         buttonText: context.getString("profile.edit_profile.okay"),
         onTapDismiss: () {
           Navigator.pop(context);
@@ -150,7 +162,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                   const SizedBox(height: AppSizes.defaultPadding),
                   CustomTextFormField(
                     labelText: context.getString('profile.edit_profile.name'),
-                    hintText: authNotifier.currentUser?.name ?? "",
+                    hintText: authNotifier.currentProfileParams?.name ?? "",
                     keyboardType: TextInputType.name,
                     checkSuffixIcon: false,
                     controller: _nameController,
@@ -158,14 +170,14 @@ class _EditProfilePageState extends State<EditProfilePage> {
                   CustomTextFormField(
                     labelText:
                         context.getString('profile.edit_profile.username'),
-                    hintText: authNotifier.currentUser?.username ?? "",
+                    hintText: authNotifier.currentProfileParams?.username ?? "",
                     keyboardType: TextInputType.name,
                     checkSuffixIcon: false,
                     controller: _usernameController,
                   ),
                   CustomTextFormField(
                     labelText: context.getString('profile.edit_profile.email'),
-                    hintText: authNotifier.currentUser?.email ?? "",
+                    hintText: authNotifier.currentProfileParams?.email ?? "",
                     keyboardType: TextInputType.emailAddress,
                     checkSuffixIcon: false,
                     controller: _emailController,

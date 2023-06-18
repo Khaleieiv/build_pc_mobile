@@ -36,11 +36,6 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
     const height = 50.0;
     const borderRadius = 25.0;
 
-    String? customValidator(String? fieldContent) =>
-        fieldContent != null && fieldContent.isEmpty
-            ? 'Please enter some text'
-            : fieldContent;
-
     return Padding(
       padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 20),
       child: Container(
@@ -53,6 +48,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
         child: Padding(
           padding: const EdgeInsetsDirectional.fromSTEB(12, 0, 20, 0),
           child: TextFormField(
+            autovalidateMode:_passwordVisible ? AutovalidateMode.always : null,
             controller: widget.controller,
             style: const TextStyle(
               color: AppColors.tertiaryColor,
@@ -62,7 +58,6 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
             keyboardType: widget.keyboardType,
             textInputAction: TextInputAction.next,
             cursorColor: AppColors.tertiaryColor,
-            validator: customValidator,
             decoration: InputDecoration(
               suffixIcon: widget.checkSuffixIcon
                   ? IconButton(

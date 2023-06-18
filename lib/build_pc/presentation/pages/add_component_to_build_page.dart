@@ -155,11 +155,11 @@ class _AddComponentToBuildPageState extends State<AddComponentToBuildPage> {
       }
     }
 
-    Future<void> updatePriceBuild() async {
-      final id = int.parse(
-        selectedComponentForBuildNotifier.addToBuildPcComponents["id"]
-            .toString(),
-      );
+    Future<void> updatePriceBuild(int id) async {
+      // final id = int.parse(
+      //   selectedComponentForBuildNotifier.addToBuildPcComponents["id"]
+      //       .toString(),
+      // );
       final price = await buildPcNotifier.getBuildPcUserComponents(id);
       await selectedComponentForBuildNotifier.addToComparison(
         "priceBuild",
@@ -263,7 +263,7 @@ class _AddComponentToBuildPageState extends State<AddComponentToBuildPage> {
                           } else {
                             showMessageDialog(
                               context.getString(
-                                'build_pc.add_component.check_m',
+                                'build_pc.add_component.check_pr',
                               ),
                             );
                           }
@@ -311,20 +311,20 @@ class _AddComponentToBuildPageState extends State<AddComponentToBuildPage> {
                                 .addToBuildPcComponents["cooler"]?.name
                                 .toString() ??
                             '',
-                        onPressed: () {
+                        onPressed: () async {
                           final id = int.parse(
                             selectedComponentForBuildNotifier
                                 .addToBuildPcComponents["id"]
                                 .toString(),
                           );
-                          Provider.of<ComponentsForBuildPcNotifier>(
+                          await Provider.of<ComponentsForBuildPcNotifier>(
                             context,
                             listen: false,
                           ).deleteCoolerListBuildPcComponents(
                             id,
                           );
-                          updatePriceBuild();
-                          selectedComponentForBuildNotifier
+                          await updatePriceBuild(id);
+                          await selectedComponentForBuildNotifier
                               .removeFromComparison("cooler");
                         },
                         modelName: 'cooler',
@@ -361,7 +361,7 @@ class _AddComponentToBuildPageState extends State<AddComponentToBuildPage> {
                             context,
                             listen: false,
                           ).deleteGpuListBuildPcComponents(id);
-                          await updatePriceBuild();
+                          await updatePriceBuild(id);
                           await selectedComponentForBuildNotifier
                               .removeFromComparison("graphic_card");
                         },
@@ -395,21 +395,21 @@ class _AddComponentToBuildPageState extends State<AddComponentToBuildPage> {
                         imagePath: 'assets/icons/memory.png',
                         //ignore: avoid_dynamic_calls
                         nameComponent: '$ram',
-                        onPressed: () {
+                        onPressed: () async {
                           final id = int.parse(
                             selectedComponentForBuildNotifier
                                 .addToBuildPcComponents["id"]
                                 .toString(),
                           );
-                          Provider.of<ComponentsForBuildPcNotifier>(
+                          await Provider.of<ComponentsForBuildPcNotifier>(
                             context,
                             listen: false,
                           ).deleteRamListBuildPcComponents(
                             id,
                           );
-                          selectedComponentForBuildNotifier
+                          await selectedComponentForBuildNotifier
                               .removeFromComparison("memory");
-                          updatePriceBuild();
+                          await updatePriceBuild(id);
                         },
                         modelName: 'memory',
                       ),
@@ -429,20 +429,20 @@ class _AddComponentToBuildPageState extends State<AddComponentToBuildPage> {
                         imagePath: 'assets/icons/hdd.png',
                         //ignore: avoid_dynamic_calls
                         nameComponent: '$hdd',
-                        onPressed: () {
+                        onPressed: () async {
                           final id = int.parse(
                             selectedComponentForBuildNotifier
                                 .addToBuildPcComponents["id"]
                                 .toString(),
                           );
-                          Provider.of<ComponentsForBuildPcNotifier>(
+                          await Provider.of<ComponentsForBuildPcNotifier>(
                             context,
                             listen: false,
                           ).deleteHddListBuildPcComponents(
                             id,
                           );
-                          updatePriceBuild();
-                          selectedComponentForBuildNotifier
+                          await updatePriceBuild(id);
+                          await selectedComponentForBuildNotifier
                               .removeFromComparison("hdd");
                         },
                         modelName: 'hdd',
@@ -465,20 +465,20 @@ class _AddComponentToBuildPageState extends State<AddComponentToBuildPage> {
                         imagePath: 'assets/icons/ssd.png',
                         //ignore: avoid_dynamic_calls
                         nameComponent: '$ssd',
-                        onPressed: () {
+                        onPressed: () async {
                           final id = int.parse(
                             selectedComponentForBuildNotifier
                                 .addToBuildPcComponents["id"]
                                 .toString(),
                           );
-                          Provider.of<ComponentsForBuildPcNotifier>(
+                          await Provider.of<ComponentsForBuildPcNotifier>(
                             context,
                             listen: false,
                           ).deleteSsdListBuildPcComponents(
                             id,
                           );
-                          updatePriceBuild();
-                          selectedComponentForBuildNotifier
+                          await updatePriceBuild(id);
+                          await selectedComponentForBuildNotifier
                               .removeFromComparison("ssd");
                         },
                         modelName: 'ssd',
@@ -514,21 +514,20 @@ class _AddComponentToBuildPageState extends State<AddComponentToBuildPage> {
                                 .addToBuildPcComponents["power_supply"]?.name
                                 .toString() ??
                             '',
-                        onPressed: () {
+                        onPressed: () async {
                           final id = int.parse(
                             selectedComponentForBuildNotifier
                                 .addToBuildPcComponents["id"]
                                 .toString(),
                           );
-
-                          Provider.of<ComponentsForBuildPcNotifier>(
+                          await Provider.of<ComponentsForBuildPcNotifier>(
                             context,
                             listen: false,
                           ).deletePowerSupplyListBuildPcComponents(
                             id,
                           );
-                          updatePriceBuild();
-                          selectedComponentForBuildNotifier
+                          await updatePriceBuild(id);
+                          await selectedComponentForBuildNotifier
                               .removeFromComparison("power_supply");
                         },
                         modelName: 'power_supply',
@@ -564,20 +563,20 @@ class _AddComponentToBuildPageState extends State<AddComponentToBuildPage> {
                                 .addToBuildPcComponents["case"]?.name
                                 .toString() ??
                             '',
-                        onPressed: () {
+                        onPressed: () async {
                           final id = int.parse(
                             selectedComponentForBuildNotifier
                                 .addToBuildPcComponents["id"]
                                 .toString(),
                           );
-                          Provider.of<ComponentsForBuildPcNotifier>(
+                          await Provider.of<ComponentsForBuildPcNotifier>(
                             context,
                             listen: false,
                           ).deletePowerSupplyListBuildPcComponents(
                             id,
                           );
-                          updatePriceBuild();
-                          selectedComponentForBuildNotifier
+                          await updatePriceBuild(id);
+                          await selectedComponentForBuildNotifier
                               .removeFromComparison("case");
                         },
                         modelName: 'case',

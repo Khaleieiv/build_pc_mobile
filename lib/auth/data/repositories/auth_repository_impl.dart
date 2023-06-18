@@ -51,13 +51,23 @@ class AuthRepositoryImpl extends UserRepository {
   }
 
   @override
-  Future<void> registerUser(User userData) async {
-    final requestBody = userData.toJson();
+  Future<void> registerUser(
+    String username,
+    String name,
+    String email,
+    String? password,
+  ) async {
+    final params = {
+      "username": username,
+      "name": name,
+      "email": email,
+      "password": password,
+    };
     final requestUri = Uri.http(Api.baseUrl, _registerPath);
     final response = await _client.post(
       requestUri,
       headers: headers,
-      body: jsonEncode(requestBody),
+      body: jsonEncode(params),
     );
     _processRegisterResponse(response);
   }
@@ -74,7 +84,7 @@ class AuthRepositoryImpl extends UserRepository {
 
   @override
   Future<void> updateProfile(String name, String username, String email) async {
-    final params = {
+    final _params = {
       "name": name,
       "username": username,
       "email": email,
@@ -82,8 +92,8 @@ class AuthRepositoryImpl extends UserRepository {
     final requestUri = Uri.http(Api.baseUrl, _updateUserPath);
     final response = await _client.put(
       requestUri,
-      headers:await Api.headers(),
-      body: jsonEncode(params),
+      headers: await Api.headers(),
+      body: jsonEncode(_params),
     );
     _processUpdateProfileResponse(response);
 
@@ -108,9 +118,7 @@ class AuthRepositoryImpl extends UserRepository {
   }
 
   void _processUpdateProfileResponse(http.Response response) {
-    if (response.statusCode == HttpStatus.ok) {
-      _processLoginResponseOk(response);
-    } else {
+    if (response.statusCode != HttpStatus.ok) {
       HttpResponseUtils.processStatusCodeFailed(response);
     }
   }
@@ -124,9 +132,7 @@ class AuthRepositoryImpl extends UserRepository {
   }
 
   void _processRegisterResponse(http.Response response) {
-    if (response.statusCode == HttpStatus.ok) {
-      _processRegisterResponseOK(response);
-    } else {
+    if (response.statusCode != HttpStatus.ok) {
       HttpResponseUtils.processStatusCodeFailed(response);
     }
   }
@@ -142,15 +148,15 @@ class AuthRepositoryImpl extends UserRepository {
     final user = User.fromJson(decodedResponse);
     final token = decodedResponse["accessToken"];
     await UserPreferences.saveToken(LoginUserData(token.toString()));
-   // AuthCredentialsStorage.saveCredentials(LoginUserData(token.toString()));
+    // AuthCredentialsStorage.saveCredentials(LoginUserData(token.toString()));
     _currentUserController.sink.add(user);
   }
 
-  void _processRegisterResponseOK(http.Response response) {
-    final decodedResponse = HttpResponseUtils.parseHttpResponse(response);
-    final user = User.fromJson(decodedResponse);
-    _currentUserController.sink.add(user);
-  }
+  // void _processRegisterResponseOK(http.Response response) {
+  //   final decodedResponse = HttpResponseUtils.parseHttpResponse(response);
+  //   final user = User.fromJson(decodedResponse);
+  //   _currentUserController.sink.add(user);
+  // }
 
   @override
   Future<void> signOut() async {

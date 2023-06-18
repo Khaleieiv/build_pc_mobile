@@ -223,6 +223,7 @@ class _BuildPcPageState extends State<BuildPcPage> {
         ),
         onPressed: () async {
           selectedComponentForBuildNotifier.checkButtonBuild = true;
+          await selectedComponentForBuildNotifier.clearSwapButton(clear: true);
           await selectedComponentForBuildNotifier.clearAddToBuildPcComponents();
           await buildPcNotifier.createBuildPcUserComponents();
           await selectedComponentForBuildNotifier.addToComparison(

@@ -31,42 +31,77 @@ class _RegistrationFormState extends State<RegistrationForm> {
 
   Future<void> _registerButtonPressed() async {
     final authNotifier = Provider.of<AuthNotifier>(context, listen: false);
-    try {
-      await authNotifier.registerAccount(
-        _nameController.text,
-        _usernameController.text,
-        _passwordController.text,
-        _emailController.text,
-      );
-    } catch (error) {
+
+    const lengthFirst = 8;
+    const lengthSecond = 20;
+
+    if (_passwordController.text.length < lengthFirst) {
+      message("Password should be atleast 8 characters");
+    } else if (_passwordController.text.length > lengthSecond) {
+      message("Password should not be greater than 20 characters");
+    } else if (isValidPassword(_passwordController.text) == false) {
+      message(
+          "You entered the wrong password format. \n"
+              "The password must contain at least one upper or lower case "
+              "letter case, at least one number and at least one of the "
+              "special characters.");
+    } else if (isValidEmail(_emailController.text) == false) {
+      message("You entered the wrong email format. e.g. "
+          "example123@example.com");
+    } else {
+      try {
+        await authNotifier.registerAccount(
+          _usernameController.text,
+          _nameController.text,
+          _emailController.text,
+          _passwordController.text,
+        );
+        if (!mounted) return;
+        await Navigator.pushNamed(context, RouteNames.loginPage);
+      } catch (error) {
+        PanaraInfoDialog.show(
+          context,
+          title: "Oops",
+          message: error.toString(),
+          buttonText: "Okay",
+          onTapDismiss: () {
+            Navigator.pop(context);
+          },
+          textColor: AppColors.blackColor,
+          panaraDialogType: PanaraDialogType.warning,
+          barrierDismissible: false,
+        );
+      }
+    }
+  }
+
+  bool isValidEmail(String text) {
+    final emailRegExp = RegExp(r"^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
+
+    return emailRegExp.hasMatch(text);
+  }
+
+  bool isValidPassword(String text) {
+    final passwordRegExp =
+        RegExp(r'^(?=.*?[A-Za-z])(?=.*?[0-9])(?=.*?[!@#$%^&*]).{8,}$');
+
+    return passwordRegExp.hasMatch(text);
+  }
+
+  void message(String? text) {
+    if (text != null) {
       PanaraInfoDialog.show(
         context,
         title: "Oops",
-        message: error.toString(),
+        message: text,
         buttonText: "Okay",
         onTapDismiss: () {
           Navigator.pop(context);
         },
         textColor: AppColors.blackColor,
         panaraDialogType: PanaraDialogType.warning,
-        barrierDismissible: false,
       );
-
-      return;
     }
-
-    if (!mounted) return;
-    PanaraInfoDialog.show(
-      context,
-      title: "Oops",
-      message: "error.toString()",
-      buttonText: "Okay",
-      onTapDismiss: () {
-        Navigator.pushNamed(context, RouteNames.loginPage);
-      },
-      textColor: AppColors.blackColor,
-      panaraDialogType: PanaraDialogType.success,
-    );
   }
 
   @override

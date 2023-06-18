@@ -35,7 +35,7 @@ class _LoginFormState extends State<LoginForm> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       final authNotifier = Provider.of<AuthNotifier>(context, listen: false);
-      if(await authNotifier.trySignInWithStoredCredentials()){
+      if (await authNotifier.trySignInWithStoredCredentials()) {
         if (!mounted) return;
         await Navigator.pushNamed(context, RouteNames.homePage);
       }
@@ -117,10 +117,35 @@ class _LoginFormState extends State<LoginForm> {
   Future<void> loginButtonPressed() async {
     final authNotifier = Provider.of<AuthNotifier>(context, listen: false);
     try {
-      await authNotifier.signInWithEmail(
-        _usernameController.text,
-        _passwordController.text,
-      );
+      const lengthFirst = 8;
+      const lengthSecond = 20;
+
+      if (_passwordController.text.length < lengthFirst) {
+        message("Password should be atleast 8 characters");
+      } else if (_passwordController.text.length > lengthSecond) {
+        message("Password should not be greater than 20 characters");
+      } else {
+        try {
+          await authNotifier.signInWithEmail(
+            _usernameController.text,
+            _passwordController.text,
+          );
+          if (!mounted) return;
+          await Navigator.pushNamed(context, RouteNames.homePage);
+        } catch (error) {
+          PanaraInfoDialog.show(
+            context,
+            title: "Oops",
+            message: error.toString(),
+            buttonText: "Okay",
+            onTapDismiss: () {
+              Navigator.pop(context);
+            },
+            textColor: AppColors.blackColor,
+            panaraDialogType: PanaraDialogType.warning,
+          );
+        }
+      }
     } catch (error) {
       PanaraInfoDialog.show(
         context,
@@ -133,11 +158,22 @@ class _LoginFormState extends State<LoginForm> {
         textColor: AppColors.blackColor,
         panaraDialogType: PanaraDialogType.warning,
       );
-
-      return;
     }
+  }
 
-    if (!mounted) return;
-    await Navigator.pushNamed(context, RouteNames.homePage);
+  void message(String? text) {
+    if (text != null) {
+      PanaraInfoDialog.show(
+        context,
+        title: "Oops",
+        message: text,
+        buttonText: "Okay",
+        onTapDismiss: () {
+          Navigator.pop(context);
+        },
+        textColor: AppColors.blackColor,
+        panaraDialogType: PanaraDialogType.warning,
+      );
+    }
   }
 }

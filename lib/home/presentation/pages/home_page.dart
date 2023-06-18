@@ -53,6 +53,25 @@ class _HomePageState extends State<HomePage> {
 
     const gap = 3.0;
 
+    void message() {
+      PanaraConfirmDialog.show(
+        context,
+        title: context.getString("profile.account.title"),
+        message: context.getString("profile.account.message"),
+        confirmButtonText: context.getString("profile.account.confirm"),
+        cancelButtonText: context.getString("profile.account.cancel"),
+        textColor: AppColors.blackColor,
+        onTapCancel: () {
+          Navigator.pushNamed(context, RouteNames.homePage);
+        },
+        onTapConfirm: () {
+          Navigator.pushNamed(context, RouteNames.loginPage);
+        },
+        panaraDialogType: PanaraDialogType.warning,
+        barrierDismissible: false,
+      );
+    }
+
     return Scaffold(
       appBar: isAppBarEnabled
           ? AppBar(
@@ -121,25 +140,7 @@ class _HomePageState extends State<HomePage> {
                   onPressed: () {
                     isAppBarEnabled = true;
                     if (!authNotifier.isLoggedIn) {
-                      PanaraConfirmDialog.show(
-                        context,
-                        title: context.getString("profile.account.hello"),
-                        message:
-                            context.getString("profile.account.login_required"),
-                        confirmButtonText:
-                            context.getString("profile.account.confirm"),
-                        cancelButtonText:
-                            context.getString("profile.account.cancel"),
-                        textColor: AppColors.blackColor,
-                        onTapCancel: () {
-                          Navigator.pushNamed(context, RouteNames.homePage);
-                        },
-                        onTapConfirm: () {
-                          Navigator.pushNamed(context, RouteNames.loginPage);
-                        },
-                        panaraDialogType: PanaraDialogType.warning,
-                        barrierDismissible: false,
-                      );
+                      message();
                     }
                   },
                   gap: gap,
@@ -150,25 +151,7 @@ class _HomePageState extends State<HomePage> {
                   onPressed: () {
                     isAppBarEnabled = true;
                     if (!authNotifier.isLoggedIn) {
-                      PanaraConfirmDialog.show(
-                        context,
-                        title: context.getString("profile.account.hello"),
-                        message:
-                            context.getString("profile.account.login_required"),
-                        confirmButtonText:
-                            context.getString("profile.account.confirm"),
-                        cancelButtonText:
-                            context.getString("profile.account.cancel"),
-                        textColor: AppColors.blackColor,
-                        onTapCancel: () {
-                          Navigator.pushNamed(context, RouteNames.homePage);
-                        },
-                        onTapConfirm: () {
-                          Navigator.pushNamed(context, RouteNames.loginPage);
-                        },
-                        panaraDialogType: PanaraDialogType.warning,
-                        barrierDismissible: false,
-                      );
+                      message();
                     }
                   },
                   gap: gap,

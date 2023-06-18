@@ -36,8 +36,8 @@
       "log_out": "Log Out",
       "title": "Hello",
       "message": "To go to this page you need to be logged in",
-      "confirmButtonText": "Confirm",
-      "cancelButtonText": "Cancel"
+      "confirm": "Confirm",
+      "cancel": "Cancel"
     },
     "edit_profile": {
       "edit_profile": "Edit Profile",
@@ -351,12 +351,14 @@
       "no_data": "There is no data on these components in the database.",
       "cpu": "Processor",
       "motherboard": "Motherboard",
-      "check_m": "You can't create an assembly without a processor",
+      "check_pr": "You can't create an assembly without a processor",
+      "check_m": "You can't create an assembly without a motherboard",
       "cooler": "Cooler",
       "gpu": "Graphic Card",
       "ram": "Memory",
       "hdd": "Hdd",
       "ssd": "Ssd",
+      "disk": "Disk",
       "power_supply": "Power Supply",
       "check_d": "You can't create an assembly without a disk",
       "case": "Case",
@@ -368,7 +370,8 @@
       "ok": "Ok",
       "okay": "Okay",
       "oops": "Oops",
-      "empty_build": "You cannot create an assembly"
+      "empty_build": "You cannot create an assembly",
+      "build_fail": "The assembly will not be complete and will not function without "
     },
     "swap": {
       "switch": "Switch",

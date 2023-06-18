@@ -64,6 +64,28 @@ class _ProfilePageState extends State<ProfilePage> {
 
     const sizeIcon = 20.0;
 
+    void message(){
+      PanaraConfirmDialog.show(
+        context,
+        title: context.getString("profile.account.title"),
+        message:
+        context.getString("profile.account.message"),
+        confirmButtonText:
+        context.getString("profile.account.confirm"),
+        cancelButtonText:
+        context.getString("profile.account.cancel"),
+        textColor: AppColors.blackColor,
+        onTapCancel: () {
+          Navigator.pop(context);
+        },
+        onTapConfirm: () {
+          Navigator.pushNamed(context, RouteNames.loginPage);
+        },
+        panaraDialogType: PanaraDialogType.warning,
+        barrierDismissible: false,
+      );
+    }
+
     return Scaffold(
       backgroundColor: themeChange.darkTheme
           ? AppDarkColors.primaryBackgroundDarkColor
@@ -220,25 +242,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   if (isCheckLoggedIn) {
                     Navigator.pushNamed(context, RouteNames.editProfilePage);
                   } else {
-                    PanaraConfirmDialog.show(
-                      context,
-                      title: context.getString("profile.account.hello"),
-                      message:
-                          context.getString("profile.account.login_required"),
-                      confirmButtonText:
-                          context.getString("profile.account.confirm"),
-                      cancelButtonText:
-                          context.getString("profile.account.cancel"),
-                      textColor: AppColors.blackColor,
-                      onTapCancel: () {
-                        Navigator.pop(context);
-                      },
-                      onTapConfirm: () {
-                        Navigator.pushNamed(context, RouteNames.loginPage);
-                      },
-                      panaraDialogType: PanaraDialogType.warning,
-                      barrierDismissible: false,
-                    );
+                    message();
                   }
                 },
               ),
@@ -265,29 +269,18 @@ class _ProfilePageState extends State<ProfilePage> {
                   if (isCheckLoggedIn) {
                     Navigator.pushNamed(context, RouteNames.changePasswordPage);
                   } else {
-                    PanaraConfirmDialog.show(
-                      context,
-                      title: context.getString("profile.account.hello"),
-                      message:
-                      context.getString("profile.account.login_required"),
-                      confirmButtonText:
-                      context.getString("profile.account.confirm"),
-                      cancelButtonText:
-                      context.getString("profile.account.cancel"),
-                      textColor: AppColors.blackColor,
-                      onTapCancel: () {
-                        Navigator.pop(context);
-                      },
-                      onTapConfirm: () {
-                        Navigator.pushNamed(context, RouteNames.loginPage);
-                      },
-                      panaraDialogType: PanaraDialogType.warning,
-                      barrierDismissible: false,
-                    );
+                    message();
                   }
                 },
               ),
             ),
+            // const SizedBox(height: AppSizes.defaultPadding * 1.5),
+            // const Text("Use the store of our partners - ALLO",
+            // style: TextStyle(
+            //   fontFamily: fontFamily,
+            //   fontWeight: FontWeight.normal,
+            //   fontSize: fontSize,
+            // ),),
             const SizedBox(height: AppSizes.defaultPadding * 1.5),
             CustomButtonWidget(
               fromSTEBStart: fromSTEBStartButtonLogOut,

@@ -6,16 +6,21 @@ abstract class UserRepository {
 
   Stream<ProfileParams?> get currentProfileParams;
 
-  Future<void> registerUser(User userData);
+  Future<void> registerUser(
+    String username,
+    String name,
+    String email,
+    String? password,
+  );
 
   Future<void> loginUser(
-      String username,
-      String password,
-      );
+    String username,
+    String password,
+  );
 
   Future<void> getCurrentUser();
 
-  Future<void> updateProfile(String name, String username, String email);
+  Future<void> updateProfile(String name,String username, String email);
 
   Future<void> deleteUser();
 

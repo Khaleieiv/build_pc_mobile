@@ -126,56 +126,85 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
     });
   }
 
+  void message(String? text) {
+    if (text != null) {
+      PanaraInfoDialog.show(
+        context,
+        title: "Oops",
+        message: text,
+        buttonText: "Okay",
+        onTapDismiss: () {
+          Navigator.pop(context);
+        },
+        textColor: AppColors.blackColor,
+        panaraDialogType: PanaraDialogType.warning,
+      );
+    }
+  }
+
   Future<void> changePassword() async {
+    const lengthFirst = 8;
+    const lengthSecond = 20;
+
     final profileNotifier =
         Provider.of<ProfileNotifier>(context, listen: false);
     final authNotifier = Provider.of<AuthNotifier>(context, listen: false);
-    final body = await profileNotifier.changePassword(
-      _passwordOldController.text,
-      _passwordNewController.text,
-    );
-    if (body?.body == "Password successfully changed") {
-      if (!mounted) return;
-      await PanaraInfoDialog.show(
-        context,
-        title: context.getString("profile.change_password.congratulations"),
-        message: context.getString("profile.change_password.change_successful"),
-        buttonText: context.getString("profile.change_password.okay"),
-        onTapDismiss: () {
-          authNotifier.signOut();
-          Navigator.pushNamed(context, RouteNames.loginPage);
-        },
-        textColor: AppColors.blackColor,
-        panaraDialogType: PanaraDialogType.success,
-      );
-    } else if (body?.body == "Password not match") {
-      if (!mounted) return;
-      await PanaraInfoDialog.show(
-        context,
-        title: context.getString("profile.change_password.oops"),
-        message: context.getString("profile.change_password.password_not_match"),
-        buttonText: context.getString("profile.change_password.okay"),
-        onTapDismiss: () {
-          Navigator.pop(context);
-        },
-        textColor: AppColors.blackColor,
-        panaraDialogType: PanaraDialogType.warning,
-        barrierDismissible: false,
-      );
+    if (_passwordOldController.text.length < lengthFirst ||
+        _passwordNewController.text.length < lengthFirst) {
+      message("Password should be atleast 8 characters");
+    } else if (_passwordOldController.text.length > lengthSecond ||
+        _passwordNewController.text.length > lengthSecond) {
+      message("Password should not be greater than 20 characters");
     } else {
-      if (!mounted) return;
-      await PanaraInfoDialog.show(
-        context,
-        title: context.getString("profile.change_password.oops"),
-        message: context.getString("profile.change_password.something_wrong"),
-        buttonText: context.getString("profile.change_password.okay"),
-        onTapDismiss: () {
-          Navigator.pop(context);
-        },
-        textColor: AppColors.blackColor,
-        panaraDialogType: PanaraDialogType.warning,
-        barrierDismissible: false,
+      final body = await profileNotifier.changePassword(
+        _passwordOldController.text,
+        _passwordNewController.text,
       );
+      if (body?.body == "Password successfully changed") {
+        if (!mounted) return;
+        await PanaraInfoDialog.show(
+          context,
+          title: context.getString("profile.change_password.congratulations"),
+          message:
+              context.getString("profile.change_password.change_successful"),
+          buttonText: context.getString("profile.change_password.okay"),
+          onTapDismiss: () {
+            authNotifier.signOut();
+            Navigator.pushNamed(context, RouteNames.loginPage);
+          },
+          textColor: AppColors.blackColor,
+          panaraDialogType: PanaraDialogType.success,
+        );
+      } else if (body?.body == "Password not match") {
+        if (!mounted) return;
+        await PanaraInfoDialog.show(
+          context,
+          title: context.getString("profile.change_password.oops"),
+          message:
+              context.getString("profile.change_password.password_not_match"),
+          buttonText: context.getString("profile.change_password.okay"),
+          onTapDismiss: () {
+            Navigator.pop(context);
+          },
+          textColor: AppColors.blackColor,
+          panaraDialogType: PanaraDialogType.warning,
+          barrierDismissible: false,
+        );
+      } else {
+        if (!mounted) return;
+        await PanaraInfoDialog.show(
+          context,
+          title: context.getString("profile.change_password.oops"),
+          message: context.getString("profile.change_password.something_wrong"),
+          buttonText: context.getString("profile.change_password.okay"),
+          onTapDismiss: () {
+            Navigator.pop(context);
+          },
+          textColor: AppColors.blackColor,
+          panaraDialogType: PanaraDialogType.warning,
+          barrierDismissible: false,
+        );
+      }
     }
   }
 }

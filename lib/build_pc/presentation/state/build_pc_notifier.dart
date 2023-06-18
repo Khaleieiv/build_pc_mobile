@@ -81,7 +81,6 @@ class BuildPcNotifier extends ChangeNotifier with LoadingStateNotifier {
   }
 
   Future<void> fetchBuildPcUserListComponents() async {
-    setLoadingState(value: true);
     try {
       await _buildPcRepositoryImpl.fetchBuildPcUserListComponents();
       notifyListeners();
@@ -89,7 +88,7 @@ class BuildPcNotifier extends ChangeNotifier with LoadingStateNotifier {
       _handleCustomError(e);
       rethrow;
     } finally {
-      setLoadingState(value: false);
+      notifyListeners();
     }
   }
 

@@ -34,23 +34,19 @@ class AuthNotifier extends ChangeNotifier {
   }
 
   Future<void> registerAccount(
-    String name,
     String username,
-    String password,
+    String name,
     String email,
+    String password,
   ) async {
     _handleAuthError(null);
     notifyListeners();
     try {
       await _authRepository.registerUser(
-        User(
-          id: null,
-          name: name,
-          username: username,
-          password: password,
-          role: null,
-          email: email,
-        ),
+        username,
+        name,
+        email,
+        password,
       );
     } on CustomResponseException catch (e) {
       _handleAuthError(e);
@@ -61,8 +57,8 @@ class AuthNotifier extends ChangeNotifier {
   }
 
   Future<void> signInWithEmail(
-    String username,
-    String password,
+    String? username,
+    String? password,
   ) async {
     _handleAuthError(null);
     notifyListeners();
@@ -109,7 +105,7 @@ class AuthNotifier extends ChangeNotifier {
 
   Future<void> updateProfile(
     String name,
-    String username,
+      String username,
     String email,
   ) async {
     _handleAuthError(null);
@@ -153,7 +149,8 @@ class AuthNotifier extends ChangeNotifier {
   }
 
   Future<void> _profileParamsStreamListener(
-      ProfileParams? profileParams,) async {
+    ProfileParams? profileParams,
+  ) async {
     _profileParams = profileParams;
     _handleAuthError(null);
     notifyListeners();
@@ -170,7 +167,7 @@ class AuthNotifier extends ChangeNotifier {
     var checkLogin = false;
     try {
       //savedCredentials = await AuthCredentialsStorage.savedCredentials;
-     final token = await UserPreferences.getToken;
+      final token = await UserPreferences.getToken;
       if (token != null) {
         checkLogin = true;
         final storedUser = await UserPreferences.getUser();

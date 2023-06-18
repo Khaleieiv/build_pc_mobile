@@ -14,7 +14,9 @@ _$_Ram _$$_RamFromJson(Map<String, dynamic> json) => _$_Ram(
           RamMemoryType.fromJson(json['memoryType'] as Map<String, dynamic>),
       memoryCapacity: json['memoryCapacity'] as int,
       frequency: json['frequency'] as int,
-      ramTimings: RamTimings.fromJson(json['timings'] as Map<String, dynamic>),
+      ramTimings: json['timings'] == null
+          ? null
+          : RamTimings.fromJson(json['timings'] as Map<String, dynamic>),
       powerSupplyVoltage: (json['powerSupplyVoltage'] as num).toDouble(),
       description: json['description'] as String,
       recommendedPrice: json['recommendedPrice'] as int,

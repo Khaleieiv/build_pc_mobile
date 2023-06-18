@@ -34,14 +34,17 @@ class _CustomAlertDialogWidgetState extends State<CustomAlertDialogWidget> {
     super.initState();
     SchedulerBinding.instance.addPostFrameCallback((_) {
       final selectedComponentForBuildNotifier =
-      Provider.of<SelectedComponentForBuildNotifier>(context, listen: false);
-      final nameBuild =
-      selectedComponentForBuildNotifier.addToBuildPcComponents["nameBuild"];
-      final _name = nameBuild != null ? nameBuild.toString() : "Draft";
+          Provider.of<SelectedComponentForBuildNotifier>(
+        context,
+        listen: false,
+      );
+      final nameBuild = selectedComponentForBuildNotifier
+              .addToBuildPcComponents["nameBuild"] ??
+          "Draft";
       _textFieldController.value = TextEditingValue(
-        text: _name,
+        text: nameBuild.toString(),
         selection: TextSelection.fromPosition(
-          TextPosition(offset: _name.length),
+          TextPosition(offset: nameBuild.toString().length),
         ),
       );
     });
@@ -49,7 +52,6 @@ class _CustomAlertDialogWidgetState extends State<CustomAlertDialogWidget> {
 
   @override
   Widget build(BuildContext context) {
-
     return IconButton(
       onPressed: () {
         _displayTextInputDialog(context, _textFieldController);
@@ -70,84 +72,132 @@ class _CustomAlertDialogWidgetState extends State<CustomAlertDialogWidget> {
     final check =
         selectedComponentForBuildNotifier.addToBuildPcComponents["processor"] !=
             null;
+    if (!check) {
+      PanaraInfoDialog.show(
+        context,
+        title: context.getString(
+          'build_pc.alert_dialog.oops',
+        ),
+        message: context.getString(
+          'build_pc.alert_dialog.empty_build',
+        ),
+        buttonText: context.getString(
+          'build_pc.alert_dialog.okay',
+        ),
+        onTapDismiss: () {
+          Navigator.pop(context);
+        },
+        textColor: AppColors.blackColor,
+        panaraDialogType: PanaraDialogType.warning,
+      );
+    } else if (selectedComponentForBuildNotifier.checkAddMotherboard) {
+      messageFail(context.getString("build_pc.add_component.motherboard"));
+    } else if (selectedComponentForBuildNotifier.checkAddCooler) {
+      messageFail(context.getString("build_pc.add_component.cooler"));
+    } else if (selectedComponentForBuildNotifier.checkAddGPU) {
+      messageFail(context.getString("build_pc.add_component.gpu"));
+    } else if (selectedComponentForBuildNotifier.checkAddMemory) {
+      messageFail(context.getString("build_pc.add_component.ram"));
+    } else if (selectedComponentForBuildNotifier.checkAddHdd ||
+        selectedComponentForBuildNotifier.checkAddSsd) {
+      messageFail(context.getString("build_pc.add_component.disk"));
+    } else if (selectedComponentForBuildNotifier.checkAddPowerSupply) {
+      messageFail(context.getString("build_pc.add_component.power_supply"));
+    } else if (selectedComponentForBuildNotifier.checkAddCase) {
+      messageFail(context.getString("build_pc.add_component.case"));
+    } else {
+      await messageDialog(_textFieldController);
+    }
+  }
 
-    return check
-        ? showDialog(
-            context: context,
-            builder: (context) {
-              return AlertDialog(
-                title: Text(context.getString(
-                  'build_pc.alert_dialog.label',
-                ),),
-                content: TextField(
-                  onChanged: (value) {
-                    setState(() {
-                     selectedComponentForBuildNotifier.addToComparison(
-                        "nameBuild",
-                        value,
-                      );
-                    });
-                  },
-                  textInputAction: TextInputAction.next,
-                  controller: _textFieldController,
-                  decoration: InputDecoration(
-                    hintText: context.getString('build_pc.info.name_build'),
-                    labelText: context.getString('build_pc.info.name_build'),
-                  ),
-                ),
-                actions: <Widget>[
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      MaterialButton(
-                        color: Colors.red,
-                        textColor: Colors.white,
-                        child:  Text(context.getString(
-                          'build_pc.alert_dialog.cancel',
-                        ),),
-                        onPressed: () {
-                          setState(() {
-                            Navigator.pop(context);
-                          });
-                        },
-                      ),
-                      MaterialButton(
-                        color: Colors.green,
-                        textColor: Colors.white,
-                        onPressed: (){
-                          pressSave();
-                          Navigator.popUntil(
-                            context,
-                            ModalRoute.withName('/home'),
-                          );
-                        },
-                        child:  Text(context.getString(
-                          'build_pc.alert_dialog.ok',
-                        ),),
-                      ),
-                    ],
-                  ),
-                ],
+  void messageFail(String label) {
+    PanaraConfirmDialog.show(
+      context,
+      title: context.getString("build_pc.alert_dialog.oops"),
+      message: '${context.getString("build_pc.alert_dialog.build_fail")}$label',
+      confirmButtonText: context.getString("build_pc.alert_dialog.okay"),
+      cancelButtonText: context.getString("build_pc.alert_dialog.cancel"),
+      textColor: AppColors.blackColor,
+      onTapCancel: () {
+        Navigator.pop(context);
+      },
+      onTapConfirm: () async {
+        Navigator.pop(context);
+        await messageDialog(_textFieldController);
+      },
+      panaraDialogType: PanaraDialogType.warning,
+      barrierDismissible: false,
+    );
+  }
+
+  Future<dynamic> messageDialog(TextEditingController textFieldController) {
+    final selectedComponentForBuildNotifier =
+        Provider.of<SelectedComponentForBuildNotifier>(context, listen: false);
+
+    return showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text(
+            context.getString(
+              'build_pc.alert_dialog.label',
+            ),
+          ),
+          content: TextField(
+            onChanged: (value) async {
+              await selectedComponentForBuildNotifier.addToComparison(
+                "nameBuild",
+                value,
               );
             },
-          )
-        : PanaraInfoDialog.show(
-            context,
-            title: context.getString(
-              'build_pc.alert_dialog.oops',
+            textInputAction: TextInputAction.next,
+            controller: textFieldController,
+            decoration: InputDecoration(
+              hintText: context.getString('build_pc.info.name_build'),
+              labelText: context.getString('build_pc.info.name_build'),
             ),
-            message: context.getString(
-              'build_pc.alert_dialog.empty_build',
+          ),
+          actions: <Widget>[
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                MaterialButton(
+                  color: Colors.red,
+                  textColor: Colors.white,
+                  child: Text(
+                    context.getString(
+                      'build_pc.alert_dialog.cancel',
+                    ),
+                  ),
+                  onPressed: () {
+                    setState(() {
+                      Navigator.pop(context);
+                    });
+                  },
+                ),
+                MaterialButton(
+                  color: Colors.green,
+                  textColor: Colors.white,
+                  onPressed: () async {
+                    await pressSave();
+                    if (!mounted) return;
+                    Navigator.popUntil(
+                      context,
+                      ModalRoute.withName('/home'),
+                    );
+                  },
+                  child: Text(
+                    context.getString(
+                      'build_pc.alert_dialog.ok',
+                    ),
+                  ),
+                ),
+              ],
             ),
-            buttonText: context.getString(
-              'build_pc.alert_dialog.okay',
-            ),
-            onTapDismiss: () {
-              Navigator.pop(context);
-            },
-            textColor: AppColors.blackColor,
-            panaraDialogType: PanaraDialogType.warning,
-          );
+          ],
+        );
+      },
+    );
   }
 
   Future<void> pressSave() async {
@@ -200,6 +250,5 @@ class _CustomAlertDialogWidgetState extends State<CustomAlertDialogWidget> {
     );
     await selectedComponentForBuildNotifier.clearAddToBuildPcComponents();
     await selectedComponentForBuildNotifier.clearSwapButton(clear: true);
-
   }
 }
