@@ -101,9 +101,10 @@ class _EditProfilePageState extends State<EditProfilePage> {
         onTapCancel: () {
           Navigator.pop(context);
         },
-        onTapConfirm: () {
-          authNotifier.deleteUser();
-          Navigator.pushNamed(context, RouteNames.loginPage);
+        onTapConfirm: () async {
+          await authNotifier.deleteUser();
+          if (!mounted) return;
+          await Navigator.pushNamed(context, RouteNames.loginPage);
         },
         panaraDialogType: PanaraDialogType.warning,
       );

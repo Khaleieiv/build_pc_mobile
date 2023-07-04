@@ -5,6 +5,7 @@ import 'package:build_pc_mobile/common/constants/app_colors.dart';
 import 'package:build_pc_mobile/common/constants/app_sizes.dart';
 import 'package:build_pc_mobile/common/presentation/navigation/route_names.dart';
 import 'package:build_pc_mobile/common/widgets/custom_no_data_widget.dart';
+import 'package:build_pc_mobile/common/widgets/custom_refresh_indicator_widget.dart';
 import 'package:build_pc_mobile/home/presentation/state/dark_light_theme_notifier.dart';
 import 'package:build_pc_mobile/rating/presentation/state/rating_notifier.dart';
 import 'package:ez_localization/ez_localization.dart';
@@ -56,157 +57,166 @@ class _BuildPcPageState extends State<BuildPcPage> {
     const blurRadius = 7.0;
 
     return Scaffold(
-      body: buildPcNotifier.isLoading
-          ? ListView.builder(
-              itemCount: buildPcNotifier.buildPcList?.length ?? 0,
-              itemBuilder: (BuildContext context, int index) {
-                final userBuildPc = buildPcNotifier.buildPcList?[index];
+      body: buildPcNotifier.buildPcList != null &&
+              buildPcNotifier.buildPcList!.isNotEmpty
+          ? CustomRefreshIndicatorWidget(
+              onPressed: () async {
+                await Future.delayed(const Duration(milliseconds: 1500));
+                await buildPcNotifier.fetchBuildPcUserListComponents();
+              },
+              widget: ListView.builder(
+                itemCount: buildPcNotifier.buildPcList?.length ?? 0,
+                itemBuilder: (BuildContext context, int index) {
+                  final userBuildPc = buildPcNotifier.buildPcList?[index];
 
-                return Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: GestureDetector(
-                    onTap: () {
-                      selectedComponentForBuildNotifier.buildPc = userBuildPc;
-                      Navigator.pushNamed(
-                        context,
-                        RouteNames.infoBuildPcPage,
-                      );
-                    },
-                    child: Container(
-                      width: MediaQuery.of(context).size.width * 1.0,
-                      height: heightContainer,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(borderRadius),
-                        shape: BoxShape.rectangle,
-                        color: themeChange.darkTheme
-                            ? AppDarkColors.customBackgroundDarkColor
-                            : AppLightColors.accent4LightColor,
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey.withOpacity(opacity),
-                            spreadRadius: spreadRadius,
-                            blurRadius: blurRadius,
-                            offset: const Offset(0, 3),
-                          ),
-                        ],
-                      ),
-                      child: Column(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      '${context.getString('build_pc.info.name_build')}'
-                                      ': ${buildPcNotifier.buildPcList?[index]
-                                          .name ?? 'Draft'}',
-                                      style: const TextStyle(
-                                        fontSize: 20,
-                                        fontFamily: fontFamily,
-                                      ),
-                                    ),
-                                    Text(
-                                      '${context.getString(''
-                                          'build_pc.info.name_user')}'
-                                      ': ${buildPcNotifier.buildPcList?[index]
-                                          .user?.name ?? ''}',
-                                      style: const TextStyle(
-                                        fontSize: 20,
-                                        fontFamily: fontFamily,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                IconButton(
-                                  onPressed: () {
-                                    setState(() {
-                                      PanaraConfirmDialog.show(
-                                        context,
-                                        title: context.getString(
-                                          'build_pc.build.title',
-                                        ),
-                                        message: context.getString(
-                                          'build_pc.build.message',
-                                        ),
-                                        confirmButtonText: context.getString(
-                                          'build_pc.build.confirm_text',
-                                        ),
-                                        cancelButtonText: context.getString(
-                                          'build_pc.build.cancel_text',
-                                        ),
-                                        textColor: AppColors.blackColor,
-                                        onTapCancel: () {
-                                          Navigator.pop(context);
-                                        },
-                                        onTapConfirm: () {
-                                          buildPcNotifier
-                                              .deleteBuildPcUserListComponents(
-                                            buildPcNotifier
-                                                .buildPcList?[index].id,
-                                          );
-                                          Navigator.pop(context);
-                                        },
-                                        panaraDialogType:
-                                            PanaraDialogType.warning,
-                                      );
-                                    });
-                                  },
-                                  icon: const Icon(Icons.delete),
-                                ),
-                              ],
+                  return Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: GestureDetector(
+                      onTap: () {
+                        selectedComponentForBuildNotifier.buildPc = userBuildPc;
+                        Navigator.pushNamed(
+                          context,
+                          RouteNames.infoBuildPcPage,
+                        );
+                      },
+                      child: Container(
+                        width: MediaQuery.of(context).size.width * 1.0,
+                        height: heightContainer,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(borderRadius),
+                          shape: BoxShape.rectangle,
+                          color: themeChange.darkTheme
+                              ? AppDarkColors.customBackgroundDarkColor
+                              : AppLightColors.accent4LightColor,
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(opacity),
+                              spreadRadius: spreadRadius,
+                              blurRadius: blurRadius,
+                              offset: const Offset(0, 3),
                             ),
-                          ),
-                          const SizedBox(height: AppSizes.defaultPadding / 3),
-                          Expanded(
-                            child: Padding(
-                              padding: const EdgeInsets.all(2.0),
-                              child: ListView.builder(
-                                scrollDirection: Axis.horizontal,
-                                itemCount:
-                                    ParamsForComponent.listComponents.length,
-                                itemBuilder: (BuildContext context, int value) {
-                                  final componentType = ParamsForComponent
-                                      .listComponents[value].name;
-                                  final buildPc =
-                                      buildPcNotifier.buildPcList?[index];
-                                  final componentExists = buildPc != null &&
-                                      buildPcNotifier.getComponent(
-                                            buildPc,
-                                            componentType,
-                                          ) !=
-                                          null;
-
-                                  return Row(
+                          ],
+                        ),
+                        child: Column(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
-                                      const SizedBox(
-                                        width: AppSizes.defaultPadding / 3,
-                                      ),
-                                      if (componentExists)
-                                        Image.asset(
-                                          ParamsForComponent
-                                              .listComponents[value].imagePath,
-                                          color: themeChange.darkTheme
-                                              ? AppColors.tertiaryColor
-                                              : AppColors.blackColor,
-                                          width: sizeIcon,
+                                      Text(
+                                        '${context.getString('build_pc.info.name_build')}'
+                                        ': ${buildPcNotifier.buildPcList?[index].name ?? 'Draft'}',
+                                        style: const TextStyle(
+                                          fontSize: 20,
+                                          fontFamily: fontFamily,
                                         ),
+                                      ),
+                                      Text(
+                                        '${context.getString(''
+                                            'build_pc.info.name_user')}'
+                                        ': ${buildPcNotifier.buildPcList?[index].user?.name ?? ''}',
+                                        style: const TextStyle(
+                                          fontSize: 20,
+                                          fontFamily: fontFamily,
+                                        ),
+                                      ),
                                     ],
-                                  );
-                                },
+                                  ),
+                                  IconButton(
+                                    onPressed: () {
+                                      setState(() {
+                                        PanaraConfirmDialog.show(
+                                          context,
+                                          title: context.getString(
+                                            'build_pc.build.title',
+                                          ),
+                                          message: context.getString(
+                                            'build_pc.build.message',
+                                          ),
+                                          confirmButtonText: context.getString(
+                                            'build_pc.build.confirm_text',
+                                          ),
+                                          cancelButtonText: context.getString(
+                                            'build_pc.build.cancel_text',
+                                          ),
+                                          textColor: AppColors.blackColor,
+                                          onTapCancel: () {
+                                            Navigator.pop(context);
+                                          },
+                                          onTapConfirm: () {
+                                            buildPcNotifier
+                                                .deleteBuildPcUserListComponents(
+                                              buildPcNotifier
+                                                  .buildPcList?[index].id,
+                                            );
+                                            Navigator.pop(context);
+                                          },
+                                          panaraDialogType:
+                                              PanaraDialogType.warning,
+                                        );
+                                      });
+                                    },
+                                    icon: const Icon(Icons.delete),
+                                  ),
+                                ],
                               ),
                             ),
-                          ),
-                          const SizedBox(height: AppSizes.defaultPadding / 2),
-                        ],
+                            const SizedBox(height: AppSizes.defaultPadding / 3),
+                            Expanded(
+                              child: Padding(
+                                padding: const EdgeInsets.all(2.0),
+                                child: ListView.builder(
+                                  scrollDirection: Axis.horizontal,
+                                  itemCount:
+                                      ParamsForComponent.listComponents.length,
+                                  itemBuilder:
+                                      (BuildContext context, int value) {
+                                    final componentType = ParamsForComponent
+                                        .listComponents[value].name;
+                                    final buildPc =
+                                        buildPcNotifier.buildPcList?[index];
+                                    final componentExists = buildPc != null &&
+                                        buildPcNotifier.getComponent(
+                                              buildPc,
+                                              componentType,
+                                            ) !=
+                                            null;
+
+                                    return Row(
+                                      children: [
+                                        const SizedBox(
+                                          width: AppSizes.defaultPadding / 3,
+                                        ),
+                                        if (componentExists)
+                                          Image.asset(
+                                            ParamsForComponent
+                                                .listComponents[value]
+                                                .imagePath,
+                                            color: themeChange.darkTheme
+                                                ? AppColors.tertiaryColor
+                                                : AppColors.blackColor,
+                                            width: sizeIcon,
+                                          ),
+                                      ],
+                                    );
+                                  },
+                                ),
+                              ),
+                            ),
+                            const SizedBox(height: AppSizes.defaultPadding / 2),
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                );
-              },
+                  );
+                },
+              ),
             )
           : CustomNoDataWidget(
               text: context.getString(
@@ -215,9 +225,11 @@ class _BuildPcPageState extends State<BuildPcPage> {
             ),
       floatingActionButton: FloatingActionButton.extended(
         backgroundColor: AppColors.alternateColor,
-        label: Text(context.getString(
-          'build_pc.build.create',
-        ),),
+        label: Text(
+          context.getString(
+            'build_pc.build.create',
+          ),
+        ),
         icon: const Icon(
           Icons.add,
         ),
