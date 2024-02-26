@@ -2,9 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:provider/provider.dart';
-import 'package:build_pc_mobile/auth/presentation/pages/components/login_form.dart';
-import 'package:build_pc_mobile/auth/presentation/state/auth_notifier.dart';
-import 'package:build_pc_mobile/common/presentation/navigation/route_names.dart';
 
 // class MockAuthNotifier extends Mock implements AuthNotifier {}
 //
